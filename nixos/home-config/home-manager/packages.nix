@@ -6,7 +6,7 @@
     chromium
     cider          # Apple Music for Linux
     git
-    joplin-desktop # Note-taker
+    joplin-desktop # Notebook
     virtualenv
 
     ((vim_configurable.override {}).customize {

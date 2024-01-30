@@ -37,8 +37,9 @@
   # Packages -----------------------------------------------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    dbus
     home-manager
-    hyprpaper     # wallpaper for Hyprland
+    hyprpaper      # wallpaper for Hyprland
     lsof
     killall
     kitty

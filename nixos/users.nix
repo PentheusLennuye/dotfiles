@@ -5,15 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  users.users.username = {   # Replace username
+  users.users.USERNAME = {
     isNormalUser = true;
-    description = "Firstname Lastname";
+    description = "FIRSTNAME LASTNAME";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
     shell = pkgs.zsh;   # Remove if using bash
     packages = with pkgs; [];
   };
   security.sudo.extraRules = [{
-    users = ["username"];
+    users = ["USERNAME"];
     commands = [{
       command = "ALL";
       options = ["NOPASSWD"];
@@ -21,7 +21,7 @@
   }];
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "username";  # replace username. However, it
+  services.getty.autologinUser = "USERNAME";  # replace username. However, it
                                               # might not be cool to have an
                                               # autologin /and/ sudo NOPASSWD
 }

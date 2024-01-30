@@ -9,17 +9,17 @@
     1.2.3.4  thingy thingy1.domain1
     1.2.3.5  thingy thingy2.domain1
   '';
-  networking.hostName = ""; # Define your hostname.
-  networking.nameservers = [ "1.2.3.1" ];
-  networking.search = [ "domain.A" "domain.B" ];
+  networking.hostName = "HOSTNAME"; # Define your hostname.
+  networking.nameservers = [ "NAMESERVER" ];
+  networking.search = [ "DOMAINA" "DOMAINB" ];
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks."SSID".pskRaw = "SSID generated";
+  networking.wireless.networks."SSID".pskRaw = "PSKRAW";
   networking.interfaces.wifidev.ipv4.addresses = [{  # Replace wifidev with wlpxxxx
     address = "1.2.3.4";
     prefixLength = 24;
   }];
   networking.defaultGateway = {
     address = "1.2.3.1";
-    interface = "wifidev"; # Replace wifidev with wlpxxxx
+    interface = "WIFIDEV"; # Replace wifidev with wlpxxxx
   };
 }
