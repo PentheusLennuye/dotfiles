@@ -9,14 +9,6 @@
   programs.hyprland = {
     enable = true;
   };
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
   hardware.opengl = {
     enable = true;
     driSupport = true;
