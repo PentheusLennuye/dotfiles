@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
       ./hyprland-nvidia.nix
       ./network.nix
@@ -59,18 +59,17 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     dconf
-    home-manager
     hyprpaper      # wallpaper for Hyprland
     lsof
     killall
     kitty
     polkit
     python3
-    vim
     waybar        # task/toolbar for Hyprland
     wget
     wofi          # program selector for Hyprland
     xdg-desktop-portal-hyprland
+    vim
     vscode        # unfree, so it goes here
     zsh
   ];

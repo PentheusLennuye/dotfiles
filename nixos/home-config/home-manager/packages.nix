@@ -9,7 +9,6 @@
     joplin-desktop # Notebook
     starship
     swaylock
-    vim
     virtualenv
 
     ((vim_configurable.override {}).customize {
