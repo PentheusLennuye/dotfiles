@@ -60,11 +60,14 @@
   environment.systemPackages = with pkgs; [
     dconf
     hyprpaper      # wallpaper for Hyprland
-    lsof
     killall
     kitty
+    lsof
+    mako
     polkit
     python3
+    swayidle
+    swaylock
     waybar        # task/toolbar for Hyprland
     wget
     wofi          # program selector for Hyprland
@@ -78,6 +81,7 @@
 
   # Programs, Services, Virtualization enabled -------------------------------
 
+  programs.sway.enable = true;
   programs.zsh.enable = true;
   programs.virt-manager.enable = true;
   services.openssh.enable = true;
@@ -87,6 +91,7 @@
 
   # Security -----------------------------------------------------------------
 
+  security.pam.services.swaylock = {};
   security.polkit.enable = true;   # Required for Hyprland, IIRC
 
   # Before changing this value read the documentation for this option
