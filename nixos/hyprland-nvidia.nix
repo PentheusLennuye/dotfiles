@@ -8,11 +8,12 @@
   ];
   programs.hyprland = {
     enable = true;
+    enableNvidiaPatches = true;
+    xwayland.enable = true;
   };
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
@@ -22,4 +23,5 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
 }

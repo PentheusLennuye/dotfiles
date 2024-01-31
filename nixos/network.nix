@@ -13,8 +13,8 @@
   networking.nameservers = [ "NAMESERVER" ];
   networking.search = [ "DOMAINA" "DOMAINB" ];
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks."SSID".pskRaw = "PSKRAW";
-  networking.interfaces.wifidev.ipv4.addresses = [{  # Replace wifidev with wlpxxxx
+  networking.wireless.networks.SSID.pskRaw = "PSKRAW";
+  networking.interfaces."WIFIDEV".ipv4.addresses = [{  # Replace wifidev with wlpxxxx
     address = "1.2.3.4";
     prefixLength = 24;
   }];

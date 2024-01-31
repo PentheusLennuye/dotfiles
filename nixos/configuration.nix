@@ -8,16 +8,37 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./hyprland.nix
+      ./hyprland-nvidia.nix
       ./network.nix
       ./tls.nix
       ./users.nix
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      devices = [ "nodev" ];
+      efiSupport = true;
+      enable = true;
+      extraEntries = ''
+        menuentry "Windows" {
+          insmod part_gpt
+          insmod fat
+          insmod search_fs_uuid
+          insmod chain
+          search --fs-uuid --set=root FS_UUID
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      }
+      '';
+    };
+  };
 
+  time.hardwareClockInLocalTime = true;
+ 
   # PulseAudio
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
@@ -37,27 +58,32 @@
   # Packages -----------------------------------------------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    dbus
+    dconf
     home-manager
     hyprpaper      # wallpaper for Hyprland
     lsof
     killall
     kitty
+    polkit
     python3
-    starship
     vim
-    vscode
     waybar        # task/toolbar for Hyprland
     wget
     wofi          # program selector for Hyprland
+    xdg-desktop-portal-hyprland
+    vscode        # unfree, so it goes here
     zsh
   ];
+ 
+  ## Fonts will be in the window manager files
 
   # Programs, Services, Virtualization enabled -------------------------------
 
   programs.zsh.enable = true;
   programs.virt-manager.enable = true;
   services.openssh.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.enable = true;
   virtualisation.libvirtd.enable = true;
 
   # Security -----------------------------------------------------------------
