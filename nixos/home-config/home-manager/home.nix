@@ -11,6 +11,7 @@
   # Home =====================================================================
   home.homeDirectory = "/home/gmc";
   home.sessionVariables.NIXOS_OZONE_WL = "1";  # Wayland on Chromium etc
+  home.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";  # Wayland on Chromium etc
   home.stateVersion = "23.11";
   home.username = "gmc";
 
