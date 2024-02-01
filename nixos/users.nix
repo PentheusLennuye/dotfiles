@@ -12,7 +12,6 @@
     users = ["gmc"];
     commands = [{
       command = "ALL";
-      options = ["NOPASSWD"];
     }];
   }];
 
