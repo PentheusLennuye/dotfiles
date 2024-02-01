@@ -3,11 +3,12 @@
 {
   home.packages = with pkgs; [
     ansible        # Used for non-Nix VMs
-    appimage-run   # Needed for Joplin
+    # appimage-run   # uncomment for nVidia ----------
     cider          # Apple Music for Linux
     chromium
     git
     hyprpaper      # wallpaper for Hyprland
+    joplin-desktop # comment for nVidia --------------
     kitty          # terminal
     python3
     starship
