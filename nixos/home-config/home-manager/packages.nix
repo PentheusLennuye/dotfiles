@@ -20,6 +20,7 @@
 # -------------------------------
     kitty          # terminal
     python3
+    rsync
     starship
     virtualenv
     vscode
