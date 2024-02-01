@@ -1,5 +1,9 @@
 { pkgs, ... }:
 
+# Uncomment in nVidia systems
+#let
+#  unstable = import <nixos-unstable> {};
+#in
 {
   home.packages = with pkgs; [
     ansible        # Used for non-Nix VMs
@@ -8,7 +12,12 @@
     chromium
     git
     hyprpaper      # wallpaper for Hyprland
-    joplin-desktop # comment for nVidia --------------
+# Uncomment in nVidia systems ---
+#    unstable.joplin-desktop
+# -------------------------------
+# Comment in nVidia systems -----
+    joplin-desktop
+# -------------------------------
     kitty          # terminal
     python3
     starship

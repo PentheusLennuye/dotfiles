@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ./hyprland.nix
       ./network.nix
-#      ./nvidia.nix   # Uncomment on an nVidia machine
+      ./opengl.nix
       ./sound.nix
       ./tls.nix
       ./users.nix
