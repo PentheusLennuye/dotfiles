@@ -8,8 +8,10 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ./hyprland-nvidia.nix
+      ./hyprland.nix
       ./network.nix
+#      ./nvidia.nix   # Uncomment on an nVidia machine
+      ./sound.nix
       ./tls.nix
       ./users.nix
     ];
@@ -24,77 +26,61 @@
       devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
-      extraEntries = ''
-        menuentry "Windows" {
-          insmod part_gpt
-          insmod fat
-          insmod search_fs_uuid
-          insmod chain
-          search --fs-uuid --set=root FS_UUID
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-      }
-      '';
+
+# Uncomment on sisyphus, which does in fact have a disk with UUID 0ACF-0F7F
+#   extraEntries = ''
+#     menuentry "Windows" {
+#       insmod part_gpt
+#       insmod fat
+#       insmod search_fs_uuid
+#       insmod chain
+#       search --fs-uuid --set=root 0ACF-0F7F
+#       chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+#     }
+#   '';
     };
   };
 
   time.hardwareClockInLocalTime = true;
- 
-  # PulseAudio
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.support32Bit = true;
-  sound.enable = true;
 
-  # TZ and i8n
+  # TZ and i8n ---------------------------------------------------------------
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # Packages -----------------------------------------------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     dconf
-    hyprpaper      # wallpaper for Hyprland
-    killall
-    kitty
     lsof
+    killall
     mako
     polkit
-    python3
-    swayidle
     swaylock
-    waybar        # task/toolbar for Hyprland
+    swayidle
     wget
-    wofi          # program selector for Hyprland
-    xdg-desktop-portal-hyprland
     vim
-    vscode        # unfree, so it goes here
     zsh
   ];
  
-  ## Fonts will be in the window manager files
-
   # Programs, Services, Virtualization enabled -------------------------------
 
+  programs.dconf.enable = true;
   programs.sway.enable = true;
   programs.zsh.enable = true;
   programs.virt-manager.enable = true;
   services.openssh.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.enable = true;
+
+
+  # Virtualization ------------------------------------------------------------
+
+  virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
 
-  # Security -----------------------------------------------------------------
+  # System lock ----------------------------------------------------------------
 
   security.pam.services.swaylock = {};
-  security.polkit.enable = true;   # Required for Hyprland, IIRC
 
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # State Version ------------------------------------------------------------
   system.stateVersion = "23.11"; # Did you read the comment?
 }
+

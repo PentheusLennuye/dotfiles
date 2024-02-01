@@ -3,14 +3,20 @@
 {
   home.packages = with pkgs; [
     ansible        # Used for non-Nix VMs
-    chromium
+    appimage-run   # Needed for Joplin
     cider          # Apple Music for Linux
+    chromium
     git
-    joplin-desktop # Notebook
+    hyprpaper      # wallpaper for Hyprland
+    kitty          # terminal
+    python3
     starship
-    swaylock
     virtualenv
+    vscode
+    waybar        # task/toolbar for Hyprland
+    wofi          # program selector for Hyprland
 
+    # The whole vim enchilada
     ((vim_configurable.override {}).customize {
       name = "vim";
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {

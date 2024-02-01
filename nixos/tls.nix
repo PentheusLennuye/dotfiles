@@ -1,14 +1,44 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
+# cummings-local.ca public root cert. Steal all you want, it won't make a difference :)
 { config, pkgs, ... }:
 {
-  security.pki.certificates = [       # Local domain cert
+  security.pki.certificates = [
     ''
-      -----BEGIN CERTIFICATE-----
-      lalalala...
-      -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIGLTCCBBWgAwIBAgIUVtWdP6iWdZjfvXqMluF6gNjtDLkwDQYJKoZIhvcNAQEL
+    BQAwgZ0xCzAJBgNVBAYTAkNBMQ8wDQYDVQQIDAZRdWViZWMxETAPBgNVBAcMCEtu
+    b3dsdG9uMRgwFgYDVQQKDA9DdW1taW5ncyBPbmxpbmUxLjAsBgNVBAsMJUN1bW1p
+    bmdzIE9ubGluZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkxIDAeBgNVBAMMF0N1bW1p
+    bmdzIE9ubGluZSBST09UIENBMB4XDTIzMDkxMzE1MDcwMloXDTQzMDkwODE1MDcw
+    MlowgZ0xCzAJBgNVBAYTAkNBMQ8wDQYDVQQIDAZRdWViZWMxETAPBgNVBAcMCEtu
+    b3dsdG9uMRgwFgYDVQQKDA9DdW1taW5ncyBPbmxpbmUxLjAsBgNVBAsMJUN1bW1p
+    bmdzIE9ubGluZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkxIDAeBgNVBAMMF0N1bW1p
+    bmdzIE9ubGluZSBST09UIENBMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKC
+    AgEAn+R3eU0+UM8R2Z6n9Sc5YsrlOD7hZyfmqP8VUo8P7NK0e7VeGRvAjJokieyl
+    hN/c0TWIXml3GQvvqqLaPzJMNOqVEU3UekJJ2UEYdXkzQiTtDBdqPfFpZMQR+l2G
+    9NNdd6tTZSor/Xb5+xS0muPghkScyWulHhO8lPo1m0Yp6CzWJznI3u3YFpULVs14
+    78k/FLiFs1ajUJZVBu92EAmdcwV+am1Dpf0wbMOdxUhED34yr/oI+Xed/hnAfTAh
+    4WZDjyK+NAp4liffJLFyZ3RnJdCT7USJt9PFpHxLOq9BZCXkwZBCYkOaud5mMlNK
+    I5Lu/bLFAO8k5dsf6NsuE9+L0eIRw1ZWOpMxiEV7M/hfUdpxJeKxhcASHB7CDA4u
+    H0fhryFE5hvjo2JDxuVNAErRjzuLGHdeOZaPTff9+rtWkg5iF5/nJJCQG4R4gvfA
+    tLVjegKz5R1p5wOkBGiqf2ofSWc5IS83QF2BkR/Kv+jTW0E8ySwzE+9TruecJgPg
+    Dkj/8u8l6TTAQDPy2384Qdkc4yNXOT177RvR6hUZtcfFKLN9dk2ALqLT1fGBes1s
+    WzIEINpu14mF8JLVNig4YR46xZECc9AnQ1jA8VTV0OVqe1EATJQlWL1UmrWT27l7
+    2nfJRi9Sxlb05+ixLtj1gzVnMdCljHnYVSLtKUadVN5E1HECAwEAAaNjMGEwHQYD
+    VR0OBBYEFCvG+jZaGqG2stRnPV8tppVCKeo8MB8GA1UdIwQYMBaAFCvG+jZaGqG2
+    stRnPV8tppVCKeo8MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGGMA0G
+    CSqGSIb3DQEBCwUAA4ICAQCIdWaQDfUXA4+LZplKrkP2Kny5L+jdtUFbbsSyW+g7
+    0sE26f+Qx5nKWTsVgpkGaqsnctVgMLJHqhcyvfPx3f4rT59rMVB7hPqUOjZbQ5Xs
+    vs4r8BEk9wpujs/jj3TD+sXdBdOyGaJs5YtJEbr693nfMe7qh2gSz5HgBPy0A2ZW
+    lGfGyQtelskIF718yO9T4K6d49YDwpD7125vXU9cJpyGL9NiA5rJ4Z6ctwW75B93
+    bmEaanwtdaKLmhTzLMhDE9nIj2zdD0a8DcuAUQzZByrMfcMi5oe69TuBh2mU9GQc
+    8D5b3rG6weJ2ehATCkliqCRk9uMpj7CfFPYxPEfgjUXfA+qANh2cm5HeLuoQqHmg
+    jm1H58rti1yVoKtkdvy1NcfnMv9MvAJAy0OfgM4ApprPc/AehMIeaeLM3vHn9L0B
+    RmPOWNziqM92S2xPckkVXv+BNUWES+vlcJfzriJdrXCZKWOVTrZeDSxhTz4KR+EI
+    7BfIGHrsLB+glqW3u72ZfCmXLuvFCc1YDZUOrkhKP2M2MQh9IBXF+6nA7FXgmp5h
+    JpqSIqYeiKwEs8022pP4ymtjI7ELdUGoCD64v+4UYk4VhNfEGwwD2lEyVxvS7sqY
+    qKT9Fds1YdG3C2ew8zpQMOdBEqyKb/zSMtDBUvBVeZx2aQnTY0Xl7lrhyIly3CTn
+    TA==
+    -----END CERTIFICATE-----
     ''
   ];
 }

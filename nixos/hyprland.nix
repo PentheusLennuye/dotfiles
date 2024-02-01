@@ -8,10 +8,11 @@
   ];
   programs.hyprland = {
     enable = true;
+# Uncomment on an nVidia machine
+#   enableNvidiaPatches = true;
+    xwayland.enable = true;
   };
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  programs.xwayland.enable = true;
+  security.polkit.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 }
