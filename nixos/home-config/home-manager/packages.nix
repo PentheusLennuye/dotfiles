@@ -10,6 +10,7 @@
     # appimage-run   # uncomment for nVidia ----------
     cider          # Apple Music for Linux
     chromium
+    docker-compose
     git
     hyprpaper      # wallpaper for Hyprland
 # Uncomment in nVidia systems ---
