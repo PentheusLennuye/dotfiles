@@ -1,5 +1,7 @@
 # George's NixOS configurations
 
+NixOS version 23.11
+
 These are the files I use to configure my various bare metal NixOS systems to my
 liking. See [NixOS Buildout](#nixos-buildout) on how to put them to use.
 
