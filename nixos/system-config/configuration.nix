@@ -50,6 +50,7 @@
   # Packages -----------------------------------------------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    brightnessctl
     dconf
     lsof
     killall

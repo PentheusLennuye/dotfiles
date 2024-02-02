@@ -105,6 +105,8 @@ See [LAPTOP](LAPTOP.md)
      __joplin-desktop__ on nVidia systems to enable the --ignore-gpu switch
    - _hypr/hyprland.conf_ will need __--disable-gpu__ added to _joplin-desktop_
      and _cider_ on nVidia systems.
+   - _hypr/hyprland.conf_ will also need its audio sink identifiers changed from
+     51 depending on the output of _wpctl status_.
 3. Copy the files to _$HOME/.config_.
    ```sh
    rm -rf $HOME/.config/home-manager
