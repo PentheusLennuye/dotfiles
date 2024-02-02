@@ -79,7 +79,8 @@ See [LAPTOP](LAPTOP.md)
 
 1. Copy all the files in _system-config_ to _/etc/nixos/_. Rename the
    appropriate _network-XX.nix_ file to _network.nix_.
-2. Exit the nix-shell from step three (you are still in there, right?)
+2. Exit the nix-shell from step three (you are still in there, right?) with
+   a simple `exit`.
 3. Fire!
    ```sh
    sudo nixos-rebuild switch
