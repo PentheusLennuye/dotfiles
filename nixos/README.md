@@ -9,6 +9,8 @@ This is a live repository which is continually being updated as I find I need
 some tools and remove others. __Modify the files to your needs!__. You might not
 actually _need_ to use _zsh_...
 
+Some folk use _flakes_. I do not for now, being just a minimalist.
+
 ## Credit
 
 Much thanks to Tyler Kelley, "Best NixOS Config"
