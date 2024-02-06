@@ -20,6 +20,7 @@
     joplin-desktop
 # -------------------------------
     kitty          # terminal
+    poetry
     python3
     rsync
     starship
