@@ -10,9 +10,15 @@
     docker-compose
     gcc
     git
+    hunspell
+    hunspellDicts.de-de
+    hunspellDicts.en_CA-large
+    hunspellDicts.es_MX
+    hunspellDicts.fr-any
     hyprpaper      # wallpaper for Hyprland
     joplin-desktop
     kitty          # terminal
+    libreoffice-qt
     poetry
     python3
     rsync
