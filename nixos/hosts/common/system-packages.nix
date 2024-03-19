@@ -8,4 +8,12 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ git vim wget curl ];
   programs.zsh.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing.enable = true;
 }
