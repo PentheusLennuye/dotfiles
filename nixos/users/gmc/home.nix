@@ -2,10 +2,11 @@
 
 {
   imports = [
-    ./starship.nix
+    ./hyprland.nix
     ./packages.nix
-    ./waybar.nix
+    ./starship.nix
     ./vscode.nix
+    ./waybar.nix
     ./zsh.nix
   ];
 

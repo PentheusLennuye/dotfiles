@@ -1,28 +1,22 @@
 { pkgs, ... }:
 
-# Uncomment in nVidia systems
-#let
-#  unstable = import <nixos-unstable> {};
-#in
 {
   home.packages = with pkgs; [
     ansible        # Used for non-Nix VMs
-    # appimage-run   # uncomment for nVidia ----------
+    appimage-run   # Required for Joplin
+    cargo
     cider          # Apple Music for Linux
     chromium
     docker-compose
+    gcc
     git
     hyprpaper      # wallpaper for Hyprland
-# Uncomment in nVidia systems ---
-#    unstable.joplin-desktop
-# -------------------------------
-# Comment in nVidia systems -----
     joplin-desktop
-# -------------------------------
     kitty          # terminal
     poetry
     python3
     rsync
+    rustc
     starship
     virtualenv
     vscode

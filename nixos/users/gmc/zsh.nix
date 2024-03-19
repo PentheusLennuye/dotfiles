@@ -4,7 +4,7 @@
   programs.zsh = {
     dotDir = ".config/zsh";
     enable = true;
-    enableAutosuggestions = false;
+    autosuggestion.enable = false;
     initExtra = ''
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
