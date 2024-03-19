@@ -11,5 +11,10 @@
     xwayland.enable = true;
   };
   programs.xwayland.enable = true;
+
   security.polkit.enable = true;
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
 }
+
