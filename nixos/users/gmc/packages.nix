@@ -4,12 +4,8 @@
   home.packages = with pkgs; [
     ansible        # Used for non-Nix VMs
     appimage-run   # Required for Joplin
-    cargo
     cider          # Apple Music for Linux
     chromium
-    docker-compose
-    gcc
-    git
     hunspell
     hunspellDicts.de-de
     hunspellDicts.en_CA-large
@@ -19,13 +15,8 @@
     joplin-desktop
     kitty          # terminal
     libreoffice-qt
-    poetry
-    python3
     rsync
-    rustc
     starship
-    virtualenv
-    vscode
     waybar        # task/toolbar for Hyprland
     wofi          # program selector for Hyprland
 

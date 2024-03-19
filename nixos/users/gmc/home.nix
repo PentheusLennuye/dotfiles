@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../developer
     ./hyprland.nix
     ./packages.nix
     ./starship.nix
