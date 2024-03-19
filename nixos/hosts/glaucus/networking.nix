@@ -10,17 +10,7 @@
     192.168.68.71 netboxdemo.cummings-online.local netboxdemo
   '';
 
-  networking.hostName = "sisyphus"; # Define your hostname.
-  networking.nameservers = [ "192.168.68.1" ];
+  networking.hostName = "glaucus";
+  networking.networkmanager.enable = true;
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks.Pentheus.pskRaw = "PSKRAWHERE";
-  networking.interfaces."wlp0s20f0u9".ipv4.addresses = [{
-    address = "192.168.68.33";
-    prefixLength = 24;
-  }];
-  networking.defaultGateway = {
-    address = "192.168.68.1";
-    interface = "wlp0s20f0u9";
-  };
 }

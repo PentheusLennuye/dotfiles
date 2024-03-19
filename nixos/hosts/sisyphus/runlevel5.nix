@@ -8,8 +8,7 @@
   ];
   programs.hyprland = {
     enable = true;
-# Uncomment on an nVidia machine
-#   enableNvidiaPatches = true;
+    enableNvidiaPatches = true;
     xwayland.enable = true;
   };
   programs.xwayland.enable = true;

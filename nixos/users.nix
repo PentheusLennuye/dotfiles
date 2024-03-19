@@ -5,16 +5,13 @@
     isNormalUser = true;
     description = "George Cummings";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" ];
-    shell = pkgs.zsh;   # Remove if using bash
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
   security.sudo.extraRules = [{
     users = ["gmc"];
     commands = [{
-      command = "ALL";
+      command = "NOPASSWD: ALL";
     }];
   }];
-
-  # Enable automatic login for the user.
-  services.getty.autologinUser = "gmc"; 
 }
