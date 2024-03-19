@@ -5,11 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hosts/sisyphus/hardware-configuration.nix
-    ];
-
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
