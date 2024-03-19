@@ -3,6 +3,7 @@
 {
   imports = [
     ../developer
+    ../poweruser
     ./hyprland.nix
     ./packages.nix
     ./starship.nix
