@@ -13,4 +13,9 @@
   networking.hostName = "glaucus";
   networking.networkmanager.enable = true;
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
+
+  services.openssh.enable = true;
+  services.openssh.settings = {
+    PasswordAuthentication = true;
+  };
 }
