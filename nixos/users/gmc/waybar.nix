@@ -10,8 +10,10 @@
       position = "top";
 
       modules-left = [ "hyprland/window" ];
-      modules-center = [ "network" "temperature" "pulseaudio" "cpu" "memory" "disk" "clock" "custom/germany" ];
-      modules-right = [ "idle_inhibitor" "custom/notification" "tray" ];
+      modules-center = [ "network" "temperature" "pulseaudio" "cpu" "memory"
+                         "disk" "custom/clock" "custom/germany" ];
+      modules-right = [ "idle_inhibitor" "custom/notification" "battery"
+                        "tray" ];
       "hyprland/workspaces" = {
       	format = "{icon}";
       	format-icons = {
@@ -22,15 +24,17 @@
       	on-scroll-up = "hyprctl dispatch workspace e+1";
       	on-scroll-down = "hyprctl dispatch workspace e-1";
       };
-      "clock" = {
-        format = "{: %I:%M %p}";
+      "custom/clock" = {
+        exec = "date +'%I:%M %p'";
+        format = " {}";
       	tooltip = false;
+        interval = 15;
       };
       "custom/germany" = {
         exec = "TZ=':CET' date +'%I:%M %p'";
         format = " {}";
       	tooltip = false;
-        interval = 60;
+        interval = 15;
       };
       "memory" = {
       	interval = 5;
@@ -105,6 +109,7 @@
         escape = true;
       };
       "battery" = {
+        bat = "BAT0";
         states = {
           warning = 30;
           critical = 15;
@@ -172,8 +177,8 @@
     		margin: 5px;
     		padding: 2px 20px;
 	}
-	#clock {
-                background-color: #cccccc;
+	#custom-clock {
+            background-color: #cccccc;
     		border-radius: 15px 50px 15px 50px;
     		margin: 5px;
     		padding: 2px 20px;
@@ -204,6 +209,11 @@
     		padding: 2px 20px;
 	}
 	#battery {
+    		border-radius: 15px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#custom-battery1 {
     		border-radius: 15px;
     		margin: 5px;
     		padding: 2px 20px;

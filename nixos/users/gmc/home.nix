@@ -5,6 +5,7 @@
     ../developer
     ../poweruser
     ./hyprland.nix
+    ./neovim.nix
     ./packages.nix
     ./starship.nix
     ./vscode.nix
