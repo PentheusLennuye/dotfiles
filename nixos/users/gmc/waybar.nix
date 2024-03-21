@@ -10,10 +10,10 @@
       position = "top";
 
       modules-left = [ "hyprland/window" ];
-      modules-center = [ "network" "temperature" "pulseaudio" "cpu" "memory"
-                         "disk" "custom/clock" "custom/germany" ];
-      modules-right = [ "idle_inhibitor" "custom/notification" "battery"
-                        "tray" ];
+      modules-center = [ "battery" "pulseaudio" "temperature" "cpu"
+                         "memory" "disk" "custom/clock" "custom/germany" ];
+      modules-right = [ "idle_inhibitor" "custom/notification" "tray"
+                        "network" ];
       "hyprland/workspaces" = {
       	format = "{icon}";
       	format-icons = {
@@ -109,7 +109,6 @@
         escape = true;
       };
       "battery" = {
-        bat = "BAT0";
         states = {
           warning = 30;
           critical = 15;
@@ -213,58 +212,16 @@
     		margin: 5px;
     		padding: 2px 20px;
 	}
-	#custom-battery1 {
-    		border-radius: 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
 	#network {
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#tray {
-                background-color: #000000;
-    		border-radius: 15px 0px 0px 50px;
-    		margin: 5px 0px 5px 5px;
-    		padding: 2px 20px;
-	}
-	#pulseaudio {
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#idle_inhibitor {
                 background-color: #000000;
                 color: #ffffff;
     		border-radius: 50px 15px 50px 15px;
     		margin: 5px;
     		padding: 2px 20px;
 	}
-	#cpu {
-                background-color: #ffa500;
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#disk {
-                background-color: #6666ff;
-    		border-radius: 15px 50px 15px 50px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#battery {
-    		border-radius: 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#network {
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
 	#tray {
                 background-color: #000000;
+                color: #ffffff;
     		border-radius: 15px 0px 0px 50px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
@@ -275,6 +232,8 @@
     		padding: 2px 20px;
 	}
 	#custom-notification {
+                background-color: #000000;
+                color: #ffffff;
     		border-radius: 15px 50px 15px 50px;
     		margin: 5px;
     		padding: 2px 20px;
