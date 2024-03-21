@@ -16,7 +16,8 @@ Plug('romgrk/barbar.nvim')
 -- Terminals
 Plug('akinsho/toggleterm.nvim', { ['tag'] = '*'})
 
--- Language Server Protocol (IDE assistance)
+-- IDE
+Plug('mfussenegger/nvim-lint')
 Plug('neovim/nvim-lspconfig')
 
 vim.call('plug#end')

@@ -3,9 +3,14 @@
 -- IDE Support
 
 local nvim_lsp = require('lspconfig')
+local lint = require('lint')
+
+-- Linter
+lint.linters_by_ft = {
+    markdown = {'markdownlint'}
+}
 
 -- Marksman
-
 nvim_lsp.marksman.setup{}
 
 -- Python

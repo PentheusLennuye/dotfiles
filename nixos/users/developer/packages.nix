@@ -9,6 +9,7 @@
 
     # Markdown
     marksman
+    markdownlint-cli
 
     # Python
     poetry
