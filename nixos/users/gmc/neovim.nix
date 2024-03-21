@@ -7,4 +7,5 @@
   home.file.".config/nvim/lua/opts.lua".source = nvim/lua/opts.lua;
   home.file.".config/nvim/lua/keys.lua".source = nvim/lua/keys.lua;
   home.file.".config/nvim/lua/plug.lua".source = nvim/lua/plug.lua;
+  home.file.".config/nvim/lua/ide.lua".source = nvim/lua/ide.lua;
 }

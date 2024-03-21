@@ -8,6 +8,7 @@
     ./neovim.nix
     ./packages.nix
     ./starship.nix
+    ./vim.nix
     ./vscode.nix
     ./waybar.nix
     ./zsh.nix
