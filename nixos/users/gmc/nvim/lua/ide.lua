@@ -4,6 +4,10 @@
 
 local nvim_lsp = require('lspconfig')
 
+-- Marksman
+
+nvim_lsp.marksman.setup{}
+
 -- Python
 nvim_lsp.jedi_language_server.setup{}
 

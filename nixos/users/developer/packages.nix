@@ -2,6 +2,14 @@
 
 {
   home.packages = with pkgs; [
+
+    # CI/CD
+    docker-compose
+    git
+
+    # Markdown
+    marksman
+
     # Python
     poetry
     python3
@@ -13,10 +21,6 @@
     gcc
     rustc
     rust-analyzer
-
-    # CI/CD
-    docker-compose
-    git
 
     # Editors and IDE
     neovim
