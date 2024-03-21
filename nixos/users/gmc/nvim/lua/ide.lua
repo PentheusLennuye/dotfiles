@@ -1,17 +1,27 @@
 -- [[ ide.lua ]]
---
+
 -- IDE Support
 
 local nvim_lsp = require('lspconfig')
 local lint = require('lint')
+local g = vim.g
 
--- Linter
-lint.linters_by_ft = {
-    markdown = {'markdownlint'}
+-- Linters
+require('lint').linters_by_ft = {
+    markdown = {'markdownlint',}
 }
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        lint.try_lint()
+    end,
+})
 
--- Marksman
+-- Markdown
 nvim_lsp.marksman.setup{}
+g.neoformat_markdown_mdformat = {
+    exe = 'mdformat', args = { '-', '--wrap 80' }, stdin = 1
+}
+g.neoformat_enabled_markdown = { 'mdformat' }
 
 -- Python
 nvim_lsp.jedi_language_server.setup{}

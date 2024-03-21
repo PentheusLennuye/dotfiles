@@ -16,7 +16,8 @@ Plug('romgrk/barbar.nvim')
 -- Terminals
 Plug('akinsho/toggleterm.nvim', { ['tag'] = '*'})
 
--- IDE
+-- IDE assistance
+Plug('sbdchd/neoformat')
 Plug('mfussenegger/nvim-lint')
 Plug('neovim/nvim-lspconfig')
 

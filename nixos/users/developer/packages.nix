@@ -10,6 +10,7 @@
     # Markdown
     marksman
     markdownlint-cli
+    python311Packages.mdformat  # Autoformatter for markdown
 
     # Python
     poetry
