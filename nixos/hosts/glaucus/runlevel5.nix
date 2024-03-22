@@ -10,7 +10,6 @@
     enable = true;
     xwayland.enable = true;
   };
-  programs.xwayland.enable = true;
 
   security.polkit.enable = true;
 
