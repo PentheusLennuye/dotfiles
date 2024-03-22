@@ -7,6 +7,9 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
+  security.polkit.enable = true;
+
+  # HYPRLAND
 
   programs.hyprland = {
     enable = true;
@@ -14,10 +17,15 @@
   };
   programs.xwayland.enable = true;
 
-  security.polkit.enable = true;
+  # KDE 6
 
   services.desktopManager.plasma6.enable = true;
+
+  # SDDM
+
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.defaultSession = "plasma";
   services.xserver.videoDrivers = [ "nvidia" ];
+
 }

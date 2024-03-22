@@ -7,7 +7,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
       nvidiaBusId = "PCI:01:00.0";
     };

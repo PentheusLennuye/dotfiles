@@ -6,7 +6,7 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ git vim wget curl ];
+  environment.systemPackages = with pkgs; [ git vim wget curl mesa ];
   programs.zsh.enable = true;
 
   services.avahi = {
