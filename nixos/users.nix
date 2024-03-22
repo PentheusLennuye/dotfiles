@@ -5,7 +5,7 @@
     isNormalUser = true;
     description = "George Cummings";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     packages = with pkgs; [];
   };
   security.sudo.extraRules = [{
