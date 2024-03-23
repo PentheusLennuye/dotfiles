@@ -5,7 +5,7 @@
     ansible                                # Used for non-Nix VMs
     appimage-run                           # Required for Joplin
     cider                                  # Apple Music for Linux
-    chromium
+    firefox
     hunspell
     hunspellDicts.de-de
     hunspellDicts.en_CA-large
