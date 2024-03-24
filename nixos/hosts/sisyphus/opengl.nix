@@ -3,7 +3,7 @@
 {
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;  # KDE black screen problem
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
