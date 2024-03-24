@@ -5,21 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  networking.extraHosts = ''
-    192.168.68.70 debian-common.cummings-online.local debian-common
-    192.168.68.71 netboxdemo.cummings-online.local netboxdemo
-  '';
-
   networking.hostName = "sisyphus";
   networking.networkmanager.enable = true;
-  networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 
   services.openssh.enable = true;
   services.openssh.settings = {
     PasswordAuthentication = true;
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = true;
+  # services.blueman.enable = true;
 }
