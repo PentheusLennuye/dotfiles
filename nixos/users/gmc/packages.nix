@@ -17,6 +17,7 @@
     libreoffice-qt
     rsync
     starship
+    surge-XT                               # synthesizer
     swaynotificationcenter                 # Waybar modules require this
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland

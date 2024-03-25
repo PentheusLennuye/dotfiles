@@ -7,6 +7,10 @@
     docker-compose
     git
 
+    # Editors and IDE
+    neovim
+    vscode
+
     # Markdown
     marksman
     markdownlint-cli
@@ -15,6 +19,8 @@
     # Python
     poetry
     python3
+    python311Packages.black                # PEP-8
+    python311Packages.flake8               # PEP-8
     python311Packages.jedi-language-server # LSP server
     virtualenv
 
@@ -24,8 +30,8 @@
     rustc
     rust-analyzer
 
-    # Editors and IDE
-    neovim
-    vscode
+    # YAML
+    yamllint
+
   ];
 }
