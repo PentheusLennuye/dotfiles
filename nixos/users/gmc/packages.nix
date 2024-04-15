@@ -5,7 +5,7 @@
     ansible                                # Used for non-Nix VMs
     appimage-run                           # Required for Joplin
     cider                                  # Apple Music for Linux
-    dexed                                  # Yamaha DX-7 VST3i
+    dexed                                  # DX7 VST plugin
     firefox
     hunspell
     hunspellDicts.de-de
@@ -16,10 +16,14 @@
     joplin-desktop
     kitty                                  # terminal
     libreoffice-qt
-    reaper                                 # Audio workstation
+    linuxsampler                           # Sample-based synthesizer VST
+    minecraft
+    qsampler                               # GUI for linuxsampler
+    qjackctl
+    reaper
     rsync
     starship
-    surge                                  # Analog Synthesizer VST3i
+    surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland
