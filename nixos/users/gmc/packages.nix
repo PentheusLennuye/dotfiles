@@ -19,6 +19,7 @@
     libreoffice-qt
     linuxsampler                           # Sample-based synthesizer VST
     minecraft
+    pavucontrol                            # PulseAudio control requires GTK
     qsampler                               # GUI for linuxsampler
     qjackctl
     reaper
