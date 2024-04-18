@@ -1,11 +1,10 @@
 { pkgs, ... }:
 {
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa.enable = false;
+    alsa.support32Bit = false;
     jack.enable = true;
     pulse.enable = true;
   };
