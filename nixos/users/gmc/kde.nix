@@ -1,6 +1,10 @@
 { pkgs, xdg, ... }:
 
 {
+  home.packages = with pkgs.kdePackages; [
+    kalk                    # Calculator
+  ];
+
   xdg.desktopEntries.joplin-safe = {
     name="Joplin GPU Safe";
     exec="joplin-desktop --disable-gpu --no-sandbox %U";

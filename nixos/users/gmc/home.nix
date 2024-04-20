@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../audioengineer
     ../developer
     ../poweruser
     ./hyprland.nix
