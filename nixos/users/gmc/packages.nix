@@ -9,6 +9,8 @@
     corefonts                              # Better fonts for Firefox etc
     dexed                                  # DX7 VST plugin
     firefox
+    freetube                               # YouTube on chromium
+    glxinfo                                # Testing glx info
     hunspell
     hunspellDicts.de-de
     hunspellDicts.en_CA-large
@@ -17,13 +19,10 @@
     hyprpaper                              # wallpaper for Hyprland
     joplin-desktop
     kitty                                  # terminal
-    ladspaPlugins                          # Audio effect plugins
     libreoffice-qt
-    linuxsampler                           # Sample-based synthesizer VST
     minecraft
+    musescore                              # WYSIWYG music notation w/ Lilypond
     pavucontrol                            # PulseAudio control requires GTK
-    qsampler                               # GUI for linuxsampler
-    qjackctl                               # JACK for audio work
     reaper                                 # DAW
     rsync
     starship

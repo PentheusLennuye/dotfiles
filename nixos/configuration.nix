@@ -17,5 +17,5 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # The original INSTALL version
 }
