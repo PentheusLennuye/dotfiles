@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    _1password-gui                         # 1Password password manager
     anki                                   # Flashcards, requires QT
     ansible                                # Used for non-Nix VMs
     appimage-run                           # Required for Joplin

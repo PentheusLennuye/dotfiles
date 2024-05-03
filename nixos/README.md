@@ -99,5 +99,9 @@ See [LAPTOP](LAPTOP.md)
    sudo reboot
    ```
 
+#### User
+
+Start neovim, and after reading all the errors, execute `:PlugInstall`
+
 Enjoy your NixOS workstation.
 
