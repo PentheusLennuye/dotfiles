@@ -1,8 +1,13 @@
 { pkgs, xdg, ... }:
 
+
 {
+
   home.packages = with pkgs.kdePackages; [
-    kalk                    # Calculator
+    kcalc
+    kde-cli-tools
+    kmahjongg
+    kpat
   ];
 
   xdg.desktopEntries.joplin-safe = {

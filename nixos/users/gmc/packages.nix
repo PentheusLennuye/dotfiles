@@ -11,6 +11,7 @@
     dexed                                  # DX7 VST plugin
     firefox
     freetube                               # YouTube on chromium
+    gimp
     glxinfo                                # Testing glx info
     hunspell
     hunspellDicts.de-de
@@ -18,6 +19,7 @@
     hunspellDicts.es_MX
     hunspellDicts.fr-any
     hyprpaper                              # wallpaper for Hyprland
+    inkscape
     joplin-desktop
     kitty                                  # terminal
     libreoffice-qt

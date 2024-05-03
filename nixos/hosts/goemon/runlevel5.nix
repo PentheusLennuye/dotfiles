@@ -6,10 +6,25 @@
   ];
 
   fonts.packages = with pkgs; [
-    noto-fonts noto-fonts-cjk noto-fonts-emoji
-    liberation_ttf dina-font proggyfonts
+    dina-font
+    ipafont         # jp
+    kochi-substitute  # jp
+    liberation_ttf
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    proggyfonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-lua
+      fcitx5-mozc
+    ];
+  };
 
   security.polkit.enable = true;
 
@@ -31,3 +46,4 @@
     xserver.videoDrivers = [ "amdgpu" ];
   };
 }
+
