@@ -1,0 +1,42 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
+
+[03f73e9f-e638-49de-9324-14d86434e031]
+Description=Reaper goes to Audio Engineering
+activity=5f92f9d3-5042-4920-b8f9-ff46c1f7dedf
+activityrule=3
+desktops=910bb96a-f53e-4dd3-b367-80e08c39d0cf
+desktopsrule=3
+wmclass=REAPER
+wmclassmatch=1
+
+[50009bc9-f649-44a7-a590-d799bd81a9b9]
+Description=Cider goes to Distractions
+activity=24dc32c0-5d38-4e8e-b9d9-e77331f793ae
+activityrule=3
+desktops=bb5880b5-a286-4232-968a-93c5192fb41c
+desktopsrule=3
+wmclass=Cider
+wmclassmatch=1
+
+[6c1c0883-4a1e-450a-ac41-d8229b0f24bc]
+Description=qpwgraph goes to Audio Engineering
+activity=5f92f9d3-5042-4920-b8f9-ff46c1f7dedf
+activityrule=3
+desktops=bb5880b5-a286-4232-968a-93c5192fb41c
+desktopsrule=3
+wmclass=qpwgraph
+wmclassmatch=1
+
+[General]
+count=4
+rules=50009bc9-f649-44a7-a590-d799bd81a9b9,af3b0831-c245-40d8-987f-272cc60c0097,03f73e9f-e638-49de-9324-14d86434e031,6c1c0883-4a1e-450a-ac41-d8229b0f24bc
+
+[af3b0831-c245-40d8-987f-272cc60c0097]
+Description=FreeTube goes to Distractions
+activity=24dc32c0-5d38-4e8e-b9d9-e77331f793ae
+activityrule=3
+desktops=910bb96a-f53e-4dd3-b367-80e08c39d0cf
+desktopsrule=3
+wmclass=FreeTube
+wmclassmatch=1

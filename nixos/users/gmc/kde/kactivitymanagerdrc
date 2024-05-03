@@ -1,0 +1,15 @@
+[activities]
+24dc32c0-5d38-4e8e-b9d9-e77331f793ae=Distractions
+5f92f9d3-5042-4920-b8f9-ff46c1f7dedf=Audio Engineering
+b26ff963-fe0c-4fd1-80cf-6388a48d3565=Default
+
+[activities-descriptions]
+24dc32c0-5d38-4e8e-b9d9-e77331f793ae=Games, Movies, Music
+
+[activities-icons]
+24dc32c0-5d38-4e8e-b9d9-e77331f793ae=applications-games
+5f92f9d3-5042-4920-b8f9-ff46c1f7dedf=emblem-music-symbolic
+b26ff963-fe0c-4fd1-80cf-6388a48d3565=kde
+
+[main]
+currentActivity=b26ff963-fe0c-4fd1-80cf-6388a48d3565
