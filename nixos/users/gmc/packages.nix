@@ -9,6 +9,7 @@
     cider                                  # Apple Music for Linux
     corefonts                              # Better fonts for Firefox etc
     dexed                                  # DX7 VST plugin
+    digikam
     firefox
     freetube                               # YouTube on chromium
     gimp
