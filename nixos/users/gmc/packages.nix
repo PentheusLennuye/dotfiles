@@ -24,7 +24,6 @@
     joplin-desktop
     kitty                                  # terminal
     libreoffice-qt
-    minecraft
     musescore                              # WYSIWYG music notation w/ Lilypond
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
