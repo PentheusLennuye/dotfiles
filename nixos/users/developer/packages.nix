@@ -6,6 +6,7 @@
     # CI/CD
     docker-compose
     git
+    gh
 
     # Editors and IDE
     neovim
@@ -20,6 +21,8 @@
     poetry
     python3
     python311Packages.black                # PEP-8
+    python311Packages.invoke
+    python311Packages.pip
     python311Packages.flake8               # PEP-8
     python311Packages.jedi-language-server # LSP server
     virtualenv
@@ -31,6 +34,7 @@
     rust-analyzer
 
     # YAML
+    jq
     yamllint
 
   ];
