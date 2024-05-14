@@ -8,5 +8,6 @@
     ./networking.nix
     ./opengl.nix
     ./runlevel5.nix
+    ./virtualization.nix
   ];
 }

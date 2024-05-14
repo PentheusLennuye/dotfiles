@@ -28,6 +28,7 @@
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
     rsync
+    skypeforlinux
     starship
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
