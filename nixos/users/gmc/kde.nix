@@ -1,7 +1,15 @@
-{ pkgs, xdg, ... }:
+{ pkgs, config, xdg, ... }:
 
 
 {
+
+  home.file = {
+    ".config/kactivitymanagerdrc".source = kde/kactivitymanagerdrc;
+    ".config/kglobalshortcutsrc".source = kde/kglobalshortcutsrc;
+    ".config/kwinrc".source = kde/kwinrc;
+    ".config/kwinrulesrc".source = kde/kwinrulesrc;
+    ".config/kxkbrc".source = kde/kxkbrc;
+  };
 
   home.packages = with pkgs.kdePackages; [
     kcalc
