@@ -12,10 +12,14 @@
   };
 
   home.packages = with pkgs.kdePackages; [
+    kaddressbook
     kcalc
     kde-cli-tools
+    kdepim-runtime  # Required for kmail
     kmahjongg
     kmail
+    kmail-account-wizard
+    kontact
     kpat
   ];
 
