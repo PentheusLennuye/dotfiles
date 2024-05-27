@@ -13,6 +13,7 @@
     freetube                               # YouTube on chromium
     gimp
     glxinfo                                # Testing glx info
+    gnupg
     hunspell
     hunspellDicts.de-de
     hunspellDicts.en_CA-large

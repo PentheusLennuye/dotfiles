@@ -15,6 +15,7 @@
     kcalc
     kde-cli-tools
     kmahjongg
+    kmail
     kpat
   ];
 
