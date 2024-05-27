@@ -272,6 +272,11 @@ _launch=Meta+N
 [services][anki.desktop]
 _launch=Meta+A
 
+[services][org.kde.kontact.desktop]
+_launch=Meta+K
+
+[services][org.kde.spectacle.desktop]
+
 [services][cider.desktop]
 _launch=Meta+M
 
