@@ -26,6 +26,7 @@
       la="ls -la";
       ssh="TERM=xterm-256color ssh";
       sns="sudo nixos-rebuild switch";
+      tech="cd ~/1_personal/spaces/tech/";
     };
   };
 }
