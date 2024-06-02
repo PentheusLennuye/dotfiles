@@ -19,6 +19,9 @@
         sha256 = "GSEvgvgWi1rrsgikTzDXokHTROoyPRlU0FVpAoEmXG4=";
       };
     }];
+    sessionVariables = {
+      SRC = "$HOME/1_personal/spaces/tech/projects";
+    };
     shellAliases = {
       hbs="home-manager build switch";
       ls="ls --color";
@@ -26,7 +29,6 @@
       la="ls -la";
       ssh="TERM=xterm-256color ssh";
       sns="sudo nixos-rebuild switch";
-      tech="cd ~/1_personal/spaces/tech/";
     };
   };
 }
