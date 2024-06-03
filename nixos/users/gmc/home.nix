@@ -6,6 +6,7 @@
     ../developer
     ../poweruser
     ./hyprland.nix
+    ./localbin.nix
     ./kde.nix
     ./neovim.nix
     ./packages.nix
@@ -18,6 +19,7 @@
 
   # Home =====================================================================
   home.homeDirectory = "/home/gmc";
+  home.sessionPath = [ "/home/gmc/.local/bin" ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";  # Wayland on Chromium etc
   home.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";  # Hyprland cursor
   home.stateVersion = "23.11";

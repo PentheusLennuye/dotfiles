@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+SHARE=/srv/zantetsuken/exports/private/$USER
+BUDIR=$SHARE/home_backup
+
+rsync -avrt --delete --delete-excluded \
+  --include=.config \
+    --include=gmc/.config/joplin-desktop/plugins \
+    --include=gmc/.config/joplin-desktop/settings.json \
+    --exclude="gmc/.config/joplin-desktop/*" \
+    --exclude=gmc/.config/Joplin \
+    --exclude=gmc/.config/kwinrc \
+    --exclude=gmc/.config/kactivitymanagerdrc \
+    --exclude=gmc/.config/kglobalshortcutsrc \
+    --exclude=gmc/.config/kxkbrc \
+    --exclude=gmc/.config/kwinrulesrc \
+  --include="gmc/.gitconfig*" \
+  --include=gmc/.gnupg \
+  --include=gmc/.local \
+    --include=gmc/.local/share \
+    --exclude="gmc/.local/*" \
+  --include=gmc/.ssh \
+  --include=gmc/0_work --include=/home/gmc/.minecraft --include=/home/gmc/.vscode \
+  --include=gmc/1_personal \
+  --exclude="gmc/Desktop" --exclude="gmc/Downloads" --exclude="gmc/.*" \
+  $HOME $BUDIR
