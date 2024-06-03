@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  users.groups.family = {
+    gid = 3000;
+  };
   users.users.gmc= {
     isNormalUser = true;
     description = "George Cummings";

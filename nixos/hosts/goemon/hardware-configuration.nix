@@ -9,19 +9,26 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "nfs" ];
+  boot.initrd.supportedFilesystems = [ "nfs" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8b4dcf33-c3a6-4ff1-9fd4-35e198f7fd6f";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/8b4dcf33-c3a6-4ff1-9fd4-35e198f7fd6f";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/475c1878-e787-4925-859c-e3d5e7ff2c88";
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/475c1878-e787-4925-859c-e3d5e7ff2c88";
+    fsType = "ext4";
+  };
+
+  fileSystems."/srv/zantetsuken" = {
+    device = "zantetsuken.cummings-online.local:/mnt/Primary";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" "x-systemd.automount" "x-systemd.idle-timeout=99" "noauto" ];
+  };
 
   swapDevices = [ ];
 

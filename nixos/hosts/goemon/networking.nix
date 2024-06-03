@@ -5,15 +5,21 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "goemon";
-  networking.networkmanager.enable = true;
+  networking = {
+    defaultGateway = "192.168.68.1";
+    domain = "cummings-online.local";
+    hostName = "goemon";
+    interfaces = {
+      enp6s0.ipv4.addresses = [
+        { address = "192.168.68.73"; prefixLength = 24; }
+      ];
+    };
+    nameservers = ["192.168.68.1"];
+  };
 
   services.openssh.enable = true;
   services.openssh.settings = {
     PasswordAuthentication = true;
   };
-
-  # hardware.bluetooth.enable = true;
-  # hardware.bluetooth.powerOnBoot = true;
-  # services.blueman.enable = true;
+  services.rpcbind.enable = true;
 }
