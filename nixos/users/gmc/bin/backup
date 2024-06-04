@@ -23,4 +23,4 @@ rsync -avrt --delete --delete-excluded \
   --include=gmc/0_work --include=/home/gmc/.minecraft --include=/home/gmc/.vscode \
   --include=gmc/1_personal \
   --exclude="gmc/Desktop" --exclude="gmc/Downloads" --exclude="gmc/.*" \
-  $HOME $BUDIR
+  $HOME/ $BUDIR
