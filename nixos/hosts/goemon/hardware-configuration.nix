@@ -27,7 +27,7 @@
   fileSystems."/srv/zantetsuken" = {
     device = "zantetsuken.cummings-online.local:/mnt/Primary";
     fsType = "nfs";
-    options = [ "nfsvers=4.2" "x-systemd.automount" "x-systemd.idle-timeout=99" "noauto" ];
+    options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" ];
   };
 
   swapDevices = [ ];

@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    file
     pciutils
     pstree
     tree
