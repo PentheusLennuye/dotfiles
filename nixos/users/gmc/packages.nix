@@ -35,6 +35,7 @@
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
     vistafonts                             # Better fonts for Firefox etc
+    vlc
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland
   ];
