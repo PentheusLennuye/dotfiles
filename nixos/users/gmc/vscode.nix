@@ -8,8 +8,10 @@
     extensions = with pkgs.vscode-extensions; [
       davidanson.vscode-markdownlint
       golang.go
+      james-yu.latex-workshop
       ms-vscode.cpptools
       ms-python.python
+      rust-lang.rust-analyzer
       stkb.rewrap
       vscodevim.vim
     ];

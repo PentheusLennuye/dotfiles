@@ -5,6 +5,7 @@
     ../audioengineer
     ../developer
     ../poweruser
+    ../publisher
     ./hyprland.nix
     ./localbin.nix
     ./kde.nix
