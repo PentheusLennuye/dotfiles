@@ -12,6 +12,14 @@
     neovim
     vscode
 
+    # Shell control
+    gnumake
+
+    # Golang
+    go
+    golangci-lint
+    golangci-lint-langserver
+
     # Markdown
     marksman
     markdownlint-cli
