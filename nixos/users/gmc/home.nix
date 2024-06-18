@@ -4,6 +4,7 @@
   imports = [
     ../audioengineer
     ../developer
+    ../k8s
     ../poweruser
     ../publisher
     ./hyprland.nix
