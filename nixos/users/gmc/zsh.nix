@@ -21,6 +21,7 @@
     }];
     sessionVariables = {
       SRC = "$HOME/1_personal/spaces/tech/projects";
+      GOPATH = "$HOME/.go";
     };
     shellAliases = {
       hbs="home-manager build switch";
