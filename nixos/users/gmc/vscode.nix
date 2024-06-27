@@ -16,8 +16,22 @@
       vscodevim.vim
     ];
     userSettings = {
-      "window.titleBarStyle" = "custom";  # crash stop
       "editor.rulers" = [ 80 120 ];
+      # "window.titleBarStyle" = "custom";  # crash stop
+      "update.mode" = "none";
+      "[latex]" = {
+        "editor.wordWrap" = "on";
+      };
+      "[makefile]" = {
+        "editor.insertSpaces" = false;
+        "editor.detectIndentation" = false;
+      };
+      "[markdown]" = {
+        "editor.formatOnSave" = true;
+        "editor.wordWrap" = "on";
+        "editor.renderWhitespace" = "on";
+        "editor.acceptSuggestionOnEnter" = "off";
+      };
     };
   };
 }

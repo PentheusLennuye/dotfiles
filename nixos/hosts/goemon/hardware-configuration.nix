@@ -24,11 +24,12 @@
     fsType = "ext4";
   };
 
-  fileSystems."/srv/zantetsuken" = {
-    device = "zantetsuken.cummings-online.local:/mnt/Primary";
-    fsType = "nfs";
-    options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" ];
-  };
+  # Temporarily off until Zantetsukuen comes back
+  # fileSystems."/srv/zantetsuken" = {
+  #   device = "zantetsuken.cummings-online.local:/mnt/Primary";
+  #   fsType = "nfs";
+  #   options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" ];
+  # };
 
   swapDevices = [ ];
 

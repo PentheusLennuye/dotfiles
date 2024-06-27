@@ -8,7 +8,7 @@
   networking.extraHosts = ''
     192.168.68.11 zantetsuken.cummings-online.local zantetsuken
     192.168.68.33 sisyphus.cummings-online.local sisyphus
-    192.168.68.73 goemon.cummings-online.local goemon
+    192.168.68.73 goemon.cummings-online.local goemon harbor.cummings-online.local harbor
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }

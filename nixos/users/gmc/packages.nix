@@ -26,6 +26,7 @@
     kitty                                  # terminal
     libreoffice-qt
     musescore                              # WYSIWYG music notation w/ Lilypond
+    openssl
     pavucontrol                            # PulseAudio control requires GTK
     pinentry-qt                            # GnuPG password control
     reaper                                 # DAW
@@ -34,6 +35,9 @@
     starship
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
+    sweethome3d.application                # Floor planning, temp.
+    sweethome3d.furniture-editor
+    sweethome3d.textures-editor
     vistafonts                             # Better fonts for Firefox etc
     vlc
     waybar                                 # task/toolbar for Hyprland
