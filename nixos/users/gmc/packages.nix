@@ -6,6 +6,7 @@
     anki                                   # Flashcards, requires QT
     ansible                                # Used for non-Nix VMs
     appimage-run                           # Required for Joplin
+    canon-cups-ufr2                        # Canon printer drivers for CUPS
     cider                                  # Apple Music for Linux
     dexed                                  # DX7 VST plugin
     digikam

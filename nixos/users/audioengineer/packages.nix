@@ -10,6 +10,7 @@
     qjackctl                               # JACK patch panel for audio work
     qpwgraph                               # Pipewire graph interface
     reaper                                 # DAW
+    roomeqwizard                           # Room Acoustics Software
     surge                                  # Additive synthesizer
   ];
 }
