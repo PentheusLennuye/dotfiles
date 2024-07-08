@@ -1,19 +1,21 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
-    ../audioengineer
+    # All
     ../developer
-    ../k8s
     ../poweruser
-    ../publisher
-    ./hyprland.nix
     ./localbin.nix
-    ./kde.nix
     ./neovim.nix
-    ./packages.nix
-    ./starship.nix
     ./vim.nix
+    # Desktops
+    ../audioengineer
+    ../k8s
+    ../publisher
+    ./desktop.nix
+    ./hyprland.nix
+    ./kde.nix
+    ./starship.nix
     ./vscode.nix
     ./waybar.nix
     ./zsh.nix
@@ -39,12 +41,5 @@
 
   programs.home-manager.enable = true;
 
-  programs.kitty.enable = true;
-  programs.kitty.settings = {
-    shell = "zsh";
-    font_family = "JetBrains mono";
-    font_size = "11.5";
-    background_opacity = "0.7";
-  };
 }
 

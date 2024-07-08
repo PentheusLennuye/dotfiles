@@ -1,9 +1,19 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+
+let
+  role = config.role;
+in
+
+with lib;
 {
-  home.packages = with pkgs; [
-    kubebuilder
-    kubectl
-    minikube
-  ];
+  imports = [ ../roles.nix ];
+
+  home = mkIf role.workstation {
+    packages = with pkgs; [
+      kubebuilder
+      kubectl
+      minikube
+    ];
+  };
 }

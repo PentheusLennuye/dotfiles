@@ -8,6 +8,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     curl
+    canon-cups-ufr2
     git
     mesa
     vim

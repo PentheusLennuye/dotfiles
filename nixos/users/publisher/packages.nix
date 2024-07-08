@@ -1,8 +1,19 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  role = config.role;
+in
+
+with lib;
 {
-  home.packages = with pkgs; [
-    texliveMedium
-    pandoc
-  ];
+
+  imports = [../roles.nix];
+
+
+  home = mkIf role.workstation {
+    packages = with pkgs; [
+      texliveMedium
+      pandoc
+    ];
+  };
 }

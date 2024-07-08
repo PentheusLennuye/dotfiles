@@ -10,7 +10,6 @@
 
     # Editors and IDE
     neovim
-    vscode
 
     # Shell control
     gnumake
