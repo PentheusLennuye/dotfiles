@@ -6,9 +6,6 @@ in
 
 with lib;
 {
-  
-  imports = [ ../roles.nix ];
-
   home = mkIf role.workstation {
     packages = with pkgs; [
       _1password-gui                         # 1Password password manager

@@ -7,8 +7,6 @@ in
 
 with lib;
 {
-  imports = [ ../roles.nix ];
-
   home = mkIf role.workstation {
     packages = with pkgs; [
       kubebuilder

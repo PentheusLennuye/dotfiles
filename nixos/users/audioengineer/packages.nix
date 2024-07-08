@@ -6,8 +6,6 @@ in
 
 with lib;
 {
-  imports = [ ../roles.nix ];
-
   home = mkIf role.workstation {
     packages = with pkgs; [
       dexed                                  # DX7 VST plugin
