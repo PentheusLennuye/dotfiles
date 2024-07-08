@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, osConfig, pkgs, lib, ... }:
 
 let 
   role = config.role;
@@ -7,7 +7,10 @@ in
 with lib;
 {
 
-  imports = [../../roles.nix ];
+  imports = [
+  ../../roles.nix
+  ../../hosts/${osConfig.networking.hostName}/roles.nix
+  ];
 
   home = mkIf role.workstation {
     packages = with pkgs; [

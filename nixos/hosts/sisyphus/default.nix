@@ -8,6 +8,5 @@
     ./networking.nix
     ./opengl.nix
     ./runlevel5.nix
-    ./variables.nix
   ];
 }

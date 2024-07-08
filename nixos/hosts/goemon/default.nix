@@ -9,6 +9,5 @@
     ./opengl.nix
     ./runlevel5.nix
     ./virtualization.nix
-    ./variables.nix
   ];
 }

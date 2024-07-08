@@ -9,6 +9,5 @@
     ./opengl.nix
     ./system-packages.nix
     ./runlevel5.nix
-    ./variables.nix
   ];
 }

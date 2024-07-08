@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, osConfig, lib, pkgs, ... }:
 
 
 let
@@ -7,7 +7,9 @@ in
 
 with lib;
 {
-  home = mkIf role.workstation {
+  imports = [../../roles.nix  ../../hosts/${osConfig.networking.hostName}/roles.nix];
+
+  home = mkIf role.k8s {
     packages = with pkgs; [
       kubebuilder
       kubectl
