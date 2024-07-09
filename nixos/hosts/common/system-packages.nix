@@ -2,13 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+with lib;
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     curl
-    canon-cups-ufr2
     git
     mesa
     vim
@@ -22,5 +22,9 @@
     openFirewall = true;
   };
 
-  services.printing.enable = true;
+  
+  services.printing = mkIf (config.networking.hostName != "jigen")  {
+    enable = true;
+  };
+
 }

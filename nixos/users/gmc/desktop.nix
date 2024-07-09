@@ -18,6 +18,7 @@ with lib;
       anki                                   # Flashcards, requires QT
       appimage-run                           # Required for Joplin
       cider                                  # Apple Music for Linux
+      canon-cups-ufr2
       dexed                                  # DX7 VST plugin
       digikam
       firefox
@@ -51,11 +52,14 @@ with lib;
       wofi                                   # program selector for Hyprland
     ];
   };
-  services.gpg-agent = mkIf role.workstation {
-    enable = true;
-    enableSshSupport = true;
-    pinentryPackage = pkgs.pinentry-qt;
+  services = mkIf role.workstation {
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
   };
+
   programs.kitty = mkIf role.workstation {
     enable = true;
     settings = {
