@@ -4,16 +4,24 @@
  
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  let 
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+    unstable = import nixpkgs-unstable {inherit system;};
+  in
+  {
     nixosConfigurations = {
       sisyphus = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+        specialArgs = {inherit unstable;};
         modules = [
           ./configuration.nix
           ./hosts/sisyphus
@@ -22,11 +30,13 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.gmc = import ./users/gmc/home.nix;
+            home-maanger.extraSpecialArgs = { inherit unstable; };
           }
         ];
       };
       glaucus = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+        specialArgs = {inherit unstable;};
         modules = [
           ./configuration.nix
           ./hosts/glaucus
@@ -35,11 +45,13 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.gmc = import ./users/gmc/home.nix;
+            home-manager.extraSpecialArgs = { inherit unstable; };
           }
         ];
       };
       goemon = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+        specialArgs = {inherit unstable;};
         modules = [
           ./configuration.nix
           ./hosts/goemon
@@ -48,11 +60,12 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.gmc = import ./users/gmc/home.nix;
+            home-manager.extraSpecialArgs = { inherit unstable; };
           }
         ];
       };
       jigen = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         modules = [
           ./configuration.nix
           ./hosts/jigen

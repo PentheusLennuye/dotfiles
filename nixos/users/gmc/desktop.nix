@@ -1,4 +1,4 @@
-{ config, osConfig, pkgs, lib, ... }:
+{ config, osConfig, pkgs, unstable, lib, ... }:
 
 let 
   role = config.role;
@@ -16,7 +16,6 @@ with lib;
     packages = with pkgs; [
       _1password-gui                         # 1Password password manager
       anki                                   # Flashcards, requires QT
-      appimage-run                           # Required for Joplin
       cider                                  # Apple Music for Linux
       canon-cups-ufr2
       dexed                                  # DX7 VST plugin
@@ -33,7 +32,7 @@ with lib;
       hunspellDicts.fr-any
       hyprpaper                              # wallpaper for Hyprland
       inkscape
-      joplin-desktop
+      unstable.joplin-desktop
       kitty                                  # terminal
       libreoffice-qt
       pavucontrol                            # PulseAudio control requires GTK
