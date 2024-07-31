@@ -9,5 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: >
-        echo "Checking if main accepts PRs from branch ${{ github.ref_name }}"
+          echo "Checking if main accepts PRs from branch
+          ${{ github.ref_name }}"
       - run: \[ "develop" = "${{ github.ref_name }}" \] 
