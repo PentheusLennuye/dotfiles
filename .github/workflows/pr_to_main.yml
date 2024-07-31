@@ -11,4 +11,4 @@ jobs:
       - run: >
           echo "Checking if main accepts PRs from branch
           ${{ github.ref_name }}"
-      - run: \[ "develop" = "${{ github.base_ref }}" \] 
+      - run: \[ "develop" = "${{ github.head_ref }}" \] 
