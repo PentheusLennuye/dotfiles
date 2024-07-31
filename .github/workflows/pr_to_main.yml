@@ -1,0 +1,13 @@
+---
+name: PR to Branch Main
+run-name: ${{ github.actor }} sends a PR to main
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  sanity_checks:
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+        echo "Checking if main accepts PRs from branch ${{ github.ref_name }}"
+      - run: \[ "develop" = "${{ github.ref_name }}" \] 
