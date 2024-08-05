@@ -13,6 +13,7 @@
       enp2s0.ipv4.addresses = [
         { address = "192.168.68.12"; prefixLength = 24; }
         { address = "192.168.68.13"; prefixLength = 24; }
+        { address = "192.168.68.14"; prefixLength = 24; }
       ];
     };
     nameservers = ["192.168.68.1"];
