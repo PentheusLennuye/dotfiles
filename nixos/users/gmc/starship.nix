@@ -11,6 +11,7 @@
     directory = {
       truncation_length = 5;
       format = "[$path]($style)[$lock_symbol]($lock_style) ";
+      style = "bold #2b58d4";
     };
     hostname = {
       ssh_only = false;
@@ -22,7 +23,7 @@
     git_branch = {
       format = " [$symbol$branch]($style) ";
       symbol = "🍣 ";
-      style = "bold yellow";
+      style = "bold #d4a72b";
     };
     git_commit = {
       commit_hash_length = 8;
