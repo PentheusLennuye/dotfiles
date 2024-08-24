@@ -139,7 +139,7 @@ in
           border-radius: 0px;
 	}
 	#workspaces {
-		background: linear-gradient(180deg, #9e9e9e, #9e9e9e);
+    		background: linear-gradient(180deg, #9e9e9e, #9e9e9e);
     		margin: 5px;
     		padding: 0px 1px;
     		border-radius: 15px;
@@ -171,45 +171,8 @@ in
 	}
 	#window {
             background-color: rgba(200,200,200,50);
-    		border-radius: 0px 15px 50px 0px;
+    		border-radius: 0px 15px 15px 0px;
     		margin: 5px 5px 5px 0px;
-    		padding: 2px 20px;
-	}
-	#memory {
-            background-color: ${colour_a};
-    		border-radius: 15px 50px 15px 50px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#custom-clock {
-            background-color: ${colour_c};
-    		border-radius: 15px 50px 15px 50px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#custom-germany {
-            background-color: ${colour_c};
-    		border-radius: 15px 50px 15px 50px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#idle_inhibitor {
-            background-color: #000000;
-            color: #ffffff;
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#cpu {
-            background-color: ${colour_a};
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#disk {
-            background-color: ${colour_a};
-    		border-radius: 15px 50px 15px 50px;
-    		margin: 5px;
     		padding: 2px 20px;
 	}
 	#battery {
@@ -217,35 +180,73 @@ in
     		margin: 5px;
     		padding: 2px 20px;
 	}
-	#network {
-            background-color: #000000;
-            color: #ffffff;
-    		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#tray {
-            background-color: #000000;
-            color: #ffffff;
-    		border-radius: 15px 0px 0px 50px;
-    		margin: 5px 0px 5px 5px;
-    		padding: 2px 20px;
-	}
 	#pulseaudio {
     		border-radius: 50px 15px 50px 15px;
-    		margin: 5px;
-    		padding: 2px 20px;
-	}
-	#custom-notification {
-                background-color: #000000;
-                color: #ffffff;
-    		border-radius: 15px 50px 15px 50px;
     		margin: 5px;
     		padding: 2px 20px;
 	}
 	#temperature {
             background-color: ${colour_a};
     		border-radius: 15px 0px 0px 50px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 20px;
+	}
+	#cpu {
+            background-color: ${colour_a};
+    		border-radius: 0px 0px 0px 0px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 20px;
+	}
+	#memory {
+            background-color: ${colour_a};
+    		border-radius: 0px 0px 0px 0px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 10px;
+	}
+	#disk {
+            background-color: ${colour_a};
+    		border-radius: 0px 50px 15px 0px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#custom-clock {
+            background-color: ${colour_c};
+    		border-radius: 15px 0px 0px 50px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 20px;
+	}
+	#custom-germany {
+            color: ${colour_c};
+            background-color: #000000;
+    		border-radius: 0px 50px 15px 0px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#idle_inhibitor {
+            background-color: #000000;
+            color: #ffffff;
+    		border-radius: 15px 0px 0px 50px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 20px;
+	}
+	#custom-notification {
+            background-color: #000000;
+            color: #ffffff;
+    		border-radius: 0px 0px 0px 0px;
+    		margin: 5px 0px 5px 5px;
+    		padding: 2px 20px;
+	}
+	#network {
+            background-color: #000000;
+            color: #ffffff;
+    		border-radius: 0px 50px 15px 0px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#tray {
+            background-color: #000000;
+            color: #ffffff;
+    		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
