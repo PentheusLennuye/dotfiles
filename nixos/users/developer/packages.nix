@@ -19,6 +19,9 @@
     golangci-lint
     golangci-lint-langserver
 
+    # JavaScript
+    nodejs
+
     # Markdown
     marksman
     markdownlint-cli
