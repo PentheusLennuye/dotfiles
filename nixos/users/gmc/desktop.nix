@@ -38,6 +38,7 @@ with lib;
       pavucontrol                            # PulseAudio control requires GTK
       pinentry-qt                            # GnuPG password control
       reaper                                 # DAW
+      rpi-imager                             # Temporary
       skypeforlinux
       starship
       surge                                  # synthesizer

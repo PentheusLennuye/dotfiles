@@ -10,8 +10,9 @@
     192.168.68.12 jigen.cummings-online.local jigen
     192.168.68.13 docker.cummings-online.local docker
     192.168.68.14 portainer.cummings-online.local portainer
+    192.168.68.15 goliath.cummings-online.local goliath
     192.168.68.33 sisyphus.cummings-online.local sisyphus
-    192.168.68.73 goemon.cummings-online.local goemon harbor.cummings-online.local harbor
+    192.168.68.73 goemon.cummings-online.local goemon
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }
