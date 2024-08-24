@@ -22,7 +22,7 @@
     };
     git_branch = {
       format = " [$symbol$branch]($style) ";
-      symbol = "🌴";
+      symbol = "🌴 ";
       style = "bold #d4a72b";
     };
     git_commit = {
@@ -31,15 +31,15 @@
     };
     git_status = {
       conflicted = "🤼";
-      ahead = "📚×\${count}";
-      behind = "🐢 ×\${count}";
-      diverged = "😱  📚 ×\${ahead_count} 🐢 ×\${behind_count}";
-      untracked = "🛤️  ×\${count}";
+      ahead = "📚×\${count} ";
+      behind = "🐢×\${count} ";
+      diverged = "😱 📚×\${ahead_count} 🐢×\${behind_count} ";
+      untracked = "🛤️×\${count} ";
       stashed = "📦 ";
-      modified = "📝 ×\${count}";
-      staged = "🗃️  ×\${count}";
-      renamed = "📛 ×\${count}";
-      deleted = "🗑️  ×\${count}";
+      modified = "📝×\${count} ";
+      staged = "🗃️×\${count} ";
+      renamed = "📛×\${count} ";
+      deleted = "🗑️×\${count} ";
       style = "bright-white";
       format = "$all_status$ahead_behind";
    };

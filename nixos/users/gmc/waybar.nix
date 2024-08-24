@@ -32,19 +32,19 @@ in
       };
       "custom/clock" = {
         exec = "date +'%I:%M %p'";
-        format = "🇨🇦{}";
+        format = "🇨🇦 {}";
       	tooltip = false;
         interval = 15;
       };
       "custom/germany" = {
         exec = "TZ=':CET' date +'%I:%M %p'";
-        format = "🇩🇪{}";
+        format = "🇩🇪 {}";
       	tooltip = false;
         interval = 15;
       };
       "memory" = {
       	interval = 5;
-      	format = "{}%";
+      	format = "  {}%";
         tooltip = true;
       };
       "cpu" = {
