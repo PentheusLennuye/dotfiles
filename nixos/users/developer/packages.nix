@@ -8,6 +8,9 @@
     git
     gh
 
+    # Documentation and Translation
+    gettext
+
     # Editors and IDE
     neovim
 
