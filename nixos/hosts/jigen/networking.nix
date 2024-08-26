@@ -14,6 +14,10 @@
         { address = "192.168.68.12"; prefixLength = 24; }
         { address = "192.168.68.13"; prefixLength = 24; }
         { address = "192.168.68.14"; prefixLength = 24; }
+        { address = "192.168.68.15"; prefixLength = 24; }
+        { address = "192.168.68.16"; prefixLength = 24; }
+        { address = "192.168.68.111"; prefixLength = 24; }
+        { address = "192.168.68.112"; prefixLength = 24; }
       ];
     };
     nameservers = ["192.168.68.1"];
