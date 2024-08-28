@@ -17,8 +17,7 @@
     192.168.68.73 goemon.cummings-online.local goemon
     192.168.68.74 goliath.cummings-online.local goliath
 
-    192.168.68.111 i1.cummings-online.local i1
-    192.168.68.112 i2.cummings-online.local i2
+    192.168.68.129 ext.cummings-online.local ext
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }
