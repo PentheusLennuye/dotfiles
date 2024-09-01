@@ -42,6 +42,7 @@
 
     # Rust
     cargo
+    clippy
     gcc
     rustc
     rust-analyzer
