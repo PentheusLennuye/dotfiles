@@ -32,6 +32,10 @@
         "editor.renderWhitespace" = "on";
         "editor.acceptSuggestionOnEnter" = "off";
       };
+      "flake8.args" = [
+        "--max-line-length=79"
+        "--ignore=E402,W503"
+      ];
     };
   };
 }
