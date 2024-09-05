@@ -37,6 +37,9 @@
         "editor.renderWhitespace" = "on";
         "editor.acceptSuggestionOnEnter" = "off";
       };
+      "[rust]" = {
+        "editor.inlayHints.enabled" = "off";
+      };
     };
   };
 }
