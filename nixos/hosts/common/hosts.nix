@@ -8,8 +8,16 @@
   networking.extraHosts = ''
     192.168.68.11 zantetsuken.cummings-online.local zantetsuken
     192.168.68.12 jigen.cummings-online.local jigen
-    192.168.68.33 sisyphus.cummings-online.local sisyphus
-    192.168.68.73 goemon.cummings-online.local goemon harbor.cummings-online.local harbor
+    192.168.68.13 docker.cummings-online.local docker
+    192.168.68.14 portainer.cummings-online.local portainer
+    192.168.68.15 ipa.cummings-online.local ipa 
+    192.168.68.16 vault.cummings-online.local vault
+    192.168.68.17 awx.cummings-online.local awx
+
+    192.168.68.73 goemon.cummings-online.local goemon
+    192.168.68.74 goliath.cummings-online.local goliath
+
+    192.168.68.129 ext.cummings-online.local ext
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }

@@ -17,7 +17,12 @@
     ];
     userSettings = {
       "editor.rulers" = [ 80 120 ];
-      # "window.titleBarStyle" = "custom";  # crash stop
+      "flake8.args" = [
+        "--max-line-length=79"
+        "--ignore=E402,W503"
+      ];
+      "terminal.integrated.defaultProfile.linux" = "zsh";
+      "terminal.integrated.defaultProfile.osx" = "zsh";
       "update.mode" = "none";
       "[latex]" = {
         "editor.wordWrap" = "on";
@@ -31,6 +36,9 @@
         "editor.wordWrap" = "on";
         "editor.renderWhitespace" = "on";
         "editor.acceptSuggestionOnEnter" = "off";
+      };
+      "[rust]" = {
+        "editor.inlayHints.enabled" = "off";
       };
     };
   };

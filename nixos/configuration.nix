@@ -13,6 +13,13 @@
   # Default editor
   environment.variables.EDITOR = "vim";
 
+  # I want my emulation station
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
+  programs.gamemode.enable = true;
+
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 

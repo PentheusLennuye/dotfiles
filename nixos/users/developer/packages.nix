@@ -8,6 +8,9 @@
     git
     gh
 
+    # Documentation and Translation
+    gettext
+
     # Editors and IDE
     neovim
 
@@ -18,6 +21,9 @@
     go
     golangci-lint
     golangci-lint-langserver
+
+    # JavaScript
+    nodejs
 
     # Markdown
     marksman
@@ -36,6 +42,7 @@
 
     # Rust
     cargo
+    clippy
     gcc
     rustc
     rust-analyzer

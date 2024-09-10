@@ -22,6 +22,7 @@
     sessionVariables = {
       SRC = "$HOME/1_personal/spaces/tech/projects";
       GOPATH = "$HOME/.go";
+      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
     shellAliases = {
       hbs="home-manager build switch";
