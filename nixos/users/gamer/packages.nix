@@ -16,5 +16,5 @@ with lib;
       emulationstation-de
       retroarchFull
     ];
-  }
+  };
 }
