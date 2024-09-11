@@ -1,0 +1,14 @@
+---
+services:
+  loadbalancer: 
+    hostname: loadbalancer
+    image: nginx:stable-alpine
+    ports:
+      - 7373:443
+    tty: true
+    volumes:
+      - ./loadbalancer/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./loadbalancer/ext-temp.hopto.me.crt:/etc/nginx/certs/nginx.crt:ro
+      - ./loadbalancer/ext-temp.hopto.me.key:/etc/nginx/certs/nginx.key:ro
+      - ./loadbalancer/dhparam4096.pem:/etc/nginx/certs/dhparam4096.pem:ro
+      - ./loadbalancer/root:/usr/share/nginx/html:ro
