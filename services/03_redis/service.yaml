@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: cummings-online-local
+spec:
+  selector:
+    app.kubernetes.io/name: redis
+  type: NodePort
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: 6379
+      targetPort: 6379

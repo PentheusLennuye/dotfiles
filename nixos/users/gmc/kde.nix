@@ -21,6 +21,7 @@
     kmail-account-wizard
     kontact
     kpat
+    qtmultimedia
   ];
 
   xdg.desktopEntries.joplin-safe = {

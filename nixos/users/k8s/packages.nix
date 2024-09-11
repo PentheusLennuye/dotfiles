@@ -11,6 +11,7 @@ with lib;
 
   home = mkIf role.k8s {
     packages = with pkgs; [
+      helm
       kubebuilder
       kubectl
       minikube

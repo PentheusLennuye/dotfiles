@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+NS=cummings-online-local
 CERTPATHBASE=$1   # e.g. $HOME/tmp/cummings-online.local
 VERSION=v1.15.3
 REPO=https://github.com/cert-manager/cert-manager
 
 kubectl apply -f ${REPO}/releases/download/${VERSION}/cert-manager.yaml
 
-kubectl -n cert-manager create secret tls cummings-online-local-tls \
+kubectl -n cert-manager create secret tls ${NS}-tls \
   --cert=$CERTPATHBASE.crt \
   --key=$CERTPATHBASE.key
 
@@ -15,10 +16,10 @@ cat <<EOF >issuer.yaml
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: cummings-local-issuer
+  name: ${NS}-issuer
 spec:
   ca:
-    secretName: cummings-online-local-tls
+    secretName: ${NS}-tls
 EOF
 
 kubectl apply -f issuer.yaml

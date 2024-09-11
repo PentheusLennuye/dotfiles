@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: cummings-online-local
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          command:
+            - /bin/sh
+            - -c
+            - redis-server --requirepass "$${REDIS_PASSWORD}"
+          image: redis:7.4-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-admin-credentials
+                  key: password
