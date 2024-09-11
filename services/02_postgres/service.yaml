@@ -2,14 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: postgres
   namespace: cummings-online-local
 spec:
   selector:
-    app.kubernetes.io/name: postgres
-  type: NodePort
+    run: postgres
+  type: ClusterIP
   ports:
     - name: postgres
       protocol: TCP
       port: 5432
       targetPort: 5432
+

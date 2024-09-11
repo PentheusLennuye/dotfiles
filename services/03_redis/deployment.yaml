@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redis
+      run: redis
   template:
     metadata:
       labels:
-        app: redis
+        run: redis
     spec:
       containers:
         - name: redis

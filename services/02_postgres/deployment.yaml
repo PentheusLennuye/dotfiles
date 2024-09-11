@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-deployment
+  name: postgres
   namespace: cummings-online-local
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      run: postgres
   template:
     metadata:
       labels:
-        app: postgres
+        run: postgres
     spec:
       volumes:
         - name: postgres-pv-storage

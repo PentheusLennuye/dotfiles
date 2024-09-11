@@ -6,8 +6,8 @@ metadata:
   namespace: cummings-online-local
 spec:
   selector:
-    app.kubernetes.io/name: redis
-  type: NodePort
+    run: redis
+  type: ClusterIP
   ports:
     - name: postgres
       protocol: TCP
