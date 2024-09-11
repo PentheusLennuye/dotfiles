@@ -13,6 +13,7 @@
     192.168.68.15 ipa.cummings-online.local ipa 
     192.168.68.16 vault.cummings-online.local vault
     192.168.68.17 awx.cummings-online.local awx
+    192.168.68.18 netbox.cummings-online.local netbox
 
     192.168.68.73 goemon.cummings-online.local goemon
     192.168.68.74 goliath.cummings-online.local goliath
