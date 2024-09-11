@@ -1,0 +1,16 @@
+---
+postgresql.enabled: false
+redis.enabled: false
+
+cachingRedis:
+  host: redis-service
+  existingSecretName: redis-admin-credentials
+externalDatabase:
+  host: postgres-service
+  port: 5432
+  database: netbox
+  existingSecretName: postgres-admin-credentials
+superuser.existingSecret: netbox-superuser-credentials
+tasksRedis:
+  host: redis-service
+  existingSecretName: redis-admin-credentials
