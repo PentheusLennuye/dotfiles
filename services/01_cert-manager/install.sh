@@ -11,7 +11,7 @@ kubectl -n cert-manager create secret tls ${NS}-tls \
   --cert=$CERTPATHBASE.crt \
   --key=$CERTPATHBASE.key
 
-cat <<EOF >issuer.yaml
+cat <<EOF | kubectl create -f -
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer

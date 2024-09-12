@@ -70,6 +70,7 @@
           ./configuration.nix
           ./hosts/jigen
           ./users.nix
+          ./roles/k8s.nix
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

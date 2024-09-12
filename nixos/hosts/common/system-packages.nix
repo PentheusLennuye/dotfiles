@@ -2,10 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 {
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     curl
@@ -21,7 +22,6 @@ with lib;
     nssmdns4 = true;
     openFirewall = true;
   };
-
   
   services.printing = mkIf (config.networking.hostName != "jigen")  {
     enable = true;

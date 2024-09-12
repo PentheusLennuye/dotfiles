@@ -8,7 +8,7 @@
     isNormalUser = true;
     description = "George Cummings";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" ];
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
   security.pam.loginLimits = [

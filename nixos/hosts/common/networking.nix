@@ -8,3 +8,4 @@
   networking.firewall.allowPing = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 8000 8001 8002 8080 ];
 }
+
