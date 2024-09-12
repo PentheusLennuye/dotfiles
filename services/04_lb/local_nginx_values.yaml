@@ -3,4 +3,4 @@ controller:
   ingressClassResource:
     default: true
   service:
-    loadBalancerIP: 192.168.68.19
+    loadBalancerIP: 192.168.68.21
