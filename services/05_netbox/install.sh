@@ -74,7 +74,14 @@ helm_install () {
 }
 
 
+ingress_install() {
+    # The Helm chart in 5.0.0 does not add annotations.
+    kubectl apply -f ingress.yaml
+}
+
 create_superuser_pass
 create_postgres_db
 create_redis_secret
 helm_install
+ingress_install
+

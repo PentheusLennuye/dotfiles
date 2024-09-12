@@ -1,6 +1,5 @@
-{ lib, ... }:
+{ ... }:
 
-with lib
 {
     services.k3s = {
         enable = true;

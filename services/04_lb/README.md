@@ -13,6 +13,9 @@ over without one having to bind the IP to a NIC. Services using the type
 
 ## Ingress Controller
 
+If using K3S, forget it. It comes already furnished with Traefik.
+
+Otherwise:
 Load Balancers do not deal with TLS. If a service has an ingress controller
 attached to it, then the load balancer will send traffic to the ingress
 controller, and thence to the service.
