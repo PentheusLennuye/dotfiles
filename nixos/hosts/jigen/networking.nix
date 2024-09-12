@@ -16,7 +16,6 @@
         { address = "192.168.68.14"; prefixLength = 24; }
         { address = "192.168.68.15"; prefixLength = 24; }
         { address = "192.168.68.16"; prefixLength = 24; }
-        { address = "192.168.68.17"; prefixLength = 24; }
         { address = "192.168.68.129"; prefixLength = 24; }
       ];
     };
