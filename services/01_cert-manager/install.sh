@@ -11,6 +11,9 @@ kubectl -n cert-manager create secret tls ${NS}-tls \
   --cert=$CERTPATHBASE.crt \
   --key=$CERTPATHBASE.key
 
+echo "Sleeping 30s for CRD to appear"
+sleep 30
+
 cat <<EOF | kubectl create -f -
 ---
 apiVersion: cert-manager.io/v1
@@ -22,4 +25,3 @@ spec:
     secretName: ${NS}-tls
 EOF
 
-kubectl apply -f issuer.yaml

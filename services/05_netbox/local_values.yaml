@@ -7,6 +7,15 @@ externalDatabase:
   port: 5432
   database: netbox
   existingSecretName: netbox-db-credentials
+ingress:
+  annotations: 
+    cert-manager.io/cluster-issuer: cummings-online-local-tls
+  enabled: true
+  hosts: [{host: "netbox.cummings-online.local", paths: ["/"]}]
+  tls:
+    hosts:
+      - netbox.cummings-online.local
+    secretName: netbox-tls
 postgresql:
   enabled: false
 redis:
