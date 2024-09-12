@@ -12,9 +12,9 @@ with lib;
   home = mkIf role.k8s {
     packages = with pkgs; [
       kubernetes-helm
-      kubebuilder
-      kubectl
-      minikube
+      #kubebuilder
+      #kubectl
+      k3s
     ];
   };
 }
