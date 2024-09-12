@@ -11,7 +11,8 @@ postgresql:
   enabled: false
 redis:
   enabled: false
-superuser.existingSecret: netbox-superuser-credentials
+superuser:
+  existingSecret: netbox-superuser-credentials
 tasksRedis:
   host: redis
   existingSecretName: netbox-redis-credentials

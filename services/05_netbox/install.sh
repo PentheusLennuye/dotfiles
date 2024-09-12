@@ -6,6 +6,11 @@ NS="cummings-online-local"
 RELEASE_NAME=netbox
 
 create_superuser_pass() {
+  echo -n "Superuser user name: "
+  read username
+  echo -n "Superuser email address: "
+  read email_address
+
   echo -n "Superuser password: "
   read -s admin_password
   echo
@@ -22,12 +27,19 @@ create_superuser_pass() {
     exit 1
   fi
 
-    kubectl -n ${NS} create secret generic \
-        netbox-superuser-credentials \
-        --from-literal=username=admin \
-        --from-literal=password=${admin_password} \
-        --from-literal=email=admin@cummings-online.local \
-        --from-literal=api_token=${api_token}
+  cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: netbox-superuser-credentials
+  namespace: cummings-online-local
+type: kubernetes.io/basic-auth
+stringData:
+  username: ${username}
+  password: "${admin_password}"
+  email: "${email_address}"
+  api_token: "${api_token}"
+EOF
 }
 
 create_postgres_db() {
@@ -55,6 +67,7 @@ create_postgres_db() {
     kubectl -n ${NS} exec -i ${POD} -- psql -d postgres -U postgres << EOF
 CREATE ROLE netbox WITH LOGIN PASSWORD '${db_password}';
 CREATE DATABASE netbox OWNER netbox;
+GRANT CREATE ON SCHEMA public TO netbox;
 EOF
 }
 
