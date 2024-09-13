@@ -18,7 +18,20 @@ spec:
                 name: netbox
                 port:
                   number: 80
+    - host: awx.cummings-online.local
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: awx-service
+                port:
+                  number: 80
   tls:
     - secretName: netbox-tls
       hosts:
        - netbox.cummings-online.local
+    - secretName: awx-tls
+      hosts:
+       - awx.cummings-online.local
