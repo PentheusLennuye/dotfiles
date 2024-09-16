@@ -45,8 +45,21 @@ GRANT CREATE ON SCHEMA public TO awx;
 EOF
 }
 
+create_awx_instance() {
+  cat <<EOF | kubectl create -f -
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+  namespace: cummings-online-local
+spec:
+  service_type: clusterip
+  postgres_configuration_secret: awx-db-credentials
+EOF
+}
+
 create_postgres_db
-kubectl apply -k kustomization.yml
+kubectl apply -k .
 echo "Sleeping 10s for CRD install."
-kubectl apply -f awx.yml
+create_awx_instance
 
