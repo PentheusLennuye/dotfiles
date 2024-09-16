@@ -6,8 +6,8 @@
 #
 # ---------------------------------------------------------------------------
 
+NS=cummings-online-local
 VERSION=2.19.1
-
 
 create_postgres_db() {
   echo -n "Postgres AWX db password: "
@@ -23,21 +23,22 @@ create_postgres_db() {
     exit 1
   fi
 
-    kubectl -n ${NS} create secret generic \
-        awx-db-credentials \
-        --from-literal=host=postgres \
-        --from-literal=port=5432 \
-        --from-literal=database=awx \
-        --from-literal=username=awx \
-        --from-literal=password=${db_password} \
-        --from-literal=sslmode=prefer \
-        --from-literal=target_sessions_attrs=read-write \
-        --from-literal=type=unmanaged
+  kubectl -n ${NS} create secret generic \
+    awx-db-credentials \
+    --from-literal=host=postgres \
+    --from-literal=port=5432 \
+    --from-literal=database=awx \
+    --from-literal=username=awx \
+    --from-literal=password=${db_password} \
+    --from-literal=sslmode=prefer \
+    --from-literal=target_sessions_attrs=read-write \
+    --from-literal=type=unmanaged
 
-    POD=$(kubectl -n cummings-online-local get po \
-          | grep postgres | awk '{print $1}')
+  POD=$(kubectl -n cummings-online-local get po \
+      | grep postgres | awk '{print $1}')
+        
 
-    kubectl -n ${NS} exec -i ${POD} -- psql -d postgres -U postgres << EOF
+  kubectl -n ${NS} exec -i ${POD} -- psql -d postgres -U postgres << EOF
 CREATE ROLE awx WITH LOGIN PASSWORD '${db_password}';
 CREATE DATABASE awx OWNER awx;
 GRANT CREATE ON SCHEMA public TO awx;
@@ -45,7 +46,6 @@ EOF
 }
 
 create_postgres_db
-kubectl apply \ 
-    https://github.com/ansible/awx-operator/config/default?ref=$VERSION
+kubectl apply -k .
 kubectl apply -f .
 

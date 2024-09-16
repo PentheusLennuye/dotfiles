@@ -11,7 +11,5 @@ NS=cummings-online-local
 
 kubectl delete -f .
 kubectl -n ${NS} delete secret awx-db-credentials
-
-kubectl delete \ 
-    https://github.com/ansible/awx-operator/config/default?ref=$VERSION
+kubectl delete -k .
 

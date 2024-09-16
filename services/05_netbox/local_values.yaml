@@ -7,6 +7,8 @@ externalDatabase:
   port: 5432
   database: netbox
   existingSecretName: netbox-db-credentials
+image:
+  tag: v4.1.1
 postgresql:
   enabled: false
 redis:
