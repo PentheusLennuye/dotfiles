@@ -1,0 +1,10 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+  namespace: cummings-online-local
+spec:
+  service_type: clusterip
+  postgres_configuration_secret: awx-db-credentials
+
