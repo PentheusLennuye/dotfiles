@@ -19,7 +19,7 @@
     192.168.68.73 goemon.cummings-online.local goemon
     192.168.68.74 goliath.cummings-online.local goliath
 
-    192.168.68.129 mtl-printer.cummings-online.local mtl-printer
+    192.168.68.229 mtl-printer.cummings-online.local mtl-printer
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }
