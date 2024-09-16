@@ -9,7 +9,7 @@
 VERSION=2.19.1
 NS=cummings-online-local
 
-kubectl delete -f .
+kubectl delete -f awx.yml
 kubectl -n ${NS} delete secret awx-db-credentials
-kubectl delete -k .
+kubectl delete -k kustomization.yml
 

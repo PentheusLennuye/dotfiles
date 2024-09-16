@@ -46,6 +46,7 @@ EOF
 }
 
 create_postgres_db
-kubectl apply -k .
-kubectl apply -f .
+kubectl apply -k kustomization.yml
+echo "Sleeping 10s for CRD install."
+kubectl apply -f awx.yml
 
