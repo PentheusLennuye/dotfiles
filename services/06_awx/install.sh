@@ -63,3 +63,9 @@ kubectl apply -k .
 echo "Sleeping 10s for CRD install."
 create_awx_instance
 
+cat <<EOM
+Get the admin password with
+kubectl -n cummings-online-local get secret awx-admin-password \
+  -o jsonpath="{.data.password}" | base64 -d
+EOM
+
