@@ -11,5 +11,5 @@ NS=cummings-online-local
 
 kubectl -n ${NS} delete AWX awx
 kubectl -n ${NS} delete secret awx-db-credentials
-kubectl delete -k kustomization.yml
+kubectl delete -k .
 
