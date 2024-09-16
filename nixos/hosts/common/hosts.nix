@@ -11,8 +11,6 @@
 
     192.168.68.13 docker.cummings-online.local docker
     192.168.68.14 portainer.cummings-online.local portainer
-    192.168.68.15 ipa.cummings-online.local ipa 
-    192.168.68.16 vault.cummings-online.local vault
 
     192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx
 
