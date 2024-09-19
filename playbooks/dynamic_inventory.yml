@@ -1,0 +1,22 @@
+---
+api_endpoint: '{{ NETBOX_API }}'
+config_context: false
+env:
+  NETBOX_API: '{{ NETBOX_API}}'
+  NETBOX_TOKEN: '{{ NETBOX_TOKEN }}'
+fields:
+  - id: NETBOX_API
+    type: string
+    label: Netbox Host URL
+  - id: NETBOX_TOKEN
+    type: string
+    label: Netbox API Token
+    secret: true
+group_by:
+  - device_roles
+  - platforms
+plugin: netbox.netbox.nb_inventory
+required:
+  - NETBOX_API
+  - NETBOX_TOKEN
+validate_certs: true
