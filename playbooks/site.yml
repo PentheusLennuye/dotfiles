@@ -1,4 +1,4 @@
 ---
-- hosts: goliath
+- hosts: lab
   roles:
     - role: common
