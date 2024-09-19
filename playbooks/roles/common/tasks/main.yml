@@ -1,0 +1,7 @@
+---
+- name: Create a handy zshrc skeleton 
+  ansible.builtin.copy:
+    become: true
+    src: files/zshrc
+    dest: /etc/skel/.zshrc
+    mode: "0644"

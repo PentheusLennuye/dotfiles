@@ -1,0 +1,4 @@
+---
+- hosts: goliath
+  roles:
+    - role: common
