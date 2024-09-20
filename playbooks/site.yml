@@ -1,4 +1,4 @@
 ---
-- hosts: lab
+- hosts: linux
   roles:
     - role: common

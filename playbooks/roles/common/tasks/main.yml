@@ -17,13 +17,6 @@
       - wget
       - zsh
 
-- name: Python binaries
-  become: true
-  ansible.builtin.package:
-    state: latest
-    name:
-      - poetry
-
 - name: Ensure George's group is set
   become: true
   ansible.builtin.group:
@@ -56,4 +49,6 @@
   become_user: gmc
   ansible.builtin.pip:
     state: latest
-    name: invoke
+    name:
+      - invoke
+      - poetry
