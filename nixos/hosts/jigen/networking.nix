@@ -25,8 +25,8 @@
     nat.externalInterface = "enp2s0";
     nat.internalInterfaces = [ "wg0" ];
     firewall = {
-      allowedTCPPorts = [ 443 6443 7373 ];
-      allowedUDPPorts = [ 7946 51820 ];
+      allowedTCPPorts = [ 53 443 6443 7373 ];
+      allowedUDPPorts = [ 53 7946 51820 ];
     };
     wireguard.interfaces = {
       wg0 = {
