@@ -4,3 +4,5 @@ controller:
     default: true
   service:
     loadBalancerIP: 192.168.68.21
+udp:
+  53: cummings-online-local/bind9-service
