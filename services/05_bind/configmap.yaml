@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bind-config
+  namespace: cummings-online-local
+data:
+  config: |
+    options {
+      directory "/var/cache/bind";
+      dnssec-validation auto;
+    };
+    zone "cummings-online.local" {
+      type master;
+      file "/etc/bind/db.cummings-online.local";
+    };
+  zone: |
+    $TTL 86400
+    @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
+               2   ; serial
+           86400   ; refresh
+           28800   ; retry
+          604800   ; expire
+          86400 )  ; negative cache ttl
+
+    ; Required nameserver records ----------------------------------------
+    @           IN    NS    ns.cummings-online.local.
+    ns          IN    A     192.168.68.21
+
+    ; Hosts --------------------------------------------------------------
+    jigen       IN    A     192.168.68.21
+    awx         IN    CNAME jigen.cummings-online.local.
+    netbox      IN    CNAME jigen.cummings-online.local.
+    prometheus  IN    CNAME jigen.cummings-online.local.
+    argocd      IN    CNAME jigen.cummings-online.local.

@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bind9-deployment
+  namespace: cummings-online-local
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bind9
+  template:
+    metadata:
+      labels:
+        app: bind9
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: bind-config
+            items:
+              - key: config
+                path: named.conf
+              - key: zone
+                path: db.cummings-online.local
+      containers:
+        - name: bind9
+          image: ubuntu/bind9:edge
+          env:
+            - name: TZ
+              value: America/Toronto
+          ports:
+            - containerPort: 53
+              protocol: TCP
+            - containerPort: 53
+              protocol: UDP
+          volumeMounts:
+            - name: config
+              mountPath: /etc/bind
