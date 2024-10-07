@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../modules/oryx.nix
+    ../modules/printing.nix
+    ../modules/sound.nix
+  ];
+}
+{ config, pkgs, ... }:
+
+{
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
   ];
@@ -43,7 +52,6 @@
     displayManager.sddm.wayland.enable = true;
     displayManager.defaultSession = "plasma";
     xserver.enable = true;
-    xserver.videoDrivers = [ "amdgpu" ];
   };
 }
 

@@ -12,9 +12,12 @@
       nvidiaBusId = "PCI:01:00.0";
     };
   };
+  
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 }
