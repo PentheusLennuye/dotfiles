@@ -7,10 +7,7 @@
     ../modules/printing.nix
     ../modules/sound.nix
   ];
-}
-{ config, pkgs, ... }:
 
-{
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
     kdePackages.kaddressbook

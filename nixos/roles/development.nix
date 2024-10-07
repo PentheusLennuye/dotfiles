@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
 
     # CI/CD
     docker-compose
@@ -54,9 +54,4 @@
 
   ];
 
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    pinentryPackage = pkgs.pinentry-tty;
-  };
 }

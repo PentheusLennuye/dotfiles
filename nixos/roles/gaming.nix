@@ -1,20 +1,8 @@
-{ config, osConfig, pkgs, lib, ... }:
+{ pkgs, ... }:
 
-let 
-  role = config.role;
-in
-
-with lib;
 {
-  imports = [
-    ../../roles.nix
-    ../../hosts/${osConfig.networking.hostName}/roles.nix
+  environment.systemPackages = with pkgs; [
+    emulationstation-de
+    retroarchFull
   ];
-
-  home = mkIf role.workstation {
-    packages = with pkgs; [
-      emulationstation-de
-      retroarchFull
-    ];
-  };
 }
