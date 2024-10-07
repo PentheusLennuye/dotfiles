@@ -17,6 +17,9 @@ unsetopt EXTENDED_HISTORY
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# Paths
+export PATH=$HOME/.local/bin:$PATH
+
 # Aliases
 alias -- 'la'='ls -la'
 alias -- 'll'='ls -l'
