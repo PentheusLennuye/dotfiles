@@ -14,10 +14,11 @@
 
     192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx
 
+    192.168.68.61 mtl-printer.cummings-online.local mtl-printer brother
+
     192.168.68.73 goemon.cummings-online.local goemon
     192.168.68.74 goliath.cummings-online.local goliath
 
-    192.168.68.229 mtl-printer.cummings-online.local mtl-printer
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
 }
