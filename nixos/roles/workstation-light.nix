@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../modules/gmc-wants.nix
     ../modules/oryx.nix
     ../modules/printing.nix
     ../modules/sound.nix

@@ -1,8 +1,7 @@
-{ pkgs, config, xdg, ... }:
+{ config, xdg, ... }:
 
 
 {
-
   home.file = {
     ".config/kactivitymanagerdrc".source = kde/kactivitymanagerdrc;
     ".config/kglobalshortcutsrc".source = kde/kglobalshortcutsrc;
@@ -10,19 +9,6 @@
     ".config/kwinrulesrc".source = kde/kwinrulesrc;
     ".config/kxkbrc".source = kde/kxkbrc;
   };
-
-  home.packages = with pkgs.kdePackages; [
-    kaddressbook
-    kcalc
-    kde-cli-tools
-    kdepim-runtime  # Required for kmail
-    kmahjongg
-    kmail
-    kmail-account-wizard
-    kontact
-    kpat
-    qtmultimedia
-  ];
 
   xdg.desktopEntries.joplin-safe = {
     name="Joplin GPU Safe";

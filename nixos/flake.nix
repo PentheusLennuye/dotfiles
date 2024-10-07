@@ -36,7 +36,12 @@
         modules = common_modules ++ [
           ./gpu/nvidia.nix
           ./hosts/sisyphus
+          ./roles/audio-engineering.nix
           ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/publishing.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
         ];
@@ -47,8 +52,13 @@
         modules = common_modules ++ [
           ./gpu/opengl.nix
           ./hosts/glaucus
+          ./roles/audio-engineering.nix
           ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
           ./roles/laptop.nix
+          ./roles/publishing.nix
           ./roles/workstation-light.nix
         ];
       };
@@ -58,7 +68,12 @@
         modules = common_modules ++ [
           ./gpu/amd.nix
           ./hosts/goemon
+          ./roles/audio-engineering.nix
           ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/publishing.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
         ];
@@ -66,10 +81,11 @@
       jigen = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = common_modules ++ [
-          ./roles/k3s-server.nix
-          ./roles/container-host.nix
-          ./roles/webhost.nix
           ./hosts/jigen
+          ./roles/container-host.nix
+          ./roles/k3s-server.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/webhost.nix
         ];
       };
     };

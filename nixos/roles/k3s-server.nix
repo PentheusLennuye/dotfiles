@@ -1,4 +1,4 @@
-{ ... }:
+{ config, pkgs, ... }:
 
 {
     services.k3s = {
@@ -6,4 +6,6 @@
         role = "server";
         extraFlags = toString [ "--disable=traefik" ];
     };
+
+    networking.firewall.allowedTCPPorts = [ 6443 ];
 }

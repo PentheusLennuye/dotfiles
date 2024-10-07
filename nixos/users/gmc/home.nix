@@ -3,18 +3,11 @@
 {
   imports = [
     # All
-    ../developer
-    ../poweruser
     ./localbin.nix
     ./neovim.nix
     ./vim.nix
 
     # Desktops
-    ../audioengineer
-    ../gamer
-    ../k8s
-    ../publisher
-    ./desktop.nix
     ./hyprland.nix
     ./kde.nix
     ./starship.nix

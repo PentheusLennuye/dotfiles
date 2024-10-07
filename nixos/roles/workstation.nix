@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../modules/gmc-wants.nix
     ../modules/oryx.nix
     ../modules/printing.nix
     ../modules/sound.nix
@@ -12,6 +13,16 @@
 {
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
+    kdePackages.kaddressbook
+    kdePackages.kcalc
+    kdePackages.kde-cli-tools
+    kdePackages.kdepim-runtime  # Required for kmail
+    kdePackages.kmahjongg
+    kdePackages.kmail
+    kdePackages.kmail-account-wizard
+    kdePackages.kontact
+    kdePackages.kpat
+    kdePackages.qtmultimedia
   ];
 
   fonts.packages = with pkgs; [

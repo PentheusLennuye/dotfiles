@@ -7,6 +7,7 @@
     docker-compose
     git
     gh
+    pinentry-tty                        # GnuPG password control
 
     # Documentation and Translation
     gettext
@@ -52,4 +53,10 @@
     yamllint
 
   ];
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    pinentryPackage = pkgs.pinentry-tty;
+  };
 }
