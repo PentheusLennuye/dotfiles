@@ -38,13 +38,4 @@
     wofi                                   # program selector for Hyprland
   ];
 
-  programs.kitty = {
-    enable = true;
-    settings = {
-      shell = "zsh";
-      font_family = "JetBrains mono";
-      font_size = "11.5";
-      background_opacity = "0.7";
-    };
-  };
 }

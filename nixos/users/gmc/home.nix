@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -35,6 +35,23 @@
   # Programs =================================================================
 
   programs.home-manager.enable = true;
+  programs.gpg.enable = true;
+  programs.kitty = {
+    enable = true;
+    settings = {
+      shell = "zsh";
+      font_family = "JetBrains mono";
+      font_size = "11.5";
+      background_opacity = "0.7";
+    };
+  };
+
+  # Services =================================================================
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    pinentryPackage = pkgs.pinentry-tty;
+  };
 
 }
 

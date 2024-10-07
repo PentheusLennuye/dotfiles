@@ -26,9 +26,5 @@
     wget
   ];
 
-  programs.gpg = {
-    enable = true;
-  };
-
   programs.zsh.enable = true;
 }
