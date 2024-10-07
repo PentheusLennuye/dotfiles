@@ -24,7 +24,7 @@
   ansible.builtin.package:
     state: latest
     name:
-      - invoke
+      - python3-invoke
 
 # === Master User ===========================================================
 
