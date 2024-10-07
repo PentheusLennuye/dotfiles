@@ -1,4 +1,4 @@
----
+-c--
 - name: Create a handy zshrc skeleton
   become: true
   ansible.builtin.copy:
@@ -17,6 +17,16 @@
       - wget
       - zsh
 
+- name: System-wide python tools
+  become: true
+  ansible.builtin.package:
+    state: latest
+    name:
+      - invoke
+      - poetry
+
+# === Master User ===========================================================
+
 - name: Ensure George's group is set
   become: true
   ansible.builtin.group:
@@ -24,7 +34,7 @@
     gid: "1000"
     name: gmc
 
-- name: Ensure George is set
+- name: Ensure George user is set
   become: true
   ansible.builtin.user:
     state: present
@@ -35,6 +45,15 @@
     shell: /bin/zsh
     uid: "1000"
 
+- name: Ensure George's remote_tmp is set
+  become: true
+  ansible.builtin.file:
+    state: directory 
+    path: /home/gmc/.ansible/tmp
+    mode: "0770"
+    owner: gmc
+    group: gmc
+
 - name: George gets the zshrc skeleton
   become: true
   become_user: gmc
@@ -44,11 +63,3 @@
     mode: "0644"
     remote_src: true
 
-- name: George local python
-  become: true
-  become_user: gmc
-  ansible.builtin.pip:
-    state: latest
-    name:
-      - invoke
-      - poetry
