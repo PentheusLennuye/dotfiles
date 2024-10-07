@@ -1,4 +1,5 @@
--c--
+---
+
 - name: Create a handy zshrc skeleton
   become: true
   ansible.builtin.copy:
@@ -48,7 +49,7 @@
 - name: Ensure George's remote_tmp is set
   become: true
   ansible.builtin.file:
-    state: directory 
+    state: directory
     path: /home/gmc/.ansible/tmp
     mode: "0770"
     owner: gmc
@@ -62,4 +63,3 @@
     dest: /home/gmc/.zshrc
     mode: "0644"
     remote_src: true
-
