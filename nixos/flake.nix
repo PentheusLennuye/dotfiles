@@ -14,68 +14,78 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
   let 
     system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
-    unstable = import nixpkgs-unstable {inherit system;};
+    pkgs = import nixpkgs { inherit system; };
+    unstable = import nixpkgs-unstable { inherit system; };
+    common_modules = [
+        ./configuration.nix
+        ./roles/common.nix
+        ./users.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.gmc = import ./users/gmc/home.nix;
+          home-manager.extraSpecialArgs = { inherit unstable; };
+        }
+    ];
   in
   {
     nixosConfigurations = {
       sisyphus = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit unstable;};
-        modules = [
-          ./configuration.nix
+        modules = common_modules ++ [
+          ./gpu/nvidia.nix
           ./hosts/sisyphus
-          ./users.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.gmc = import ./users/gmc/home.nix;
-            home-maanger.extraSpecialArgs = { inherit unstable; };
-          }
+          ./roles/audio-engineering.nix
+          ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/publishing.nix
+          ./roles/virt-host.nix
+          ./roles/workstation.nix
         ];
       };
       glaucus = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit unstable;};
-        modules = [
-          ./configuration.nix
+        modules = common_modules ++ [
+          ./gpu/opengl.nix
           ./hosts/glaucus
-          ./users.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.gmc = import ./users/gmc/home.nix;
-            home-manager.extraSpecialArgs = { inherit unstable; };
-          }
+          ./roles/audio-engineering.nix
+          ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/laptop.nix
+          ./roles/publishing.nix
+          ./roles/workstation-light.nix
         ];
       };
       goemon = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit unstable;};
-        modules = [
-          ./configuration.nix
+        modules = common_modules ++ [
+          ./gpu/amd.nix
           ./hosts/goemon
-          ./users.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.gmc = import ./users/gmc/home.nix;
-            home-manager.extraSpecialArgs = { inherit unstable; };
-          }
+          ./roles/audio-engineering.nix
+          ./roles/container-host.nix
+          ./roles/development.nix
+          ./roles/gaming.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/publishing.nix
+          ./roles/virt-host.nix
+          ./roles/workstation.nix
         ];
       };
       jigen = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
-          ./configuration.nix
+        modules = common_modules ++ [
           ./hosts/jigen
-          ./users.nix
-          ./roles/k8s.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.gmc = import ./users/gmc/home.nix;
-          }
+          ./roles/container-host.nix
+          ./roles/k3s-server.nix
+          ./roles/kubernetes-ctl.nix
+          ./roles/webhost.nix
         ];
       };
     };

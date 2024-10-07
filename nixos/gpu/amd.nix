@@ -2,9 +2,11 @@
 
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
+
   systemd.tmpfiles.rules = [
     "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
   ];
+
   hardware.opengl = {
     enable = true;
     # OpenCL and Vulkan ----------------------
@@ -16,4 +18,6 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
 }

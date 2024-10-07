@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 
 {
   home.file.".local/share/nvim/site/autoload/plug.vim".source = nvim/plug.vim;

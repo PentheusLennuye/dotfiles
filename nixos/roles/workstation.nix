@@ -1,8 +1,28 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../modules/gmc-wants.nix
+    ../modules/oryx.nix
+    ../modules/printing.nix
+    ../modules/sound.nix
+  ];
+}
+{ config, pkgs, ... }:
+
+{
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
+    kdePackages.kaddressbook
+    kdePackages.kcalc
+    kdePackages.kde-cli-tools
+    kdePackages.kdepim-runtime  # Required for kmail
+    kdePackages.kmahjongg
+    kdePackages.kmail
+    kdePackages.kmail-account-wizard
+    kdePackages.kontact
+    kdePackages.kpat
+    kdePackages.qtmultimedia
   ];
 
   fonts.packages = with pkgs; [
@@ -43,7 +63,6 @@
     displayManager.sddm.wayland.enable = true;
     displayManager.defaultSession = "plasma";
     xserver.enable = true;
-    xserver.videoDrivers = [ "amdgpu" ];
   };
 }
 
