@@ -19,6 +19,13 @@
       - wget
       - zsh
 
+- name: System python tools
+  become: true
+  ansible.builtin.package:
+    state: latest
+    name:
+      - invoke
+
 # === Master User ===========================================================
 
 - name: Ensure George's group is set
@@ -56,15 +63,6 @@
     dest: /home/gmc/.zshrc
     mode: "0644"
     remote_src: true
-
-- name: George's Python tools
-  become: true
-  become_user: gmc
-  ansible.builtin.pip:
-    state: latest
-    name:
-      - invoke
-    extra_args: --user
 
 - name: Install Poetry for George
   become: true
