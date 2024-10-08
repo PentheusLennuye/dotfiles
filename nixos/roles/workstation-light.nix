@@ -20,5 +20,12 @@
   };
 
   security.polkit.enable = true;
+
+  services = {
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.theme = true;
+    xserver.enable = true;
+  };
 }
 
