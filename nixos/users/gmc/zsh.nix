@@ -9,6 +9,7 @@
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
         export LIBVIRT_DEFAULT_URI="qemu:///system";
+        source <(kubectl completion zsh)
     '';
     plugins = [{
       name = "zsh-history-substring-search";
@@ -27,6 +28,7 @@
     };
     shellAliases = {
       hbs="home-manager build switch";
+      k="kubectl";
       ls="ls --color";
       ll="ls -l";
       la="ls -la";
