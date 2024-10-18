@@ -10,7 +10,7 @@
     192.168.68.13 docker.cummings-online.local docker
     192.168.68.14 portainer.cummings-online.local portainer
 
-    192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx
+    192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx repoapi.cummings-online.local registryapi.cummings-online.local easysync-test.cummings-online.local
 
     192.168.68.61 mtl-printer.cummings-online.local mtl-printer brother
 
