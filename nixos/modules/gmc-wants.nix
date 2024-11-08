@@ -1,10 +1,15 @@
 { config, pkgs, unstable, ... }:
 
-{
-  environment.systemPackages = with pkgs; [
+let
+  fastMovingPkgs = with unstable; [
+    cider-2                                # Apple Music
+    joplin-desktop                         # Notepad
+  ];
+
+  stablePkgs = with pkgs; [
     _1password-gui                         # 1Password password manager
     anki                                   # Flashcards, requires QT
-    cider                                  # Apple Music for Linux
+    appimage-run                           # Needed for Cider 2
     canon-cups-ufr2
     dexed                                  # DX7 VST plugin
     digikam
@@ -21,7 +26,6 @@
     hyprpaper                              # wallpaper for Hyprland
     inkscape
     kitty
-    unstable.joplin-desktop
     libreoffice-qt
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
@@ -38,4 +42,8 @@
     wofi                                   # program selector for Hyprland
   ];
 
+in
+{
+  environment.systemPackages = stablePkgs ++ fastMovingPkgs;
 }
+

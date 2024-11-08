@@ -37,8 +37,10 @@
     python311Packages.black                # PEP-8
     python311Packages.invoke
     python311Packages.pip
+    python311Packages.pipx
     python311Packages.flake8               # PEP-8
     python311Packages.jedi-language-server # LSP server
+    python311Packages.toml                 # To read pyproject toml
     virtualenv
 
     # Rust

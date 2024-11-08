@@ -20,6 +20,7 @@
     kdePackages.kontact
     kdePackages.kpat
     kdePackages.qtmultimedia
+    xwayland
   ];
 
   fonts.packages = with pkgs; [

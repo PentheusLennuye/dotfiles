@@ -13,6 +13,7 @@
     extraPackages = with pkgs; [
       amdvlk
       rocmPackages.clr.icd
+      mesa.drivers
     ];
     # Vulkan support -------------------------
     driSupport = true;

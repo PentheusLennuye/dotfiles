@@ -15,7 +15,9 @@
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
-    unstable = import nixpkgs-unstable { inherit system; };
+    unstable = import nixpkgs-unstable {
+      inherit system; config.allowUnfree = true;
+    };
     common_modules = [
         ./configuration.nix
         ./roles/common.nix
