@@ -68,46 +68,61 @@
 # MacOS =====================================================================
 - name: macos setup
   when: ansible_distribution == "MacOSX"
+  become: true
   block:
-  - name: install lua for macos
-    become: true
-    become_user: gmc
-    block:
-      - name: check if lua exists already
-        ansible.builtin.stat:
-          path: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-        register: lua
-      - name: download lua
-        ansible.builtin.get_url:
-          url: "{{ lua_download }}"
-          dest: "/Users/gmc/.cache/lua-{{ lua_version }}.tgz"
-        when: not lua.stat.exists
-      - name: unarchive lua
-        ansible.builtin.shell:
-          executable: /bin/bash
-          cmd: >
-            /usr/bin/tar -C /Users/gmc/.local/bin -xf
-            /Users/gmc/.cache/lua-{{ lua_version }}.tgz
-          creates: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-        changed_when: false
-      - name: link lua to lua-version
-        ansible.builtin.file:
-          state: link
-          src: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-          dest: /Users/gmc/.local/bin/lua
-      - name: configure zshrc
-        ansible.builtin.copy:
-          src: files/zshrc-darwin
-          dest: /Users/gmc/.zshrc
-          mode: "0644"
+    - name: install and configure nvim
+      become_user: gmc
+      block:
+        - name: Install vim-plug
+          ansible.builtin.shell:
+            executable: /bin/bash
+            cmd: >
+              curl -fLo {$HOME/.local/share}/nvim/site/autoload/plug.vim 
+              --create-dirs
+              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          changed_when: false
+
+    - name: install lua for macos
+      become_user: gmc
+      block:
+        - name: check if lua exists already
+          ansible.builtin.stat:
+            path: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
+          register: lua
+        - name: download lua
+          ansible.builtin.get_url:
+            url: "{{ lua_download }}"
+            dest: "/Users/gmc/.cache/lua-{{ lua_version }}.tgz"
+          when: not lua.stat.exists
+        - name: unarchive lua
+          ansible.builtin.shell:
+            executable: /bin/bash
+            cmd: >
+              /usr/bin/tar -C /Users/gmc/.local/bin -xf
+              /Users/gmc/.cache/lua-{{ lua_version }}.tgz
+            creates: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
+          changed_when: false
+        - name: link lua to lua-version
+          ansible.builtin.file:
+            state: link
+            src: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
+            dest: /Users/gmc/.local/bin/lua
+    - name: configure zshrc
+      become_user: gmc
+      ansible.builtin.copy:
+        src: files/zshrc-darwin
+        dest: /Users/gmc/.zshrc
+        mode: "0644"
 
 
 # All systems ---------------------------------------------------------
-- name: install linters for configurations
+- name: install linters and language servers for configurations
   become: true
   become_user: gmc
   ansible.builtin.pip:
     name:
+      - black
+      - jedi-language-server
       - yq
       - yamllint
     extra_args: --user

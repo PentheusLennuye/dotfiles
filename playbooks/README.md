@@ -31,6 +31,7 @@ MacOS will need an updated Python to install Ansible. Set up the system thus:
 - docker
 - VSCode
 - lua
+- ruby  <http://rvm.io>
 - rust
 - golang
 - exa
@@ -38,6 +39,8 @@ MacOS will need an updated Python to install Ansible. Set up the system thus:
 - Docker
 - Nerdfonts
 - neovim
-- markdownlint
+- markdownlint  # gem install --user-install mdl
+- marksman
+- jedi-language-server
 - other linters for python, rust, golang, c, etc
 
