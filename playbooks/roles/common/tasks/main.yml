@@ -116,21 +116,28 @@
 
 
 # All systems ---------------------------------------------------------
-- name: install linters and language servers for configurations
+- name: local configurations
   become: true
   become_user: gmc
-  ansible.builtin.pip:
-    name:
-      - black
-      - jedi-language-server
-      - yq
-      - yamllint
-    extra_args: --user
+  when: ansible_distribution != "NixOS"
+  block:
+    - name: install linters and language servers for configurations
+      ansible.builtin.pip:
+        name:
+          - black
+          - jedi-language-server
+          - yq
+          - yamllint
+        extra_args: --user
 
-- name: Install Poetry
-  become: true
-  become_user: gmc
-  community.general.pipx:
-    name: poetry
-  when: ansible_distribution != "MacOSX"  # Temporary
+    - name: install pipx packages
+      community.general.pipx:
+        name:
+          - poetry
+      when: ansible_distribution != "MacOSX"  # temporary
 
+    - name: install starship theme
+      ansible.builtin.copy:
+        src: files/starship.toml
+        dest: "{{ home }}/starship.toml"
+        mode: "0644"
