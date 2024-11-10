@@ -1,0 +1,29 @@
+export PATH=$HOME/.local/bin:$HOME/.local/nvim-macos-x86_64/bin:/Users/gmc/Library/Python/3.11/bin:$PATH
+
+# Aliases
+
+#alias ls='ls --color'
+alias ls='exa --icons -F -H --group-directories-first --git -1'
+alias ll='ls -l'
+alias la='ls -la'
+alias ssh='TERM=xterm-256color ssh'
+
+# ZSH History substrings
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt share_history
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# session variables
+export SRC=$HOME/1_personal/spaces/tech/projects
+export GOPATH=$HOME/.go
+export KUBECONFIG=$HOME/.kube/config
+
+# Golang
+. $HOME/.cargo/env
+
+# Starship
+eval "$(starship init zsh)"
+

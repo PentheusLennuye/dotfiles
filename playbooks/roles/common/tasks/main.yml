@@ -1,71 +1,108 @@
 ---
-
-- name: Create a handy zshrc skeleton
+# Linux ===================================================================
+- name: linux setup
+  when:
+    - ansible_distribution != "MacOS"
+    - ansible_distribution != "NixOS"
   become: true
-  ansible.builtin.copy:
-    src: files/zshrc
-    dest: /etc/skel/.zshrc
-    mode: "0644"
+  block:
+    - name: system configuration
+      block:
+        - name: Create a handy zshrc skeleton
+          ansible.builtin.copy:
+            src: files/zshrc
+            dest: /etc/skel/.zshrc
+            mode: "0644"
+        - name: Standard packages
+          ansible.builtin.package:
+            state: latest
+            name:
+              - curl
+              - exa
+              - git
+              - pipx
+              - vim
+              - wget
+              - zsh
+        
+        - name: System python tools
+          ansible.builtin.package:
+            state: latest
+            name:
+              - python3-invoke
+        
+        - name: Ensure George's group is set
+          ansible.builtin.group:
+            state: present
+            gid: "1000"
+            name: gmc
+        
+        - name: Ensure George user is set
+          ansible.builtin.user:
+            state: present
+            comment: "George Cummings"
+            create_home: true
+            group: gmc
+            name: gmc
+            shell: /bin/zsh
+            uid: "1000"
+        
+        - name: Ensure George's remote_tmp is set
+          ansible.builtin.file:
+            state: directory
+            path: /home/gmc/.ansible/tmp
+            mode: "0770"
+            owner: gmc
+            group: gmc
+        
+    - name: system configuration
+      become_user: gmc
+      block:
+        - name: George gets the zshrc skeleton
+          ansible.builtin.copy:
+            src: /etc/skel/.zshrc
+            dest: /home/gmc/.zshrc
+            mode: "0644"
+            remote_src: true
 
-- name: Standard packages
-  become: true
-  ansible.builtin.package:
-    state: latest
-    name:
-      - curl
-      - git
-      - pipx
-      - vim
-      - wget
-      - zsh
+# MacOS =====================================================================
+- name: macos setup
+  when: ansible_distribution == "MacOS"
+  block:
+  - name: install lua for macos
+    become: true
+    become_user: gmc
+    block:
+      - name: unarchive lua
+        ansible.builtin.unarchive:
+          src: "https://sourceforge.net/projects/luabinaries/files/5.2.4/\
+            Tools%20Executables/lua-5.2.4_MacOS1011_bin.tar.gz/download"
+          dest: /Users/gmc/.local/bin
+      - name: link lua to lua-version
+        ansible.builtin.file:
+          src: /Users/gmc/.local/bin/lua52
+          dest: /Users/gmc/.local/bin/lua
+  - name: configure zshrc
+    ansible.builtin.copy:
+      src: files/zshrc-darwin
+      dest: /Users/gmc/.zshrc
+      mode: "0644"
 
-- name: System python tools
-  become: true
-  ansible.builtin.package:
-    state: latest
-    name:
-      - python3-invoke
 
-# === Master User ===========================================================
-
-- name: Ensure George's group is set
-  become: true
-  ansible.builtin.group:
-    state: present
-    gid: "1000"
-    name: gmc
-
-- name: Ensure George user is set
-  become: true
-  ansible.builtin.user:
-    state: present
-    comment: "George Cummings"
-    create_home: true
-    group: gmc
-    name: gmc
-    shell: /bin/zsh
-    uid: "1000"
-
-- name: Ensure George's remote_tmp is set
-  become: true
-  ansible.builtin.file:
-    state: directory
-    path: /home/gmc/.ansible/tmp
-    mode: "0770"
-    owner: gmc
-    group: gmc
-
-- name: George gets the zshrc skeleton
+# All systems ---------------------------------------------------------
+- name: install linters for configurations
   become: true
   become_user: gmc
-  ansible.builtin.copy:
-    src: /etc/skel/.zshrc
-    dest: /home/gmc/.zshrc
-    mode: "0644"
-    remote_src: true
+  ansible.builtin.pip:
+    name:
+      - yq
+      - yamllint
+    extra_args: --user
 
-- name: Install Poetry for George
+- name: Install Poetry
   become: true
   become_user: gmc
   community.general.pipx:
     name: poetry
+  when: ansible_distribution != "MacOS"  # Temporary
+

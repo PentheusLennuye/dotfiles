@@ -2,3 +2,6 @@
 - hosts: linux
   roles:
     - role: common
+- hosts: localhost
+  roles:
+    - role: common
