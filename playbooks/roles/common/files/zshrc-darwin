@@ -1,4 +1,5 @@
 # File: .zshrc
+# ZSHRC for MacOSX
 
 # Paths -----------------------------------------------------------------
 
@@ -6,30 +7,26 @@ export PATH=$HOME/.local/bin:$HOME/.local/nvim-macos-x86_64/bin:/Users/gmc/Libra
 
 # Aliases ---------------------------------------------------------------
 
-#alias ls='ls --color'
 alias ls='exa --icons -F -H --group-directories-first --git -1'
 alias ll='ls -l'
 alias la='ls -la'
 alias ssh='TERM=xterm-256color ssh'
 
 # ZSH History ------------------------------------------------------------
+autoload -U compinit && compinit
 HISTSIZE=10000
-SAVEHIST=1000
+SAVEHIST=10000
 HISTFILE=$HOME/.zsh_history
 
-setopt HIST_FCNTL_LOCK
-setopt HIST_IGNORE_DUPS
-unsetopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-unsetopt HIST_EXPIRE_DUPS_FIRST
-setopt SHARE_HISTORY
-unsetopt EXTENDED_HISTORY
+setopt SHARE_HISTORY        # Multi-terminal shares history
+setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
 
-setopt share_history
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
-# session variables
+# session variables ------------------------------------------------
 export SRC=$HOME/1_personal/spaces/tech/projects
 export GOPATH=$HOME/.go
 export KUBECONFIG=$HOME/.kube/config

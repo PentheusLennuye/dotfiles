@@ -13,6 +13,7 @@ let
     canon-cups-ufr2
     dexed                                  # DX7 VST plugin
     digikam
+    exa
     firefox
     freetube                               # YouTube on chromium
     gimp

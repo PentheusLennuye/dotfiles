@@ -1,28 +1,38 @@
-# History options should be set in .zshrc and after oh-my-zsh sourcing.
-# See https://github.com/nix-community/home-manager/issues/177.
-HISTSIZE="10000"
-SAVEHIST="10000"
+# File: .zshrc
+# ZSHRC for Linux
 
-HISTFILE="$HOME/.zsh_history"
-mkdir -p "$(dirname "$HISTFILE")"
-
-setopt HIST_FCNTL_LOCK
-setopt HIST_IGNORE_DUPS
-unsetopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-unsetopt HIST_EXPIRE_DUPS_FIRST
-setopt SHARE_HISTORY
-unsetopt EXTENDED_HISTORY
-
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# Paths
+# Paths ----------------------------------------------------------------
 export PATH=$HOME/.local/bin:$PATH
 
-# Aliases
-alias -- 'la'='ls -la'
-alias -- 'll'='ls -l'
-alias -- 'ls'='ls --color'
-alias -- 'ssh'='TERM=xterm-256color ssh'
+# Aliases ---------------------------------------------------------------
+
+alias ls='exa --icons -F -H --group-directories-first --git -1'
+alias ll='ls -l'
+alias la='ls -la'
+alias ssh='TERM=xterm-256color ssh'
+
+# ZSH History ------------------------------------------------------------
+autoload -U compinit && compinit
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=$HOME/.zsh_history
+
+setopt SHARE_HISTORY        # Multi-terminal shares history
+setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+
+# session variables ------------------------------------------------
+export SRC=$HOME/1_personal/spaces/tech/projects
+export GOPATH=$HOME/.go
+export KUBECONFIG=$HOME/.kube/config
+
+# Golang
+. $HOME/.cargo/env
+
+# Starship
+eval "$(starship init zsh)"
 
