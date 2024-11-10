@@ -6,6 +6,9 @@ in using Nix packages for now.
 
 ## MacOS
 
+( Note on OpenCore Legacy Patcher here as Early 2015 cannot update and 
+MacOS X 12 no longer supported )
+
 MacOS ansible _loves_ brew. However, "vintage" Macs (such as my early 2015
 slabtop) are cast aside despite them being perfectly acceptable development
 machines. Ansible in this case will not use brew but other means.
