@@ -2,7 +2,7 @@
 # Linux ===================================================================
 - name: linux setup
   when:
-    - ansible_distribution != "MacOS"
+    - ansible_distribution != "MacOSX"
     - ansible_distribution != "NixOS"
   become: true
   block:
@@ -67,26 +67,39 @@
 
 # MacOS =====================================================================
 - name: macos setup
-  when: ansible_distribution == "MacOS"
+  when: ansible_distribution == "MacOSX"
   block:
   - name: install lua for macos
     become: true
     become_user: gmc
     block:
+      - name: check if lua exists already
+        ansible.builtin.stat:
+          path: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
+        register: lua
+      - name: download lua
+        ansible.builtin.get_url:
+          url: "{{ lua_download }}"
+          dest: "/Users/gmc/.cache/lua-{{ lua_version }}.tgz"
+        when: not lua.stat.exists
       - name: unarchive lua
-        ansible.builtin.unarchive:
-          src: "https://sourceforge.net/projects/luabinaries/files/5.2.4/\
-            Tools%20Executables/lua-5.2.4_MacOS1011_bin.tar.gz/download"
-          dest: /Users/gmc/.local/bin
+        ansible.builtin.shell:
+          executable: /bin/bash
+          cmd: >
+            /usr/bin/tar -C /Users/gmc/.local/bin -xf
+            /Users/gmc/.cache/lua-{{ lua_version }}.tgz
+          creates: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
+        changed_when: false
       - name: link lua to lua-version
         ansible.builtin.file:
-          src: /Users/gmc/.local/bin/lua52
+          state: link
+          src: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
           dest: /Users/gmc/.local/bin/lua
-  - name: configure zshrc
-    ansible.builtin.copy:
-      src: files/zshrc-darwin
-      dest: /Users/gmc/.zshrc
-      mode: "0644"
+      - name: configure zshrc
+        ansible.builtin.copy:
+          src: files/zshrc-darwin
+          dest: /Users/gmc/.zshrc
+          mode: "0644"
 
 
 # All systems ---------------------------------------------------------
@@ -104,5 +117,5 @@
   become_user: gmc
   community.general.pipx:
     name: poetry
-  when: ansible_distribution != "MacOS"  # Temporary
+  when: ansible_distribution != "MacOSX"  # Temporary
 

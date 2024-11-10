@@ -1,6 +1,10 @@
+# File: .zshrc
+
+# Paths -----------------------------------------------------------------
+
 export PATH=$HOME/.local/bin:$HOME/.local/nvim-macos-x86_64/bin:/Users/gmc/Library/Python/3.11/bin:$PATH
 
-# Aliases
+# Aliases ---------------------------------------------------------------
 
 #alias ls='ls --color'
 alias ls='exa --icons -F -H --group-directories-first --git -1'
@@ -8,10 +12,19 @@ alias ll='ls -l'
 alias la='ls -la'
 alias ssh='TERM=xterm-256color ssh'
 
-# ZSH History substrings
-HISTFILE=$HOME/.zsh_history
+# ZSH History ------------------------------------------------------------
 HISTSIZE=10000
 SAVEHIST=1000
+HISTFILE=$HOME/.zsh_history
+
+setopt HIST_FCNTL_LOCK
+setopt HIST_IGNORE_DUPS
+unsetopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+unsetopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+unsetopt EXTENDED_HISTORY
+
 setopt share_history
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
