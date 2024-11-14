@@ -81,16 +81,23 @@
       community.general.homebrew:
         name:
           - docker
+          - go
           - jq
-          - lsd
+          - lld  # LLVM linker. Apparently better than rust's native linker
+          - lsd  # ls with cool effects. Requires nerd-fonts
           - markdownlint-cli
           - marksman
           - nvim
           - pipx
           - "python@3.11"
           - ruby
+          - rustup
+          - rust-analyzer
           - starship
           - wget
+    - name: Install rust and cargo
+      ansible.builtin.command: rustup-init
+      changed_when: false
     - name: install brew cask packages as root
       community.general.homebrew:
         name:
@@ -102,7 +109,7 @@
           - iterm2
           - font-sauce-code-pro-nerd-font
           - vscode
-    - name: install and configure nvim
+    - name: install and configure nvim plugins
       become_user: gmc
       block:
         - name: Install vim-plug
@@ -119,6 +126,12 @@
         src: files/zshrc-darwin
         dest: /Users/gmc/.zshrc
         mode: "0644"
+    - name: configure iterm2
+      become_user: gmc
+      ansible.builtin.copy:
+        src: com.googlecode.iterm2.plist
+        dest: ~/Library/Preferences/com.googlecode.iterm2.plist
+        mode: "0600"
 
 
 # All systems ---------------------------------------------------------

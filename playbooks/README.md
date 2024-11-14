@@ -32,9 +32,3 @@ MacOS will need an updated Python to install Ansible. Set up the system thus:
    /bin/bash -c "$(curl -fsSL ${URL}/install/HEAD/install.sh)"
    ```
 
-### MacOS TODO
-
-- rust
-- golang
-- other linters for python, rust, golang, c, etc
-
