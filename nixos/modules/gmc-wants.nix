@@ -13,7 +13,6 @@ let
     canon-cups-ufr2
     dexed                                  # DX7 VST plugin
     digikam
-    exa
     firefox
     freetube                               # YouTube on chromium
     gimp
@@ -28,6 +27,7 @@ let
     inkscape
     kitty
     libreoffice-qt
+    lsd                                    # ls with extras
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
     skypeforlinux

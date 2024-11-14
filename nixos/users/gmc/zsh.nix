@@ -29,7 +29,7 @@
     shellAliases = {
       hbs="home-manager build switch";
       k="kubectl";
-      ls="ls --color";
+      ls="lsd";
       ll="ls -l";
       la="ls -la";
       ssh="TERM=xterm-256color ssh";

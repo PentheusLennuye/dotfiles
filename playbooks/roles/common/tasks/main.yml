@@ -109,6 +109,7 @@
         name:
           - iterm2
           - font-sauce-code-pro-nerd-font
+          - font-jetbrains-mono-nerd-font
           - vscode
     - name: install and configure nvim plugins
       become_user: gmc

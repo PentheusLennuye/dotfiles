@@ -4,44 +4,79 @@
 
   programs.starship.enable = true;
   programs.starship.settings = {
-    add_newline = false;
-    character = {
-      error_symbol = "[x](bold red)";
-    };
+    format =  "[░▒▓](#a3aed2)" +
+      "[  ](bg:#a3aed2 fg:#090c0c)" +
+      "[](bg:#769ff0 fg:#a3aed2)$directory" +
+      "[](fg:#769ff0 bg:#394260)$git_branch$git_status" +
+      "[](fg:#394260 bg:#212736)$c$golang$helm$kubernetes$lua$nix_shell$python$rust" +
+      "[](fg:#212736 bg:#1d2230)$time" +
+      "[](fg:#1d2230)\n$character";
     directory = {
-      truncation_length = 5;
-      format = "[$path]($style)[$lock_symbol]($lock_style) ";
-      style = "bold #2b58d4";
+      truncation_length = 3;
+      truncation_symbol = "…/";
+      format = "[$path]($style)";
+      style = "fg:#e3e5e5 bg:#769ff0";
     };
-    hostname = {
-      ssh_only = false;
-      format = "<[$hostname]($style)>";
-      trim_at = "-";
-      style = "bold dimmed white";
-      disabled = true;
+    directory.substitutions = {
+      "Documents" = "󰈙 ";
+      "Downloads" = " ";
+      "Music" = " ";
+      "Pictures" = " ";
     };
     git_branch = {
-      format = " [$symbol$branch]($style) ";
-      symbol = "🌴 ";
-      style = "bold #d4a72b";
-    };
-    git_commit = {
-      commit_hash_length = 8;
-      style = "bold white";
+      symbol = "";
+      style = "bg:#394260";
+      format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
     };
     git_status = {
-      conflicted = "🤼";
-      ahead = "📚×\${count} ";
-      behind = "🐢×\${count} ";
-      diverged = "😱 📚×\${ahead_count} 🐢×\${behind_count} ";
-      untracked = "🛤️×\${count} ";
-      stashed = "📦 ";
-      modified = "📝×\${count} ";
-      staged = "🗃️×\${count} ";
-      renamed = "📛×\${count} ";
-      deleted = "🗑️×\${count} ";
-      style = "bright-white";
-      format = "$all_status$ahead_behind";
-   };
+      style = "bg:#394260";
+      format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
+    };
+    c = {
+      symbol = "";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    golang = {
+      symbol = "";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    helm = {
+      symbol = "⎈";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    kubernetes = {
+      symbol = "⎈";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    lua = {
+      symbol = "🌙";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    nix_shell = {
+      symbol = "";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    python = {
+      symbol = "🐍";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    rust = {
+      symbol = "🦀";
+      style = "bg:#212736";
+      format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+    };
+    time = {
+      disabled = false;
+      time_format = "%R"; # Hour:Minute Format
+      style = "bg:#1d2230";
+      format = "[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)";
+    };
   };
 }
