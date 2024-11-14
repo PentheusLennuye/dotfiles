@@ -94,6 +94,7 @@
           - rustup
           - rust-analyzer
           - starship
+          - tree
           - wget
     - name: Install rust and cargo
       ansible.builtin.command: rustup-init
