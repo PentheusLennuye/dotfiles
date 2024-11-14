@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD001 MD031 -->
 # Ansible
 
 NixOS is my source of truth for which these Ansible playbooks are derived. I
@@ -6,15 +7,14 @@ in using Nix packages for now.
 
 ## MacOS
 
-( Note on OpenCore Legacy Patcher here as Early 2015 cannot update and 
-MacOS X 12 no longer supported )
+As of Q4 2024, Mac OS X 12.7 is no longer supported. Homebrew likewise does not
+support 12.7. Computers such as Early 2015 MacBook Pros would be cast out.
+However, OpenCore Legacy Patcher can rescue such machines and enable later
+operating system versions.
 
-MacOS ansible _loves_ brew. However, "vintage" Macs (such as my early 2015
-slabtop) are cast aside despite them being perfectly acceptable development
-machines. Ansible in this case will not use brew but other means.
+MacOS ansible _loves_ Homebrew so OCLP it is.
 
 MacOS will need an updated Python to install Ansible. Set up the system thus:
-
 
 1. Install Python from a DMG as the year requires (in this example, 3.11)
 2. Do not forget to install the certificate store
@@ -26,24 +26,15 @@ MacOS will need an updated Python to install Ansible. Set up the system thus:
    ```sh
    python3 -m pip install --user ansible
    ```
+4. Install Homebrew
+   ```sh
+   URL=https://raw.githubusercontent.com/Homebrew
+   /bin/bash -c "$(curl -fsSL ${URL}/install/HEAD/install.sh)"
+   ```
 
 ### MacOS TODO
 
-- jq
-- pipx
-- docker
-- VSCode
-- lua
-- ruby  <http://rvm.io>
 - rust
 - golang
-- exa
-- starship
-- Docker
-- Nerdfonts
-- neovim
-- markdownlint  # gem install --user-install mdl
-- marksman
-- jedi-language-server
 - other linters for python, rust, golang, c, etc
 

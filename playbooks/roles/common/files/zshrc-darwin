@@ -3,9 +3,8 @@
 
 # Paths -----------------------------------------------------------------
 
-export PATH=$HOME/.local/bin:$HOME/.local/nvim-macos-x86_64/bin:\
-/Users/gmc/Library/Python/3.11/bin:/Users/gmc/.gem/ruby/2.6.0/bin:$PATH\
-$HOME/.rvm/bin
+export PATH=$HOME/.local/bin:/Users/gmc/Library/Python/3.11/bin:\
+/usr/local/opt/ruby/bin:$PATH
 
 # Aliases ---------------------------------------------------------------
 

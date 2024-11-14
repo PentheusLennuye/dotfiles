@@ -17,11 +17,17 @@
           ansible.builtin.package:
             state: latest
             name:
-              - curl
-              - exa
+              - docker
+              - jq
+              - lsd
               - git
+              - markdownlint-cli
+              - marksman
+              - nvim
               - pipx
-              - vim
+              - ruby
+              - starship
+              - visual-studio-code
               - wget
               - zsh
         
@@ -70,6 +76,32 @@
   when: ansible_distribution == "MacOSX"
   become: true
   block:
+    - name: install brew packages
+      become_user: gmc
+      community.general.homebrew:
+        name:
+          - docker
+          - jq
+          - lsd
+          - markdownlint-cli
+          - marksman
+          - nvim
+          - pipx
+          - "python@3.11"
+          - ruby
+          - starship
+          - wget
+    - name: install brew cask packages as root
+      community.general.homebrew:
+        name:
+          - docker
+    - name: install brew cask packages as user
+      become_user: gmc
+      community.general.homebrew:
+        name:
+          - iterm2
+          - font-sauce-code-pro-nerd-font
+          - vscode
     - name: install and configure nvim
       become_user: gmc
       block:
@@ -77,36 +109,10 @@
           ansible.builtin.shell:
             executable: /bin/bash
             cmd: >
-              curl -fLo {$HOME/.local/share}/nvim/site/autoload/plug.vim 
+              curl -fLo ${HOME}/.local/share/nvim/site/autoload/plug.vim 
               --create-dirs
               https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
           changed_when: false
-
-    - name: install lua for macos
-      become_user: gmc
-      block:
-        - name: check if lua exists already
-          ansible.builtin.stat:
-            path: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-          register: lua
-        - name: download lua
-          ansible.builtin.get_url:
-            url: "{{ lua_download }}"
-            dest: "/Users/gmc/.cache/lua-{{ lua_version }}.tgz"
-          when: not lua.stat.exists
-        - name: unarchive lua
-          ansible.builtin.shell:
-            executable: /bin/bash
-            cmd: >
-              /usr/bin/tar -C /Users/gmc/.local/bin -xf
-              /Users/gmc/.cache/lua-{{ lua_version }}.tgz
-            creates: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-          changed_when: false
-        - name: link lua to lua-version
-          ansible.builtin.file:
-            state: link
-            src: "/Users/gmc/.local/bin/lua{{ lua_shortversion }}"
-            dest: /Users/gmc/.local/bin/lua
     - name: configure zshrc
       become_user: gmc
       ansible.builtin.copy:
@@ -134,10 +140,9 @@
       community.general.pipx:
         name:
           - poetry
-      when: ansible_distribution != "MacOSX"  # temporary
 
     - name: install starship theme
       ansible.builtin.copy:
         src: files/starship.toml
-        dest: "{{ home }}/starship.toml"
+        dest: "{{ home }}/.config/starship.toml"
         mode: "0644"
