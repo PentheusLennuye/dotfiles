@@ -3,6 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
 
+    # C
+    gcc
+
     # CI/CD
     docker-compose
     git
@@ -44,8 +47,8 @@
 
     # Rust
     cargo
+    clang
     clippy
-    gcc
     rustc
     rust-analyzer
 
