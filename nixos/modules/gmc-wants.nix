@@ -34,9 +34,6 @@ let
     starship
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
-    sweethome3d.application                # Floor planning, temp.
-    sweethome3d.furniture-editor
-    sweethome3d.textures-editor
     vistafonts                             # Better fonts for Firefox etc
     vlc
     waybar                                 # task/toolbar for Hyprland
