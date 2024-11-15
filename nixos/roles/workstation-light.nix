@@ -28,7 +28,6 @@
   services = {
     displayManager.sddm.enable = true;
     displayManager.sddm.theme = "Elegant";
-    displayManager.sddm.wayland.enable = true;
     xserver.enable = true;
   };
 }

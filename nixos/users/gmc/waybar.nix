@@ -5,6 +5,9 @@ let
     colour_b = "#d42baf";
     colour_c = "#d4a42b";
     colour_d = "#2bd450";
+    black = "#000000";
+    white = "#ffffff";
+    grey = "#c8c8c8";
 in
 {
   # Totally stolen from Zaney 
@@ -14,12 +17,11 @@ in
     settings = [{
       layer = "top";
       position = "top";
-
-      modules-left = [ "hyprland/window" ];
-      modules-center = [ "battery" "pulseaudio" "temperature" "cpu"
-                         "memory" "disk" "custom/clock" "custom/germany" ];
-      modules-right = [ "idle_inhibitor" "custom/notification" "tray"
-                        "network" ];
+      modules-left = [ "battery" "temperature" "cpu" "memory" "disk"
+                       "hyprland/window" ];
+      modules-center = [ "custom/ireland" "custom/clock" "custom/germany" ];
+      modules-right = [ "workspaces" "pulseaudio" "idle_inhibitor"
+                        "custom/notification" "tray" "network" ];
       "hyprland/workspaces" = {
       	format = "{icon}8";
       	format-icons = {
@@ -33,6 +35,12 @@ in
       "custom/clock" = {
         exec = "date +'%I:%M %p'";
         format = "🇨🇦 {}";
+      	tooltip = false;
+        interval = 15;
+      };
+      "custom/ireland" = {
+        exec = "TZ=':RST' date +'%I:%M %p'";
+        format = "🇮🇪 {}";
       	tooltip = false;
         interval = 15;
       };
@@ -53,7 +61,7 @@ in
         tooltip = true;
       };
       "disk" = {
-        format = " {free}";
+        format = "🖴 {free}";
         tooltip = true;
       };
       "network" = {
@@ -64,7 +72,7 @@ in
         tooltip = false;
       };
       "temperature" = {
-        format = "{temperatureC}";
+        format = "🌡️{temperatureC}°C";
       };
       "tray" = {
         spacing = 12;
@@ -129,7 +137,7 @@ in
     }];
     style = ''
 	* {
-		font-size: 16px;
+		font-size: 12px;
 		font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
     		font-weight: bold;
 	}
@@ -142,7 +150,7 @@ in
     		background: linear-gradient(180deg, #9e9e9e, #9e9e9e);
     		margin: 5px;
     		padding: 0px 1px;
-    		border-radius: 15px;
+    		border-radius: 0px 5px 5px 0px;
     		border: 0px;
     		font-style: normal;
 	}
@@ -181,37 +189,51 @@ in
     		padding: 2px 20px;
 	}
 	#pulseaudio {
-    		border-radius: 50px 15px 50px 15px;
+            background-color: #000000;
+            color: ${white};
+    		border-radius: 15px 15px 15px 15px;
     		margin: 5px;
     		padding: 2px 20px;
 	}
 	#temperature {
             background-color: ${colour_a};
+            color: ${grey};
     		border-radius: 15px 0px 0px 50px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
 	#cpu {
             background-color: ${colour_a};
+            color: ${grey};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
 	#memory {
             background-color: ${colour_a};
+            color: ${grey};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 10px;
 	}
 	#disk {
             background-color: ${colour_a};
-    		border-radius: 0px 50px 15px 0px;
+            color: ${grey};
+    		border-radius: 0px 0px 0px 0px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#custom-ireland {
+            color: ${colour_c};
+            background-color: #000000;
+    		border-radius: 15px 0px 0px 50px;
     		margin: 5px;
     		padding: 2px 20px;
 	}
 	#custom-clock {
-            background-color: ${colour_c};
-    		border-radius: 15px 0px 0px 50px;
+            color: ${colour_c};
+            background-color: #000000;
+    		border-radius: 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
@@ -224,28 +246,28 @@ in
 	}
 	#idle_inhibitor {
             background-color: #000000;
-            color: #ffffff;
+            color: ${white};
     		border-radius: 15px 0px 0px 50px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
 	#custom-notification {
             background-color: #000000;
-            color: #ffffff;
+            color: ${white};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;
 	}
 	#network {
             background-color: #000000;
-            color: #ffffff;
+            color: ${white};
     		border-radius: 0px 50px 15px 0px;
     		margin: 5px;
     		padding: 2px 20px;
 	}
 	#tray {
             background-color: #000000;
-            color: #ffffff;
+            color: ${white};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 20px;

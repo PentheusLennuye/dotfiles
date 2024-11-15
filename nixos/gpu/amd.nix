@@ -8,17 +8,13 @@
   ];
 
   hardware.opengl = {
-    enable = true;
-    # OpenCL and Vulkan ----------------------
     extraPackages = with pkgs; [
-      amdvlk
       rocmPackages.clr.icd
-      mesa.drivers
     ];
-    # Vulkan support -------------------------
+    # Mesa
+    enable = true;
+    # Vulkan
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  services.xserver.videoDrivers = [ "amdgpu" ];
 }

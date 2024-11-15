@@ -21,6 +21,10 @@
     kdePackages.kpat
     kdePackages.qtmultimedia
     xwayland
+    (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+      [General]
+      background=${kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png
+    '')
   ];
 
   fonts.packages = with pkgs; [
@@ -52,13 +56,12 @@
     enable = true;
     xwayland.enable = true;
   };
-  programs.xwayland.enable = true;
 
   # KDE 6
 
   services = {
     desktopManager.plasma6.enable = true;
-    displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.enable = true;
     displayManager.defaultSession = "plasma";
     xserver.enable = true;
   };
