@@ -17,6 +17,7 @@ let
     freetube                               # YouTube on chromium
     gimp
     glxinfo                                # Testing glx info
+    grim                                   # Wayland image grabber
     handbrake                              # Converts video formats
     hunspell
     hunspellDicts.de-de
@@ -30,7 +31,9 @@ let
     lsd                                    # ls with extras
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
+    screenfetch                            # Show off!
     skypeforlinux
+    slurp                                  # Hyprland screen selector
     starship
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
