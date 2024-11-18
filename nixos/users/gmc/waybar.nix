@@ -33,7 +33,7 @@ in
       	on-scroll-down = "hyprctl dispatch workspace e-1";
       };
       "custom/clock" = {
-        exec = "date +'%I:%M %p'";
+        exec = "date +'%I:%M %p, %a %b %d'";
         format = "🇨🇦 {}";
       	tooltip = false;
         interval = 15;
