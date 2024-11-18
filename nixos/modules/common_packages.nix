@@ -14,6 +14,7 @@
     file
     git
     gnupg
+    lsd   # ls +
     lsof
     mesa
     openssl

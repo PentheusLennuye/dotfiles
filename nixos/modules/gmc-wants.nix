@@ -28,7 +28,6 @@ let
     inkscape
     kitty
     libreoffice-qt
-    lsd                                    # ls with extras
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
     screenfetch                            # Show off!
