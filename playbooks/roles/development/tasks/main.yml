@@ -58,6 +58,10 @@
           community.general.pipx:
           name:
             - poetry
+            - black
+            - yamllint
+            - yq
+            - jedi-language-server
 
 # MacOS =====================================================================
 # No MacOS as this is all per-user

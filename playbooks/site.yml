@@ -1,5 +1,5 @@
 ---
-- hosts: timeservers
+- hosts: timeserver
   roles:
     - role: common
     - role: user_gmc 

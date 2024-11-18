@@ -6,21 +6,17 @@
   block:
     - name: system configuration
       block:
-        - name: Create a handy zshrc skeleton
-          ansible.builtin.copy:
-            src: files/zshrc
-            dest: /etc/skel/.zshrc
-            mode: "0644"
         - name: Standard packages
           ansible.builtin.package:
             state: latest
             name:
               - curl
               - git
-              - lua   # for nvim configuration
+              - "lua{{ lua_minor_version}}"   # for nvim configuration
+              - "liblua{{ lua_minor_version}}-dev"   # for nvim configuration
               - lsd
-              - nvim
-              - starship
+              - neovim
+              - python3-pip
               - wget
               - zsh
         

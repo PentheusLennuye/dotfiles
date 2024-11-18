@@ -1,0 +1,12 @@
+[development]
+goliathc.cummings-online.local
+
+[gps]
+rpi1.cummings-online.local
+
+[timeserver]
+rpi1.cummings-online.local
+
+[workstation]
+goliath.cummings-online.local
+

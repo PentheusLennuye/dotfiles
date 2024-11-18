@@ -6,7 +6,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 # Aliases ---------------------------------------------------------------
 
-alias ls='exa --icons -F -H --group-directories-first --git -1'
+alias ls='lsd'
 alias ll='ls -l'
 alias la='ls -la'
 alias ssh='TERM=xterm-256color ssh'
