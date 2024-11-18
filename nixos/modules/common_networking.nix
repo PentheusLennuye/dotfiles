@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {    
   networking.firewall.allowedTCPPorts = [ 22 ];
@@ -23,4 +23,11 @@
 
   '';
   networking.search = [ "cummings-online.local" "cummings-online.ca" ];
+  services.timesyncd = {
+    servers = [ "time.cummings-online.local" ];
+    extraConfig = ''
+      FallbackNTP=${lib.concatStringsSep " " config.networking.timeServers}
+    '';
+  };
 }
+# [ "0.nixos.pool.ntp.org" "1.nixos.pool.ntp.org" "2.nixos.pool.ntp.org" "3.nixos.pool.ntp.org" ];
