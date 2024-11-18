@@ -1,0 +1,12 @@
+- name: restart chrony
+  become: true
+  ansible.builtin.command:
+    cmd: systemctl restart chrony
+  notify:
+    - restart gpsd
+
+- name: restart gpsd
+  become: true
+  when: 'gps' in group_names
+  ansible.builtin.command:
+    cmd: systemctl restart gpsd

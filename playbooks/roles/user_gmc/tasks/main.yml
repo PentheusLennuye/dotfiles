@@ -1,0 +1,152 @@
+---
+# User gmc ===================================================================
+- name: system setup for user gmc
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  become: true
+  block:
+    - name: Ensure George's group is set
+      ansible.builtin.group:
+        state: present
+        gid: "1000"
+        name: gmc
+        
+    - name: Ensure George user is set
+      ansible.builtin.user:
+        state: present
+        comment: "George Cummings"
+        create_home: true
+        group: gmc
+        name: gmc
+        shell: /bin/zsh
+        uid: "1000"
+        
+    - name: Ensure George's remote_tmp is set
+      ansible.builtin.file:
+        state: directory
+        path: /home/gmc/.ansible/tmp
+        mode: "0770"
+        owner: gmc
+        group: gmc
+        
+    - name: zsh configuration
+      become_user: gmc
+      block:
+        - name: George gets the zshrc skeleton
+          ansible.builtin.copy:
+            src: /etc/skel/.zshrc
+            dest: /home/gmc/.zshrc
+            mode: "0644"
+            remote_src: true
+
+    - name: install and configure nvim plugins
+      become_user: gmc
+      block:
+        - name: install vim-plug
+          ansible.builtin.shell:
+            executable: /bin/bash
+            cmd: >
+              curl -fLo ${HOME}/.local/share/nvim/site/autoload/plug.vim 
+              --create-dirs
+              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          changed_when: false
+        - name: install nvim configurations
+          ansible.builtin.copy:
+            src: nvim
+            dest: "/home/gmc/.config/nvim" 
+
+# MacOS =====================================================================
+# All the common, development and user packages for MacOS X are set here
+# as the author's MacOS belongs to his employer and must not be installed as
+# root.
+# ===========================================================================
+- name: macos setup
+  when: ansible_distribution == "MacOSX"
+  become: true
+  block:
+    - name: install brew packages
+      become_user: gmc
+      community.general.homebrew:
+        name:
+          - docker
+          - go
+          - jq
+          - lld  # LLVM linker. Apparently better than rust's native linker
+          - lsd  # ls with cool effects. Requires nerd-fonts
+          - markdownlint-cli
+          - marksman
+          - nvim
+          - pipx
+          - "python@3.11"
+          - ruby
+          - rustup
+          - rust-analyzer
+          - starship
+          - tree
+          - wget
+    - name: Install rust and cargo
+      ansible.builtin.command: rustup-init
+      changed_when: false
+    - name: install brew cask packages as root
+      community.general.homebrew:
+        name:
+          - docker
+    - name: install brew cask packages as user
+      become_user: gmc
+      community.general.homebrew:
+        name:
+          - iterm2
+          - font-sauce-code-pro-nerd-font
+          - font-jetbrains-mono-nerd-font
+          - vscode
+    - name: install and configure nvim plugins
+      become_user: gmc
+      block:
+        - name: install vim-plug
+          ansible.builtin.shell:
+            executable: /bin/bash
+            cmd: >
+              curl -fLo ${HOME}/.local/share/nvim/site/autoload/plug.vim 
+              --create-dirs
+              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          changed_when: false
+        - name: install nvim configurations
+          ansible.builtin.copy:
+            src: nvim
+            dest: "/Users/gmc/.config/nvim" 
+    - name: configure zshrc
+      become_user: gmc
+      ansible.builtin.copy:
+        src: files/zshrc-darwin
+        dest: /Users/gmc/.zshrc
+        mode: "0644"
+    - name: configure iterm2
+      become_user: gmc
+      ansible.builtin.copy:
+        src: com.googlecode.iterm2.plist
+        dest: ~/Library/Preferences/com.googlecode.iterm2.plist
+        mode: "0600"
+    - name: install pipx packages
+      community.general.pipx:
+      name:
+        - poetry
+
+# All non-NixOS systems ------------------------------------------------------
+- name: local configurations
+  become: true
+  become_user: gmc
+  when: ansible_distribution != "NixOS"
+  block:
+    - name: install linters and language servers for configurations
+      ansible.builtin.pip:
+        name:
+          - black
+          - jedi-language-server
+          - yq
+          - yamllint
+        extra_args: --user
+
+    - name: install starship theme
+      ansible.builtin.copy:
+        src: files/starship.toml
+        dest: "{{ home }}/.config/starship.toml"
+        mode: "0644"

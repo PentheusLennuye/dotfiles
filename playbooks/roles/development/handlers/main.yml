@@ -1,0 +1,9 @@
+- name: install golang from tarball
+  become: true
+  block:
+    ansible.builtin.file:
+      state: absent
+      path: /usr/local/go
+    ansible.builtin.command: >
+      tar -C /usr/local -xzf /usr/localsrc/go{{ golang_version }}.tar.gz
+

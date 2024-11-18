@@ -1,3 +1,4 @@
 ---
 lua_shortversion: "52"
 lua_version: "5.2.4"
+golang_version: "1.23.3"

@@ -1,0 +1,64 @@
+---
+# Linux Development ===========================================================
+- name: linux development setup
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  become: true
+  block:
+    - name: system configuration
+      block:
+        - name: Languages and language support
+          ansible.builtin.package:
+            state: latest
+            name:
+              - docker
+              - jq
+              - lld
+              - markdownlint-cli
+              - marksman
+              - nvim
+              - pipx
+              - python3.11 python3.11-venv
+              - python3-invoke
+              - ruby
+              - rust-analyzer
+              - rustup
+              - visual-studio-code
+              - wget
+              - zsh
+
+        - name: install golang
+          block:
+            - name: download golang x86_64
+              when: ansible_facts["ansible_architecture"] == "x86_64"
+              ansible.builtin.get_url:
+                url: "https://go.dev/dl/go{{ golang_version }}.linux-amd64.tar.gz"
+                dest: "/usr/local/src/go{{ golang_version }}.tar.gz"
+              notify: install golang from tarball
+            - name: download golang aarch64
+              when: ansible_facts["ansible_architecture"] == "aarch64"
+              ansible.builtin.get_url:
+                url: "https://go.dev/dl/go{{ golang_version }}.linux-arm64.tar.gz"
+                dest: "/usr/local/src/go{{ golang_version }}.tar.gz"
+              notify: install golang from tarball
+
+
+        - name: install vscode
+          when: "'workstation' in group_names or 'laptop' in group_names"
+          block:
+            - name: download vscode deb
+              ansible.builtin.get_url:
+                url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+                dest: /usr/local/src/vscode.deb
+                mode: '0644'
+            - name: install vscode deb
+              ansible.builtin.apt:
+                deb: /usr/local/src/vscode.deb
+
+        - name: install pipx packages
+          community.general.pipx:
+          name:
+            - poetry
+
+# MacOS =====================================================================
+# No MacOS as this is all per-user
+

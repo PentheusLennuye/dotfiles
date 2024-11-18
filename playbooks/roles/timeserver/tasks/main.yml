@@ -1,0 +1,33 @@
+- name: install timeserver services
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  become: true
+  block:
+    - name: install chrony
+      ansible.builtin.package:
+        state: latest
+        name:
+          - chrony
+    - name: install gpsd and support packages (go for coffee)
+      when: 'gps' in group_names
+      ansible.builtin.package:
+        - gpsd
+        - gpsd-clients
+        - gpsd-tools
+
+- name: configure timeserver services
+  become: true
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  block:
+    - name: configure chrony
+      ansible.builtin.copy:
+        src: chrony.conf
+        dest: /etc/chrony/chrony.conf
+      notify:
+        - restart chrony
+    - name: configure gpsd
+      when: 'gps' in group_names
+      ansible.builtin.copy:
+        src: gpsd
+        dest: /etc/default/gpsd
+      notify:
+        - restart gpsd
