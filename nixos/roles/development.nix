@@ -37,6 +37,7 @@
     poetry
     python3
     python311Packages.black                # PEP-8
+    python311Packages.cookiecutter         # Templates
     python311Packages.invoke
     python311Packages.mdformat             # Autoformatter for markdown
     python311Packages.pip
