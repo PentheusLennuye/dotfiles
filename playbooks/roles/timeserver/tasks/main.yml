@@ -8,11 +8,12 @@
         name:
           - chrony
     - name: install gpsd and support packages (go for coffee)
-      when: 'gps' in group_names
+      when: "'gps' in group_names"
       ansible.builtin.package:
-        - gpsd
-        - gpsd-clients
-        - gpsd-tools
+        name:
+          - gpsd
+          - gpsd-clients
+          - gpsd-tools
 
 - name: configure timeserver services
   become: true
@@ -25,7 +26,7 @@
       notify:
         - restart chrony
     - name: configure gpsd
-      when: 'gps' in group_names
+      when: "'gps' in group_names"
       ansible.builtin.copy:
         src: gpsd
         dest: /etc/default/gpsd

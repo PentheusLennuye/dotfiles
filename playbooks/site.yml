@@ -1,7 +1,7 @@
 ---
-- hosts: linux
+- hosts: timeservers
   roles:
     - role: common
-- hosts: localhost
-  roles:
-    - role: common
+    - role: user_gmc 
+    - role: timeserver
+
