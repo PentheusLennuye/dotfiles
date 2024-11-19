@@ -3,7 +3,9 @@ goliath
 
 [gps]
 rpi1.cummings-online.local
+rpi2.cummings-online.local
 
 [netcontrol]
 rpi1.cummings-online.local
+rpi2.cummings-online.local
 
