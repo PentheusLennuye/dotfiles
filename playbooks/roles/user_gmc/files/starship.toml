@@ -38,8 +38,7 @@ style = "bg:#394260"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [hostname]
-ssh_symbol = '🕳️ '
-format = '[$ssh_symbol$hostname]($style)[:]($style)'
+format = '[ $hostname]($style)[:]($style)'
 style = "fg:#e3e5e5 bg:#769ff0"
 
 [nodejs]
