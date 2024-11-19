@@ -19,5 +19,5 @@
 - name: install starship theme
   ansible.builtin.copy:
     src: files/starship.toml
-    dest: "{{ home }}/.config/starship.toml"
+    dest: "/home/gmc/.config/starship.toml"
     mode: "0644"
