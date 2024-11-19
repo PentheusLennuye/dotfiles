@@ -1,0 +1,44 @@
+---
+- name: Ensure George's group is set
+  ansible.builtin.group:
+    state: present
+    gid: "1000"
+    name: gmc
+
+- name: Ensure George user is set
+  ansible.builtin.user:
+    state: present
+    comment: "George Cummings"
+    create_home: true
+    group: gmc
+    name: gmc
+    shell: /bin/zsh
+    uid: "1000"
+
+- name: Ensure George's remote_tmp is set
+  ansible.builtin.file:
+    state: directory
+    path: /home/gmc/.ansible/tmp
+    mode: "0770"
+    owner: gmc
+    group: gmc
+
+- name: gmc zsh configuration
+  ansible.builtin.copy:
+    src: files/zshrc
+    dest: /home/gmc/.zshrc
+    mode: "0644"
+    owner: gmc
+    group: gmc
+
+- name: ensure local bin and src exists
+  ansible.builtin.file:
+    state: directory
+    path: "/home/gmc/.local/{{ item }}"
+    mode: "0700"
+    owner: gmc
+    group: gmc
+  loop:
+    - bin
+    - src
+

@@ -1,0 +1,23 @@
+---
+- name: check for starship
+  ansible.builtin.stat:
+    path: "/home/gmc/.local/bin/starship"
+  register: starship
+
+- name: download starship
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: "/home/gmc/.local/src/starship_install.sh"
+    mode: "0700"
+  when: not starship.stat.exists
+
+- name: install starship
+  ansible.builtin.shell:
+    cmd: /home/gmc/.local/src/starship_install.sh -b ~/.local/bin -y
+  when: not starship.stat.exists
+
+- name: install starship theme
+  ansible.builtin.copy:
+    src: files/starship.toml
+    dest: "{{ home }}/.config/starship.toml"
+    mode: "0644"

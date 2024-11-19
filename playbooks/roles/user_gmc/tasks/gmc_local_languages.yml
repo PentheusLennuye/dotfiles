@@ -1,0 +1,29 @@
+---
+- name: install pipx packages
+  community.general.pipx:
+    name: "{{ item }}"
+  with_items:
+    - poetry
+    - black
+    - yamllint
+    - yq
+    - jedi-language-server
+
+- name: install rust
+  block:
+    - name: check if rustc is there
+      ansible.builtin.stat:
+        path: /home/gmc/.cargo/bin/rustc
+      register: rust
+
+    - name: download rustup
+      when: not rust.stat.exists
+      ansible.builtin.get_url:
+        url: https://sh.rustup.rs
+        dest: /home/gmc/.local/src/rustup
+        mode: "0700"
+
+    - name: install rustup, rust and cargo
+      when: not rust.stat.exists
+      ansible.builtin.shell:
+        cmd: /home/gmc/.local/src/rustup -y

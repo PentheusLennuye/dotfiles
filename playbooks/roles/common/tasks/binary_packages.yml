@@ -1,0 +1,13 @@
+---
+- name: common binary packages
+  ansible.builtin.package:
+    state: latest
+    name:
+      - curl
+      - git
+      - "lua{{ lua_minor_version}}"   # for nvim configuration
+      - "liblua{{ lua_minor_version}}-dev"   # for nvim configuration
+      - lsd
+      - python3-pip
+      - wget
+      - zsh

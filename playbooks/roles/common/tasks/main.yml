@@ -4,22 +4,9 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
   become: true
   block:
-    - name: system configuration
-      block:
-        - name: Standard packages
-          ansible.builtin.package:
-            state: latest
-            name:
-              - curl
-              - git
-              - "lua{{ lua_minor_version}}"   # for nvim configuration
-              - "liblua{{ lua_minor_version}}-dev"   # for nvim configuration
-              - lsd
-              - neovim
-              - python3-pip
-              - wget
-              - zsh
-        
+    - import_tasks: binary_packages.yml
+    - import_tasks: neovim.yml
+
 # MacOS =====================================================================
 # There is no MacOS root set up. All MacOS packages are installed in the user
 # roles.

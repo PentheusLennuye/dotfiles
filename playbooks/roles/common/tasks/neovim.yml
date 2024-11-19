@@ -1,0 +1,16 @@
+---
+- name: the special case of neovim on debian
+  when: ansible_distribution == "Debian"
+  block:
+    - name: install snapd snap
+      community.general.snap:
+        name: snapd
+    - name: install nvim snap on debian
+      community.general.snap:
+        name: nvim
+        classic: true
+
+- name: install neovim on not debian
+  when: ansible_distribution != "Debian"
+  ansible.builtin.package:
+    name: neovim
