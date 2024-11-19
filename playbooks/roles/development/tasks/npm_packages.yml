@@ -1,0 +1,7 @@
+---
+- name: install npm js packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  with_items:
+    - markdownlint-cli

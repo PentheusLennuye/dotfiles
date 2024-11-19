@@ -81,6 +81,39 @@
             dest: "{{ home }}/.config/starship.toml"
             mode: "0644"
 
+    # Programming ------------------------------------
+    - name: install local programming environment tools
+      when: "'development' in group_names"
+      become_user: gmc
+      block:
+        - name: install pipx packages
+          community.general.pipx:
+            name: "{{ item }}"
+          with_items:
+              - poetry
+              - black
+              - yamllint
+              - yq
+              - jedi-language-server
+
+        - name: install rust
+          block:
+            - name: check if rustc is there
+              ansible.builtin.stat:
+                path: /home/gmc/.cargo/bin/rustc
+              register: rust
+            - name: install rustup, rust and cargo
+              when: not rust.stat.exists
+              ansible.builtin.shell:
+                cmd: >
+                  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |
+                  sh
+            - name: add rust-analyzer
+              when: not rust.stat.exists
+              ansible.builtin.shell:
+                cmd: >
+                  rustup component add rust-analyzer
+
 # MacOS =====================================================================
 # All the common, development and user packages for MacOS X are set here
 # as the author's MacOS belongs to his employer and must not be installed as

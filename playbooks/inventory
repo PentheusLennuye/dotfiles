@@ -1,12 +1,9 @@
 [development]
-goliathc.cummings-online.local
+goliath
 
 [gps]
 rpi1.cummings-online.local
 
-[timeserver]
+[netcontrol]
 rpi1.cummings-online.local
-
-[workstation]
-goliath.cummings-online.local
 

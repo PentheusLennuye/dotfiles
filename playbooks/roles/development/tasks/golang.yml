@@ -1,0 +1,15 @@
+---
+- name: install golang
+  block:
+    - name: download golang x86_64
+      when: ansible_architecture == "x86_64"
+      ansible.builtin.get_url:
+        url: "https://go.dev/dl/go{{ golang_version }}.linux-amd64.tar.gz"
+        dest: "/usr/local/src/go{{ golang_version }}.tar.gz"
+      notify: install golang from tarball
+    - name: download golang aarch64
+      when: ansible_architecture == "aarch64"
+      ansible.builtin.get_url:
+        url: "https://go.dev/dl/go{{ golang_version }}.linux-arm64.tar.gz"
+        dest: "/usr/local/src/go{{ golang_version }}.tar.gz"
+      notify: install golang from tarball

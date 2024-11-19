@@ -1,0 +1,6 @@
+---
+- name: install visual studio code
+  when:
+    - "'workstation' in group_names or 'laptop' in group_names"
+  ansible.builtin.package:
+    name: visual-studio-code

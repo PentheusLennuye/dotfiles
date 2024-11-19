@@ -1,7 +1,12 @@
 ---
-- hosts: timeserver
+- hosts: all
   roles:
     - role: common
     - role: user_gmc 
+- hosts: development
+  roles:
+    - role: development
+- hosts: netcontrol
+  roles:
     - role: timeserver
 
