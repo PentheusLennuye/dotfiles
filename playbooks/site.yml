@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: linux
   roles:
     - role: common
     - role: user_gmc 
