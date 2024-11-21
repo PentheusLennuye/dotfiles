@@ -23,7 +23,7 @@
   ansible.builtin.command: rustup-init
   changed_when: false
 
-- name: install brew cask packages as root
+- name: install brew cask packages as root on MacOS
   community.general.homebrew:
     name:
       - docker
@@ -68,7 +68,7 @@
     name:
       - poetry
 
-- name: install linters and language servers for configurations
+- name: install linters and language servers on MacOS
   ansible.builtin.pip:
     name:
       - black
@@ -77,7 +77,7 @@
       - yamllint
     extra_args: --user
 
-- name: install starship theme
+- name: install starship theme on MacOS
   ansible.builtin.copy:
     src: files/starship.toml
     dest: "{{ home }}/.config/starship-mac.toml"
