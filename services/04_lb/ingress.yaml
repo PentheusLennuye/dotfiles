@@ -28,6 +28,16 @@ spec:
                 name: awx-service
                 port:
                   number: 80
+    - host: argocd.cummings-online.local
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
   tls:
     - secretName: netbox-tls
       hosts:
@@ -35,3 +45,6 @@ spec:
     - secretName: awx-tls
       hosts:
        - awx.cummings-online.local
+    - secretName: argocd-tls
+      hosts:
+       - argocd.cummings-online.local

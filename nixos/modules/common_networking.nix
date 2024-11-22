@@ -10,7 +10,7 @@
     192.168.68.13 docker.cummings-online.local docker
     192.168.68.14 portainer.cummings-online.local portainer
 
-    192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx repoapi.cummings-online.local registryapi.cummings-online.local easysync-test.cummings-online.local
+    192.168.68.21 ingress.cummings-online.local netbox.cummings-online.local netbox awx.cummings-online.local awx argocd.cummings-online.local
     192.168.68.31 rpi1.cummings-online.local time.cummings-online.local rpi1 time
     192.168.68.32 rpi2.cummings-online.local rpi2
     192.168.68.33 rpi3.cummings-online.local rpi3
