@@ -2,7 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # emulationstation-de
-    # retroarchFull
+    libretro.scummvm
+    libretro.fbneo
+    retroarch
   ];
 }
