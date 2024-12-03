@@ -3,18 +3,20 @@
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
 
+  environment.systemPackages = with pkgs; [
+    clinfo
+  ];
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      amdvlk
+      rocmPackages.clr.icd
+    ];
+  };
+
   systemd.tmpfiles.rules = [
     "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
   ];
 
-  hardware.opengl = {
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
-    # Mesa
-    enable = true;
-    # Vulkan
-    driSupport = true;
-    driSupport32Bit = true;
-  };
 }

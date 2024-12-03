@@ -7,6 +7,7 @@
     gcc
 
     # CI/CD
+    argocd
     docker-compose
     git
     gh

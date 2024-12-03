@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    emulationstation-de
-    retroarchFull
+    # emulationstation-de
+    # retroarchFull
   ];
 }
