@@ -12,7 +12,7 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
 
 1. Set some variables for ease of use
    ```sh
-   HWFILE=hosts/<hostname>/hardware-configuration.nix
+   HWFILE=hosts/$(hostname -s)/hardware-configuration.nix
 2. Get the swap device UUID
    ```sh
    sudo -i
@@ -47,5 +47,5 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
    }
    systemd.sleep.extraConfig = "HibernateDelaySec=1h";
    EOF
-   sed -i '/\];/\ \ \ \ ./hibernation.nix' hosts/<hostname>/default.nix
+   sed -i '/\];/\ \ \ \ ./hibernation.nix' hosts/$(hostname -n)/default.nix
    ```
