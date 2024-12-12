@@ -47,5 +47,5 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
    }
    systemd.sleep.extraConfig = "HibernateDelaySec=1h";
    EOF
-   sed -i '/\];/    ./hibernation.nix' hosts/<hostname>/default.nix
+   sed -i '/\];/\ \ \ \ ./hibernation.nix' hosts/<hostname>/default.nix
    ```

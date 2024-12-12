@@ -62,12 +62,12 @@ nix-shell -p vim git
    ```
 2. Create the host directory for your new system
    ```sh
-   cp -a hosts/template hosts/<hostname>
-   mv /etc/nixos/hardware-configuration.nix hosts/<hostname>
+   cp -a hosts/template hosts/$(hostname -s)
+   mv /etc/nixos/hardware-configuration.nix hosts/$(hostname -s)
    ```
 3. Alter hardware-configuration
    ```sh
-   sudo vi /hosts/<hostname>/hardware-configuration.nix
+   sudo vi hosts/$(hostname -s)/hardware-configuration.nix
    ```
    1. Comment out dhcp in _/etc/nixos/hardware-configuration.nix_
    2. Alter boot parameters at need. See the other host directories for guidance
