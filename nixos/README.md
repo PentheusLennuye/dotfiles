@@ -98,17 +98,17 @@ See [LAPTOP](LAPTOP.md)
 
 #### User
 
-1. Install home manager temporarily as USER (not root)
+1. Copy the home-manager files from _dotfiles_
+   ```sh
+   [ -d ~/.config/home-manager ]] && rm -rf ~/.config/home-manager
+   cp -a </path/to/dotfiles>/nixos/home-manager/<user> ~/.config/home-manager
+   ```
+2. Install home manager temporarily as USER (not root)
    ```sh
    RELEASE=$(nixos-version | awk -F. '{print $1"."$2}'
    nix-channel --add https://github.com/nix-community/${RELEASE} home-manager
    nix-channel --update
    nix-shell '<home-manager>' -A install
-   ```
-2. Copy the home-manager files from _dotfiles_
-   ```sh
-   rm -rf ~/.config/home-manager
-   cp -a </path/to/dotfiles>/nixos/home-manager/<user> ~/.config/home-manager
    ```
 3. Open fire
    ```sh

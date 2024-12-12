@@ -1,5 +1,5 @@
 # Suspend-then-hibernate everywhere
-{ config, ... }
+{ config, ... }:
 {
   services.logind = {
     lidSwitch = "suspend-then-hibernate";

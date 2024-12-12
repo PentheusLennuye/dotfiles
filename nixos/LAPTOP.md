@@ -34,7 +34,7 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
    ```sh
    cat >>hibernation.nix <<EOF
    # Suspend-then-hibernate everywhere
-   { config, ... }
+   { config, ... }:
    {
      services.logind = {
        lidSwitch = "suspend-then-hibernate";
