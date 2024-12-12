@@ -105,8 +105,9 @@ See [LAPTOP](LAPTOP.md)
    ```
 2. Install home manager temporarily as USER (not root)
    ```sh
-   RELEASE=$(nixos-version | awk -F. '{print $1"."$2}')
-   nix-channel --add https://github.com/nix-community/${RELEASE} home-manager
+   HMURL=https://github.com/nix-community/home-manager
+   RELEASE=release-$(nixos-version | awk -F. '{print $1"."$2}').tar.gz
+   nix-channel --add ${HMURL}/archive/${RELEASE} home-manager
    nix-channel --update
    nix-shell '<home-manager>' -A install
    ```
