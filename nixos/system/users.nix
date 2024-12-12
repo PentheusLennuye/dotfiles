@@ -8,8 +8,7 @@
     isNormalUser = true;
     description = "George Cummings";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [];
+    shell = "zsh"
   };
   security.pam.loginLimits = [
     { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; } 

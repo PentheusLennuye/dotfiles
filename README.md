@@ -5,5 +5,5 @@
 - [Playbooks](playbooks), for Ansible, Ansible Tower, and AWX.
 - [Scripts](scripts/), used for backing things up and other miscellaneous
   tasks.
-- [Services](services/), which are the k8s services running my lab systems.
+- [Kubernetes](k8s/), which are the k8s services running my lab systems.
 

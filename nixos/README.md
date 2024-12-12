@@ -1,6 +1,9 @@
 # George's NixOS configurations
 
-NixOS version 23.11
+<!-- markdownlint-disable MD031 -->
+<!-- markdownlint-disable MD032 -->
+
+NixOS version 24.11
 
 These are the files I use to configure my various bare metal NixOS systems to my
 liking. See [NixOS Buildout](#nixos-buildout) on how to put them to use.
@@ -26,7 +29,6 @@ An exceptionally good resource is Ryan Yin's "NixOS & Flakes Book" at
 not easy, but with this text and programming experience using Python's
 _pyproject.toml_ or Rust's Cargo helped.
 
-
 ## NixOS Buildout
 
 ### Step One: Install from CD/USB
@@ -35,6 +37,8 @@ When installing NixOS, ensure there is a swap partition made for hibernation,
 especially when operating a laptop. After reboot, continue to ...
 
 ### Step Two: Connect to the Wifi
+
+Unless your workstation is connected by wire:
 
 ```sh
 nmcli dev wifi list
@@ -52,43 +56,36 @@ nix-shell -p vim git
 1. Pull these dotfiles
    ```sh
    git clone https://github.com/PentheusLennuye/dotfiles.git
-   cd dotfiles
+   cd dotfiles/
    rm -rf .git  # to be safe
-   mv pictures ~/
+   cd nixos/system
    ```
-2. Comment out dhcp in _/etc/nginx/hardware-configuration.nix_
+2. Create the host directory for your new system
    ```sh
-   sudo vi /etc/nixos/hardware-configuration.nix  # Delete the DHCP portion
+   cp -a hosts/template hosts/<hostname>
+   mv /etc/nixos/hardware-configuration.nix hosts/<hostname>
    ```
-3. NetworkManager already has a basic set up from Step Two. Adjust if needed.
-   For example, for a workstation or server:
+3. Alter hardware-configuration
    ```sh
-   nmcli c show
-   nmcli c modify <ID> ipv4.address 192.168.68.33/24 ipv4.dns 192.168.68.1 \
-                       ipv4.gateway 192.168.68.1 method manual
-   nmcli c reload <ID>
+   sudo vi /hosts/<hostname>/hardware-configuration.nix
    ```
-4. If dual-booting Windows, the NixOS documents point out that EFI and
-   _systemd_ detects Windows automatically. However, my system's Windows EFI
-   partition is too small, so I need to use GRUB. If this is also your case you
-   need to replace the Windows disk UUID in _configuration.nix_ with your own:
-   ```sh
-   sudo fdisk -l  # Find the disk with the MS EFI
-   sudo fdisk -l /dev/sd<x> | grep EFI # get the partition with windows EFI
-   ls -l /dev/disk/by-uuid | grep sd<x> | cut -d' ' -f9
-   ```
+   1. Comment out dhcp in _/etc/nixos/hardware-configuration.nix_
+   2. Alter boot parameters at need. See the other host directories for guidance
+   3. Add the NFS filesystem as needed. See _hosts/glaucus_ for assistance.
+4. Alter Network. If on a laptop, skip this step. If on a wired workstation or
+   server, see _hosts/goemon/networking.nix_ for reference.
 
 ### Step Five: Laptops
 
 See [LAPTOP](LAPTOP.md)
 
-### Step Six: Let the configurations rip!
+### Step Six: Let the configurations rip
 
 #### System
 
-1. Copy all the files to _/etc/nixos/_ 
-   ```
-   sudo rsync -avrt <path/to/this/directory> /etc/nixos
+1. Copy system files to _/etc/nixos_
+   ```sh
+   sudo rsync -avrt . /etc/nixos
    ```
 2. Exit the nix-shell from step three (you are still in there, right?) with
    a simple `exit`.
@@ -96,12 +93,27 @@ See [LAPTOP](LAPTOP.md)
    ```sh
    sudo nixos-rebuild switch  # First command installs flakes
    sudo nixos-rebuild switch  # Second command goes to work. Get coffee.
-   sudo reboot
+   reboot
    ```
 
 #### User
 
-Start neovim, and after reading all the errors, execute `:PlugInstall`
+1. Install home manager temporarily as USER (not root)
+   ```sh
+   RELEASE=$(nixos-version | awk -F. '{print $1"."$2}'
+   nix-channel --add https://github.com/nix-community/${RELEASE} home-manager
+   nix-channel --update
+   nix-shell '<home-manager>' -A install
+   ```
+2. Copy the home-manager files from _dotfiles_
+   ```sh
+   rm -rf ~/.config/home-manager
+   cp -a </path/to/dotfiles>/nixos/home-manager/<user> ~/.config/home-manager
+   ```
+3. Open fire
+   ```sh
+   home-manager build switch
+   ```
+4. Start neovim, and after reading all the errors, execute `:PlugInstall`
 
 Enjoy your NixOS workstation.
-
