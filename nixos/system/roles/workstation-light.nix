@@ -10,6 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     elegant-sddm
+    hypridle
   ];
 
   fonts.packages = with pkgs; [
@@ -22,12 +23,12 @@
     enable = true;
     xwayland.enable = true;
   };
-  # programs.hyprlock = {
-  #   enable = true;
-  # };
+  programs.hyprlock = {
+     enable = true;
+  };
 
   security.polkit.enable = true;
-  # security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = {};
 
   services = {
     displayManager.sddm.enable = true;

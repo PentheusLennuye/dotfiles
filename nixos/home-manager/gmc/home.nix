@@ -53,6 +53,5 @@
     enableSshSupport = true;
     pinentryPackage = pkgs.pinentry-tty;
   };
-
 }
 

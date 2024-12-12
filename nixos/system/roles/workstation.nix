@@ -9,6 +9,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    hypridle
     qt6.qtwayland
     kdePackages.kaddressbook
     kdePackages.kcalc
@@ -60,11 +61,6 @@
     enable = true;
   };
   security.pam.services.hyprlock = {};
-  services.hypridle = {
-    enable = true;
-    package = pkgs.hypridle;
-
-  };
 
   # KDE 6
 
