@@ -32,7 +32,7 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
    ```
 5. Append hibernate services to the host configuration
    ```sh
-   echo >hibernation.nix <<EOF
+   cat >>hibernation.nix <<EOF
    # Suspend-then-hibernate everywhere
    services.logind = {
      lidSwitch = "suspend-then-hibernate";
