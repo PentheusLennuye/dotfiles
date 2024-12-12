@@ -22,8 +22,12 @@
     enable = true;
     xwayland.enable = true;
   };
+  # programs.hyprlock = {
+  #   enable = true;
+  # };
 
   security.polkit.enable = true;
+  # security.pam.services.hyprlock = {};
 
   services = {
     displayManager.sddm.enable = true;

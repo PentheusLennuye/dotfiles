@@ -56,6 +56,15 @@
     enable = true;
     xwayland.enable = true;
   };
+  programs.hyprlock = {
+    enable = true;
+  };
+  security.pam.services.hyprlock = {};
+  services.hypridle = {
+    enable = true;
+    package = pkgs.hypridle;
+
+  };
 
   # KDE 6
 
