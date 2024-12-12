@@ -34,14 +34,17 @@ Kudos to <https://www.worldofbs.com/nixos-framework/>
    ```sh
    cat >>hibernation.nix <<EOF
    # Suspend-then-hibernate everywhere
-   services.logind = {
-     lidSwitch = "suspend-then-hibernate";
-     extraConfig = ''
-       HandlePowerKey=suspend-then-hibernate
-       IdleAction=suspend-then-hibernate
-       IdleActionSec=2m
-     '';
-   };
+   { config, ... }
+   {
+     services.logind = {
+       lidSwitch = "suspend-then-hibernate";
+       extraConfig = ''
+         HandlePowerKey=suspend-then-hibernate
+         IdleAction=suspend-then-hibernate
+         IdleActionSec=2m
+       '';
+     };
+   }
    systemd.sleep.extraConfig = "HibernateDelaySec=1h";
    EOF
    sed -i '/\];/    ./hibernation.nix' hosts/<hostname>/default.nix
