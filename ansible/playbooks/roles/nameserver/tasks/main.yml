@@ -1,5 +1,8 @@
 ---
-- name: install bind services
+- name: set facts
+  ansible.builtin.set_fact:
+    v6ports: "{{ v6|ternary('any','none') }}"
+- name: install bind services root level
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
   become: true
   block:
@@ -9,9 +12,8 @@
         name:
           - bind9
           - bind9utils
-    - name: ensure IPv4 only
-      ansible.builtin.lineinfile:
-        path: /etc/default/bind9
-        regexp: '^OPTIONS='
-        line: 'OPTIONS="-4 -u bind"'
+    - name: set bind9 options
+      ansible.builtin.template:
+        src: named.conf.options.j2
+        dest: /etc/bind/named.conf.options
 
