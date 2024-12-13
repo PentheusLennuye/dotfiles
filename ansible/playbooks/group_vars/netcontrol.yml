@@ -1,2 +1,36 @@
 ---
-v6: false
+named:
+  contact: gmc
+  expire: 604800
+  forwarders:
+    - 192.168.68.1
+    - 8.8.8.8
+  negative_cache_ttl: 86400
+  refresh: 86400
+  retry: 28800
+  serial: 2024121301
+  trusted_ips:
+    - 192.168.68.31
+    - 192.168.68.32
+  ttl: 86400
+  v6: false
+  addresses:
+    docker: 13
+    goemon: 73
+    goliath: 74
+    jigen: 12
+    mtl-printer: 61
+    ns: 31
+    ns2: 32
+    portainer: 14
+    rpi1: 31
+    rpi2: 32
+    rpi3: 33
+    rpi4: 34
+  canonical:
+    argocd: jigen.cummings-online.local.
+    awx: jigen.cummings-online.local.
+    ingress: jigen.cummings-online.local.
+    netbox: jigen.cummings-online.local.
+    prometheus: jigen.cummings-online.local.
+

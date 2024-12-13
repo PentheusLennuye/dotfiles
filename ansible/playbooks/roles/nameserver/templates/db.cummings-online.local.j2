@@ -1,4 +1,5 @@
 $TTL {{ ttl }}
+$ORIGIN cummings-online.local.
 @ IN SOA ns.cummings-online.local {{ contact }}.cummings-online.local. (
  {{ serial }} ; serial
  {{ refresh }} ; refresh
@@ -12,11 +13,11 @@ $TTL {{ ttl }}
 ns          IN    A     {{ ansible_default_ipv4.address }}
 
 ; Hosts --------------------------------------------------------------
-{% for hostname, hostaddress in addresses.iteritems() %}
+{% for hostname, hostaddress in addresses.items() %}
 {{ hostname }} IN A 192.168.68.{{ hostaddress }}
 {% endfor %}
 
-{% for hostname, cname in canonical.iteritems() %}
+{% for hostname, cname in canonical.items() %}
 {{ hostname }} IN CNAME {{ cname }}
 {% endfor %}
 

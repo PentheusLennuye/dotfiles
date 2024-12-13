@@ -12,6 +12,6 @@ $TTL {{ ttl }}
 ns          IN    A     {{ ansible_default_ipv4.address }}
 
 ; PTR --------------------------------------------------------------
-{% for hostname, hostaddress in addresses.iteritems() %}
-{{ hostadress }}.68 IN PTR {{ hostname }}.cummings-online.local.
+{% for hostname, hostaddress in addresses.items() %}
+{{ hostaddress }}.68 IN PTR {{ hostname }}.cummings-online.local.
 {% endfor %}

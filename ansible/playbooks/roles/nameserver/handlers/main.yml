@@ -1,5 +1,6 @@
 ---
 - name: restart bind
+  become: true
   ansible.builtin.service:
     name: named
     enabled: yes
