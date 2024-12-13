@@ -1,0 +1,17 @@
+---
+- name: install bind services
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  become: true
+  block:
+    - name: install bind9
+      ansible.builtin.package:
+        state: latest
+        name:
+          - bind9
+          - bind9utils
+    - name: ensure IPv4 only
+      ansible.builtin.lineinfile:
+        path: /etc/default/bind9
+        regexp: '^OPTIONS='
+        line: 'OPTIONS="-4 -u bind"'
+

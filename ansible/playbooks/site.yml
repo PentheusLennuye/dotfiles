@@ -9,4 +9,5 @@
 - hosts: netcontrol
   roles:
     - role: timeserver
+    - role: nameserver
 
