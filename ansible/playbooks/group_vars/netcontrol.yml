@@ -33,4 +33,5 @@ named:
     ingress: jigen.cummings-online.local.
     netbox: jigen.cummings-online.local.
     prometheus: jigen.cummings-online.local.
+    time: rpi1.cummings-online.local.
 
