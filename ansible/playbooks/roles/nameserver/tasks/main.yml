@@ -1,19 +1,62 @@
 ---
-- name: set facts
-  ansible.builtin.set_fact:
-    v6ports: "{{ v6|ternary('any','none') }}"
 - name: install bind services root level
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
   become: true
-  block:
+  vars:
+    addresses: "{{ named['addresses'] }}"
+    canonical: "{{ named['conanical'] }}"
+    contact: "{{ named['contact'] }}"
+    expire: "{{ named['expire'] }}"
+    forwarders: "{{ named['forwarders'] }}"
+    negative_cache_ttl: "{{ named['negative_cache_ttl'] }}"
+    refresh: "{{ named['refresh'] }}"
+    retry: "{{ named['retry'] }}"
+    serial: "{{ named['serial'] }}"
+    trusted_ips: "{{ named['trusted_ips'] }}"
+    ttl: "{{ named['ttl'] }}"
+    v6ports: "{{ named['v6']|ternary('any','none') }}"
+    block:
     - name: install bind9
       ansible.builtin.package:
         state: latest
         name:
           - bind9
           - bind9utils
+        notify:
+          - restart bind
+    - name: place altered rfc1918 zone file
+      ansible.builtin.copy:
+        src: zones.rfc1918
+        dest: /etc/bind/zone.rfc1918
+        notify:
+          - restart bind
+    - name: set local zone configuration
+      ansible.builtin.copy:
+        src: named.conf.local
+        dest: /etc/bind/named.conf.local
+        notify:
+          - restart bind
+    - name: update local zone db
+      ansible.builtin.template:
+        src: db.cummings-online.local.j2
+        dest: /etc/bind/db.cummings-online.local
+        notify:
+          - restart bind
+    - name: update local reverse db
+      ansible.builtin.template:
+        src: db.192.168.j2
+        dest: /etc/bind/db.192.168
+        notify:
+          - restart bind
     - name: set bind9 options
       ansible.builtin.template:
         src: named.conf.options.j2
         dest: /etc/bind/named.conf.options
+        notify:
+          - restart bind
+    - name: bind9 service is running
+      ansible.builtin.service:
+        name: named
+        enabled: yes
+        state: started
 

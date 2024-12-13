@@ -1,0 +1,8 @@
+zone "cummings-online.local" {
+    type primary;
+    file "/etc/bind/zones/db.cummings-online.local";
+};
+zone "168.192.in-addr-arpa" {
+    type primary;
+    file "/etc/bind/zones/db.192.168";  # 192.168.0.0/16
+};

@@ -1,0 +1,22 @@
+$TTL {{ ttl }}
+@ IN SOA ns.cummings-online.local {{ contact }}.cummings-online.local. (
+ {{ serial }} ; serial
+ {{ refresh }} ; refresh
+ {{ retry }} ; retry
+ {{ expire }} ; expire
+ {{ negative_cache_ttl }} ; negative cache ttl
+)
+
+; Required nameserver records ----------------------------------------
+@           IN    NS    ns.cummings-online.local.
+ns          IN    A     {{ ansible_default_ipv4.address }}
+
+; Hosts --------------------------------------------------------------
+{% for hostname, hostaddress in addresses.iteritems() %}
+{{ hostname }} IN A 192.168.68.{{ hostaddress }}
+{% endfor %}
+
+{% for hostname, cname in canonical.iteritems() %}
+{{ hostname }} IN CNAME {{ cname }}
+{% endfor %}
+
