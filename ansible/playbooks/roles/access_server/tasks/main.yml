@@ -39,6 +39,7 @@
         - '22'
         - '80'
         - '443'
+        - '8123'
 
     - name: allow wireguard networking
       community.general.ufw:
@@ -57,8 +58,8 @@
       notify: restart ufw
       loop:
         - "# allow forwarding for trusted network"
-        - "-A ufw-before-forward -s 10.10.10.0/24 -j ACCEPT"
-        - "-A ufw-before-forward -d 10.10.10.0/24 -j ACCEPT"
+        - "-A ufw-before-forward -s 10.6.0.0/24 -j ACCEPT"
+        - "-A ufw-before-forward -d 10.6.0.0/24 -j ACCEPT"
         - ""
 
     - name: ensure UFW is started

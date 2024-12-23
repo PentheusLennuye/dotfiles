@@ -1,12 +1,13 @@
 [Interface]
-Address = 192.168.73.43
+Address = {{ wg_vpn_address }}
 ListenPort = 51820
-PrivateKey = {{ wg0_key }}
+PrivateKey = {{ wg_private_key }}
+PreUp = iptables -A POSTROUTING -o ens18 -j MASQUERADE -t nat
+PreDown = iptables -D POSTROUTING -o ens18 -j MASQUERADE -t nat
 
-{% for peer in peers.items() %}
+{% for peer in wg_peers.items() %}
 [Peer]
-PublicKey = {{ peer["public_key"] }}
-AllowedIPs = {{ peer["allowed_ips"] }}
+PublicKey = {{ peer.public_key }}
+AllowedIPs = {{ peer.vpn_address }}/32
 
 {% endfor %}
-
