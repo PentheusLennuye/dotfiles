@@ -11,3 +11,11 @@
       - python3-pip
       - wget
       - zsh
+- name: language support packages
+  ansible.builtin.package:
+    state: latest
+    name:
+      - jq
+      - lld
+      - npm   # required for npm packages
+      - pipx  # required for language support on neovim

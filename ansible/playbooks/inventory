@@ -1,3 +1,6 @@
+[access_server]
+knw-access.cummings-online.local
+
 [development]
 #goliath
 
@@ -5,13 +8,22 @@
 rpi1.cummings-online.local
 rpi2.cummings-online.local
 
-[netcontrol]
+[linux]
+knw-access.cummings-online.local
+knw-jump.cummings-online.local
+ns3.cummings-online.local
 rpi1.cummings-online.local
 rpi2.cummings-online.local
-192.168.73.31
+
+[netcontrol]
+ns3.cummings-online.local
+rpi1.cummings-online.local
+rpi2.cummings-online.local
 
 [knowlton]
-192.168.73.31
+knw-access.cummings-online.local
+knw-jump.cummings-online.local
+ns3.cummings-online.local
 
 [montreal]
 rpi1.cummings-online.local

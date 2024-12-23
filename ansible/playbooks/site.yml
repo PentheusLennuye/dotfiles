@@ -10,4 +10,7 @@
   roles:
     - role: timeserver
     - role: nameserver
-
+- hosts: access_server
+  roles:
+    - role: access_server
+    - role: nameserver

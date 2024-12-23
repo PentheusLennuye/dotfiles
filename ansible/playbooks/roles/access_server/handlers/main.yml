@@ -1,0 +1,22 @@
+---
+- name: set sysctl
+  become: true
+  ansible.builtin.command: sysctl -p
+
+- name: restart ufw
+  become: true
+  ansible.builtin.service:
+    name: ufw
+    state: restarted
+
+- name: restart bind
+  become: true
+  ansible.builtin.service:
+    name: bind9
+    state: restarted
+
+- name: restart wg0
+  become: true
+  ansible.builtin.service:
+    name: wg-quick@wg0.service
+    state: restarted

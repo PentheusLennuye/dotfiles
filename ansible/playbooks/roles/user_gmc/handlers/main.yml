@@ -1,4 +1,4 @@
 ---
 - name: install nvim plugins
   ansible.builtin.shell:
-    cmd: "/snap/bin/nvim -c PlugInstall +qa"
+    cmd: "nvim -c PlugInstall +qa"

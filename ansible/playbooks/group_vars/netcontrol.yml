@@ -27,6 +27,8 @@ named:
       hosts:
         fujiko: 12
         knw-ha: 41
+        knw-jump: 42
+        knw-access: 43
         knw-printer: 61
         ns3: 31
   canonical:

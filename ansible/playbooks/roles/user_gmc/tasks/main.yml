@@ -7,6 +7,7 @@
     - name: user files for gmc
       become_user: gmc
       block:
+      - import_tasks: gmc_linters.yml
       - import_tasks: gmc_neovim.yml
       - import_tasks: gmc_starship.yml
       - name: local languages for gmc

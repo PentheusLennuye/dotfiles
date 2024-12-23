@@ -1,14 +1,4 @@
 ---
-- name: install pipx packages
-  community.general.pipx:
-    name: "{{ item }}"
-  with_items:
-    - poetry
-    - black
-    - yamllint
-    - yq
-    - jedi-language-server
-
 - name: install rust
   block:
     - name: check if rustc is there

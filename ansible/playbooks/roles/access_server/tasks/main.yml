@@ -1,0 +1,75 @@
+---
+- name: set up vpn
+  when: ansible_distribution == "Ubuntu"
+  become: true
+  tags:
+    - vpn
+  block:
+    - name: install wireguard
+      ansible.builtin.package:
+        state: latest
+        name:
+          - bind9
+          - ufw
+          - wireguard
+          - wireguard-tools
+#    - name: set server configuration file
+#      ansible.builtin.template:
+#        src: wg0.conf.j2
+#        dest: /etc/wireguard/wg0.conf
+#        mode: 0600
+#      notify:
+#        - restart wg0
+
+    - name: ensure ipv4 forwarding
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        state: present
+        line: net.ipv4.ip_forward = 1
+      notify: set sysctl
+
+    - name: allow ssh http and https
+      community.general.ufw:
+        direction: in
+        interface: "{{ ansible_default_ipv4.interface }}"
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - '22'
+        - '80'
+        - '443'
+
+    - name: allow wireguard networking
+      community.general.ufw:
+        direction: in
+        interface: "{{ ansible_default_ipv4.interface }}"
+        rule: allow
+        port: '51820'
+        proto: udp
+
+    - name: allow forwarding for trusted network
+      ansible.builtin.lineinfile:
+        path: /etc/ufw/before.rules
+        state: present
+        line: "{{ item }}"
+        insertbefore: "^# don't delete the 'COMMIT' line"
+      notify: restart ufw
+      loop:
+        - "# allow forwarding for trusted network"
+        - "-A ufw-before-forward -s 10.10.10.0/24 -j ACCEPT"
+        - "-A ufw-before-forward -d 10.10.10.0/24 -j ACCEPT"
+        - ""
+
+    - name: ensure UFW is started
+      ansible.builtin.service:
+        name: ufw
+        state: started
+        enabled: true
+
+    - name: ensure wg0 is running
+      ansible.builtin.service:
+        name: wg-quick@wg0.service
+        state: started
+        enabled: true
+

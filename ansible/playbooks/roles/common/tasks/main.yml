@@ -6,6 +6,7 @@
   block:
     - import_tasks: binary_packages.yml
     - import_tasks: neovim.yml
+    - import_tasks: npm_packages.yml
 
 # MacOS =====================================================================
 # There is no MacOS root set up. All MacOS packages are installed in the user

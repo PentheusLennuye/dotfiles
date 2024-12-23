@@ -1,0 +1,12 @@
+[Interface]
+Address = 192.168.73.43
+ListenPort = 51820
+PrivateKey = {{ wg0_key }}
+
+{% for peer in peers.items() %}
+[Peer]
+PublicKey = {{ peer["public_key"] }}
+AllowedIPs = {{ peer["allowed_ips"] }}
+
+{% endfor %}
+
