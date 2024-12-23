@@ -12,6 +12,8 @@ $TTL {{ ttl }}
 ns          IN    A     {{ ansible_default_ipv4.address }}
 
 ; PTR --------------------------------------------------------------
-{% for hostname, hostaddress in addresses.items() %}
-{{ hostaddress }}.68 IN PTR {{ hostname }}.cummings-online.local.
+{% for subnet in subnets %}
+{% for hostname, hostaddress in subnet["hosts"].items() %}
+{{ hostaddress }}.{{ subnet["netid"] }} IN PTR {{ hostname }}.cummings-online.local.
+{% endfor %}
 {% endfor %}

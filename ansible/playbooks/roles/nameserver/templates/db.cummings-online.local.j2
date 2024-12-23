@@ -13,8 +13,10 @@ $ORIGIN cummings-online.local.
 ns          IN    A     {{ ansible_default_ipv4.address }}
 
 ; Hosts --------------------------------------------------------------
-{% for hostname, hostaddress in addresses.items() %}
-{{ hostname }} IN A 192.168.68.{{ hostaddress }}
+{% for subnet in subnets %}
+{% for hostname, hostaddress in subnet["hosts"].items() %}
+{{ hostname }} IN A 192.168.{{ subnet["netid"] }}.{{ hostaddress }}
+{% endfor %}
 {% endfor %}
 
 {% for hostname, cname in canonical.items() %}

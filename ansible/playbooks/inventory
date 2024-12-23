@@ -8,4 +8,11 @@ rpi2.cummings-online.local
 [netcontrol]
 rpi1.cummings-online.local
 rpi2.cummings-online.local
+192.168.73.31
 
+[knowlton]
+192.168.73.31
+
+[montreal]
+rpi1.cummings-online.local
+rpi2.cummings-online.local

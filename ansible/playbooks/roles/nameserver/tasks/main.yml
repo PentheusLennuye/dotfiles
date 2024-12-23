@@ -3,16 +3,16 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
   become: true
   vars:
-    addresses: "{{ named['addresses'] }}"
+    subnets: "{{ named['subnets'] }}"
     canonical: "{{ named['canonical'] }}"
     contact: "{{ named['contact'] }}"
     expire: "{{ named['expire'] }}"
-    forwarders: "{{ named['forwarders'] }}"
+    forwarders: "{{ dns['forwarders'] }}"
     negative_cache_ttl: "{{ named['negative_cache_ttl'] }}"
     refresh: "{{ named['refresh'] }}"
     retry: "{{ named['retry'] }}"
     serial: "{{ named['serial'] }}"
-    trusted_ips: "{{ named['trusted_ips'] }}"
+    trusted_ips: "{{ dns['trusted_ips'] }}"
     ttl: "{{ named['ttl'] }}"
     v6ports: "{{ named['v6']|ternary('any','none') }}"
   block:
