@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports = [
@@ -8,20 +8,21 @@
     ../modules/sound.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    hypridle
-    qt6.qtwayland
-    kdePackages.kaddressbook
-    kdePackages.kcalc
-    kdePackages.kde-cli-tools
-    kdePackages.kdepim-runtime  # Required for kmail
-    kdePackages.kmahjongg
-    kdePackages.kmail
-    kdePackages.kmail-account-wizard
-    kdePackages.kontact
-    kdePackages.kpat
-    kdePackages.qtmultimedia
-    xwayland
+  environment.systemPackages = [
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    pkgs.hypridle
+    pkgs.qt6.qtwayland
+    pkgs.kdePackages.kaddressbook
+    pkgs.kdePackages.kcalc
+    pkgs.kdePackages.kde-cli-tools
+    pkgs.kdePackages.kdepim-runtime  # Required for kmail
+    pkgs.kdePackages.kmahjongg
+    pkgs.kdePackages.kmail
+    pkgs.kdePackages.kmail-account-wizard
+    pkgs.kdePackages.kontact
+    pkgs.kdePackages.kpat
+    pkgs.kdePackages.qtmultimedia
+    pkgs.xwayland
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
       background=${kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png

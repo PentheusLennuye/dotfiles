@@ -3,15 +3,17 @@
   description = "NixOS Flakes for Cummings workstations";
  
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @inputs:
+              
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -25,7 +27,6 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          # home-manager.users.gmc = import ./users/gmc/home.nix;
           home-manager.extraSpecialArgs = { inherit unstable; };
         }
     ];
@@ -34,7 +35,7 @@
     nixosConfigurations = {
       sisyphus = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit unstable;};
+        specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
           ./gpu/nvidia.nix
           ./hosts/sisyphus
@@ -50,7 +51,7 @@
       };
       glaucus = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit unstable;};
+        specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
           ./gpu/opengl.nix
           ./hosts/glaucus
@@ -66,7 +67,7 @@
       };
       goemon = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit unstable;};
+        specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
           ./gpu/amd.nix
           ./hosts/goemon

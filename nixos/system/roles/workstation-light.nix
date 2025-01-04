@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,9 +8,10 @@
     ../modules/sound.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    elegant-sddm
-    hypridle
+  environment.systemPackages = [
+    pkgs.elegant-sddm
+    pkgs.hypridle
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
 
   fonts.packages = with pkgs; [
