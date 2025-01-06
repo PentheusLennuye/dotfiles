@@ -35,6 +35,7 @@
     markdownlint-cli
 
     # Python
+    cookiecutter
     poetry
     python3
     python311Packages.black                # PEP-8

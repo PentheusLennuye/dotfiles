@@ -27,7 +27,7 @@ let
     hyprpaper                              # wallpaper for Hyprland
     inkscape
     kitty
-    libreoffice-qt
+    onlyoffice-desktopeditors
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
     screenfetch                            # Show off!
