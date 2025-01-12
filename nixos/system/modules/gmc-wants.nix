@@ -2,7 +2,6 @@
 
 let
   fastMovingPkgs = with unstable; [
-    cider-2                                # Apple Music
     joplin-desktop                         # Notepad
   ];
 
