@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "applespi" "spi_pxa2xx_platform" "spi_pxa2xx_pci" "intel_lpss_pci" "hid_generic" "hid_apple" "applesmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelParams = [ "mem_sleep_default=deep" "resume_offset=0"];
@@ -26,6 +26,8 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
+
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/2c1641f2-69b1-475d-a297-54a2bb19f5ba"; }
