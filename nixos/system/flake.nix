@@ -7,12 +7,13 @@
       url = "github:nix-community/home-manager/release-24.11";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @inputs:
+  outputs = { self, home-manager, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
               
   let 
     system = "x86_64-linux";
@@ -23,6 +24,7 @@
     common_modules = [
         ./configuration.nix
         ./roles/common.nix
+        ./roles/kubernetes-ctl.nix
         ./users.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
@@ -43,7 +45,6 @@
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/gaming.nix
-          ./roles/kubernetes-ctl.nix
           ./roles/publishing.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
@@ -53,13 +54,13 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
+	  nixos-hardware.nixos.Modules.lenovo-thinkpad-x250
           ./gpu/opengl.nix
           ./hosts/glaucus
           ./roles/audio-engineering.nix
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/gaming.nix
-          ./roles/kubernetes-ctl.nix
           ./roles/laptop.nix
           ./roles/publishing.nix
           ./roles/workstation-light.nix
@@ -75,7 +76,6 @@
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/gaming.nix
-          ./roles/kubernetes-ctl.nix
           ./roles/publishing.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
@@ -87,8 +87,19 @@
           ./hosts/jigen
           ./roles/container-host.nix
           ./roles/k3s-server.nix
-          ./roles/kubernetes-ctl.nix
           ./roles/webhost.nix
+        ];
+      };
+      lupin = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs unstable;};
+        modules = common_modules ++ [
+	  nixos-hardware.nixos.Modules.apple-macbook-pro-12-1
+          ./gpu/opengl.nix
+          ./hosts/lupin
+          ./roles/development.nix
+          ./roles/laptop.nix
+          ./roles/workstation-light.nix
         ];
       };
     };
