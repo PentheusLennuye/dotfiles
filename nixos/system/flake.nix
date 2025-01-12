@@ -17,9 +17,12 @@
               
   let 
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {
+    	inherit system;
+    };
     unstable = import nixpkgs-unstable {
-      inherit system; config.allowUnfree = true;
+      inherit system;
+      config.allowUnfree = true;
     };
     common_modules = [
         ./configuration.nix
@@ -54,7 +57,7 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
-	      nixos-hardware.nixosModules.lenovo-thinkpad-x250
+	  nixos-hardware.nixosModules.lenovo-thinkpad-x250
           ./gpu/opengl.nix
           ./hosts/glaucus
           ./roles/audio-engineering.nix
@@ -94,7 +97,7 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
-	      nixos-hardware.nixosModules.apple-macbook-pro-12-1
+	  nixos-hardware.nixosModules.apple-macbook-pro-12-1
           ./gpu/opengl.nix
           ./hosts/lupin
           ./roles/development.nix

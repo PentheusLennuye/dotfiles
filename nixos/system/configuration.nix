@@ -13,10 +13,10 @@
   # Default editor
   environment.variables.EDITOR = "vim";
 
-  # I want my emulation station
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01"
-  ];
+  # I need my firmware
+  nixpkgs.config.allowUnfree = true;
+ 
+  # I also want my emulation station
   programs.gamemode.enable = true;
 
 
