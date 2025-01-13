@@ -5,15 +5,36 @@
 { config, pkgs, ... }:
 
 {
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  boot = {
+    extraModulePackages = [ ];
+    initrd = {
+        availableKernelModules = [ "dm-snapshot" "cryptd" "nfs" ];
+        kernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+        luks.devices = {
+            "cryptroot" = {
+                device = "/dev/disk/by-label/NIXOS_LUKS";
+                preLVM = true;
+            };
+        };
+        supportedFilesystems = [ "nfs" ];
     };
-    grub = {
-      devices = [ "nodev" ];
-      efiSupport = true;
-      enable = true;
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "mem_sleep_default=deep" "resume_offset=0" ];
+    loader = {
+        efi = {
+            canTouchEfiVariables = true;
+            efiSysMountPoint = "/boot";
+        };
+        grub = {
+            devices = [ "nodev" ];
+            efiSupport = true;
+            enable = false;
+            enableCryptodisk = true;
+        };
+        systemd-boot = {
+            enable = true;
+        };
     };
+    resumeDevice = "/dev/disk/by-uuid/NIXOS_SWAP";
   };
 }
