@@ -10,7 +10,7 @@
       device = "/dev/disk/by-label/NIXOS_ROOT";
       fsType = "ext4";
     };
-    "boot" = {
+    "/boot" = {
       device = "/dev/disk/by-label/NIXOS_BOOT";
       fsType = "vfat";
     };
