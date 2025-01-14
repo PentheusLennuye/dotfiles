@@ -38,21 +38,6 @@
   in
   {
     nixosConfigurations = {
-      sisyphus = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs unstable;};
-        modules = common_modules ++ [
-          ./gpu/nvidia.nix
-          ./hosts/sisyphus
-          ./roles/audio-engineering.nix
-          ./roles/container-host.nix
-          ./roles/development.nix
-          ./roles/gaming.nix
-          ./roles/publishing.nix
-          ./roles/virt-host.nix
-          ./roles/workstation.nix
-        ];
-      };
       glaucus = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs unstable;};
@@ -79,6 +64,7 @@
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/gaming.nix
+          ./roles/montreal.nix
           ./roles/publishing.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
@@ -90,6 +76,7 @@
           ./hosts/jigen
           ./roles/container-host.nix
           ./roles/k3s-server.nix
+          ./roles/montreal.nix
           ./roles/webhost.nix
         ];
       };
