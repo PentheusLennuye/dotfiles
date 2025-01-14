@@ -4,6 +4,7 @@
   imports = [
     # All
     ./localbin.nix
+    ./misc.nix
     ./neovim.nix
     ./vim.nix
 
