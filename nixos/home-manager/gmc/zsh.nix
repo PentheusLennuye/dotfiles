@@ -21,7 +21,8 @@
       };
     }];
     sessionVariables = {
-      SRC = "$HOME/spaces/tech/projects";
+      DF = "$HOME/spaces/tech/infra/dotfiles";
+      SRC = "$HOME/spaces/tech/programming/projects";
       GOPATH = "$HOME/.go";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       KUBECONFIG = "$HOME/.kube/config";
