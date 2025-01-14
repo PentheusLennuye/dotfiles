@@ -18,7 +18,6 @@
         { address = "192.168.68.16"; prefixLength = 24; }
       ];
     };
-    nameservers = ["192.168.68.1"];
   };
 
   services.openssh.enable = true;
