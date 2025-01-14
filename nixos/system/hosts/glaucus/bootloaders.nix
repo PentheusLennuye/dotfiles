@@ -10,11 +10,12 @@
     initrd = {
         availableKernelModules = [ "dm-snapshot" "cryptd" "nfs" ];
         kernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-        luks.devices = {
-            "cryptroot" = {
-                device = "/dev/disk/by-label/NIXOS_LUKS";
-                preLVM = true;
+        luks = {
+            devices = {
+                "cryptroot" = { device = "/dev/disk/by-label/NIXOS_ROOT"; };
+                "cryptswap" = { device = "/dev/disk/by-label/NIXOS_SWAP"; };
             };
+            reusePassphrases = true;
         };
         supportedFilesystems = [ "nfs" ];
     };
@@ -35,6 +36,6 @@
             enable = true;
         };
     };
-    resumeDevice = "/dev/disk/by-uuid/NIXOS_SWAP";
+    resumeDevice = "/dev/disk/by-label/NIXOS_SWAP";
   };
 }
