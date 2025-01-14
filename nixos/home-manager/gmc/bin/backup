@@ -24,11 +24,20 @@ rsync -avrt --delete --delete-excluded \
   --include=.ssh \
   --include=.minecraft \
   --include=.vscode \
-  --include=0_work \
-    --include=0_work/**/.* \
-  --include=1_personal \
-    --include=1_personal/**/.* \
+  --include=atlas \
+    --include=atlas/**/.* \
+  --include=calendar \
+    --include=calendar/**/.* \
+  --include=cards \
+    --include=cards/**/.* \
+  --include=extra \
+    --include=extra/**/.* \
+  --include=sources \
+    --include=sources/**/.* \
+  --include=spaces \
+    --include=spaces /**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
+  --exclude=tmp \
   --exclude=".*" \
   $HOME/ $BUDIR

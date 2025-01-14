@@ -35,6 +35,7 @@ let
     starship
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
+    thunderbird
     vistafonts                             # Better fonts for Firefox etc
     vlc
     waybar                                 # task/toolbar for Hyprland

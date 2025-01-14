@@ -15,7 +15,9 @@ rsync -avrt --delete \
     --include=.local/share \
     --exclude=".local/*" \
   --include=.ssh \
-  --include=0_work --include=/home/gmc/.minecraft --include=/home/gmc/.vscode \
-  --include=1_personal \
-  --exclude="Desktop" --exclude="Downloads" --exclude=".*" \
+  --include=atlas --include=calendar --include=cards --include=extra \
+  --include=sources --include=spaces \
+  --include=/home/gmc/.thunderbird --include=/home/gmc/.minecraft \
+  --include=/home/gmc/.vscode \
+  --exclude="Desktop" --exclude="Downloads" --exclude="tmp" --exclude=".*" \
   $BUDIR/ /home/$USER
