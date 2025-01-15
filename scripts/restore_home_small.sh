@@ -7,7 +7,8 @@ rsync -avrt --delete \
     --include=.config/joplin-desktop/plugins \
     --include=.config/joplin-desktop/settings.json \
     --exclude=".config/joplin-desktop/*" \
-    --exclude=.config/Joplin \
+    --exclude=.config/Cider --exclude=.config/Joplin \
+    --exclude=.config/kwinrc \
     --exclude=.config/kwinrc --exclude=.config/kactivitymanagerdrc \
     --exclude=.config/kglobalshortcutsrc --exclude=.config/kxkbrc \
     --exclude=.config/kwinrulesrc \
@@ -19,17 +20,29 @@ rsync -avrt --delete \
     --exclude=.gnupg/scdaemon.conf \
   --include=.local \
     --include=.local/share \
-      --exclude=.local/share/Steam \
+      --exclude=.local/share/Steam --exclude=".local/share/baloo/*" \
     --exclude=".local/*" \
   --include=.ssh \
   --include=.thunderbird \
   --include=.vscode \
-  --include=atlas --include=calendar --include=cards --include=extra \
+  --include=atlas \
+    --include=atlas/**/.* \
+  --include=calendar \
+    --include=calendar/**/.* \
+  --include=cards \
+    --include=cards/**/.* \
+  --include=extra \
+    --include=extra/**/.* \
   --include=sources \
     --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms
     --exclude=sources/videos \
+    --include=sources/**/.* \
   --include=spaces \
     --exclude=spaces/sport \
-  --exclude=Desktop --exclude=Downloads --exclude="tmp" \
-  --exclude=archive --exclude=".*" \
+    --include=sources/**/.* \
+  --exclude=Desktop \
+  --exclude=Downloads \
+  --exclude="tmp" \
+  --exclude=archive \
+  --exclude=".*" \
   $BU/ $HOME
