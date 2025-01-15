@@ -7,7 +7,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/mapper/cryptroot/NIXOS_ROOT";
+      device = "/dev/mapper/cryptroot";
       fsType = "ext4";
     };
     "/boot" = {
