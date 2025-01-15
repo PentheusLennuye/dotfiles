@@ -7,8 +7,8 @@ rsync -avrt --delete \
     --include=.config/joplin-desktop/plugins \
     --include=.config/joplin-desktop/settings.json \
     --exclude=".config/joplin-desktop/*" \
-    --exclude=.config/Cider \
-    --exclude=.config/Joplin \
+    --exclude=.config/Cider --exclude=.config/Joplin \
+    --exclude=.config/kwinrc \
     --exclude=.config/kwinrc --exclude=.config/kactivitymanagerdrc \
     --exclude=.config/kglobalshortcutsrc --exclude=.config/kxkbrc \
     --exclude=.config/kwinrulesrc \
@@ -20,18 +20,11 @@ rsync -avrt --delete \
     --exclude=.gnupg/scdaemon.conf \
   --include=.local \
     --include=.local/share \
-      --exclude=".local/share/baloo/*" \
+      --exclude=.local/share/Steam --exclude=".local/share/baloo/*" \
     --exclude=".local/*" \
-  --include=.minecraft \
   --include=.ssh \
   --include=.thunderbird \
   --include=.vscode \
-  --include=atlas \
-  --include=calendar \
-  --include=cards \
-  --include=extra \
-  --include=sources \
-  --include=spaces \
   --include=atlas \
     --include=atlas/**/.* \
   --include=calendar \
