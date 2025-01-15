@@ -19,17 +19,16 @@ rsync -avrt --delete \
     --exclude=.gnupg/scdaemon.conf \
   --include=.local \
     --include=.local/share \
-      --exclude=.local/share/Steam \
     --exclude=".local/*" \
   --include=.ssh \
   --include=.thunderbird \
   --include=.vscode \
-  --include=atlas --include=calendar --include=cards --include=extra \
+  --include=atlas \
+  --include=calendar \
+  --include=cards \
+  --include=extra \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms
-    --exclude=sources/videos \
   --include=spaces \
-    --exclude=spaces/sport \
   --exclude=Desktop --exclude=Downloads --exclude="tmp" \
   --exclude=archive --exclude=".*" \
   $BU/ $HOME
