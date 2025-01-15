@@ -36,6 +36,6 @@
             enable = true;
         };
     };
-    resumeDevice = "/dev/disk/by-label/NIXOS_SWAP";
+    resumeDevice = "/dev/mapper/cryptswap";
   };
 }

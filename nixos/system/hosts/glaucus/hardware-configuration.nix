@@ -27,7 +27,7 @@
   };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/NIXOS_SWAP"; }
+    [ { device = "/dev/mapper/cryptswap"; }
     ];
 
   networking.useDHCP = lib.mkDefault false;
