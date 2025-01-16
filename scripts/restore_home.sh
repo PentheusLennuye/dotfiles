@@ -50,6 +50,5 @@ rsync -avrt --delete \
   --exclude=Desktop \
   --exclude=Downloads \
   --exclude="tmp" \
-  --exclude=archive \
   --exclude=".*" \
   $BU/ $HOME
