@@ -41,11 +41,9 @@ rsync -avrt --delete \
   --include=extra \
     --include=extra/**/.* \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms
-    --exclude=sources/videos \
+    --exclude=sources/iso \
     --include=sources/**/.* \
   --include=spaces \
-    --exclude=spaces/sport \
     --include=sources/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \

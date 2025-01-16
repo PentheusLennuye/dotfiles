@@ -9,9 +9,9 @@
   ];
 
   environment.systemPackages = [
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     pkgs.elegant-sddm
     pkgs.hypridle
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
 
   fonts.packages = with pkgs; [

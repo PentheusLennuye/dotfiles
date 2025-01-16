@@ -1,5 +1,18 @@
 { config, inputs, pkgs, ... }:
 
+let
+    # Derivation for wallpapers --------------------------------------------
+    background-package = pkgs.stdenvNoCC.mkDerivation {
+        name = "background-image";
+        src = ./sddm/wallpaper.jpg;
+        dontUnpack = true;
+        installPhase = ''
+          cp $src $out
+        '';
+    };
+    # End derivation --------------------------------------------------------
+
+in
 {
   imports = [
     ../modules/gmc-wants.nix
@@ -22,10 +35,12 @@
     pkgs.kdePackages.kontact
     pkgs.kdePackages.kpat
     pkgs.kdePackages.qtmultimedia
+    pkgs.elegant-sddm
     pkgs.xwayland
+    # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
-      background=${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png
+      background = "${background-package}"
     '')
   ];
 
@@ -67,8 +82,12 @@
 
   services = {
     desktopManager.plasma6.enable = true;
-    displayManager.sddm.enable = true;
-    displayManager.defaultSession = "plasma";
+    displayManager.sddm = {
+        enable = true;
+        theme = "breeze";
+        wayland.enable = true;
+    };
+    displayManager.defaultSession = "hyprland";
     xserver.enable = true;
   };
 }

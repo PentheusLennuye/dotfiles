@@ -34,7 +34,7 @@ rsync -avrt --delete \
   --include=extra \
     --include=extra/**/.* \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms
+    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms \
     --exclude=sources/videos \
     --include=sources/**/.* \
   --include=spaces \
