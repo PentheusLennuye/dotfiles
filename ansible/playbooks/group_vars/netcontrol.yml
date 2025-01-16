@@ -23,6 +23,7 @@ named:
         rpi2: 32
         rpi3: 33
         rpi4: 34
+        zantetsuken: 21
     - netid: 73
       hosts:
         fujiko: 12
