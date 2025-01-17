@@ -26,6 +26,7 @@ let
     hyprpaper                              # wallpaper for Hyprland
     inkscape
     kitty
+    obsidian
     onlyoffice-desktopeditors
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW

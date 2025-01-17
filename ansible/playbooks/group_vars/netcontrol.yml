@@ -15,6 +15,7 @@ named:
         goemon: 73
         goliath: 74
         jigen: 12
+        mtl-lb: 21
         mtl-printer: 61
         ns: 31
         ns2: 32
@@ -23,7 +24,7 @@ named:
         rpi2: 32
         rpi3: 33
         rpi4: 34
-        zantetsuken: 21
+        zantetsuken: 75
     - netid: 73
       hosts:
         fujiko: 12
