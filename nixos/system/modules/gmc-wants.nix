@@ -41,6 +41,7 @@ let
     vlc
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland
+    zotero                                 # reference manager
   ];
 
 in

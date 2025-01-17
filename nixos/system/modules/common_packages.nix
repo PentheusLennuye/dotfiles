@@ -8,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     ansible
+    cryptsetup  # for backups to encrypted drives
     curl
     file
     git
@@ -20,9 +21,11 @@
     pstree
     rsync
     tree
+    unzip
     usbutils
     vim
     wget
+    zip
   ];
 
   programs.zsh.enable = true;
