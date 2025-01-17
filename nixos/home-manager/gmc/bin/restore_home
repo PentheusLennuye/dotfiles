@@ -40,10 +40,6 @@ rsync -avrt --delete \
   --include=extra \
   --include=sources \
   --include=spaces \
-  --include=atlas \
-    --include=atlas/**/.* \
-  --include=calendar \
-    --include=calendar/**/.* \
   --include=cards \
     --include=cards/**/.* \
   --include=extra \
@@ -53,6 +49,8 @@ rsync -avrt --delete \
     --include=sources/**/.* \
   --include=spaces \
     --include=sources/**/.* \
+  --include=vault \
+    --include=vault/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
   --exclude="tmp" \

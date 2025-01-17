@@ -33,10 +33,6 @@ rsync -avrt --delete \
   --include=.ssh \
   --include=.thunderbird \
   --include=.vscode \
-  --include=atlas \
-    --include=atlas/**/.* \
-  --include=calendar \
-    --include=calendar/**/.* \
   --include=cards \
     --include=cards/**/.* \
   --include=extra \
@@ -48,6 +44,8 @@ rsync -avrt --delete \
   --include=spaces \
     --exclude=spaces/sport \
     --include=sources/**/.* \
+  --include=vault \
+    --include=vault/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
   --exclude="tmp" \
