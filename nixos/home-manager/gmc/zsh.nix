@@ -21,7 +21,9 @@
       };
     }];
     sessionVariables = {
+      CA = "$HOME/spaces/tech/infra/ca";
       DF = "$HOME/spaces/tech/infra/dotfiles";
+      SAP = "$HOME/spaces/sap/projects/src";
       SRC = "$HOME/spaces/tech/programming/projects";
       GOPATH = "$HOME/.go";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 
-[ -z {$BU+x} ] && ( echo "Set backup path BU. Exiting." && exit 1 )
+if [ -z {$1+x} ] | [ "$1" == "" ]; then
+    echo "Usage: $0 </backup/path>"
+    exit 1
+fi
+
+echo $1
+BU=$(echo $1 | sed -e 's#/$##')
+echo "Backing up to ${BU} in 5 seconds. Hit CTRL-C to stop ..."
+sleep 5
+
 
 rsync -avrt --delete \
   --include=.config \
     --include=.config/joplin-desktop/plugins \
     --include=.config/joplin-desktop/settings.json \
     --exclude=".config/joplin-desktop/*" \
-    --exclude=.config/Cider --exclude=.config/Joplin \
-    --exclude=.config/kwinrc \
+    --exclude=.config/Cider \
+    --exclude=.config/Joplin \
     --exclude=.config/kwinrc --exclude=.config/kactivitymanagerdrc \
     --exclude=.config/kglobalshortcutsrc --exclude=.config/kxkbrc \
     --exclude=.config/kwinrulesrc \
@@ -20,11 +29,18 @@ rsync -avrt --delete \
     --exclude=.gnupg/scdaemon.conf \
   --include=.local \
     --include=.local/share \
-      --exclude=.local/share/Steam --exclude=".local/share/baloo/*" \
+      --exclude=".local/share/baloo/*" \
     --exclude=".local/*" \
+  --include=.minecraft \
   --include=.ssh \
   --include=.thunderbird \
   --include=.vscode \
+  --include=atlas \
+  --include=calendar \
+  --include=cards \
+  --include=extra \
+  --include=sources \
+  --include=spaces \
   --include=atlas \
     --include=atlas/**/.* \
   --include=calendar \
@@ -34,15 +50,12 @@ rsync -avrt --delete \
   --include=extra \
     --include=extra/**/.* \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms \
-    --exclude=sources/videos \
+    --exclude=sources/iso \
     --include=sources/**/.* \
   --include=spaces \
-    --exclude=spaces/sport \
     --include=sources/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
   --exclude="tmp" \
-  --exclude=archive \
   --exclude=".*" \
-  $BU/ $HOME
+  $HOME/ $BU

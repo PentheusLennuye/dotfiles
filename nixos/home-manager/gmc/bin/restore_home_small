@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-[ -z {$BU+x} ] && ( echo "Set backup path BU. Exiting." && exit 1 )
+if [ -z {$1+x} ] | [ "$1" == "" ]; then
+    echo "Usage: $0 </backup/path>"
+    exit 1
+fi
+
+echo $1
+BU=$(echo $1 | sed -e 's#/$##')
+echo "Backing up to ${BU} in 5 seconds. Hit CTRL-C to stop ..."
+sleep 5
 
 rsync -avrt --delete \
   --include=.config \
@@ -34,7 +42,7 @@ rsync -avrt --delete \
   --include=extra \
     --include=extra/**/.* \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources\roms \
+    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources/roms \
     --exclude=sources/videos \
     --include=sources/**/.* \
   --include=spaces \
@@ -45,4 +53,4 @@ rsync -avrt --delete \
   --exclude="tmp" \
   --exclude=archive \
   --exclude=".*" \
-  $HOME/ $BU
+  $BU/ $HOME

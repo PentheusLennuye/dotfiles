@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+if [ -z {$1+x} ] | [ "$1" == "" ]; then
+    echo "Usage: $0 </backup/path>"
+    exit 1
+fi
+
+echo $1
+BU=$(echo $1 | sed -e 's#/$##')
+echo "Backing up to ${BU} in 5 seconds. Hit CTRL-C to stop ..."
+sleep 5
+
+rsync -avrt --delete \
+  --exclude=archive \
+  --include=atlas \
+    --include=atlas/**/.* \
+  --include=calendar \
+    --include=calendar/**/.* \
+  --include=cards \
+    --include=cards/**/.* \
+  --include=extra \
+    --include=extra/**/.* \
+  --include=sources \
+    --exclude=sources/iCloud \
+    --exclude=sources/iso \
+    --exclude=sources/roms \
+    --exclude=sources/videos \
+    --include=sources/**/.* \
+  --include=spaces \
+    --exclude=spaces/sport \
+    --include=sources/**/.* \
+  --exclude=Desktop \
+  --exclude=Downloads \
+  --exclude="tmp" \
+  --include=.config \
+    --include=.config/joplin-desktop/plugins \
+    --include=.config/joplin-desktop/settings.json \
+    --exclude=".config/joplin-desktop/*" \
+    --exclude=.config/Cider \
+    --exclude=.config/Joplin \
+    --exclude=.config/kwinrc \
+    --exclude=.config/kwinrc \
+    --exclude=.config/kactivitymanagerdrc \
+    --exclude=.config/kglobalshortcutsrc \
+    --exclude=.config/kxkbrc \
+    --exclude=.config/kwinrulesrc \
+    --exclude=.config/plasma-org.kde.plasma.desktop-appletsrc \
+    --exclude=.config/user-dirs.dirs \
+  --include=".gitconfig*" \
+  --include=.gnupg \
+    --exclude=.gnupg/gpg-agent.conf \
+    --exclude=.gnupg/gpg.conf \
+    --exclude=.gnupg/scdaemon.conf \
+  --include=.local \
+    --include=.local/share \
+      --exclude=.local/share/Steam --exclude=".local/share/baloo/*" \
+    --exclude=".local/*" \
+  --include=.ssh \
+  --include=.thunderbird \
+  --include=.vscode \
+  --exclude=".*" \
+  $HOME/ $BU
