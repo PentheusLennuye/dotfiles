@@ -34,6 +34,7 @@ rsync -avrt --delete \
   --include=.minecraft \
   --include=.ssh \
   --include=.thunderbird \
+    --exclude=.thunderbird/**/ImapMail \
   --include=.vscode \
   --include=atlas \
   --include=calendar \

@@ -32,6 +32,7 @@ rsync -avrt --delete \
     --exclude=".local/*" \
   --include=.ssh \
   --include=.thunderbird \
+    --exclude=.thunderbird/**/ImapMail \
   --include=.vscode \
   --include=cards \
     --include=cards/**/.* \
