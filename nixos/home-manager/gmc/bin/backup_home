@@ -58,12 +58,6 @@ rsync -avrt --delete \
      --exclude=.vscode/extensions/DavidAnson.vscode-markdownlint \
      --exclude=.vscode/extensions/vscodevim.vim \
   --include=.vscode \
-  --include=atlas \
-  --include=calendar \
-  --include=cards \
-  --include=extra \
-  --include=sources \
-  --include=spaces \
   --include=cards \
     --include=cards/**/.* \
   --include=extra \
@@ -72,7 +66,7 @@ rsync -avrt --delete \
     --exclude=sources/iso \
     --include=sources/**/.* \
   --include=spaces \
-    --include=sources/**/.* \
+    --include=spaces/**/.* \
   --include=vault \
     --include=vault/**/.* \
   --exclude=Desktop \

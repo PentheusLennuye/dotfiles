@@ -70,7 +70,7 @@ rsync -avrt --delete \
     --exclude=sources/videos \
     --include=sources/**/.* \
   --include=spaces \
-    --include=sources/**/.* \
+    --include=spaces/**/.* \
   --include=vault \
     --include=vault/**/.* \
   --exclude=Desktop \
