@@ -7,49 +7,79 @@ fi
 
 echo $1
 BU=$(echo $1 | sed -e 's#/$##')
-echo "Restoring from ${BU} in 5 seconds. Hit CTRL-C to stop ..."
+echo "Backing up to ${BU} in 5 seconds. Hit CTRL-C to stop ..."
 sleep 5
+
 
 rsync -avrt --delete \
   --include=.config \
     --include=.config/joplin-desktop/plugins \
     --include=.config/joplin-desktop/settings.json \
     --exclude=".config/joplin-desktop/*" \
-    --exclude=.config/Cider --exclude=.config/Joplin \
+    --exclude=./.config/Code/User/settings.json \
+    --exclude=.config/Cider \
+    --exclude=.config/Joplin \
+    --exclude=./.config/environment.d \
+    --exclude=./.config/hypr \
+    --exclude=./.config/kitty \
+    --exclude=.config/kactivitymanagerdrc \
     --exclude=.config/kwinrc \
-    --exclude=.config/kwinrc --exclude=.config/kactivitymanagerdrc \
-    --exclude=.config/kglobalshortcutsrc --exclude=.config/kxkbrc \
+    --exclude=.config/kglobalshortcutsrc \
+    --exclude=.config/kxkbrc \
     --exclude=.config/kwinrulesrc \
+    --exclude=./.config/nvim \
     --exclude=.config/plasma-org.kde.plasma.desktop-appletsrc \
-    --exclude=.config/user-dirs.dirs \
+    --exclude=./.config/starship.toml \
+    --exclude=./.config/systemd \
+    --exclude=.config/user-dirs.dir \
+    --exclude=./.config/waybar \
+    --exclude=./.config/wofi \
+    --exclude=./.config/zsh/plugins \
   --include=".gitconfig*" \
   --include=.gnupg \
-    --exclude=.gnupg/gpg-agent.conf --exclude=.gnupg/gpg.conf \
+    --exclude=.gnupg/gpg-agent.cond \
+    --exclude=.gnupg/gpg.conf \
     --exclude=.gnupg/scdaemon.conf \
   --include=.local \
     --include=.local/share \
-      --exclude=.local/share/Steam --exclude=".local/share/baloo/*" \
-    --exclude=".local/*" \
+      --exclude=.local/share/Steam \
+      --exclude=.local/share/baloo \
+      --exclude=.local/share/nvim/site \
+  --include=.minecraft \
   --include=.ssh \
   --include=.thunderbird \
     --exclude=.thunderbird/**/ImapMail \
   --include=.vscode \
+     --exclude=.vscode/extensions/golang.Go \
+     --exclude=.vscode/extensions/ms-vscode.cpptools \
+     --exclude=.vscode/extensions/ms-python.python \
+     --exclude=.vscode/extensions/James-Yu.latex-workshop \
+     --exclude=.vscode/extensions/stkb.rewrap \
+     --exclude=.vscode/extensions/rust-lang.rust-analyzer \
+     --exclude=.vscode/extensions/DavidAnson.vscode-markdownlint \
+     --exclude=.vscode/extensions/vscodevim.vim \
+  --exclude=archive \
   --include=cards \
     --include=cards/**/.* \
   --include=extra \
     --include=extra/**/.* \
   --include=sources \
-    --exclude=sources/iCloud --exclude=sources/iso --exclude=sources/roms \
+    --exclude=sources/iCloud \
+    --exclude=sources/iso \
+    --exclude=sources/roms \
     --exclude=sources/videos \
     --include=sources/**/.* \
   --include=spaces \
-    --exclude=spaces/sport \
     --include=sources/**/.* \
   --include=vault \
     --include=vault/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
-  --exclude="tmp" \
-  --exclude=archive \
+  --exclude=tmp/**/.* \
   --exclude=".*" \
   $BU/ $HOME
+
+# Fix any broken symlinks
+find $HOME -xtype -l -exec rm {} \;
+home-manager build switch
+
