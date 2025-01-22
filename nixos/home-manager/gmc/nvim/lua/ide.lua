@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end,
 })
 
+vim.cmd[[ colorscheme NeoSolarized ]]
+
 -- Markdown
 nvim_lsp.marksman.setup{}
 g.neoformat_markdown_mdformat = {

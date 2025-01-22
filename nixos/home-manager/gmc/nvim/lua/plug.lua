@@ -20,6 +20,7 @@ Plug('akinsho/toggleterm.nvim', { ['tag'] = '*'})
 Plug('sbdchd/neoformat')
 Plug('mfussenegger/nvim-lint')
 Plug('neovim/nvim-lspconfig')
+Plug('Tsuzat/NeoSolarized.nvim')
 
 vim.call('plug#end')
 
