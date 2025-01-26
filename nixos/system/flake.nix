@@ -47,6 +47,7 @@
           ./hosts/glaucus
           ./roles/audio-engineering.nix
           ./roles/container-host.nix
+          ./roles/dbms.nix
           ./roles/development.nix
           ./roles/gaming.nix
           ./roles/laptop.nix
