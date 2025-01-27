@@ -5,7 +5,7 @@ named:
   negative_cache_ttl: 86400
   refresh: 86400
   retry: 28800
-  serial: 2024121301
+  serial: 2025012702
   ttl: 86400
   v6: false
   subnets:
@@ -15,12 +15,7 @@ named:
         goliath: 74
         jigen: 75 
         zantetsuken: 76
-        argocd: 21
-        awx: 21
-        gitlab: 21
-        harbor: 21
         mtl-lba: 21
-        vault: 21
         mtl-printer: 61
         ns1: 31
         krb: 13
@@ -42,10 +37,10 @@ named:
         knw-printer: 61
         ns3: 31
   canonical:
-    argocd: jigen.cummings-online.local.
-    awx: jigen.cummings-online.local.
-    ingress: jigen.cummings-online.local.
-    netbox: jigen.cummings-online.local.
-    prometheus: jigen.cummings-online.local.
+    argocd: mtl-lba.cummings-online.local.
+    awx: mtl-lba.cummings-online.local.
+    ingress: mtl-lba.cummings-online.local.
+    netbox: mtl-lba.cummings-online.local.
+    prometheus: mtl-lba.cummings-online.local.
     time: rpi1.cummings-online.local.
 
