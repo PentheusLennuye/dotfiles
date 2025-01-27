@@ -37,6 +37,7 @@
       la="ls -la";
       ssh="TERM=xterm-256color ssh";
       sns="sudo nixos-rebuild switch";
+      snt="sudo nixos-rebuild test";
     };
   };
 }
