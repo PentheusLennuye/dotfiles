@@ -57,7 +57,7 @@ rsync -avrt --delete \
      --exclude=.vscode/extensions/rust-lang.rust-analyzer \
      --exclude=.vscode/extensions/DavidAnson.vscode-markdownlint \
      --exclude=.vscode/extensions/vscodevim.vim \
-  --include=.vscode \
+  --include=.zotero \
   --include=cards \
     --include=cards/**/.* \
   --include=extra \
@@ -67,8 +67,8 @@ rsync -avrt --delete \
     --include=sources/**/.* \
   --include=spaces \
     --include=spaces/**/.* \
-  --include=vault \
-    --include=vault/**/.* \
+  --include=pkm \
+    --include=pkm/**/.* \
   --exclude=Desktop \
   --exclude=Downloads \
   --exclude=tmp/**/.* \
