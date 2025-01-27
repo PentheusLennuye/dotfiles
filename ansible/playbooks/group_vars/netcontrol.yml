@@ -11,12 +11,21 @@ named:
   subnets:
     - netid: 68
       hosts:
-        docker: 13
         goemon: 73
         goliath: 74
-        jigen: 12
+        jigen: 75 
+        zantetsuken: 76
+        argocd: 21
+        awx: 21
+        gitlab: 21
+        harbor: 21
         mtl-lba: 21
+        vault: 21
         mtl-printer: 61
+        ns1: 31
+        krb: 13
+        ldap: 14
+        ca: 15
         ns: 31
         ns2: 32
         portainer: 14
@@ -24,7 +33,6 @@ named:
         rpi2: 32
         rpi3: 33
         rpi4: 34
-        zantetsuken: 11
     - netid: 73
       hosts:
         fujiko: 12
