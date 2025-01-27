@@ -15,14 +15,20 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7c9ccbd8-a8a4-4606-b66b-c85603460617";
+    { device = "/dev/disk/by-label/NIXOS_ROOT";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3CAC-1914";
+    { device = "/dev/disk/by-label/NIXOS_BOOT";
       fsType = "vfat";
     };
+
+  fileSystems."/srv" =
+    { device = "/dev/disk/by-label/FSSRV";
+      fsType = "ext4";
+    };
+
 
   swapDevices = [ ];
 
