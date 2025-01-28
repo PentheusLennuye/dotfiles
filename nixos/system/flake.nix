@@ -74,6 +74,7 @@
       jigen = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = common_modules ++ [
+          ./roles/dbms.nix
           ./hosts/jigen
           ./roles/container-host.nix
           ./roles/k3s-server.nix
