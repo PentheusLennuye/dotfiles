@@ -67,6 +67,7 @@
           ./roles/gaming.nix
           ./roles/montreal.nix
           ./roles/publishing.nix
+          ./roles/remote-access.nix
           ./roles/virt-host.nix
           ./roles/workstation.nix
         ];
