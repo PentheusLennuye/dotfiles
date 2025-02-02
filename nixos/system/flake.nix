@@ -3,17 +3,18 @@
   description = "NixOS Flakes for Cummings workstations";
  
   inputs = {
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # home-manager = {
+    #   url = "github:nix-community/home-manager/release-24.11";
+    #  # inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
-  outputs = { self, home-manager, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
+  #outputs = { self, home-manager, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
+  outputs = { self, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
               
   let 
     system = "x86_64-linux";
@@ -29,11 +30,11 @@
         ./roles/common.nix
         ./roles/kubernetes-ctl.nix
         ./users.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit unstable; };
-        }
+        # home-manager.nixosModules.home-manager {
+        #   home-manager.useGlobalPkgs = true;
+        #   home-manager.useUserPackages = true;
+        #   home-manager.extraSpecialArgs = { inherit unstable; };
+        # }
     ];
   in
   {
