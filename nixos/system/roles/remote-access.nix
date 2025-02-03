@@ -1,9 +1,8 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-    services.xrdp = {
-        enable = true;
-        defaultWindowManager = "Hyprland -c ~/.config/hypr/hyprland-headless.conf";
-        openFirewall = true;
-    };
+    environment.systemPackages = with pkgs; [
+        pkgs.wayvnc
+    ];
+    networking.firewall.allowedTCPPorts = [ 5900 ];
 }

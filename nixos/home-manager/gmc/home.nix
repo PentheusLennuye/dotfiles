@@ -14,6 +14,7 @@
     ./starship.nix
     ./vscode.nix
     ./waybar.nix
+    ./wayvnc.nix
     ./wofi.nix
     ./zsh.nix
   ];
