@@ -53,7 +53,7 @@
           ./roles/gaming.nix
           ./roles/laptop.nix
           ./roles/publishing.nix
-          ./roles/workstation-light.nix
+          ./roles/workstation.nix
         ];
       };
       goemon = nixpkgs.lib.nixosSystem {
