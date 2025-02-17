@@ -18,19 +18,30 @@ in
       layer = "top";
       position = "top";
       modules-left = [ "battery" "temperature" "cpu" "memory" "disk"
-                       "hyprland/window" ];
-      modules-center = [ "custom/ireland" "custom/clock" "custom/germany" ];
+                       "hyprland/workspaces" ];
+      modules-center = [ "custom/ireland" "custom/clock" "custom/germany"
+                         "custom/china" ];
       modules-right = [ "workspaces" "pulseaudio" "idle_inhibitor"
                         "custom/notification" "tray" "network" ];
       "hyprland/workspaces" = {
-      	format = "{icon}8";
+        all-outputs = true;
+        disable-scroll = true; 
+      	format = "{icon}";
       	format-icons = {
-          default = " ";
-          active = " ";
-          urgent = " ";
+          active = "●";
+          default = "○";
+          persistent = "○";
+          urgent = "⦻";
       	};
       	on-scroll-up = "hyprctl dispatch workspace e+1";
       	on-scroll-down = "hyprctl dispatch workspace e-1";
+        persistent-workspaces = {
+          "1" = [];
+          "2" = [];
+          "3" = [];
+          "4" = [];
+          "5" = [];
+        };
       };
       "custom/clock" = {
         exec = "date +'%I:%M %p, %a %b %d'";
@@ -50,18 +61,24 @@ in
       	tooltip = false;
         interval = 15;
       };
+      "custom/china" = {
+        exec = "TZ=':Asia/Shanghai' date +'%I:%M %p'";
+        format = "🇨🇳 {}";
+      	tooltip = false;
+        interval = 15;
+      };
       "memory" = {
       	interval = 5;
-      	format = "  {}%";
+      	format = "記憶 {used}/{total}GiB";
         tooltip = true;
       };
       "cpu" = {
       	interval = 5;
-      	format = " {usage:2}%";
+      	format = "負荷 {usage:2}%";
         tooltip = true;
       };
       "disk" = {
-        format = "🖴 {free}";
+        format = " ディスク {percentage_used}%";
         tooltip = true;
       };
       "network" = {
@@ -72,7 +89,7 @@ in
         tooltip = false;
       };
       "temperature" = {
-        format = "🌡️{temperatureC}°C";
+        format = "温度 {temperatureC}°C";
       };
       "tray" = {
         spacing = 12;
@@ -147,29 +164,25 @@ in
           border-radius: 0px;
 	}
 	#workspaces {
-    		background: linear-gradient(180deg, #9e9e9e, #9e9e9e);
+    		background: rgba(0,0,0,0);
     		margin: 5px;
-    		padding: 0px 1px;
+    		padding: 2px 1px;
     		border-radius: 0px 5px 5px 0px;
     		border: 0px;
     		font-style: normal;
 	}
 	#workspaces button {
+            color: ${colour_a};
     		padding: 0px 5px;
-    		margin: 4px 3px;
     		border-radius: 15px;
     		border: 0px;
     		opacity: 1.0;
-    		transition: all 0.3s ease-in-out;
 	}
-	#workspaces button.active {
+	#workspaces button:hover{
+            color: ${colour_a};
+    		padding: 0px 5px;
     		border-radius: 15px;
-    		min-width: 40px;
-    		transition: all 0.3s ease-in-out;
-    		opacity: 1.0;
-	}
-	#workspaces button:hover {
-    		border-radius: 15px;
+    		border: 0px;
     		opacity: 1.0;
 	}
 	tooltip {
@@ -196,32 +209,31 @@ in
     		padding: 2px 20px;
 	}
 	#temperature {
-            background-color: ${colour_a};
-            color: ${grey};
+            color: ${colour_a};
     		border-radius: 15px 0px 0px 50px;
     		margin: 5px 0px 5px 5px;
-    		padding: 2px 20px;
+    		padding: 2px 10px;
 	}
 	#cpu {
-            background-color: ${colour_a};
-            color: ${grey};
+    		background-color: rgba(0,0,0,0);
+            color: ${colour_a};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
-    		padding: 2px 20px;
+    		padding: 2px 10px;
 	}
 	#memory {
-            background-color: ${colour_a};
-            color: ${grey};
+    		background-color: rgba(0,0,0,0);
+            color: ${colour_a};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px 0px 5px 5px;
     		padding: 2px 10px;
 	}
 	#disk {
-            background-color: ${colour_a};
-            color: ${grey};
+    		background-color: rgba(0,0,0,0);
+            color: ${colour_a};
     		border-radius: 0px 0px 0px 0px;
     		margin: 5px;
-    		padding: 2px 20px;
+    		padding: 2px 10px;
 	}
 	#custom-ireland {
             color: ${colour_c};
@@ -238,6 +250,13 @@ in
     		padding: 2px 20px;
 	}
 	#custom-germany {
+            color: ${colour_c};
+            background-color: #000000;
+    		border-radius: 0px;
+    		margin: 5px;
+    		padding: 2px 20px;
+	}
+	#custom-china {
             color: ${colour_c};
             background-color: #000000;
     		border-radius: 0px 50px 15px 0px;

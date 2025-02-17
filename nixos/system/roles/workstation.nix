@@ -25,15 +25,8 @@ in
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     pkgs.hypridle
     pkgs.qt6.qtwayland
-    pkgs.kdePackages.kaddressbook
     pkgs.kdePackages.kcalc
-    pkgs.kdePackages.kde-cli-tools
-    pkgs.kdePackages.kdepim-runtime  # Required for kmail
     pkgs.kdePackages.kmahjongg
-    pkgs.kdePackages.kmail
-    pkgs.kdePackages.kmail-account-wizard
-    pkgs.kdePackages.kontact
-    pkgs.kdePackages.kpat
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
     pkgs.xwayland
