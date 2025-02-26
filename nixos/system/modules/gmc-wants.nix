@@ -9,6 +9,7 @@ let
     _1password-gui                         # 1Password password manager
     anki                                   # Flashcards, requires QT
     appimage-run                           # Needed for Cider 2
+    calibre                                # eBook software
     canon-cups-ufr2
     dexed                                  # DX7 VST plugin
     digikam

@@ -50,7 +50,7 @@ in
         interval = 15;
       };
       "custom/ireland" = {
-        exec = "TZ=':RST' date +'%I:%M %p'";
+        exec = "TZ=':IST' date +'%I:%M %p'";
         format = "🇮🇪 {}";
       	tooltip = false;
         interval = 15;
