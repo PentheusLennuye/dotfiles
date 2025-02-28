@@ -48,9 +48,9 @@
       format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
     };
     hostname = {
-      format = "[ $hostname]($style)[:]($style)";
-      ssh_only = false;
-      style = "fg:#e3e5e5 bg:#769ff0";
+      format = "[$hostname]($style)";
+      ssh_only = true;
+      style = "bg:#a3aed2 fg:#090c0c";
     };
     kubernetes = {
       symbol = "⎈";

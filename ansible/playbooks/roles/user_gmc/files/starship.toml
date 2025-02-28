@@ -1,8 +1,8 @@
 format = """
 [░▒▓](#a3aed2)\
 [  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
 $hostname\
+[](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
@@ -38,7 +38,8 @@ style = "bg:#394260"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [hostname]
-format = '[ $hostname]($style)[:]($style)'
+format = '[$hostname]($style)'
+ssh_only = true
 style = "fg:#e3e5e5 bg:#769ff0"
 
 [nodejs]
