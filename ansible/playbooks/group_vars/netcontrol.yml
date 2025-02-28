@@ -5,12 +5,13 @@ named:
   negative_cache_ttl: 86400
   refresh: 86400
   retry: 28800
-  serial: 2025022401
+  serial: 2025022801
   ttl: 86400
   v6: false
   subnets:
     - netid: 68
       hosts:
+        lupin: 71
         goemon: 73
         goliath: 74
         jigen: 75 
