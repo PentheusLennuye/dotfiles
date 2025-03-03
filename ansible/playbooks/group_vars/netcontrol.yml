@@ -12,9 +12,9 @@ named:
     - netid: 68
       hosts:
         lupin: 71
+        jigen: 72 
         goemon: 73
         goliath: 74
-        jigen: 75 
         zantetsuken: 76
         zenigata: 77
         mtl-lba: 21
