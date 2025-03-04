@@ -29,6 +29,7 @@ in
     pkgs.kdePackages.kmahjongg
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.texlivePackages.charter
     pkgs.xwayland
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
