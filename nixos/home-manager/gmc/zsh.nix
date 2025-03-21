@@ -36,6 +36,7 @@
       ll="ls -l";
       la="ls -la";
       ssh="TERM=xterm-256color ssh";
+      vsh="TERM=xterm-256color vagrant ssh";
       sns="sudo nixos-rebuild switch";
       snt="sudo nixos-rebuild test";
     };
