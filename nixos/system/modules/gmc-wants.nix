@@ -26,6 +26,7 @@ let
     hunspellDicts.fr-any
     hyprpaper                              # wallpaper for Hyprland
     inkscape
+    keymapp                                # flashing onyx keyboards
     kitty
     obsidian
     onlyoffice-desktopeditors
