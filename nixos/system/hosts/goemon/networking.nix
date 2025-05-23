@@ -15,8 +15,8 @@
           { address = "192.168.68.73"; prefixLength = 24; }
         ];
         routes = [
-          { address = "10.0.0.0"; prefixLength = 8; via = "192.168.68.253"; }
-          { address = "172.16.73.0"; prefixLength = 24; via = "192.168.68.253"; }
+          { address = "10.0.0.0"; prefixLength = 8; via = "192.168.68.254"; }
+          { address = "172.16.73.0"; prefixLength = 24; via = "192.168.68.254"; }
         ];
       };
     };
