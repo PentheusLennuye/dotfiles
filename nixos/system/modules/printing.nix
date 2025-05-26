@@ -8,7 +8,7 @@ with lib;
         name = "Brother_HL_2370DW";
         location = "Jean-Brillant";
         deviceUri = "ipp://mtl-printer/ipp/print";
-        model = "drv:///brlaser.drv/brl2375w.ppd";
+        model = "drv:///brlaser.drv/brl2370d.ppd";
         ppdOptions = {
           PageSize = "Letter";
         };
