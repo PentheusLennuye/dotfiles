@@ -33,7 +33,6 @@ let
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
     screenfetch                            # Show off!
-    skypeforlinux
     slurp                                  # Hyprland screen selector
     starship
     surge                                  # synthesizer

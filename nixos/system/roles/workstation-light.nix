@@ -53,7 +53,7 @@ in
     noto-fonts-cjk-sans
     noto-fonts-emoji
     proggyfonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerdfonts.jetbrains-mono
   ];
 
   i18n.inputMethod = {
