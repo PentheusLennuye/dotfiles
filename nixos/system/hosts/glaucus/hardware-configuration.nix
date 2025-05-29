@@ -24,6 +24,7 @@
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     enableAllFirmware = true;
+    opentabletdriver.enable = true;
   };
 
   swapDevices =
