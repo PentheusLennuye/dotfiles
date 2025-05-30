@@ -86,5 +86,10 @@ in
     displayManager.defaultSession = "hyprland";
     xserver.enable = true;
   };
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput",MODE:="0666",OPTIONS+="static_node=uinput"
+    SUBSYSTEMS=="usb",ATTRS{idVendor}=="28bd",MODE:="0666"
+  '';
 }
 
