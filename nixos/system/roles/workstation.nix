@@ -33,6 +33,7 @@ in
     pkgs.teams
     pkgs.texlivePackages.charter
     pkgs.xwayland
+    pkgs.zoom-us
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]

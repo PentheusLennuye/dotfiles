@@ -39,6 +39,7 @@ in
     pkgs.elegant-sddm
     pkgs.teams
     pkgs.xwayland
+    pkgs.zoom-us
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
