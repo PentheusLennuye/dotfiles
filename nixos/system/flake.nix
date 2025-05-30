@@ -3,10 +3,6 @@
   description = "NixOS Flakes for Cummings workstations";
  
   inputs = {
-    # home-manager = {
-    #   url = "github:nix-community/home-manager/release-24.11";
-    #  # inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -30,11 +26,6 @@
         ./roles/common.nix
         ./roles/kubernetes-ctl.nix
         ./users.nix
-        # home-manager.nixosModules.home-manager {
-        #   home-manager.useGlobalPkgs = true;
-        #   home-manager.useUserPackages = true;
-        #   home-manager.extraSpecialArgs = { inherit unstable; };
-        # }
     ];
   in
   {
@@ -43,7 +34,7 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
-	  nixos-hardware.nixosModules.lenovo-thinkpad-x250
+	      nixos-hardware.nixosModules.lenovo-thinkpad-x250
           ./gpu/opengl.nix
           ./hosts/glaucus
           ./roles/audio-engineering.nix
@@ -88,13 +79,39 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
-	  nixos-hardware.nixosModules.apple-macbook-pro-12-1
-          ./gpu/opengl.nix
+          ./roles/dbms.nix
           ./hosts/lupin
+          ./roles/container-host.nix
+          ./roles/k3s-server.nix
+          ./roles/montreal.nix
+          ./roles/webhost.nix
+         ];
+      };
+      murasaki = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs unstable;};
+        modules = common_modules ++ [
+          ./gpu/opengl.nix
+          ./hosts/murasaki
+          ./roles/audio-engineering.nix
+          ./roles/container-host.nix
           ./roles/development.nix
+          ./roles/gaming.nix
           ./roles/laptop.nix
-          ./roles/workstation-light.nix
+          ./roles/publishing.nix
+          ./roles/workstation.nix
         ];
+      };
+      zenigata = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs unstable;};
+        modules = common_modules ++ [
+          ./hosts/zenigata
+          ./roles/container-host.nix
+          ./roles/k3s-server.nix
+          ./roles/montreal.nix
+          ./roles/webhost.nix
+         ];
       };
     };
   };
