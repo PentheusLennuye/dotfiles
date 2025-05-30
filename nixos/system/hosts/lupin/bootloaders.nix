@@ -5,13 +5,24 @@
 { config, pkgs, ... }:
 
 {
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  boot = {
+    extraModulePackages = [ ];
+    initrd = {
+        availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+        kernelModules = [ ];
     };
-    systemd-boot = {
-      enable = true;
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = ["i915.enable_dc=0"];
+    loader = {
+        systemd-boot = {
+            enable = true;
+        };
+        efi = {
+            canTouchEfiVariables = true;
+        };
     };
   };
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  networking.useDHCP = lib.mkDefault false;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

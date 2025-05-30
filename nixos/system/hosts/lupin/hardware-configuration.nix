@@ -5,41 +5,21 @@
 
 {
   imports =
-    [ (modulesPath + "/hardware/network/broadcom-43xx.nix")
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "applespi" "spi_pxa2xx_platform" "spi_pxa2xx_pci" "intel_lpss_pci" "hid_generic" "hid_apple" "applesmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "mem_sleep_default=deep" "resume_offset=0"];
-  boot.extraModulePackages = [ ];
-  boot.resumeDevice = "/dev/disk/by-uuid/2c1641f2-69b1-475d-a297-54a2bb19f5ba";
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/54042708-7943-48ae-8406-952707935d77";
+    { device = "/dev/disk/by-uuid/2cbb329e-2ae1-428e-a736-dd413a7c0a5c";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3E79-EAF9";
+    { device = "/dev/disk/by-uuid/C03D-95CE";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-
-  powerManagement.cpuFreqGovernor = "schedutil";
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/2c1641f2-69b1-475d-a297-54a2bb19f5ba"; }
-    ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  swapDevices = [ ];
 }
