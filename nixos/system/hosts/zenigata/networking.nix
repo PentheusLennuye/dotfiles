@@ -9,7 +9,7 @@
       enp2s0.ipv4.addresses = [
         { address = "172.16.73.4"; prefixLength = 24; }
       ];
-      enp0s20f0u2.ipv2.addresses = [
+      enp0s20f0u2.ipv4.addresses = [
         { address = "10.11.0.4"; prefixLength = 8; }
       ];
     };
