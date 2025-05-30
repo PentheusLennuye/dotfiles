@@ -6,10 +6,9 @@
 
 {
   boot = {
-    extraModulePackages = [ ];
     initrd = {
         availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ ];
+        kernelModules = [ "kvm-intel" ];
     };
     kernelModules = [ "kvm-intel" ];
     kernelParams = ["i915.enable_dc=0"];
@@ -22,7 +21,4 @@
         };
     };
   };
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  networking.useDHCP = lib.mkDefault false;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
