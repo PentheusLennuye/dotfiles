@@ -37,7 +37,6 @@ in
     pkgs.kdePackages.kpat
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
-    pkgs.teams
     pkgs.xwayland
     pkgs.zoom-us
     # See background-package above
