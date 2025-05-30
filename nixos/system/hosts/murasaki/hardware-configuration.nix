@@ -8,11 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/6bdf82b7-05d1-4e1b-9e00-438def653fa8";
       fsType = "ext4";
@@ -30,7 +25,6 @@
     opentabletdriver.enable = true;
   };
 
-  networking.useDHCP = lib.mkDefault false;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   swapDevices =

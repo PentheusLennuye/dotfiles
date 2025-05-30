@@ -6,6 +6,7 @@
 
 {
   boot = {
+    extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
       kernelModules = [ "kvm-intel" ];
