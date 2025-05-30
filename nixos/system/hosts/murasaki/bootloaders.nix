@@ -9,7 +9,6 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
       kernelModules = [ "kvm-intel" ];
-      extraModulePackages = [ ];
     };
     kernelModules = ["kvm-intel"];
     kernelParams = [ "mem_sleep_default=deep" "resume_offset=0" ];
