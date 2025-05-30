@@ -9,12 +9,12 @@
     ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2cbb329e-2ae1-428e-a736-dd413a7c0a5c";
+    { device = "/dev/disk/by-partlabel/root";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/C03D-95CE";
+    { device = "/dev/disk/by-partlabel/EFI";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
