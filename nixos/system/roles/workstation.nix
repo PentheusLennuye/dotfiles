@@ -24,6 +24,7 @@ in
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     pkgs.hypridle
+    pkgs.hyprpolkitagent
     pkgs.qt6.qtwayland
     pkgs.kdePackages.kcalc
     pkgs.kdePackages.kmahjongg
