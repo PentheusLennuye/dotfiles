@@ -28,6 +28,7 @@ let
     inkscape
     keymapp                                # flashing onyx keyboards
     kitty
+    krita                                  # Painting app
     obsidian
     onlyoffice-desktopeditors
     pavucontrol                            # PulseAudio control requires GTK
