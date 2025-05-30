@@ -37,6 +37,7 @@ in
     pkgs.kdePackages.kpat
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.teams
     pkgs.xwayland
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''

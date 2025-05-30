@@ -30,6 +30,7 @@ in
     pkgs.kdePackages.kmahjongg
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.teams
     pkgs.texlivePackages.charter
     pkgs.xwayland
     # See background-package above
