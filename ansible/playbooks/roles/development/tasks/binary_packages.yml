@@ -4,8 +4,8 @@
   ansible.builtin.package:
     state: latest
     name:
-      - docker
-      - python3.11
-      - python3.11-venv
+      # - docker
+      - python3.12
+      - python3.12-venv
       - python3-invoke
       - ruby

@@ -3,7 +3,7 @@
 # knw-access.cummings-online.local
 
 [development]
-#goliath
+localhost ansible_connection=local
 
 [gps]
 rpi1.cummings-online.local
@@ -18,6 +18,8 @@ rpi1.cummings-online.local
 rpi2.cummings-online.local
 jigen.cummings-online.local
 lupin.cummings-online.local
+localhost ansible_connection=local
+
 
 [netcontrol]
 ns3.cummings-online.local
