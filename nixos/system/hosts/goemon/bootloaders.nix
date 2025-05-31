@@ -5,11 +5,23 @@
 { config, pkgs, ... }:
 
 {
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  boot = {
+    extraModulePackages = [ ];
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ "nfs" ];
+      supportedFilesystems = [ "nfs" ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    loader = {
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
     };
   };
 }
+

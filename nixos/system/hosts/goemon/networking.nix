@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   networking = {
@@ -20,11 +20,18 @@
         ];
       };
     };
+    useDHCP = lib.mkDefault false;
   };
 
-  services.openssh.enable = true;
-  services.openssh.settings = {
-    PasswordAuthentication = true;
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+      };
+    };
+    rpcbind = {
+      enable = true;
+    };
   };
-  services.rpcbind.enable = true;
 }
