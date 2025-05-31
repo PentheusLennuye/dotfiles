@@ -7,7 +7,7 @@
     listenOn = [ "any" ];
     listenOnIpv6 = [ "none" ];
     cacheNetworks = [
-        "127.0.0.1/32"
+        "localhost"
         "10.11.0.0/16"
         "192.168.68.0/24"
         "192.168.73.0/24"
