@@ -17,6 +17,7 @@ let
     freetube                               # YouTube on chromium
     gimp
     glxinfo                                # Testing glx info
+    openpomodoro-cli
     grim                                   # Wayland image grabber
     handbrake                              # Converts video formats
     hunspell
