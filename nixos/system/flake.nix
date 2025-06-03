@@ -86,6 +86,7 @@
           ./hosts/lupin
           ./roles/container-host.nix
           ./roles/k3s-server.nix
+          ./roles/time.nix
           ./roles/montreal.nix
           ./roles/webhost.nix
          ];
