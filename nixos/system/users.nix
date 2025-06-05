@@ -7,7 +7,7 @@
   users.users.gmc= {
     isNormalUser = true;
     description = "George Cummings";
-    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" "video" "input"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "docker" "video" "input" "dialout"];
     shell = pkgs.zsh;
   };
   security.pam.loginLimits = [
