@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  config.services.chrony = {
+  environment.systemPackages = with pkgs; [
+    gpsd
+  ];
+  services.chrony = {
     enable = true;
     extraConfig = ''
       allow 10.0.0.0/8
@@ -11,7 +14,7 @@
       refclock SHM 0 refid GPS offset 0.000 precision 1e-3 poll 3 trust
     '';
   };
-  config.services.gpsd = {
+  services.gpsd = {
     enable = true;
     devices = [ "/dev/ttyACM0" ];
   };
