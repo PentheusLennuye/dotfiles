@@ -25,7 +25,7 @@
           $TTL 86400
           $ORIGIN cummings-online.local.
           @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-           2025052401 ; serial
+           2025060801 ; serial
            86400 ; refresh
            28800 ; retry
            604800 ; expire
@@ -52,9 +52,9 @@
           knw-ha      IN	A	192.168.73.41
           knw-jump    IN	A	192.168.73.42
           canon	      IN	A	192.168.73.61
-          lupin       IN        A       172.16.73.2
-          jigen       IN        A       172.16.73.3
-          zenigata    IN        A       172.16.73.3
+          lupin       IN    A   172.16.73.2
+          jigen       IN    A   172.16.73.3
+          zenigata    IN    A   172.16.73.4
           ns3         IN	A	192.168.73.31
           
           time IN CNAME lupin.cummings-online.local.
