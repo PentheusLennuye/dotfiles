@@ -15,7 +15,7 @@
           peers = [
             {
               endpoint = "vlb.hopto.me:51821";
-              allowedIPs = [ "192.168.73.0/24" ];
+              allowedIPs = [ "192.168.73.0/24" "172.16.75.0/24" ];
               persistentKeepalive = 25;
               publicKey = "PIbyx7f4FQtpzqBwmT04bQuGJCVIp/1kTwTvt6JweDE=";
             }
