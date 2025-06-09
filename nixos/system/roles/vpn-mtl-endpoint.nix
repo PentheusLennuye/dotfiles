@@ -16,7 +16,7 @@
             {
               # Knowlton S2S
               endpoint = "vlb.hopto.me:51821";
-              allowedIPs = [ "192.168.73.0/24" "10.0.0.0/24" ];
+              allowedIPs = [ "192.168.73.0/24" ];
               persistentKeepalive = 25;
               publicKey = "PIbyx7f4FQtpzqBwmT04bQuGJCVIp/1kTwTvt6JweDE=";
             }
@@ -33,7 +33,7 @@
             { # Murasaki Road Warrior
               allowedIPs = [ "10.0.0.252/32" ];
               persistentKeepalive = 25;
-              publicKey = "b+pr0zs+EcKon9GmEoKnPWM8/IzOTupe2ABXRD62/w4=";
+              publicKey = "vDx10CTlefppWDnltswJ5ad+F6hjLWDzxQD6J4tSbEg=";
             }
           ];
         };
