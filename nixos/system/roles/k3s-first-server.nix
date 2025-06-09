@@ -6,7 +6,6 @@
         role = "server";
         token = "qnCsvCk93DcsNDWzpAw9Nfs7RGFNpXm9";
         extraFlags = toString [ "--disable=traefik" ];
-        serverAddr = "https://lupin.cummings-online.local:6443";
     };
 
     # High Availability etcd requires 2379 2380

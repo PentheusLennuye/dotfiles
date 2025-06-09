@@ -85,7 +85,7 @@
           ./roles/development.nix
           ./hosts/lupin
           ./roles/container-host.nix
-          ./roles/k3s-server.nix
+          ./roles/k3s-first-server.nix
           ./roles/montreal.nix
           ./roles/time.nix
           ./roles/webhost.nix
