@@ -15,12 +15,9 @@
       };
     };
 
-    # Virtual stuff ----------------------------------------------------
-    bridges = {
-      "br1" = {interfaces = [ "enp0s20f0u2" ]; rstp = true;};
-    };
+    # VLANS ----------------------------------------------------
     vlans = {
-      vlan11 = {id = 11; interface = "br1";};
+      vlan11 = {id = 11; interface = "enp0s20f0u2"; addresses = [ "10.11.0.0/16" ]; };
     };
   };
 
