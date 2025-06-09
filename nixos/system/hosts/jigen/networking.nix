@@ -17,7 +17,8 @@
 
     # VLANS ----------------------------------------------------
     vlans = {
-      vlan11 = {id = 11; interface = "enp0s20f0u2"; addresses = [ "10.11.0.0/16" ]; };
+      vlan10 = {id = 10; interface = "enp0s20f0u2"; };
+      vlan11 = {id = 11; interface = "enp0s20f0u2"; };
     };
   };
 
