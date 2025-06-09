@@ -22,17 +22,14 @@
             }
             { # Glaucus Road Warrior
               allowedIPs = [ "10.0.0.254/32" ];
-              persistentKeepalive = 25;
               publicKey = "4DUYe0fUEh222uCyO8VMCesTRbwUPwQr4KGnz4m8/FM=";
             }
             { # Bunkai Road Warrior
               allowedIPs = [ "10.0.0.253/32" ];
-              persistentKeepalive = 25;
               publicKey = "22WG+k6hqPS3nPf0Tk4fJk6Pag9WUnoUMcihCYemaiw=";
             }
             { # Murasaki Road Warrior
               allowedIPs = [ "10.0.0.252/32" ];
-              persistentKeepalive = 25;
               publicKey = "vDx10CTlefppWDnltswJ5ad+F6hjLWDzxQD6J4tSbEg=";
             }
           ];
