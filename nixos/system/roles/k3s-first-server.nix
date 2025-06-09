@@ -2,6 +2,7 @@
 
 {
     services.k3s = {
+        clusterInit = true;
         enable = true;
         role = "server";
         token = "qnCsvCk93DcsNDWzpAw9Nfs7RGFNpXm9";
