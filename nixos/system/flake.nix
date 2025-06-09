@@ -71,7 +71,7 @@
           ./roles/dbms.nix
           ./hosts/jigen
           ./roles/container-host.nix
-          ./roles/k3s-server.nix
+          #./roles/k3s-server.nix
           ./roles/montreal.nix
           ./roles/webhost.nix
         ];
@@ -85,7 +85,7 @@
           ./roles/development.nix
           ./hosts/lupin
           ./roles/container-host.nix
-          ./roles/k3s-first-server.nix
+          #./roles/k3s-first-server.nix
           ./roles/montreal.nix
           ./roles/time.nix
           ./roles/webhost.nix
@@ -112,7 +112,7 @@
         modules = common_modules ++ [
           ./hosts/zenigata
           ./roles/container-host.nix
-          ./roles/k3s-server.nix
+          # ./roles/k3s-server.nix
           ./roles/montreal.nix
           ./roles/webhost.nix
           ./roles/vpn-mtl-endpoint.nix
