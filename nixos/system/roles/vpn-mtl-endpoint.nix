@@ -21,17 +21,17 @@
               publicKey = "PIbyx7f4FQtpzqBwmT04bQuGJCVIp/1kTwTvt6JweDE=";
             }
             { # Glaucus Road Warrior
-              allowedIPs = [ "10.0.0.254/24" ];
+              allowedIPs = [ "10.0.0.254/32" ];
               persistentKeepalive = 25;
               publicKey = "4DUYe0fUEh222uCyO8VMCesTRbwUPwQr4KGnz4m8/FM=";
             }
             { # Bunkai Road Warrior
-              allowedIPs = [ "10.0.0.253/24" ];
+              allowedIPs = [ "10.0.0.253/32" ];
               persistentKeepalive = 25;
               publicKey = "22WG+k6hqPS3nPf0Tk4fJk6Pag9WUnoUMcihCYemaiw=";
             }
             { # Murasaki Road Warrior
-              allowedIPs = [ "10.0.0.252/24" ];
+              allowedIPs = [ "10.0.0.252/32" ];
               persistentKeepalive = 25;
               publicKey = "b+pr0zs+EcKon9GmEoKnPWM8/IzOTupe2ABXRD62/w4=";
             }
