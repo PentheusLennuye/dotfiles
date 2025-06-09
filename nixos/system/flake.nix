@@ -115,7 +115,7 @@
           ./roles/k3s-server.nix
           ./roles/montreal.nix
           ./roles/webhost.nix
-          ./roles/vpn-knw-endpoint
+          ./roles/vpn-mtl-endpoint.nix
          ];
       };
     };
