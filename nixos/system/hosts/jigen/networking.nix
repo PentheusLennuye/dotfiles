@@ -20,7 +20,7 @@
       "br1" = {interfaces = [ "enp0s20f0u2" ]; rstp = true;};
     };
     vlans = {
-      vlan11 = {id = 11, interface = "br1";};
+      vlan11 = {id = 11; interface = "br1";};
     };
   };
 
