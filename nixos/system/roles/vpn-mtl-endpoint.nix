@@ -18,7 +18,7 @@
             persistentKeepalive = 25;
             publicKey = "PIbyx7f4FQtpzqBwmT04bQuGJCVIp/1kTwTvt6JweDE=";
 
-          };
+          }
         ];
       };
 
