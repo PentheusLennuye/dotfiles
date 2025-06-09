@@ -9,6 +9,12 @@
         serverAddr = "https://lupin.cummings-online.local:6443";
     };
 
+    networking.extraHosts = ''
+      172.16.73.2 lupin.cummings-online.local lupin
+      172.16.73.3 jigen.cummings-online.local jigen
+      172.16.73.4 zenigata.cummings-online.local zenigata
+    '';
+
     # High Availability etcd requires 2379 2380
     networking.firewall.allowedTCPPorts = [ 6443 2379 2380 ];
 
