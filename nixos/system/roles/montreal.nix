@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {    
-  networking.nameservers = [ "172.16.73.2" "172.16.73.3" ];
+  networking.nameservers = [ "10.11.0.2" "10.11.0.3" ];
   services.timesyncd = {
-    servers = [ "172.16.73.2" ];
+    servers = [ "10.11.0.2" ];
     extraConfig = ''
       FallbackNTP=${lib.concatStringsSep " " config.networking.timeServers}
     '';

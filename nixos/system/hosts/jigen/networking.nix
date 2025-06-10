@@ -2,7 +2,7 @@
 
 {
   networking = {
-    defaultGateway = "172.16.73.1";
+    defaultGateway = "10.11.0.1";
     domain = "cummings-online.local";
     hostName = "jigen";
     useDHCP = lib.mkDefault false;
