@@ -8,10 +8,10 @@
     listenOnIpv6 = [ "none" ];
     cacheNetworks = [
         "localhost"
+        "10.0.0.0/24"
         "10.11.0.0/16"
         "192.168.68.0/24"
         "192.168.73.0/24"
-        "192.168.75.0/24"
         "172.16.73.0/24"
     ];
     extraOptions = ''
@@ -25,7 +25,7 @@
           $TTL 86400
           $ORIGIN cummings-online.local.
           @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-           2025060801 ; serial
+           2025060901 ; serial
            86400 ; refresh
            28800 ; retry
            604800 ; expire
@@ -34,7 +34,7 @@
           
           ; Required nameserver records ----------------------------------------
           @           IN    NS    ns.cummings-online.local.
-          ns          IN    A     172.16.73.2
+          ns          IN    A     10.11.0.2
           
           ; Hosts --------------------------------------------------------------
           gw-mtl      IN	A	192.168.68.1
@@ -48,14 +48,14 @@
           spectre     IN	A	192.168.68.254
           gw-knw      IN	A	192.168.73.1
           fujiko      IN	A	192.168.73.12
+          ns3         IN	A	192.168.73.31
           knw-access  IN	A	192.168.73.43
           knw-ha      IN	A	192.168.73.41
           knw-jump    IN	A	192.168.73.42
           canon	      IN	A	192.168.73.61
-          lupin       IN    A   172.16.73.2
-          jigen       IN    A   172.16.73.3
-          zenigata    IN    A   172.16.73.4
-          ns3         IN	A	192.168.73.31
+          lupin       IN    A   10.11.0.2
+          jigen       IN    A   10.11.0.3
+          zenigata    IN    A   10.11.0.4
           
           time IN CNAME lupin.cummings-online.local.
        '';
@@ -97,7 +97,7 @@
            61.73   IN PTR canon.cummings-online.local.
         '';
       };
-      "16.73.172.in-addr.arpa" = {
+      "11.10.in-addr.arpa" = {
         master = true;
         file = pkgs.writeText "db.172.16.73.local" ''
            $TTL 86400
@@ -111,12 +111,12 @@
            
            ; Required nameserver records ----------------------------------------
            @           IN    NS    ns.cummings-online.local.
-           ns          IN    A     172.16.73.2
+           ns          IN    A     10.11.0.2
            
            ; PTR --------------------------------------------------------------
-           2   IN PTR lupin.cummings-online.local.
-           3   IN PTR jigen.cummings-online.local.
-           4   IN PTR zenigata.cummings-online.local.
+           0.2   IN PTR lupin.cummings-online.local.
+           0.3   IN PTR jigen.cummings-online.local.
+           0.4   IN PTR zenigata.cummings-online.local.
         '';
       };
 
