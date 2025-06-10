@@ -25,7 +25,7 @@
           $TTL 86400
           $ORIGIN cummings-online.local.
           @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-           2025060901 ; serial
+           2025060902 ; serial
            86400 ; refresh
            28800 ; retry
            604800 ; expire
@@ -56,8 +56,10 @@
           lupin       IN    A   10.11.0.2
           jigen       IN    A   10.11.0.3
           zenigata    IN    A   10.11.0.4
+          ingress1    IN    A   10.11.0.10
           
           time IN CNAME lupin.cummings-online.local.
+          test IN CNAME ingress1.cummings-online.local.
        '';
 
       };
@@ -117,6 +119,7 @@
            0.2   IN PTR lupin.cummings-online.local.
            0.3   IN PTR jigen.cummings-online.local.
            0.4   IN PTR zenigata.cummings-online.local.
+           0.10  IN PTR ingress1.cummings-online.local.
         '';
       };
 
