@@ -13,12 +13,11 @@
           addresses = [{address = "172.16.73.4"; prefixLength = 24;}];
         };
       };
-    };
-
-    # VLANS ------------------------------------------------------------------
-    vlans = {
-      vlan10 = {id = 10; interface = "enp0s20f0u2"; };
-      vlan11 = {id = 11; interface = "enp0s20f0u2"; };
+      enp0s20f0u2 = {
+        ipv4 = {
+          addresses = [{address = "10.11.0.4"; prefixLength = 16;}];
+        };
+      };
     };
   };
 
