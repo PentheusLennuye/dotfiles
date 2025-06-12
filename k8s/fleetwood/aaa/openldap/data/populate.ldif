@@ -1,25 +1,36 @@
 version: 1
-dn: o=Cummings Online
-objectClass: top
-objectClass: organization
+dn: dc=cummings-online,dc=ca
+dc: cummings-online
+description: The Cummings/Sterescu family of Knowlton, Quebec, Canada.
+objectClass: domain
 o: Cummings Online
 
-dn: ou=People,o=Cummings Online
-objectClass: top
+dn: ou=people,dc=cummings-online,dc=ca
+description: Our family members. Used for system authentication as well as pers
+ onal information lookups
 objectClass: organizationalUnit
-ou: People
+ou: people
 
-dn: ou=Groups,o=Cummings Online
-objectClass: top
+dn: ou=groups,dc=cummings-online,dc=ca
+description: Authorization and distributed email groups composed of people and
+ other groups. Distinguished from roles, which are collections of permissions h
+ eld on downstream IT assets.
 objectClass: organizationalUnit
-ou: Groups
+ou: groups
 
-dn: ou=Roles,o=Cummings Online
-objectClass: top
+dn: ou=it,dc=cummings-online,dc=ca
+description: Data processing equipment including but not limited to computers,
+ switches, routers, peripherals, and upstream providers.
 objectClass: organizationalUnit
-ou: Roles
+ou: it
 
-dn: ou=Systems,o=Cummings Online
-objectClass: top
+dn: ou=assets,dc=cummings-online,dc=ca
+description: Non-computer inventory of worth such as furniture, homes, cars, wo
+ rkshop equipment.
 objectClass: organizationalUnit
-ou: Systems
+ou: assets
+
+dn: ou=contacts,dc=cummings-online,dc=ca
+description: The family shared address book
+objectClass: organizationalUnit
+ou: contacts

@@ -33,7 +33,7 @@ spec:
             - name: LDAP_PORT_NUMBER
               value: "389"
             - name: LDAP_ROOT
-              value: "o=Cummings Online"
+              value: "dc=cummings-online,dc=ca"
             - name: LDAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
