@@ -5,9 +5,9 @@
         openldap
     ];
 
-    users.ldap = {
-        base = "O=Cummings Online";
-        enable = true;
-        server = "ldap://ldap.cummings-online.local";
-    };
+#    users.ldap = {
+#        base = "O=Cummings Online";
+#        enable = true;
+#        server = "ldap://ldap.cummings-online.local";
+#    };
 }
