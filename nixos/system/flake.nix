@@ -67,7 +67,6 @@
       jigen = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = common_modules ++ [
-          ./roles/aaa.nix
           ./roles/dbms.nix
           ./hosts/jigen
           ./roles/container-host.nix
@@ -80,7 +79,6 @@
         inherit system;
         specialArgs = {inherit inputs unstable;};
         modules = common_modules ++ [
-          ./roles/aaa.nix
           ./roles/dbms.nix
           ./roles/development.nix
           ./hosts/lupin
