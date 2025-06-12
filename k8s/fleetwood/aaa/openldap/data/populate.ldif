@@ -1,0 +1,25 @@
+version: 1
+dn: o=Cummings Online
+objectClass: top
+objectClass: organization
+o: Cummings Online
+
+dn: ou=People,o=Cummings Online
+objectClass: top
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,o=Cummings Online
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Roles,o=Cummings Online
+objectClass: top
+objectClass: organizationalUnit
+ou: Roles
+
+dn: ou=Systems,o=Cummings Online
+objectClass: top
+objectClass: organizationalUnit
+ou: Systems
