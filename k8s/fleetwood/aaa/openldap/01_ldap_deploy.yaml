@@ -27,9 +27,15 @@ spec:
             - name: LDAP_ROOT
               value: "dc=cummings-online,dc=local"
             - name: LDAP_ADMIN_USERNAME
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: ldap-admin
+                  key: username 
             - name: LDAP_ADMIN_PASSWORD
-              value: adminpassword
+              valueFrom:
+                secretKeyRef:
+                  name: ldap-admin
+                  key: password
             - name: LDAP_SKIP_DEFAULT_TREE
               value: "yes"
           ports:
