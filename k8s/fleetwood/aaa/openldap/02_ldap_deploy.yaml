@@ -18,14 +18,22 @@ spec:
       labels:
         app: ldap
     spec:
+      volumes:
+        - name: tls-volume
+          secret:
+            secretName: ldap-tls
       containers:
         - name: openldap
           image: bitnami/openldap:latest
+          volumeMounts:
+            - name: tls-volume
+              readOnly: true
+              mountPath: /etc/tls
           env:
             - name: LDAP_PORT_NUMBER
               value: "389"
             - name: LDAP_ROOT
-              value: "dc=cummings-online,dc=local"
+              value: "o=Cummings Online"
             - name: LDAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -38,5 +46,20 @@ spec:
                   key: password
             - name: LDAP_SKIP_DEFAULT_TREE
               value: "yes"
+            - name: LDAP_ENABLE_TLS
+              value: "yes"
+            - name: LDAP_REQUIRE_TLS
+              value: "yes"
+            - name: LDAP_LDAPS_PORT_NUMBER
+              value: "636"
+            - name: LDAP_TLS_CERT_FILE
+              value: /etc/tls/ldap.crt
+            - name: LDAP_TLS_KEY_FILE
+              value: /etc/tls/ldap.key
+            - name: LDAP_TLS_CA_FILE
+              value: /etc/tls/ca.crt
+            - name: LDAP_TLS_DH_PARAMS_FILE
+              value: /etc/tls/dh.pem
           ports:
             - containerPort: 389
+            - containerPort: 636
