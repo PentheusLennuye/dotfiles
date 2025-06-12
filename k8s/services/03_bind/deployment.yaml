@@ -2,8 +2,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bind9-deployment
-  namespace: cummings-online-local
+  name: bind9
+  namespace: it
 spec:
   replicas: 2
   selector:
@@ -21,8 +21,12 @@ spec:
             items:
               - key: config
                 path: named.conf
-              - key: zone
+              - key: db-cummings-online
                 path: db.cummings-online.local
+              - key: db-10-11
+                path: db.10.11.local
+              - key: db-192-168
+                path: db.192.168.local
       containers:
         - name: bind9
           image: ubuntu/bind9:edge

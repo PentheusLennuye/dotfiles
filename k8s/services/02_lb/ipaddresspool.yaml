@@ -2,8 +2,8 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: cummings-online-local
+  name: it
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.68.21/24
+  - 10.11.0.10-10.11.255.253

@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ldap
+  name: ldap
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ldap
+    spec:
+      containers:
+        - name: openldap
+          image: bitnami/openldap:latest
+          env:
+            - name: LDAP_PORT_NUMBER
+              value: "389"
+            - name: LDAP_ROOT
+              value: "dc=cummings-online,dc=local"
+            - name: LDAP_ADMIN_USERNAME
+              value: admin
+            - name: LDAP_ADMIN_PASSWORD
+              value: adminpassword
+            - name: LDAP_SKIP_DEFAULT_TREE
+              value: "yes"
+          ports:
+            - containerPort: 389

@@ -1,0 +1,5 @@
+controller:
+  ingressClassResource:
+    default: true
+  service:
+    loadBalancerIP: 10.11.0.10

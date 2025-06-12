@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: 
+    cert-manager.io/cluster-issuer: it-issuer
+  name: it-ingress
+  namespace: it
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: test.cummings-online.local
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: nginx-test
+                port:
+                  number: 80
+  tls:
+    - secretName: test-tls
+      hosts:
+        - test.cummings-online.local

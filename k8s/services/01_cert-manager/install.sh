@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NS=cummings-online-local
+NS=it
 CERTPATHBASE=$1   # e.g. $HOME/tmp/cummings-online.local
 VERSION=v1.15.3
 REPO=https://github.com/cert-manager/cert-manager
