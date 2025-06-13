@@ -68,11 +68,11 @@ while [ -z "$password" ]; do
 done
 
 echo "Creating user"
-#echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}"
-#if [ $? -ne 0 ]; then
-#    echo "User $uid not created."
-#    exit 1
-#fi
+echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}"
+if [ $? -ne 0 ]; then
+    echo "User $uid not created."
+    exit 1
+fi
 
 ldif=$(cat <<EOF
 dn: cn=reader,$GOU
@@ -87,17 +87,16 @@ memberUid: $uid
 EOF
 )
 
-#echo "${ldif}" | ldapmodify -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
-
-ldappasswd -s "$password" -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}" "uid=${uid}"
+echo "${ldif}" | ldapmodify -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
+ldappasswd -s "$password" -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}" "cn=${cn},${OU}"
 if [ $? -ne 0 ]; then
     echo "User $uid password not set."
     exit 1
 fi
 
-# uidNumber
+echo "User created"
 
-# Build the LDIF -------------------------------------
+# Build the shadow, expiry, and personal info -------------------------------------
 #read -r -d '' ldif <<-EOF
 #    carLicense: $car_licence
 #    departmentNumber: $departmentNumber
