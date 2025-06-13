@@ -14,19 +14,25 @@ ou: people
 dn: ou=groups,dc=cummings-online,dc=ca
 description: Authorization and distributed email groups composed of people and
  other groups. Distinguished from roles, which are collections of permissions h
- eld on downstream IT assets.
+ eld on downstream IT assets
 objectClass: organizationalUnit
 ou: groups
 
-dn: ou=it,dc=cummings-online,dc=ca
-description: Data processing equipment including but not limited to computers,
- switches, routers, peripherals, and upstream providers.
+dn: ou=computers,dc=cummings-online,dc=ca
+description: Data processing equipment limited to servers, workstations and lap
+ tops
+objectClass: organizationalUnit
+ou: it
+
+dn: ou=devices,dc=cummings-online,dc=ca
+description: Data processing equipment that are not computers, such as tablets,
+ switches, routers, and so on
 objectClass: organizationalUnit
 ou: it
 
 dn: ou=assets,dc=cummings-online,dc=ca
 description: Non-computer inventory of worth such as furniture, homes, cars, wo
- rkshop equipment.
+ rkshop equipment. This includes rentals
 objectClass: organizationalUnit
 ou: assets
 
@@ -34,3 +40,21 @@ dn: ou=contacts,dc=cummings-online,dc=ca
 description: The family shared address book
 objectClass: organizationalUnit
 ou: contacts
+
+dn: cn=users,ou=groups,dc=cummings-online,dc=ca
+cn: admin
+description: All users with ldap rw and generalized elevated system access
+gidNumber: 10000
+objectClass: groupOfNames
+
+dn: cn=users,ou=groups,dc=cummings-online,dc=ca
+cn: users
+description: All users permitted to log into systems
+gidNumber: 10001
+objectClass: groupOfNames
+
+dn: cn=reader,ou=groups,dc=cummings-online,dc=ca
+cn: reader
+description: User accounts that can read ldap
+gidNumber: 10002
+objectClass: groupOfNames

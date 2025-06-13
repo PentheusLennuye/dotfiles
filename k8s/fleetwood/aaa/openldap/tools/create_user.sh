@@ -34,14 +34,41 @@ EOF
 
 [ -n "${initials}" ] && ldif=$(printf "${ldif}\ninitials: $initials")
 
-uid
+# RFC 4517 Directory String Syntax enforced by OpenLDAP
+uid=
+while [ -z "$uid" ]; do
+    read  -r -p "Username: " uid
+done
+
+ldif=$(printf "${ldif}\nuid: $uid")
 
 
-
+# RFC 4519 LDAP Schema for User Applications
+# RFC 4517 Octet String 1.3.6.1.4.1.1466.115.121.1.40
+# Password to be transcoded to Unicode, prepped with SASLprep (RFC4013)
+# and encoded as UTF-8. This will be done __ldappasswd__.
 password=
 while [ -z "$password" ]; do
-    read
+    read -r -s -p "Password: " firstpass
+    echo
+    read -r -s -p "Confirm password: " secondpass
+    echo
+    if [ "$firstpass" == "$secondpass" ]; then
+        password=$firstpass
+    else
+        echo "Passwords do not match"
+    fi
+done
 
+echo "Creating user"
+
+echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}" && \
+ldappasswd -s $password -D "${admin_dn}" -w "${PASSWORD}" "${cn},$OU}"
+
+if [ $? -ne 0 ]; then
+    echo "User $uid not created."
+    exit 1
+fi
 
 # uidNumber
 
@@ -77,5 +104,3 @@ while [ -z "$password" ]; do
 #EOF
 #
 ##echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}" 
-#
-echo "${ldif}"
