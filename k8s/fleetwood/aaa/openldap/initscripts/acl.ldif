@@ -32,6 +32,6 @@ dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to dn.subtree="dc=cummings-online,dc=ca"
-  by set.expand="([uid=] + ([cn=readers,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=readers,dc=cummings-online,dc=ca])/entryDN & user" read
+  by set.expand="([uid=] + ([cn=reader,ou=groups,dc=cummings-online,dc=ca]
+ )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" read
 
