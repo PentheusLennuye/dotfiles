@@ -7,7 +7,9 @@ GETSECRET="kubectl get secret ldap-admin -o json"
 PASSWORD=$(${GETSECRET} | jq -r '.data.password' | base64 -d)
 ADMIN=$(${GETSECRET} | jq -r '.data.username' | base64 -d)
 
-OU="ou=people,dc=cummings-online,dc=ca"
+DC="dc=cummings-online,dc=ca"
+OU="ou=people,${DC}"
+GOU="ou=groups,${DC}"
 
 admin_dn="cn=${ADMIN},dc=cummings-online,dc=ca"
 add="ldapadd -x -ZZ -H ldap://${HOST}"
@@ -22,13 +24,15 @@ read -r -p "Preferred Name [${cn}]: " hn
 [ -n "$hn" ] && cn="$hn"
 
 ldif=$(cat <<EOF
-dn: $cn,${OU}
-objectClass: person 
-objectClass: organizationalPerson
+dn: cn=$cn,${OU}
 objectClass: inetOrgPerson
+objectClass: posixAccount
 cn: $cn
 displayName: $cn
 givenName: $given_name
+sn: $sn
+gidNumber: 10001
+homeDirectory: /home/gmc
 EOF
 )
 
@@ -42,7 +46,10 @@ done
 
 ldif=$(printf "${ldif}\nuid: $uid")
 
-
+# This should be automagic. Maybe set a uidMax on LDAP itself.
+read -r -p "UID Value: " uid_number
+ldif=$(printf "${ldif}\nuidNumber: $uid_number")
+ 
 # RFC 4519 LDAP Schema for User Applications
 # RFC 4517 Octet String 1.3.6.1.4.1.1466.115.121.1.40
 # Password to be transcoded to Unicode, prepped with SASLprep (RFC4013)
@@ -61,12 +68,30 @@ while [ -z "$password" ]; do
 done
 
 echo "Creating user"
+#echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}"
+#if [ $? -ne 0 ]; then
+#    echo "User $uid not created."
+#    exit 1
+#fi
 
-echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}" && \
-ldappasswd -s $password -D "${admin_dn}" -w "${PASSWORD}" "${cn},$OU}"
+ldif=$(cat <<EOF
+dn: cn=reader,$GOU
+changetype: modify
+add: memberUid
+memberUid: $uid
 
+dn: cn=users,$GOU
+changetype: modify
+add: memberUid
+memberUid: $uid
+EOF
+)
+
+#echo "${ldif}" | ldapmodify -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
+
+ldappasswd -s "$password" -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}" "uid=${uid}"
 if [ $? -ne 0 ]; then
-    echo "User $uid not created."
+    echo "User $uid password not set."
     exit 1
 fi
 
