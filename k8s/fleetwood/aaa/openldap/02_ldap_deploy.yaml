@@ -48,8 +48,8 @@ spec:
               value: "yes"
             - name: LDAP_ENABLE_TLS
               value: "yes"
-            - name: LDAP_REQUIRE_TLS
-              value: "yes"
+            #- name: LDAP_REQUIRE_TLS
+            #  value: "yes"
             - name: LDAP_LDAPS_PORT_NUMBER
               value: "636"
             - name: LDAP_TLS_CERT_FILE

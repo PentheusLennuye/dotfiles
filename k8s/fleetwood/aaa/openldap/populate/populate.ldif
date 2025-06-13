@@ -18,43 +18,50 @@ description: Authorization and distributed email groups composed of people and
 objectClass: organizationalUnit
 ou: groups
 
-dn: ou=computers,dc=cummings-online,dc=ca
-description: Data processing equipment limited to servers, workstations and lap
- tops
+dn: ou=system,dc=cummings-online,dc=ca
+description: Computing and network equipment, including tablets, switches, rou
+ ters, and so on
 objectClass: organizationalUnit
-ou: it
+ou: system
 
-dn: ou=devices,dc=cummings-online,dc=ca
-description: Data processing equipment that are not computers, such as tablets,
- switches, routers, and so on
-objectClass: organizationalUnit
-ou: it
-
-dn: ou=assets,dc=cummings-online,dc=ca
+dn: ou=asset,dc=cummings-online,dc=ca
 description: Non-computer inventory of worth such as furniture, homes, cars, wo
  rkshop equipment. This includes rentals
 objectClass: organizationalUnit
-ou: assets
+ou: asset
 
-dn: ou=contacts,dc=cummings-online,dc=ca
+dn: ou=contact,dc=cummings-online,dc=ca
 description: The family shared address book
 objectClass: organizationalUnit
-ou: contacts
+ou: contact
 
-dn: cn=users,ou=groups,dc=cummings-online,dc=ca
-cn: admin
-description: All users with ldap rw and generalized elevated system access
+dn: cn=admin,ou=groups,dc=cummings-online,dc=ca
+cn: admin 
+description: All users with ldap rw and general elevated system access such as
+ password management
 gidNumber: 10000
-objectClass: groupOfNames
+objectClass: posixGroup
+
+dn: cn=ldap-admin,ou=groups,dc=cummings-online,dc=ca
+cn: ldap-admin 
+description: Users with the full rights to the LDAP tree
+gidNumber: 10001
+objectClass: posixGroup
 
 dn: cn=users,ou=groups,dc=cummings-online,dc=ca
 cn: users
-description: All users permitted to log into systems
-gidNumber: 10001
-objectClass: groupOfNames
+description: All users permitted to log into general computing
+gidNumber: 10002
+objectClass: posixGroup
 
 dn: cn=reader,ou=groups,dc=cummings-online,dc=ca
 cn: reader
 description: User accounts that can read ldap
-gidNumber: 10002
-objectClass: groupOfNames
+gidNumber: 10003
+objectClass: posixGroup
+
+dn: cn=serviceaccount,ou=groups,dc=cummings-online,dc=ca
+cn: serviceaccount
+description: accounts for machines and automated services to access one another
+gidNumber: 10004
+objectClass: posixGroup
