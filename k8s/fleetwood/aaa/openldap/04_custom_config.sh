@@ -7,9 +7,12 @@
 # volume mount (yet) so we'll just copy things manually and execute them here.
 
 po=$(kubectl -n it get po | awk '{print $1}' | grep ldap | head -n 1)
+echo "Copying to $po"
 kubectl -n it cp initscripts ${po}:/docker-entrypoint-initdb.d/
+echo "Executing dynamic config on $po"
 kubectl exec ${po} -- /docker-entrypoint-initdb.d/initscripts/custom_config.sh
 
+echo "Populating"
 admin=$(kubectl -n it get secret ldap-admin -o json \
     | jq -r .data.username | base64 -d)
 

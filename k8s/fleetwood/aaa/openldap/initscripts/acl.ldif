@@ -1,20 +1,19 @@
-# We use posixGroups so group.exact will not work. We need expansion!
 dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to *
-  by set.expand="([uid=] + ([cn=ldap-admin,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" write
+  by set="user/uid & [cn=ldap-admin,ou=groups,dc=cummings-online,dc=ca]/memb
+ erUid" write
   by * break
 
 dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to attrs=userPassword
-  by set.expand="([uid=] + ([cn=admin,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" write
-  by set.expand="([uid=] + ([cn=hr,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" write
+  by set="user/uid & [cn=hr,ou=groups,dc=cummings-online,dc=ca]/memb
+ erUid" write
+  by set="user/uid & [cn=admin,ou=groups,dc=cummings-online,dc=ca]/memb
+ erUid" write
   by self write
   by dn.children="ou=system,dc=cummings-online,dc=ca" read
   by anonymous auth
@@ -23,8 +22,8 @@ dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to attrs=telephoneNumber,mobile
-  by set.expand="([uid=] + ([cn=hr,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" write
+  by set="user/uid & [cn=hr,ou=groups,dc=cummings-online,dc=ca]/memb
+ erUid" write
   by self write
   by users read
 
@@ -32,6 +31,6 @@ dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to dn.subtree="dc=cummings-online,dc=ca"
-  by set.expand="([uid=] + ([cn=reader,ou=groups,dc=cummings-online,dc=ca]
- )/memberUid + [,ou=users,dc=cummings-online,dc=ca])/entryDN & user" read
+  by set="user/uid & [cn=reader,ou=groups,dc=cummings-online,dc=ca]/memb
+ erUid" read
 

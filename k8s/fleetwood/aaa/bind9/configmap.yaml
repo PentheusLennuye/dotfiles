@@ -8,6 +8,7 @@ data:
   config: |
     acl bad_networks { };
     acl trusted {
+      10.0.0.0/8;
       127.0.0.1;
       10.0.0.0/24;
       10.11.0.0/24;
