@@ -7,32 +7,41 @@ metadata:
 data:
   config: |
     acl bad_networks { };
-    acl local_networks { 127.0.0.1; 10.0.0.0/8; 192.168.68.0/24;
-                                    192.168.73.0/24; 172.16.73.0/24; };
+    acl trusted {
+      127.0.0.1;
+      10.0.0.0/8;
+      192.168.68.0/24; 
+      192.168.73.0/24; 
+      172.16.73.0/24;
+    };
     options {
-      allow-transfer { none; };
-      allow-query-cache { local_networks; };
+      allow-transfer { 10.0.0.0/8; };
+      allow-query-cache { trusted; };
+      also-notify { 192.168.73.31; };
       blackhole { bad_networks; };
       directory "/var/cache/bind";
       dnssec-validation auto;
       forward first;
-      forwarders { 192.168.68.1; 8.8.8.8; };
+      forwarders {
+        8.8.8.8;
+      };
       listen-on { any; };
       listen-on-v6 { none; };
+      notify yes;
     };
     zone "cummings-online.local" {
-      type master;
+      type primary;
       file "/etc/bind/db.cummings-online.local";
       allow-query { any; };
     };
     zone "11.10.in-addr.arpa" {
-      type master;
-      file "/etc/bind/db.10.11.local";
+      type primary;
+      file "/etc/bind/db.10.11";
       allow-query { any; };
     };
     zone "168.192.in-addr.arpa" {
-      type master;
-      file "/etc/bind/db.192.168.local";
+      type primary;
+      file "/etc/bind/db.192.168";
       allow-query { any; };
     };
   db-cummings-online: |
@@ -88,23 +97,23 @@ data:
     ns          IN    A     10.11.0.31
            
     ; PTR --------------------------------------------------------------
-    1.68    IN PTR gw-mtl.cummings-online.local.
-    61.68   IN PTR brother.cummings-online.local.
-    73.68   IN PTR goemon.cummings-online.local.
-    74.68   IN PTR goliath.cummings-online.local.
-    31.68   IN PTR rpi1.cummings-online.local.
-    32.68   IN PTR rpi2.cummings-online.local.
-    33.68   IN PTR rpi3.cummings-online.local.
-    34.68   IN PTR rpi4.cummings-online.local.
-    34.68   IN PTR rpi4.cummings-online.local.
-    254.68  IN PTR spectre.cummings-online.local.
-    1.73    IN PTR gw-knw.cummings-online.local.
-    12.73   IN PTR fujiko.cummings-online.local.
-    31.73   IN PTR ns3.cummings-online.local.
-    41.73   IN PTR knw-ha.cummings-online.local.
-    42.73   IN PTR knw-jump.cummings-online.local.
-    43.73   IN PTR knw-access.cummings-online.local.
-    61.73   IN PTR canon.cummings-online.local.
+    68.1    IN PTR gw-mtl.cummings-online.local.
+    68.61   IN PTR brother.cummings-online.local.
+    68.73   IN PTR goemon.cummings-online.local.
+    68.74   IN PTR goliath.cummings-online.local.
+    68.31   IN PTR rpi1.cummings-online.local.
+    68.32   IN PTR rpi2.cummings-online.local.
+    68.33   IN PTR rpi3.cummings-online.local.
+    68.34   IN PTR rpi4.cummings-online.local.
+    68.34   IN PTR rpi4.cummings-online.local.
+    68.254  IN PTR spectre.cummings-online.local.
+    73.1    IN PTR gw-knw.cummings-online.local.
+    73.12   IN PTR fujiko.cummings-online.local.
+    73.31   IN PTR ns3.cummings-online.local.
+    73.41   IN PTR knw-ha.cummings-online.local.
+    73.42   IN PTR knw-jump.cummings-online.local.
+    73.43   IN PTR knw-access.cummings-online.local.
+    73.61   IN PTR canon.cummings-online.local.
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
@@ -120,9 +129,9 @@ data:
     ns          IN    A     10.11.0.31
            
     ; PTR --------------------------------------------------------------
-    0.2   IN PTR lupin.cummings-online.local.
-    0.3   IN PTR jigen.cummings-online.local.
-    0.4   IN PTR zenigata.cummings-online.local.
-    0.10  IN PTR ingress1.cummings-online.local.
-    0.11  IN PTR ldap.cummings-online.local.
-    0.31  IN PTR ns.cummings-online.local.
+    2.0   IN PTR lupin.cummings-online.local.
+    3.0   IN PTR jigen.cummings-online.local.
+    4.0   IN PTR zenigata.cummings-online.local.
+    10.0  IN PTR ingress1.cummings-online.local.
+    11.0 IN PTR ldap.cummings-online.local.
+    31.0 IN PTR ns.cummings-online.local.

@@ -24,9 +24,9 @@ spec:
               - key: db-cummings-online
                 path: db.cummings-online.local
               - key: db-10-11
-                path: db.10.11.local
+                path: db.10.11
               - key: db-192-168
-                path: db.192.168.local
+                path: db.192.168
       containers:
         - name: bind9
           image: ubuntu/bind9:edge
