@@ -7,6 +7,7 @@ metadata:
   name: bind9
   namespace: it
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   selector:
     app: bind9

@@ -9,13 +9,15 @@ data:
     acl bad_networks { };
     acl trusted {
       127.0.0.1;
-      10.0.0.0/8;
+      10.0.0.0/24;
+      10.11.0.0/24;
+      172.16.73.0/24;
       192.168.68.0/24; 
       192.168.73.0/24; 
-      172.16.73.0/24;
     };
     options {
-      allow-transfer { 10.0.0.0/8; };
+      allow-transfer { any; };
+      #allow-transfer { 192.168.73.31; };
       allow-query-cache { trusted; };
       also-notify { 192.168.73.31; };
       blackhole { bad_networks; };
