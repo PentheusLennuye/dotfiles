@@ -105,6 +105,7 @@ fi
 # Build the shadow, expiry, and personal info -------------------------------------
 #read -r -d '' ldif <<-EOF
 #    carLicense: $car_licence
+#    co: $country
 #    departmentNumber: $departmentNumber
 #    description: $description
 #    employeeNumber: $employee_number
@@ -119,6 +120,7 @@ fi
 #    mobile: $cell_phone
 #    ou: $ou
 #    o: $o
+#    postalCode
 #    preferredLanguage: $preferred_language_utf
 #    roomNumber: $room_number
 #    sn: $sn
