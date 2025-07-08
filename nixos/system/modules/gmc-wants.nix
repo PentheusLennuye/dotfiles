@@ -34,6 +34,7 @@ let
     onlyoffice-desktopeditors
     pavucontrol                            # PulseAudio control requires GTK
     reaper                                 # DAW
+    rpi-imager                             # Flashes Raspberry Pi SD cards
     screenfetch                            # Show off!
     slurp                                  # Hyprland screen selector
     starship
