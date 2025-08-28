@@ -57,8 +57,8 @@
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/gaming.nix
-          ./roles/knowlton.nix
-          # ./roles/montreal.nix
+          #./roles/knowlton.nix
+          ./roles/montreal.nix
           ./roles/netadmin.nix
           ./roles/publishing.nix
           ./roles/remote-access.nix
