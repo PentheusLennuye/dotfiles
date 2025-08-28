@@ -27,6 +27,9 @@
     golangci-lint
     golangci-lint-langserver
 
+    # Haskell
+    ghc
+
     # JavaScript
     nodejs
 
