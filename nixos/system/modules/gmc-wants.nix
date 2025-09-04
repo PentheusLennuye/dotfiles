@@ -19,7 +19,6 @@ let
     glxinfo                                # Testing glx info
     openpomodoro-cli
     grim                                   # Wayland image grabber
-    handbrake                              # Converts video formats
     hunspell
     hunspellDicts.de-de
     hunspellDicts.en_CA-large
@@ -41,7 +40,6 @@ let
     swaynotificationcenter                 # Waybar modules require this
     thunderbird
     vistafonts                             # Better fonts for Firefox etc
-    vlc
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland
     zotero                                 # reference manager

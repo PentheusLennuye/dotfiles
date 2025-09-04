@@ -58,6 +58,7 @@
           ./roles/development.nix
           ./roles/gaming.nix
           #./roles/knowlton.nix
+          ./roles/media.nix
           ./roles/montreal.nix
           ./roles/netadmin.nix
           ./roles/publishing.nix
@@ -102,6 +103,7 @@
           ./roles/development.nix
           ./roles/gaming.nix
           ./roles/laptop.nix
+          ./roles/media.nix
           ./roles/netadmin.nix
           ./roles/publishing.nix
           ./roles/workstation.nix
