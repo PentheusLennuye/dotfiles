@@ -12,6 +12,7 @@
     ./hyprland.nix
     ./kde.nix
     ./starship.nix
+    ./vlc.nix
     ./vscode.nix
     ./waybar.nix
     ./wayvnc.nix

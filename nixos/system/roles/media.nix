@@ -10,6 +10,7 @@
     in [
       pkgs.asunder
       pkgs.handbrake
+      pkgs.makemkv
       myVlc
     ];
 }
