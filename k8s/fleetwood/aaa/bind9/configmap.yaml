@@ -8,10 +8,9 @@ data:
   config: |
     acl bad_networks { };
     acl cluster { 10.42.0.0/16; };
+    acl nodes { 10.11.0.0/24; 172.16.73.0/24; };
     acl secondaries { 192.168.73.31; };
     acl trusted {
-      10.11.0.0/24;
-      172.16.73.0/24;
       192.168.68.0/24; 
       192.168.73.0/24; 
     };
