@@ -125,18 +125,11 @@
 
     };
   };
-  # Firewall rules allow to MetalLB and to nodes from the secondaries
-  networking = {
-    firewall = {
-      extraCommands = ''
-        iptables -A INPUT -p udp -d 10.11.0.31 --dport 53 -j ACCEPT
-        iptables -A INPUT -p tcp -d 10.11.0.31 --dport 53 -j ACCEPT
-        iptables -A INPUT -p udp -s 192.168.73.31 --dport 53 -j ACCEPT
-        iptables -A INPUT -p tcp -s 192.168.73.31 --dport 53 -j ACCEPT
-      '';
-
-      #allowedTCPPorts = [ 53 ];
+  # Kubernetes Network Policies trump NixOS firewalls.
+  # networking = {
+    # firewall = {
+      # allowedTCPPorts = [ 53 ];
       # allowedUDPPorts = [ 53 ];
-    };
-  };
+    # };
+  #};
 }
