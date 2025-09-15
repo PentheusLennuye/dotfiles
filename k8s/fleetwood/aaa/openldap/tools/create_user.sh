@@ -80,12 +80,7 @@ fi
 # Set default groups ---------------------------------------------------------
 echo "Populating group membership"
 ldif=$(cat <<EOF
-dn: cn=reader,$GOU
-changetype: modify
-add: memberUid
-memberUid: $uid
-
-dn: cn=users,$GOU
+dn: cn=user,$GOU
 changetype: modify
 add: memberUid
 memberUid: $uid

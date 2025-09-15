@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Delete User
+# Delete BindDN User
 
 HOST="ldap.cummings-online.local"
 GETSECRET="kubectl get secret ldap-admin -o json"
@@ -15,27 +15,14 @@ admin_dn="cn=${ADMIN},${DC}"
 delete="ldapdelete -x -ZZ -H ldap://${HOST}"
 modify="ldapmodify -x -ZZ -H ldap://${HOST}"
 
-uid=
-while [ -z "$uid" ]; do
-    read  -r -p "Uid to delete: " uid
-done
-dn="uid=${uid},${OU}"
+uid="binddn"
+dn="uid=${uid},ou=services,dc=cummings-online,dc=ca"
 
 $delete -D "${admin_dn}" -w "${PASSWORD}" "${dn}"
 
 # Delete membership from default groups --------------------------------------
 ldif=$(cat <<EOF
-dn: cn=user,$GOU
-changetype: modify
-delete: memberUid
-memberUid: ${uid}
-
-dn: cn=admin,$GOU
-changetype: modify
-delete: memberUid
-memberUid: ${uid}
-
-dn: cn=access,$GOU
+dn: cn=serviceaccount,$GOU
 changetype: modify
 delete: memberUid
 memberUid: ${uid}

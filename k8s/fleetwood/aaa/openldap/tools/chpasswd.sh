@@ -42,6 +42,7 @@ ldappasswd -s "${u_password}" -x -ZZ \
 
 if [ $? -ne 0 ]; then
     echo "User $uid password not set."
-    exit 1
+else
+    echo "User $uid password set."
 fi
 

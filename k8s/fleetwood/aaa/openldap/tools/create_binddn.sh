@@ -43,11 +43,6 @@ dn: $GOU
 changetype: modify
 add: memberUid
 memberUid: $uid
-
-dn: cn=reader,ou=groups,dc=cummings-online,dc=ca
-changetype: modify
-add: memberUid
-memberUid: $uid
 EOF
 )
 
