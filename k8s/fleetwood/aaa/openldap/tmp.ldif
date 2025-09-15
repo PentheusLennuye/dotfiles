@@ -1,0 +1,4 @@
+dn: cn=reader,ou=groups,dc=cummings-online,dc=ca
+changetype: modify
+add: memberUid
+memberUid: binddn

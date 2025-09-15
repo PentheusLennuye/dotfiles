@@ -1,0 +1,42 @@
+[sssd]
+config_file_version = 2
+domains = cummings-online.ca
+services = nss, pam
+
+[nss]
+
+[pam]
+offline_credentials_expiration = 60
+
+
+# DOMAINS --------------------------------------------------------
+
+[domain/cummings-online.ca]
+
+# auth_provider answers "Am I who I say I am"
+auth_provider = ldap
+
+cache_credentials = True
+
+# id_provider searches and returns the attributes of the user
+id_provider = ldap
+
+ldap_access_filter = (objectClass=posixAccount)
+
+# ldap_default_* finds uid on system that does not permit anonymous connections
+ldap_default_bind_dn = uid=binddn,ou=services,dc=cummings-online,dc=ca
+ldap_default_authtok = {% binddn_authtok %}
+
+# ldap_id_use_start_tls is to force TLS even for ID.
+# auth_provider defaults to TLS
+ldap_id_use_start_tls = True
+
+ldap_search_base = dc=cummings-online,dc=ca
+
+ldap_tls_cacert = /etc/ssl/certs/ca-certificates.crt
+ldap_tls_reqcert = hard
+
+ldap_uri = ldap://ldap.cummings-online.local
+
+# min_id determines at what level sssd ignores the id
+min_id = 10000

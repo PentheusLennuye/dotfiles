@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 # Create user
-
-HOST="ldap.cummings-online.local"
+DOMAIN="cummings-online.local"
+HOST="ldap.${DOMAIN}"
 GETSECRET="kubectl get secret ldap-admin -o json"
 PASSWORD=$(${GETSECRET} | jq -r '.data.password' | base64 -d)
 ADMIN=$(${GETSECRET} | jq -r '.data.username' | base64 -d)
+GIDNUMBER=10001  # User
 
 DC="dc=cummings-online,dc=ca"
 OU="ou=people,${DC}"
@@ -23,18 +24,6 @@ cn="${given_name} ${sn}"
 read -r -p "Preferred Name [${cn}]: " hn
 [ -n "$hn" ] && cn="$hn"
 
-ldif=$(cat <<EOF
-dn: cn=$cn,${OU}
-objectClass: inetOrgPerson
-objectClass: posixAccount
-cn: $cn
-displayName: $cn
-givenName: $given_name
-sn: $sn
-gidNumber: 10001
-homeDirectory: /home/gmc
-EOF
-)
 
 [ -n "${initials}" ] && ldif=$(printf "${ldif}\ninitials: $initials")
 
@@ -43,30 +32,44 @@ uid=
 while [ -z "$uid" ]; do
     read  -r -p "Username: " uid
 done
-
 ldif=$(printf "${ldif}\nuid: $uid")
 
+ldif=$(cat <<EOF
+dn: uid=${uid},${OU}
+uid: ${uid}
+gidNumber: ${GIDNUMBER}
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: $cn
+displayName: $cn
+givenName: $given_name
+sn: $sn
+EOF
+)
+
+# UIDNumber
 # This should be automagic. Maybe set a uidMax on LDAP itself.
 read -r -p "UID Value: " uid_number
 ldif=$(printf "${ldif}\nuidNumber: $uid_number")
- 
-# RFC 4519 LDAP Schema for User Applications
-# RFC 4517 Octet String 1.3.6.1.4.1.1466.115.121.1.40
-# Password to be transcoded to Unicode, prepped with SASLprep (RFC4013)
-# and encoded as UTF-8. This will be done __ldappasswd__.
-u_password=
-while [ -z "$u_password" ]; do
-    read -r -s -p "Password: " firstpass
-    echo
-    read -r -s -p "Confirm password: " secondpass
-    echo
-    if [ "$firstpass" == "$secondpass" ]; then
-        u_password=$firstpass
-    else
-        echo "Passwords do not match"
-    fi
-done
 
+# Home Directory
+home_directory="/home/${uid}"
+read -r -p "Home Directory [${home_directory}]: " prompt
+if [ "${prompt}" != "" ]; then home_directory=$prompt; fi
+ldif=$(printf "${ldif}\nhomeDirectory: $home_directory")
+
+# LoginShell
+login_shell="/bin/bash"
+read -r -p "Login Shell [${login_shell}]: " prompt
+if [ "${prompt}" != "" ]; then login_shell=$prompt; fi
+ldif=$(printf "${ldif}\nloginShell: $login_shell")
+
+# Mail
+mail="${uid}@${DOMAIN}"
+read -r -p "Email Address [${mail}]: " prompt
+if [ "${prompt}" != "" ]; then mail=$prompt; fi
+ldif=$(printf "${ldif}\nmail: $mail")
+ 
 # Create user entry ---------------------------------------------------------
 echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}"
 if [ $? -ne 0 ]; then
@@ -75,6 +78,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Set default groups ---------------------------------------------------------
+echo "Populating group membership"
 ldif=$(cat <<EOF
 dn: cn=reader,$GOU
 changetype: modify
@@ -88,19 +92,25 @@ memberUid: $uid
 EOF
 )
 
-echo "${ldif}" | ldapmodify -x -ZZ -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
+echo "${ldif}" | ldapmodify -x -ZZ \
+  -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
 
- 
-# Set password ---------------------------------------------------------
-ldappasswd -s "${u_password}" -x -ZZ \
-    -H ldap://${HOST} \
-    -D "${admin_dn}" -w "${PASSWORD}" \
-    "cn=${cn},${OU}"
-
-if [ $? -ne 0 ]; then
-    echo "User $uid password not set."
-    exit 1
+# Cummings Online Domain Admin
+admin=n
+read -r -p "Is ${uid} a domain admin? [y/N]: " prompt
+if [ "${prompt}" == "y" ]; then
+    ldif=$(cat <<EOLD
+dn: cn=admin,$GOU
+changetype: modify
+add: memberUid
+memberUid: $uid
+EOLD
+)
+    echo "adding ${uid} to the admin group"
+    echo "${ldif}" | ldapmodify -x -ZZ \
+    -H ldap://${HOST} -D "${admin_dn}" -w "${PASSWORD}"
 fi
+
 
 # Build the shadow, expiry, and personal info -------------------------------------
 #read -r -d '' ldif <<-EOF
@@ -111,11 +121,9 @@ fi
 #    employeeNumber: $employee_number
 #    employeeType: $employee_type
 #    homePostalAddress: $home_postal_address
-#    gidNumber: $primary_group_id
 #    labeledUrI: $home_page_uri $home_page_name
 #    l: $l
 #    jpegPhoto: $jpeg_photo_base64
-#    mail: $email
 #    manager: $manager
 #    mobile: $cell_phone
 #    ou: $ou
@@ -128,9 +136,6 @@ fi
 #    street: $street
 #    telephoneNumber: $telephone_number
 #    title: $title
-#    uid: $uid
-#    uidNumber: $uid_number
-#    userPassword: $password_sha512
 #    userSMIMECertificate: $user_smime_certificate_pkcs7_base64
 #    userPKCS12: $user_pkcs12_identity_base64
 #EOF
