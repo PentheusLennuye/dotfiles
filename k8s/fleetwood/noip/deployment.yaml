@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dynamic-update-client
+  name: dynamic-update-client
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamic-update-client
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dynamic-update-client
+    spec:
+      volumes:
+        - name: duc-volume
+          secret:
+            secretName: noip
+      containers:
+        - name: dynamic-update-client
+          image: ghcr.io/noipcom/noip-duc:latest
+          env:
+            - name: NOIP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: duc
+                  key: noipUsername
+            - name: NOIP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: duc
+                  key: noipPassword
+            - name: NOIP_HOSTNAMES
+              valueFrom:
+                secretKeyRef:
+                  name: duc
+                  key: noipHostnames
