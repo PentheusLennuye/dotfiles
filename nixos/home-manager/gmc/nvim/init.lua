@@ -9,7 +9,7 @@ vim.g.localleader = '\\'
 
 -- AWFUL SIDEBAR
 
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "#000000", fg = "#6666ff" })
+vim.cmd("highlight! link SignColumn Normal")
 
 -- IMPORTS
 
