@@ -2,5 +2,8 @@
 
 sudo apt install sssd-ldap ldap-utils
 
-sudo echo "session\toptional\t\tpam_mkhomedir.so" >> /etc/pam.d/common-session
+sudo echo "session optional pam_mkhomedir.so" >> /etc/pam.d/common-session
+
+sudo cp cummings-online.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
 
