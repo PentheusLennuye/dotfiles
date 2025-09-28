@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: krb5
+  name: krb5
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krb5
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: krb5
+    spec:
+      containers:
+        - name: krb5
+          image: gcavalcante8808/krb5-server:latest
+          env:
+            - name: KRB5_REALM
+              value: "CUMMINGS-ONLINE.CA"
+            - name: KRB5_KDC
+              value: "krb5.cummings-online.local"
+            - name: KRB5_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: krb5-admin
+                  key: password
+          ports:
+            - containerPort: 88
+            - containerPort: 464
+            - containerPort: 749
+

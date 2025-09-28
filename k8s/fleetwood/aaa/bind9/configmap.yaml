@@ -50,7 +50,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2025061101   ; serial
+      2025092701   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -82,13 +82,14 @@ data:
     zenigata    IN  A   10.11.0.4
     ingress1    IN  A   10.11.0.10
     ldap        IN  A   10.11.0.11
+    krb5        IN  A   10.11.0.12
           
     time IN CNAME lupin.cummings-online.local.
     test IN CNAME ingress1.cummings-online.local.
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-     2025061101 ; serial
+     2025092701 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -120,7 +121,7 @@ data:
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-      2025061101 ; serial
+      2025092701 ; serial
       86400 ; refresh
       28800 ; retry
       604800 ; expire
@@ -132,9 +133,10 @@ data:
     ns          IN    A     10.11.0.31
            
     ; PTR --------------------------------------------------------------
-    2.0   IN PTR lupin.cummings-online.local.
-    3.0   IN PTR jigen.cummings-online.local.
-    4.0   IN PTR zenigata.cummings-online.local.
-    10.0  IN PTR ingress1.cummings-online.local.
+    2.0  IN PTR lupin.cummings-online.local.
+    3.0  IN PTR jigen.cummings-online.local.
+    4.0  IN PTR zenigata.cummings-online.local.
+    10.0 IN PTR ingress1.cummings-online.local.
     11.0 IN PTR ldap.cummings-online.local.
+    12.0 IN PTR krb5.cummings-online.local.
     31.0 IN PTR ns.cummings-online.local.
