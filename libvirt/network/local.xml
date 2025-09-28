@@ -1,0 +1,19 @@
+<network>
+  <name>local</name>
+  <uuid>fe4e9272-201b-4a04-a37f-8c7f309f0a97</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <dns>
+    <forwarder domain='cummings-online.local' addr='10.11.0.2'/>
+  </dns>
+  <ip address='192.168.173.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.173.1' end='192.168.173.254'/>
+    </dhcp>
+  </ip>
+</network>
+
