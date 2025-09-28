@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     dexed                                  # DX7 VST plugin
+    ffmpeg                                 # Audio conversion
     ladspaPlugins                          # Audio effect plugins
     linuxsampler                           # Sample-based synthesizer VST
     obs-studio                             # Screen recorder
