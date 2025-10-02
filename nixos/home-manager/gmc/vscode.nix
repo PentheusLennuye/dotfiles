@@ -42,6 +42,7 @@
               "[rust]" = {
                 "editor.inlayHints.enabled" = "off";
               };
+              "python.languageServer" = "Jedi";
             };
          };
      };
