@@ -56,6 +56,7 @@
           ./roles/audio-engineering.nix
           ./roles/container-host.nix
           ./roles/development.nix
+          ./roles/engineering.nix
           ./roles/gaming.nix
           #./roles/knowlton.nix
           ./roles/media.nix
@@ -101,6 +102,7 @@
           ./roles/audio-engineering.nix
           ./roles/container-host.nix
           ./roles/development.nix
+          ./roles/engineering.nix
           ./roles/gaming.nix
           ./roles/laptop.nix
           ./roles/media.nix
