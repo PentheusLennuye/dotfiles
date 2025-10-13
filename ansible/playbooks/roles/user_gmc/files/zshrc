@@ -2,7 +2,7 @@
 # ZSHRC for Linux
 
 # Paths ----------------------------------------------------------------
-export PATH=$HOME/.local/bin:/snap/bin:$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.local/bin:/snap/bin:$HOME/.cargo/bin:/usr/local/go/bin:$PATH
 
 # Aliases ---------------------------------------------------------------
 

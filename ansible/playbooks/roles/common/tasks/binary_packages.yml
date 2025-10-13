@@ -3,6 +3,7 @@
   ansible.builtin.package:
     state: latest
     name:
+      - acl
       - curl
       - git
       - "lua{{ lua_minor_version}}"   # for nvim configuration

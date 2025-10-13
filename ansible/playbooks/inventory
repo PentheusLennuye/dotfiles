@@ -1,37 +1,24 @@
 [access_server]
-192.168.73.43
-# knw-access.cummings-online.local
+knw-access.cummings-online.local
+
+[base]
+localhost ansible_connection=local
 
 [development]
-localhost ansible_connection=local
-
-[gps]
-rpi1.cummings-online.local
-rpi2.cummings-online.local
+192.168.173.216
 
 [linux]
-192.168.73.43
-#knw-access.cummings-online.local
+knw-access.cummings-online.local
 knw-jump.cummings-online.local
 ns3.cummings-online.local
-rpi1.cummings-online.local
-rpi2.cummings-online.local
-jigen.cummings-online.local
-lupin.cummings-online.local
-localhost ansible_connection=local
-
+192.168.173.216
 
 [netcontrol]
 ns3.cummings-online.local
-rpi1.cummings-online.local
-rpi2.cummings-online.local
 
 [knowlton]
 192.168.73.43
-#knw-access.cummings-online.local
+knw-access.cummings-online.local
 knw-jump.cummings-online.local
 ns3.cummings-online.local
 
-[montreal]
-rpi1.cummings-online.local
-rpi2.cummings-online.local
