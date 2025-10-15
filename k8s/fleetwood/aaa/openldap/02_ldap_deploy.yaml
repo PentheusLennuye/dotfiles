@@ -24,7 +24,7 @@ spec:
             secretName: ldap-tls
       containers:
         - name: openldap
-          image: bitnami/openldap:latest
+          image: bitnamilegacy/openldap:latest
           volumeMounts:
             - name: tls-volume
               readOnly: true
