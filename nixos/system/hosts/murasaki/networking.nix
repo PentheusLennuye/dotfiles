@@ -6,6 +6,9 @@
 
 {
   networking = {
+    extraHosts = ''
+      192.168.173.216 fafo.vm.cummings-online.local fafo
+    '';
     hostName = "murasaki";
     networkmanager.enable = true;
     useDHCP = lib.mkDefault false;
