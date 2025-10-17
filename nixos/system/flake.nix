@@ -76,6 +76,7 @@
           ./roles/container-host.nix
           ./roles/k3s-server.nix
           ./roles/montreal.nix
+          ./roles/nfs-server.nix
           ./roles/webhost.nix
         ];
       };
@@ -89,6 +90,7 @@
           ./roles/container-host.nix
           ./roles/k3s-first-server.nix
           ./roles/montreal.nix
+          ./roles/nfs-server.nix
           ./roles/time.nix
           ./roles/webhost.nix
          ];
