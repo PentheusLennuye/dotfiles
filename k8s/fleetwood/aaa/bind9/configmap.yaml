@@ -42,6 +42,11 @@ data:
       file "/etc/bind/db.10.11";
       allow-query { any; };
     };
+    zone "73.16.172.in-addr.arpa" {
+      type primary;
+      file "/etc/bind/db.172.16.73";
+      allow-query { any; };
+    };
     zone "168.192.in-addr.arpa" {
       type primary;
       file "/etc/bind/db.192.168";
@@ -50,7 +55,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2025100101   ; serial
+      2025101701   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -79,14 +84,35 @@ data:
     knw-jump    IN	A	192.168.73.42
     canon	    IN	A	192.168.73.61
     lupin       IN  A   10.11.0.2
+    lupin-int   IN  A   172.16.73.2
     jigen       IN  A   10.11.0.3
+    jigen-int   IN  A   172.16.73.3
     zenigata    IN  A   10.11.0.4
+    zenigata-int IN  A   172.16.73.4
     ingress1    IN  A   10.11.0.10
     ldap        IN  A   10.11.0.11
     krb5        IN  A   10.11.0.12
           
     time IN CNAME lupin.cummings-online.local.
     test IN CNAME ingress1.cummings-online.local.
+  db-172-16-32: |
+    $TTL 86400
+    @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
+     2025101701 ; serial
+          86400 ; refresh
+          28800 ; retry
+         604800 ; expire
+          86400 ; negative cache ttl
+     )
+           
+    ; Required nameserver records ----------------------------------------
+    @           IN    NS    ns.cummings-online.local.
+    ns          IN    A     10.11.0.31
+           
+    ; PTR --------------------------------------------------------------
+    2   IN PTR lupin-int.cummings-online.local.
+    3   IN PTR jigen-int.cummings-online.local.
+    4   IN PTR zenigata-int.cummings-online.local.
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
