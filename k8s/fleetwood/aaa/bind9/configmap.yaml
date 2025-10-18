@@ -95,7 +95,7 @@ data:
           
     time IN CNAME lupin.cummings-online.local.
     test IN CNAME ingress1.cummings-online.local.
-  db-172-16-32: |
+  db-172-16-73: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
      2025101701 ; serial
