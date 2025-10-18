@@ -36,4 +36,5 @@
                 /export/fleetwood 172.16.73.0/24(rw,insecure,no_subtree_check)
             '';
         };
+    };
 }
