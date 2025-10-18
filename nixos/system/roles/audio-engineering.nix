@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     dexed                                  # DX7 VST plugin
+    fdk-aac-encoder                        # Convert to AAC
     ffmpeg                                 # Audio conversion
     ladspaPlugins                          # Audio effect plugins
     linuxsampler                           # Sample-based synthesizer VST
