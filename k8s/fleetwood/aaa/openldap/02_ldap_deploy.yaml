@@ -18,9 +18,6 @@ spec:
       labels:
         app: ldap
     spec:
-      securityContext:
-        runAsUser: 373
-        runAsGroup: 373
       volumes:
         - name: tls-volume
           secret:
