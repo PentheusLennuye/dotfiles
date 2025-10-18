@@ -9,9 +9,10 @@
     extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
-      kernelModules = [ "kvm-intel" ];
+      kernelModules = [ "kvm-intel" "nfs" "nfs4"];
+      supportedFilesystems = [ "nfs" "nfs4" ];
     };
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-intel" "nfs" "nfs4" ];
     kernelParams = [ "mem_sleep_default=deep" "resume_offset=0" ];
     loader = {
         efi = {

@@ -9,8 +9,8 @@
     extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-      kernelModules = [ "nfs" ];
-      supportedFilesystems = [ "nfs" ];
+      kernelModules = [ "nfs" "nfs4" ];
+      supportedFilesystems = [ "nfs" "nfs4" ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {

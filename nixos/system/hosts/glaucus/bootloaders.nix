@@ -8,7 +8,7 @@
   boot = {
     extraModulePackages = [ ];
     initrd = {
-        availableKernelModules = [ "dm-snapshot" "cryptd" "nfs" ];
+        availableKernelModules = [ "dm-snapshot" "cryptd" "nfs" "nfs4" ];
         kernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
         luks = {
             devices = {
@@ -17,7 +17,7 @@
             };
             reusePassphrases = true;
         };
-        supportedFilesystems = [ "nfs" ];
+        supportedFilesystems = [ "nfs" "nfs4" ];
     };
     kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mem_sleep_default=deep" "resume_offset=0" ];

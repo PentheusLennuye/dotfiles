@@ -8,7 +8,8 @@
   boot = {
     initrd = {
         availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ "kvm-intel" ];
+        kernelModules = [ "kvm-intel" "nfs" "nfs4"];
+        supportedFilesystems = [ "nfs" "nfs4" ];
     };
     kernelModules = [ "kvm-intel" ];
     kernelParams = ["i915.enable_dc=0"];
