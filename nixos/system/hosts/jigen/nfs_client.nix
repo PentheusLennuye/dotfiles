@@ -2,7 +2,7 @@
 
 {
     fileSystems."/mnt/lupin" = {
-        device = "jigen-int:/export/fleetwood";
+        device = "lupin-int:/fleetwood";
         fsType = "nfs4";
     };
 }
