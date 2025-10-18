@@ -55,7 +55,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2025101701   ; serial
+      2025101702   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -93,6 +93,7 @@ data:
     ldap        IN  A   10.11.0.11
     krb5        IN  A   10.11.0.12
           
+    nfs  IN CNAME jigen.cummings-online.local.
     time IN CNAME lupin.cummings-online.local.
     test IN CNAME ingress1.cummings-online.local.
   db-172-16-73: |
