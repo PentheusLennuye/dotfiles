@@ -18,6 +18,8 @@
         options = [ "bind" ];
     };
 
+    networking.firewall.allowedTCPPorts = [ 2049 ];
+
     services.nfs.server.enable = true;
     services.nfs.server.exports = ''
         /export 172.16.73.0/24(rw,fsid=0,no_subtree_check) 192.168.68.0/24(rw,fsid=0,no_subtree_check) 192.168.73.0/24(rw,fsid=0,no_subtree_check) 10.0.0.0/24(rw,fsid=0,no_subtree_check) 10.11.0.0/16(rw,fsid=0,no_subtree_check)
