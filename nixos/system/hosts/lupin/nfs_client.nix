@@ -2,7 +2,7 @@
 
 {
     fileSystems."/mnt/jigen" = {
-        device = "server:/jigen-int";
+        device = "jigen-int:/export/fleetwood";
         fsType = "nfs4";
     };
 }
