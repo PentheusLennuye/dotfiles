@@ -14,7 +14,9 @@
   environment.variables.EDITOR = "vim";
 
   # I need my firmware
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
  
   # I also want my emulation station
   programs.gamemode.enable = true;
