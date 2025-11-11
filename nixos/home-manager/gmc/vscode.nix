@@ -36,7 +36,7 @@
               "[markdown]" = {
                 "editor.formatOnSave" = true;
                 "editor.wordWrap" = "on";
-                "editor.renderWhitespace" = "on";
+                "editor.renderWhitespace" = "all";
                 "editor.acceptSuggestionOnEnter" = "off";
               };
               "[rust]" = {
