@@ -18,6 +18,7 @@
       - starship
       - tree
       - wget
+      - zsh-history-substring-search
 
 - name: Install rust and cargo on MacOS
   ansible.builtin.command: rustup-init
