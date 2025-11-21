@@ -71,20 +71,20 @@ alias ssh='TERM=xterm-256color ssh'
 # ======================================================================
 
 # GitHub
-gaa='git add --all'
-gac='git add . && git commit -a -S -m '
-gau='git add -u && git commit -a -S -m '
-gb='git branch'
-gcam='git commit -S-a -m'
-gswd='git switch $(git_develop_branch)'
-gswm='git switch $(git_main_branch)'
-gpsup='git push --set-upstream origin $(git_current_branch)'
-gmud='git merge upstream/develop'
-gmum='git merge upstream/$(git_main_branch)'
-glog='git log --color --graph --pretty=format:'\''%Cred%h%Creset \
-      -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' \
-      --abbrev-commit --branches'
-gl='git pull'
+alias gaa='git add --all'
+alias gac='git add . && git commit -a -S -m '
+alias gau='git add -u && git commit -a -S -m '
+alias gb='git branch'
+alias gcam='git commit -S-a -m'
+alias gswd='git switch $(git_develop_branch)'
+alias gswm='git switch $(git_main_branch)'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gmud='git merge upstream/develop'
+alias gmum='git merge upstream/$(git_main_branch)'
+alias glog='git log --color --graph --pretty=format:'\''%Cred%h%Creset \
+           -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' \
+           --abbrev-commit --branches'
+alias gl='git pull'
 
 # Source location
 export SRC=$HOME/1_personal/src
