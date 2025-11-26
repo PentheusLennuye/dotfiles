@@ -54,8 +54,8 @@ unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY        # Multi-terminal shares history
 unsetopt EXTENDED_HISTORY
 
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '\e[A' history-substring-search-up
+bindkey '\e[B' history-substring-search-down
 
 # ======================================================================
 # ALIASES
