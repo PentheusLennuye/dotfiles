@@ -1,39 +1,131 @@
 # File: .zshrc
 # ZSHRC for MacOSX
 
-# Paths -----------------------------------------------------------------
+# ======================================================================
+# INITIAL PATHS
+# ======================================================================
 
-export PATH=$HOME/.local/bin:/Users/gmc/Library/Python/3.11/bin:\
-/usr/local/opt/ruby/bin:$PATH
+export PATH=/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$PATH
 
-# Aliases ---------------------------------------------------------------
+# ======================================================================
+# ZSH ONLY
+# ======================================================================
+
+# Theming ----------------------------------------------------------
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Plugins -------------------------------------------------------------
+# These plugins are in the .oh-my-zsh/custom/plugins directory
+plugins=(
+    git poetry macos python sudo tig vscode kubectl zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+# History ------------------------------------------------------------
+
+# Set up binaries and scripts
+autoload -U compinit && compinit
+SSEARCH=zsh-history-substring-search
+source $(brew --prefix)/share/${SSEARCH}/${SSEARCH}.zsh
+[ -f $HOME/.zsh_history ] || touch $HOME/.zsh_history
+
+# Set up environment variables
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=$HOME/.zsh_history
+
+setopt HIST_FCNTL_LOCK
+unsetopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+unsetopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_NO_DUPS
+unsetopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+unsetopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY        # Multi-terminal shares history
+unsetopt EXTENDED_HISTORY
+
+bindkey '\e[A' history-substring-search-up
+bindkey '\e[B' history-substring-search-down
+
+# ======================================================================
+# ALIASES
+# ======================================================================
 
 alias ls='lsd'
 alias ll='ls -l'
 alias la='ls -la'
 alias ssh='TERM=xterm-256color ssh'
 
-# ZSH History ------------------------------------------------------------
-autoload -U compinit && compinit
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=$HOME/.zsh_history
+# ======================================================================
+# DEV ENVIRONMENTS
+# ======================================================================
 
-setopt SHARE_HISTORY        # Multi-terminal shares history
-setopt INC_APPEND_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt EXTENDED_HISTORY
+# GitHub
+alias gaa='git add --all'
+alias gac='git add . && git commit -a -S -m '
+alias gau='git add -u && git commit -a -S -m '
+alias gb='git branch'
+alias gcam='git commit -S-a -m'
+alias gswd='git switch $(git_develop_branch)'
+alias gswm='git switch $(git_main_branch)'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gmud='git merge upstream/develop'
+alias gmum='git merge upstream/$(git_main_branch)'
+alias glog='git log --color --graph --pretty=format:'\''%Cred%h%Creset \
+           -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' \
+           --abbrev-commit --branches'
+alias gl='git pull'
 
-bindkey '\e[A' history-search-backward
-bindkey '\e[B' history-search-forward
+# Source location
+export SRC=$HOME/1_personal/src
 
-# session variables ------------------------------------------------
-export SRC=$HOME/1_personal/spaces/tech/projects
-export GOPATH=$HOME/.go
+# Kubernetes
 export KUBECONFIG=$HOME/.kube/config
+source <(kubectl completion zsh)
+alias k='kubectl'
+alias u='u8s kubectl'
+
+# Terraform
+alias tp='terraform plan -out the.plan'
+alias ta='terraform apply the.plan'
+alias td='terraform destroy'
+
+# ======================================================================
+# PROGRAMMING LANGUAGES
+# ======================================================================
 
 # Golang
-. $HOME/.cargo/env
+export GOPATH=$HOME/.go
+[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
+
+# Groovy
+export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
+
+# Haskell
+[ -f "/Users/I520342/.ghcup/env" ] && . "/Users/I520342/.ghcup/env"
+
+# Python
+
+export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH
+export PATH=/Users/I520342/Library/Python/3.12/bin:$PATH
+alias python=python3.12
+
+# Ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
+
+# ======================================================================
+# TSRs
+# ======================================================================
 
 # Starship
 eval "$(starship init zsh)"

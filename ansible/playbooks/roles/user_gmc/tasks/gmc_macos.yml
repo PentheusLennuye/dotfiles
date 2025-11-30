@@ -18,6 +18,7 @@
       - starship
       - tree
       - wget
+      - zsh-history-substring-search
 
 - name: Install rust and cargo on MacOS
   ansible.builtin.command: rustup-init
@@ -52,17 +53,28 @@
         dest: "/Users/gmc/.config/nvim"
 
 - name: configure zshrc on MacOS
-  ansible.builtin.copy:
-    src: files/zshrc-darwin
-    dest: /Users/gmc/.zshrc
-    mode: "0644"
+  block:
+    - name: install plugins
+      ansible.builtin.git:
+        repo: "{{ item }}" 
+        dest: "/Users/gmc/.oh-my-zsh/custom/plugins"
+        clone: true
+        update: true
+      loop:
+        - "https://github.com/MenkeTechnologies/zsh-tig-plugin.git"
+
+    - name: copy zshrc
+      ansible.builtin.copy:
+        src: files/zshrc-darwin
+        dest: /Users/gmc/.zshrc
+        mode: "0644"
 
 - name: configure iterm2 on MacOS
   ansible.builtin.copy:
     src: com.googlecode.iterm2.plist
     dest: ~/Library/Preferences/com.googlecode.iterm2.plist
     mode: "0600"
-
+a
 - name: install pipx packages on MacOS
   community.general.pipx:
     name:
