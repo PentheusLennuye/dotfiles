@@ -1,7 +1,7 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = with unstable; [
+  environment.systemPackages = with pkgs; [
     freecad-wayland
     orca-slicer
   ];

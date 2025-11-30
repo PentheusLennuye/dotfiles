@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.zsh = {
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
+    #dotDir = ".config/zsh";
     enable = true;
     autosuggestion.enable = false;
     initContent = ''
