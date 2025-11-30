@@ -40,15 +40,15 @@
     # Python
     cookiecutter
     poetry
-    python3
-    python311Packages.black                # PEP-8
-    python311Packages.cookiecutter         # Templates
-    python311Packages.invoke
-    python311Packages.mdformat             # Autoformatter for markdown
-    python311Packages.pip
-    python311Packages.pipx
-    python311Packages.flake8               # PEP-8
-    python311Packages.jedi-language-server # LSP server
+    #python3
+    #python315Packages.black                # PEP-8
+    #python315Packages.cookiecutter         # Templates
+    #python315Packages.invoke
+    #python315Packages.mdformat             # Autoformatter for markdown
+    #python315Packages.pip
+    #python315Packages.pipx
+    #python315Packages.flake8               # PEP-8
+    #python315Packages.jedi-language-server # LSP server
     virtualenv
 
     # Rust

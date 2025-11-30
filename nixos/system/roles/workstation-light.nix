@@ -22,7 +22,7 @@ in
   ];
 
   environment.systemPackages = [
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.hypridle
     pkgs.hyprpolkitagent
     pkgs.qt6.qtwayland
@@ -53,7 +53,7 @@ in
     liberation_ttf
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     proggyfonts
     nerdfonts.jetbrains-mono
   ];

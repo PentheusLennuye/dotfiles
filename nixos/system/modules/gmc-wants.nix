@@ -16,7 +16,7 @@ let
     firefox
     freetube                               # YouTube on chromium
     gimp
-    glxinfo                                # Testing glx info
+    mesa-demos                             # Testing glx info
     openpomodoro-cli
     grim                                   # Wayland image grabber
     hunspell
@@ -39,7 +39,7 @@ let
     surge                                  # synthesizer
     swaynotificationcenter                 # Waybar modules require this
     thunderbird
-    vistafonts                             # Better fonts for Firefox etc
+    vista-fonts                             # Better fonts for Firefox etc
     waybar                                 # task/toolbar for Hyprland
     wofi                                   # program selector for Hyprland
     zotero                                 # reference manager
