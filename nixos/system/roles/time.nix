@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     gpsd
   ];
+  networking.firewall.allowedUDPPorts = [ 123 ];
   services = {
     chrony = {
         enable = true;
