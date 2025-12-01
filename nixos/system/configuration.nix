@@ -10,7 +10,7 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
-        "http://nixoscache.cummings-online.local:5000"
+        "http://nixoscache.cummings-online.local"
         "https://cache.nixos.org/"
       ];
       trusted-public-keys = [

@@ -47,6 +47,7 @@
         modules = common_modules ++ [
           ./gpu/amd.nix
           ./hosts/goemon
+          ./roles/alarm.nix
           ./roles/audio-engineering.nix
           ./roles/binarycache.nix
           ./roles/container-host.nix
@@ -96,6 +97,7 @@
         modules = common_modules ++ [
           ./gpu/opengl.nix
           ./hosts/murasaki
+          ./roles/alarm.nix
           ./roles/audio-engineering.nix
           ./roles/container-host.nix
           ./roles/development.nix

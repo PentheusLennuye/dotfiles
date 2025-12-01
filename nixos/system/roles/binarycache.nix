@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  networking.firewall.allowedTCPPorts = [
+    config.services.nginx.defaultHTTPListenPort
+  ];
   services = {
     nginx = {
       enable = true;
@@ -15,7 +18,7 @@
       enable = true;
       openFirewall = true;
       port = 5000;
-      secretKeyFile = "/var/cache-priv-key.pem";
+      secretKeyFile = "/var/secrets/cache-priv-key.pem";
     };
   };
 }
