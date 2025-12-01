@@ -14,7 +14,7 @@
         "https://cache.nixos.org/"
       ];
       trusted-public-keys = [
-        "nixoscache.cummings-online.local-1:wqlV5UTFqBWOwSl/u4zv1kHZHYRKIg780viSipRttFA="
+        "nixoscache.cummings-online.local-1:HD6ObbUL2CpTGl6xcyFSPcdZrWpLAVA+12TEQCypbAY="
       ];
     };
   };
