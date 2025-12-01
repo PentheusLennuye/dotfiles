@@ -48,6 +48,7 @@
           ./gpu/amd.nix
           ./hosts/goemon
           ./roles/audio-engineering.nix
+          ./roles/binarycache.nix
           ./roles/container-host.nix
           ./roles/development.nix
           ./roles/engineering.nix
@@ -113,7 +114,6 @@
         specialArgs = {inherit inputs;};
         modules = common_modules ++ [
           ./hosts/zenigata
-          ./roles/binarycache.nix
           ./roles/container-host.nix
           ./roles/k3s-server.nix
           ./roles/montreal.nix

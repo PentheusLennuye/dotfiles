@@ -6,9 +6,18 @@
 
 {
 
-
-  # Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [
+        "http://nixoscache.cummings-online.local"
+        "https://cache.nixos.org/"
+      ];
+      trusted-public-keys = [
+        "nixoscache.cummings-online.local-1:wqlV5UTFqBWOwSl/u4zv1kHZHYRKIg780viSipRttFA="
+      ];
+    };
+  };
 
   # Default editor
   environment.variables.EDITOR = "vim";
