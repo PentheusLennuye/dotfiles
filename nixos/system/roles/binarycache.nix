@@ -11,7 +11,7 @@ in
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "binarycache.example.com" = {
+        "nixoscache.cummings-online.local" = {
             locations."/".proxyPass =  "http://${ba}:${toString port}";
         };
       };
