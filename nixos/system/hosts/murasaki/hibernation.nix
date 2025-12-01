@@ -3,7 +3,7 @@
 {
   services.logind = {
     lidSwitch = "suspend-then-hibernate";
-    extraConfig = ''
+    settings.Login = ''
       HandlePowerKey=suspend-then-hibernate
       IdleAction=suspend-then-hibernate
       IdleActionSec=2m
