@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     freecad-wayland
     orca-slicer
+    xppen_4
   ];
   networking = {
     firewall.allowedTCPPorts = [ 8883 7071 ];
