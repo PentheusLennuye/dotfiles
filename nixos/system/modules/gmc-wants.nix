@@ -1,11 +1,8 @@
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, ... }:
 
-let
-  fastMovingPkgs = with unstable; [
-    joplin-desktop                         # Notepad
-  ];
 
-  stablePkgs = with pkgs; [
+{
+  environment.systemPackages = with pkgs; [
     _1password-gui                         # 1Password password manager
     anki                                   # Flashcards, requires QT
     appimage-run                           # Needed for Cider 2
@@ -26,6 +23,7 @@ let
     hunspellDicts.fr-any
     hyprpaper                              # wallpaper for Hyprland
     inkscape
+    joplin-desktop
     keymapp                                # flashing onyx keyboards
     kitty
     krita                                  # Painting app
@@ -44,9 +42,5 @@ let
     wofi                                   # program selector for Hyprland
     zotero                                 # reference manager
   ];
-
-in
-{
-  environment.systemPackages = stablePkgs ++ fastMovingPkgs;
 }
 

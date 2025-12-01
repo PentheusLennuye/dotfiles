@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  ba = config.services.nix-serve.bindAddress;
-  port = config.services.nix-serve.port;
-in
 {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   services = {
@@ -12,7 +8,7 @@ in
       recommendedProxySettings = true;
       virtualHosts = {
         "nixoscache.cummings-online.local" = {
-            locations."/".proxyPass =  "http://${ba}:${toString port}";
+            locations."/".proxyPass =  "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
         };
       };
     };
@@ -22,3 +18,4 @@ in
     };
   };
 }
+

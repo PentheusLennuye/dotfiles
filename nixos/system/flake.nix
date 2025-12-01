@@ -5,21 +5,15 @@
   inputs = {
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
-  #outputs = { self, home-manager, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
-  outputs = { self, nixos-hardware, nixpkgs, nixpkgs-unstable, ... } @inputs:
+  outputs = { self, nixos-hardware, nixpkgs, ... } @inputs:
               
   let 
     system = "x86_64-linux";
     pkgs = import nixpkgs {
     	inherit system;
-    };
-    unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
     };
     common_modules = [
         ./configuration.nix
@@ -32,7 +26,7 @@
     nixosConfigurations = {
       glaucus = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs unstable;};
+        specialArgs = {inherit inputs;};
         modules = common_modules ++ [
 	      nixos-hardware.nixosModules.lenovo-thinkpad-x250
           ./gpu/opengl.nix
@@ -49,7 +43,7 @@
       };
       goemon = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs unstable;};
+        specialArgs = {inherit inputs;};
         modules = common_modules ++ [
           ./gpu/amd.nix
           ./hosts/goemon
@@ -82,7 +76,7 @@
       };
       lupin = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs unstable;};
+        specialArgs = {inherit inputs;};
         modules = common_modules ++ [
           ./roles/dbms.nix
           ./roles/development.nix
@@ -97,7 +91,7 @@
       };
       murasaki = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs unstable;};
+        specialArgs = {inherit inputs;};
         modules = common_modules ++ [
           ./gpu/opengl.nix
           ./hosts/murasaki
@@ -116,7 +110,7 @@
       };
       zenigata = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs unstable;};
+        specialArgs = {inherit inputs;};
         modules = common_modules ++ [
           ./hosts/zenigata
           ./roles/binarycache.nix
