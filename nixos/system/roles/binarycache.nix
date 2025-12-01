@@ -5,7 +5,7 @@ let
   port = config.services.nix-serve.port;
 in
 {
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   services = {
     nginx = {
       enable = true;
