@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
   services = {
     nginx = {
       enable = true;
@@ -14,6 +13,8 @@
     };
     nix-serve = {
       enable = true;
+      openFirewall = true;
+      port = 5000;
       secretKeyFile = "/var/cache-priv-key.pem";
     };
   };
