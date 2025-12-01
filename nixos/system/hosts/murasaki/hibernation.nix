@@ -2,8 +2,8 @@
 { config, ... }:
 {
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
     settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
       HandlePowerKey = "suspend-then-hibernate";
       IdleAction = "suspend-then-hibernate";
       IdleActionSec = "2m";
