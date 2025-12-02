@@ -3,14 +3,24 @@
 {
   environment.systemPackages = with pkgs; [
     freecad-wayland
-    orca-slicer
+    bambu-studio
   ];
   networking = {
-    firewall.allowedTCPPorts = [ 8883 7071 ];
-    firewall.allowedUDPPortRanges = [ { from = 15001; to = 15005; } ];
+    firewall = {
+        allowedTCPPorts = [ 322 990 6000 8883 7071 ];
+        allowedTCPPortRanges = [ { from = 50000; to = 50100; } ]; 
+        allowedUDPPorts = [ 1990 2021 ];
+        allowedUDPPortRanges = [
+            { from = 123; to = 123; }
+            { from = 15001; to = 15005; }
+        ];
+    };
   };
   programs.xppen= {
     enable = true;
     package = pkgs.xppen_4;
   };
 }
+
+
+
