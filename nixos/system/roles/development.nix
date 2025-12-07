@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   environment.systemPackages = with pkgs; [
 
@@ -40,16 +39,9 @@
 
     # Python
     cookiecutter
+    enchant
     poetry
     python312
-    #python315Packages.black                # PEP-8
-    #python315Packages.cookiecutter         # Templates
-    #python315Packages.invoke
-    #python315Packages.mdformat             # Autoformatter for markdown
-    #python315Packages.pip
-    #python315Packages.pipx
-    #python315Packages.flake8               # PEP-8
-    #python315Packages.jedi-language-server # LSP server
     virtualenv
 
     # Rust
@@ -64,4 +56,7 @@
     yamllint
 
   ];
+
+  # Allow Python to use system binaries, such as enchant
+  programs.nix-ld.enable = true;
 }
