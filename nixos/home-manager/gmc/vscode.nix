@@ -9,23 +9,43 @@
             enableUpdateCheck = true;
             extensions = with pkgs.vscode-extensions; [
                 davidanson.vscode-markdownlint
+                donjayamanne.githistory
+                docker.docker
                 golang.go
                 james-yu.latex-workshop
-                ms-vscode.cpptools
+                ms-azuretools.vscode-containers
+                ms-python.black-formatter
+                ms-python.debugpy
+                ms-python.isort
+                ms-python.pylint
                 ms-python.python
+                ms-python.vscode-pylance
+                ms-vscode.cpptools
+                ms-vscode.remote-explorer
+                njpwerner.autodocstring
                 rust-lang.rust-analyzer
                 stkb.rewrap
+                streetsidesoftware.code-spell-checker
                 vscodevim.vim
             ];
             userSettings = {
-              "editor.rulers" = [ 80 120 ];
-              "flake8.args" = [
-                "--max-line-length=79"
-                "--ignore=E402,W503"
-              ];
+              "black-formatter.args" = ["-l 99" "-t py312"];
+              "editor.inlayHints.enabled" = "off";
+              "editor.rulers" = [ 99 120 ];
+              "git.openRepositoryInParentFolders" = "never";
+              "git.ignoreMissingGitWarning" = true;
+              "pylint.lintonChange" = false;
+              "remote.SSH.remotePlatform" = {
+                "*.gitpod.io" = "linux";
+              };
+              "telemetry.telemetryLevel" = "off";
               "terminal.integrated.defaultProfile.linux" = "zsh";
               "terminal.integrated.defaultProfile.osx" = "zsh";
               "update.mode" = "none";
+              "window.zoomLevel" = 1;
+              "workbench.startupEditor" = "none";
+              "workbench.colorTheme" = "";
+              "workbench.iconTheme" = "";
               "[latex]" = {
                 "editor.wordWrap" = "on";
               };
@@ -42,7 +62,9 @@
               "[rust]" = {
                 "editor.inlayHints.enabled" = "off";
               };
-              "python.languageServer" = "Jedi";
+              "[python]" = {
+                "editor.defaultFormatter" = "ms-python.black-formatter";
+              };
             };
          };
      };
@@ -53,3 +75,7 @@
 # 1yib.rust-bundle
 # monokai.theme-monokai-pro-vscode
 # ms-vscode-remote.vscode-remote-extensionpack
+# ms-vscode.makefile-tools
+# ms-vscode.remote.remote-ssh
+# ms-vscode.remote-containers
+# yzhang.markdownall-in-one
