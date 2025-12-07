@@ -34,7 +34,7 @@
               "editor.rulers" = [ 99 120 ];
               "git.openRepositoryInParentFolders" = "never";
               "git.ignoreMissingGitWarning" = true;
-              "pylint.lintonChange" = false;
+              "python.analysis.typeCheckingMode" = "basic";
               "remote.SSH.remotePlatform" = {
                 "*.gitpod.io" = "linux";
               };
