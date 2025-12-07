@@ -14,6 +14,7 @@
     pinentry-tty                        # GnuPG password control
 
     # Documentation and Translation
+    enchant
     gettext
 
     # Editors and IDE
@@ -40,7 +41,7 @@
     # Python
     cookiecutter
     poetry
-    #python3
+    python312
     #python315Packages.black                # PEP-8
     #python315Packages.cookiecutter         # Templates
     #python315Packages.invoke
