@@ -44,8 +44,8 @@
               "update.mode" = "none";
               "window.zoomLevel" = 1;
               "workbench.startupEditor" = "none";
-              "workbench.colorTheme" = "";
-              "workbench.iconTheme" = "";
+              "workbench.colorTheme" = "Monokai Pro";
+              "workbench.iconTheme" = "Monokai Pro Icons";
               "[latex]" = {
                 "editor.wordWrap" = "on";
               };
