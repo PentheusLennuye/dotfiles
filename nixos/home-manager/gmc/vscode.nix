@@ -30,6 +30,7 @@
             ];
             userSettings = {
               "black-formatter.args" = ["-l 99" "-t py312"];
+              "cSpell.language" = "en-CA";
               "editor.inlayHints.enabled" = "off";
               "editor.rulers" = [ 99 120 ];
               "git.openRepositoryInParentFolders" = "never";

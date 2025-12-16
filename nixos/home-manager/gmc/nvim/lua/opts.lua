@@ -5,7 +5,7 @@ local opt = vim.opt
 -- [[ Context ]]
 -- Context means editor rendering
 
-opt.colorcolumn = '80'
+opt.colorcolumn = '100'
 opt.number = true
 opt.scrolloff = 4
 opt.signcolumn = 'yes'
