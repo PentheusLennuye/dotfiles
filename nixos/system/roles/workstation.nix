@@ -52,9 +52,15 @@ in
     nerd-fonts.jetbrains-mono
   ];
 
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               Fcitx5                                      │
+# └───────────────────────────────────────────────────────────────────────────┘
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
+    fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
       fcitx5-lua
@@ -64,10 +70,14 @@ in
 
   security.polkit.enable = true;
 
-  # HYPRLAND
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               Hyprland                                    │
+# └───────────────────────────────────────────────────────────────────────────┘
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
   programs.hyprlock = {
@@ -75,7 +85,10 @@ in
   };
   security.pam.services.hyprlock = {};
 
-  # KDE 6
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               KDE6                                        │
+# └───────────────────────────────────────────────────────────────────────────┘
 
   services = {
     desktopManager.plasma6.enable = true;
@@ -84,7 +97,7 @@ in
         theme = "breeze";
         wayland.enable = true;
     };
-    displayManager.defaultSession = "hyprland";
+    displayManager.defaultSession = "hyprland-uwsm";
     xserver.enable = true;
   };
 

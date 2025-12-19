@@ -70,10 +70,30 @@ in
 
   security.polkit.enable = true;
 
-  # HYPRLAND
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                           Display Manager                                 │
+# └───────────────────────────────────────────────────────────────────────────┘
+
+  services = {
+    displayManager.sddm = {
+        enable = true;
+        theme = "breeze";
+        wayland.enable = true;
+    };
+    displayManager.defaultSession = "hyprland-uwsm";
+    xserver.enable = true;
+  };
+}
+
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               Hyprland                                    │
+# └───────────────────────────────────────────────────────────────────────────┘
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
   programs.hyprlock = {
@@ -81,17 +101,10 @@ in
   };
   security.pam.services.hyprlock = {};
 
-  # KDE 6
 
-  services = {
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm = {
-        enable = true;
-        theme = "breeze";
-        wayland.enable = true;
-    };
-    displayManager.defaultSession = "hyprland";
-    xserver.enable = true;
-  };
-}
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               KDE6                                        │
+# └───────────────────────────────────────────────────────────────────────────┘
+
+  services.desktopManager.plasma6.enable = true;
 

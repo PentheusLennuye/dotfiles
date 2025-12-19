@@ -3,7 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
     freecad-wayland
-    bambu-studio
+    #bambu-studio
+    orca-slicer
   ];
   networking = {
     firewall = {
