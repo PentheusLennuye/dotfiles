@@ -21,7 +21,7 @@ vim.cmd[[ colorscheme NeoSolarized ]]
 -- Markdown
 nvim_lsp.marksman.setup{}
 g.neoformat_markdown_mdformat = {
-    exe = 'mdformat', args = { '-', '--wrap 80' }, stdin = 1
+    exe = 'mdformat', args = { '-', '--wrap 99' }, stdin = 1
 }
 g.neoformat_enabled_markdown = { 'mdformat' }
 

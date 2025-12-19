@@ -19,14 +19,14 @@
         set ruler
         set colorcolumn=+1
         set bs=indent,eol,start
-        autocmd Filetype go setlocal tw=79 ts=4 sw=4 softtabstop=4 autoindent expandtab
-        autocmd Filetype html setlocal tw=80 ts=2 sw=2 softtabstop=2 autoindent expandtab
-        autocmd Filetype markdown setlocal tw=80 ts=2 sw=2 softtabstop=2 autoindent expandtab linebreak
-        autocmd Filetype python setlocal tw=79 ts=4 sw=4 softtabstop=4 autoindent expandtab fileformat=unix
+        autocmd Filetype go setlocal tw=99 ts=4 sw=4 softtabstop=4 autoindent expandtab
+        autocmd Filetype html setlocal tw=99 ts=2 sw=2 softtabstop=2 autoindent expandtab
+        autocmd Filetype markdown setlocal tw=99 ts=2 sw=2 softtabstop=2 autoindent expandtab linebreak
+        autocmd Filetype python setlocal tw=99 ts=4 sw=4 softtabstop=4 autoindent expandtab fileformat=unix
         autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-        autocmd Filetype rust setlocal tw=100 ts=4 sw=4 softtabstop=4 autoindent expandtab fileformat=unix
+        autocmd Filetype rust setlocal tw=99 ts=4 sw=4 softtabstop=4 autoindent expandtab fileformat=unix
         autocmd Filetype sh setlocal ts=2 sw=2 expandtab
-        autocmd Filetype vim setlocal tw=100 expandtab
+        autocmd Filetype vim setlocal tw=99 expandtab
         nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
         nnoremap <C-J> <C-W><C-J>
         execute pathogen#infect()

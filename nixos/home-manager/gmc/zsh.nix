@@ -3,7 +3,6 @@
 {
   programs.zsh = {
     dotDir = "${config.xdg.configHome}/zsh";
-    #dotDir = ".config/zsh";
     enable = true;
     autosuggestion.enable = false;
     initContent = ''
@@ -33,6 +32,7 @@
     shellAliases = {
       hbs="home-manager build switch";
       k="kubectl";
+      ke="kubectl exec";
       ls="lsd";
       ll="ls -l";
       la="ls -la";
