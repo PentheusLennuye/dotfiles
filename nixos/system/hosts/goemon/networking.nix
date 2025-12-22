@@ -5,6 +5,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   networking = {
     #defaultGateway = "192.168.68.1";
     defaultGateway = "192.168.73.1";
@@ -34,6 +38,7 @@
   };
 
   services = {
+    blueman.enable = true;
     openssh = {
       enable = true;
       settings = {
