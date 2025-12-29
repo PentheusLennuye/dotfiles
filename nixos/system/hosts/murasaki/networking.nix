@@ -5,6 +5,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   networking = {
     extraHosts = ''
       192.168.173.216 fafo.vm.cummings-online.local fafo
@@ -13,10 +17,13 @@
     networkmanager.enable = true;
     useDHCP = lib.mkDefault false;
   };
-  services.openssh = {
-    enable = true;
-    settings = {
-        PasswordAuthentication = true;
+  services = {
+    blueman.enable = true;
+    openssh = {
+        enable = true;
+        settings = {
+            PasswordAuthentication = true;
+        };
     };
   };
 }
