@@ -42,6 +42,7 @@
     enchant
     poetry
     python312
+    python312Packages.jedi-language-server
     virtualenv
 
     # Rust
