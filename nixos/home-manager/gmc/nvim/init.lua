@@ -1,24 +1,4 @@
 -- [[ init.lua ]]
 
--- LEADER
--- These keybindings need to be defined before the first is called; otherwise
--- it will default to "\"
+require("gmc.core.init")
 
-vim.g.mapleader = ','
-vim.g.localleader = '\\'
-
--- AWFUL SIDEBAR
-
-vim.cmd("highlight! link SignColumn Normal")
-
--- IMPORTS
-
-require('vars')    -- Variables
-require('opts')    -- Options
-require('keys')    -- Keymaps
-require('plug')    -- Plugins
-require('ide')     -- Developer Support    
-
--- ACTIVATE
-
-require('toggleterm').setup{}

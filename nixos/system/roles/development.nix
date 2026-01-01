@@ -16,8 +16,11 @@
     enchant
     gettext
 
-    # Editors and IDE
+    # Editors and IDE ----------------------------------------
+    fd       # find binary for neovim telescope
     neovim
+    ripgrep  # grep binary for neovim telescope
+    tree-sitter
 
     # Shell control
     gnumake
