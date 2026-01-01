@@ -2,7 +2,7 @@
 -- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
+  branch = "master",
 
   dependencies = {
     -- required

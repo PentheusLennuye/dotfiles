@@ -1,9 +1,0 @@
-{
-  "Tsuzat/NeoSolarized.nvim",
-  lazy = false,
-  priority = 1000,  -- ensure this is the first loaded
-  config = function()
-    vim.cmd [[ colorscheme NeoSolarized ]]
-  end
-}
-

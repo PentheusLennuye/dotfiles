@@ -1,30 +1,68 @@
--- From Google AI
 -- Allows tree-sitter parsers, used to create syntax trees
+-- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   build = ":TSUpdate",
-  opts = {
-    ensure_installed = {
-      "bash",
-      "c",
-      "diff",
-      "html",
-      "lua",
-      "luadoc",
-      "markdown",
-      "markdown_inline",
-      "query",
-      "vim",
-      "vimdoc",
-    },
-    auto_install = true, -- Automatically installs missing parsers
-    highlight = {
-      enable = true, -- Enables Treesitter highlighting
-    },
-    indent = {
-      enable = true, -- Enables Treesitter indentation
-    },
-  },
-  config = function(_, opts)
-  end,
+  config = function()
+    local treesitter = require("nvim-treesitter")
+
+    treesitter.setup({
+      autotag = { enable = true },
+      install = {
+        "asm",
+        "bash",
+        "bibtex",
+        "c",
+        "cpp",
+        "css",
+        "dockerfile",
+        "git_config",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "gomod",
+        "gosum",
+        "graphql",
+        "haskell",
+        "haskell_persistent",
+        "helm",
+        "html",
+        "ini",
+        "jinja",
+        "jinja_inline",
+        "json",
+        "latex",
+        "lua",
+        "luadoc",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "mermaid",
+        "nginx",
+        "nix",
+        "query",
+        "python",
+        "rust",
+        "sql",
+        "terraform",
+        "toml",
+        "vim",
+        "vimdoc",
+        "yaml",
+        "zsh"
+      },
+      highlight = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        }
+      },
+     indent = { enable = true }
+    })
+  end
 }

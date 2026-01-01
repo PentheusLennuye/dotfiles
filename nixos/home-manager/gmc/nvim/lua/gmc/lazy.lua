@@ -13,15 +13,14 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("gmc.plugins")
 
-
--- {
---   "Tsuzat/NeoSolarized.nvim",
---   lazy = false,
---   priority = 1000,  -- ensure this is the first loaded
---   config = function()
---     vim.cmd [[ colorscheme NeoSolarized ]]
---   end
--- }
+require("lazy").setup("gmc.plugins", {
+  change_detection = {
+    notify = false
+  },
+  checker = {
+    enabled = true,
+    notify = false
+  }
+})
 

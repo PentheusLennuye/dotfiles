@@ -1,5 +1,5 @@
 -- A better explorer tree with icons
--- fredit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
+-- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = "nvim-tree/nvim-web-devicons",
