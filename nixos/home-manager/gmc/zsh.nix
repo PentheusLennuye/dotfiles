@@ -23,11 +23,12 @@
     sessionVariables = {
       CA = "$HOME/spaces/tech/infra/ca";
       DF = "$HOME/spaces/tech/infra/dotfiles";
-      SAP = "$HOME/spaces/sap/projects/src";
-      SRC = "$HOME/spaces/tech/programming/projects";
       GOPATH = "$HOME/.go";
-      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       KUBECONFIG = "$HOME/.kube/config";
+      SAP = "$HOME/spaces/sap/projects/src";
+      SSH_ASKPASS = "";
+      SRC = "$HOME/spaces/tech/programming/projects";
+      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
     shellAliases = {
       hbs="home-manager build switch";
