@@ -3,6 +3,7 @@
   community.general.homebrew:
     name:
       - docker
+      - fd   # Used for neovim telescope
       - go
       - jq
       - lld  # LLVM linker. Apparently better than rust's native linker
@@ -12,6 +13,7 @@
       - nvim
       - pipx
       - "python@3.11"
+      - ripgrep  # Also used for neovim telescope
       - ruby
       - rustup
       - rust-analyzer

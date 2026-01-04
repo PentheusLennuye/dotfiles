@@ -87,7 +87,9 @@ alias glog='git log --color --graph --pretty=format:'\''%Cred%h%Creset \
 alias gl='git pull'
 
 # Source location
-export SRC=$HOME/1_personal/src
+export DF=$HOME/spaces/tech/infra/dotfiles
+export SAP=$HOME/spaces/sap
+export SRC=$HOME/spaces/programmings/projects
 
 # Kubernetes
 export KUBECONFIG=$HOME/.kube/config
