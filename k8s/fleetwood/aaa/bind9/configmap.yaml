@@ -55,7 +55,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2025122201   ; serial
+      2026010402   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -70,7 +70,7 @@ data:
     bambu       IN	A	192.168.68.232
     brother     IN	A	192.168.68.61
     canon	    IN	A	192.168.73.61
-    goemon      IN	A	192.168.73.73
+    goemon      IN	A	192.168.68.73
     goliath     IN	A	192.168.68.74
     rpi1	    IN 	A 	192.168.68.31
     rpi2 	    IN 	A 	192.168.68.32
@@ -119,7 +119,7 @@ data:
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-     2025120501 ; serial
+     2026010401 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -139,6 +139,7 @@ data:
     68.33   IN PTR rpi3.cummings-online.local.
     68.34   IN PTR rpi4.cummings-online.local.
     68.34   IN PTR rpi4.cummings-online.local.
+    68.73   IN PTR goemon.cummings-online.local.
     68.231  IN PTR sanda.cummings-online.local.
     68.232  IN PTR bambu.cummings-online.local.
     68.254  IN PTR spectre.cummings-online.local.
@@ -149,7 +150,6 @@ data:
     73.42   IN PTR knw-jump.cummings-online.local.
     73.43   IN PTR knw-access.cummings-online.local.
     73.61   IN PTR canon.cummings-online.local.
-    73.73   IN PTR goemon.cummings-online.local.
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
