@@ -1,8 +1,8 @@
 -- How to remember the key maps
--- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
+-- Credit to Josean Martinez "How I Setup Neovim to Make it AMAZING in 2024: The Ultimate Guide
 return {
   "folke/which-key.nvim",
-  event = "VeryLazy",  -- not required at load
+  event = "VeryLazy", -- not required at load
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 500 -- 0.5 seconds

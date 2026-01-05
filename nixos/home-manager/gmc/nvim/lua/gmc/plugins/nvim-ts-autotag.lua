@@ -2,9 +2,9 @@
 return {
   "windwp/nvim-ts-autotag",
   config = function()
-    local autotag = require("nvim-ts-autotag")
-    
-    autotag.setup({
+    local autoTag = require("nvim-ts-autotag")
+
+    autoTag.setup({
       opts = {
         enable_close = true,
         enable_close_on_slash = false,

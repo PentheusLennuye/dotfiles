@@ -1,5 +1,5 @@
 -- Allows tree-sitter parsers, used to create syntax trees
--- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
+-- Credit to Josean Martinez "How I Setup Neovim to Make it AMAZING in 2024: The Ultimate Guide
 return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
@@ -62,7 +62,7 @@ return {
           node_decremental = "<bs>",
         }
       },
-     indent = { enable = true }
+      indent = { enable = true }
     })
   end
 }

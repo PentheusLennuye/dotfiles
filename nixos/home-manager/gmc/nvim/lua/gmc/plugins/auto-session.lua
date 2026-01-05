@@ -10,7 +10,7 @@ return {
       auto_session_suppress_dirs = { "~/", "~/extra/", "~/nltk_data", "~/sources", "~/Zotero" },
     })
 
-    local keymap = vim.keymap  -- keep it concise
+    local keymap = vim.keymap -- keep it concise
     keymap.set(
       "n", "<leader>wr", "<cmd>AutoSession restore<CR>", { desc = "Restore session for cwd" }
     )

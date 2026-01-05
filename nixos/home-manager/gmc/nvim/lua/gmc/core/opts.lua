@@ -16,7 +16,7 @@ opt.cursorline = true
 opt.number = true
 opt.scrolloff = 4
 
--- signColumn gives a three-character left margin to prevent text-shift on warnings
+-- signcolumn gives a three-character left margin to prevent text-shift on warnings
 opt.signcolumn = "yes"
 
 
@@ -64,4 +64,3 @@ opt.splitbelow = true
 -- [[ System Integration ]]
 -- clipboard permits the use of the system clipboard for cutting and pasting
 opt.clipboard:append("unnamedplus")
-

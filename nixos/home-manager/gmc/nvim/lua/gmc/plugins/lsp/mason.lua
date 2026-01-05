@@ -9,7 +9,7 @@ return {
         "ansiblels",
         "bashls",
         "cmake",
-        "cspell_ls",
+        "codebook",
         "cssls",
         "dockerls",
         "gh_actions_ls",
@@ -38,9 +38,9 @@ return {
           ui = {
             icons = {
               package_installed = "✓",
-              package_pending = "→",     -- rightwards arrow
-              package_uninstalled = "✗"  -- ballot
-            }         
+              package_pending = "→", -- rightwards arrow
+              package_uninstalled = "✗" -- ballot
+            }
           }
         }
       },
@@ -51,19 +51,18 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-       -- "ansible-lint",
-       "black",
-       "cmakelint",
-       "cspell",
-       "isort",
-       "jsonlint",
-       "markdownlint",
-       "pydocstyle",
-       "pylint",
-       "rstcheck",
-       "systemdlint",
-       "terraform",
-       "yamllint"
+        -- "ansible-lint",
+        "black",
+        "cmakelint",
+        "isort",
+        "jsonlint",
+        "markdownlint",
+        "pydocstyle",
+        "pylint",
+        "rstcheck",
+        "systemdlint",
+        "terraform",
+        "yamllint"
       }
     },
     dependencies = {

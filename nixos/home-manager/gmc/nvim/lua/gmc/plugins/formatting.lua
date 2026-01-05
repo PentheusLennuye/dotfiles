@@ -2,7 +2,7 @@
 -- Credit to Josean Martinez "How to Setup Neovim LSP Like a Pro in 2025 (v0.11+)
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile"},
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
 
@@ -15,7 +15,7 @@ return {
         markdown = { "prettier" },
         graphql = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black"}
+        python = { "isort", "black" }
       },
       format_on_save = {
         lsp_fallback = true,
@@ -23,12 +23,12 @@ return {
         timeout_ms = 3000
       }
     })
-    vim.keymap.set({ "n", "v"}, "<leader>mp", function()
+    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,
         async = false,
         timeout_ms = 1000
       })
-    end, { desc = "Format file or range (in visual mode)"})
+    end, { desc = "Format file or range (in visual mode)" })
   end
 }

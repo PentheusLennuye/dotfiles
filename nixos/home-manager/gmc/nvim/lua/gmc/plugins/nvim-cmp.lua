@@ -1,18 +1,18 @@
 -- IDE Completion
--- Credit to Josean Martinez "How I Setup Neovim to Makr it AMAZING in 2024: The Ultimate Guide
+-- Credit to Josean Martinez "How I Setup Neovim to Make it AMAZING in 2024: The Ultimate Guide
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",  -- system paths
+    "hrsh7th/cmp-path", -- system paths
     {
       "L3MON4D3/LuaSnip",
       version = "v2.*",
       build = "make install_jsregexp",
     },
-    "saadparwaiz1/cmp_luasnip",  -- autocompletion
+    "saadparwaiz1/cmp_luasnip",     -- autocompletion
     "rafamadriz/friendly-snippets", -- multiple language snippets
-    "onsails/lspkind.nvim" -- vs-code like pictograms
+    "onsails/lspkind.nvim"          -- vs-code like pictograms
   },
   event = "InsertEnter",
   config = function()
@@ -37,8 +37,8 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),  -- show completion suggestions
-        ["<C-e>"] = cmp.mapping.abort(),  -- close the completion window
+        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(),        -- close the completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false })
       }),
       snippet = {
@@ -46,7 +46,7 @@ return {
           luasnip.lsp_expand(args.body)
         end
       },
-      sources = cmp.config.sources ({
+      sources = cmp.config.sources({
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" }
