@@ -1,4 +1,4 @@
 -- [[ init.lua ]]
 
-require("gmc.core.init")
+require("gmc")
 
