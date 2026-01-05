@@ -89,7 +89,9 @@ alias gl='git pull'
 # Source location
 export DF=$HOME/spaces/tech/infra/dotfiles
 export SAP=$HOME/spaces/sap
+export SPS=$HOME/spaces/sap/projects/src
 export SRC=$HOME/spaces/programmings/projects
+alias sps="cd ${SPS}"
 
 # Kubernetes
 export KUBECONFIG=$HOME/.kube/config
