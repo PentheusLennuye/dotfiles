@@ -2,6 +2,7 @@
 - name: install brew packages
   community.general.homebrew:
     name:
+      - cspell  # Code speller
       - docker
       - fd   # Used for neovim telescope
       - go

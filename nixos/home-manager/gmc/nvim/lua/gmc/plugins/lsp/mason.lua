@@ -1,57 +1,75 @@
 -- Install mason lsp package manager
 -- Credit to Josean Martinez "How to Setup Neovim LSP Like a Pro in 2025 (v0.11+)
 return {
-  "williamboman/mason-lspconfig.nvim",
-  opts = {
-    ensure_installed = {
-      "ansible-language-server",
-      "ansible-lint",
-      "bash-language-server",
-      "black",
-      "cmake-language-server",
-      "cmake-lint",
-      "cspell-lsp",
-      "css-lsp",
-      "dockerfile-language-server",
-      "gh-actions-language-server",
-      "gopls",
-      "graphql-language-service-cli",
-      "helm-ls",
-      "html-lsp",
-      "jinja-lsp",
-      "json-lsp",
-      "jsonlint",
-      "lua-language-server",
-      "markdownlint",
-      "marksman",
-      "nginx-language-server",
-      "postgres-language-server",
-      "pydocstyle",
-      "pylint",
-      "pyright",
-      "rstcheck",
-      "rust-analyzer",
-      "systemd-lsp",
-      "systemdlint",
-      "terraform",
-      "terraformls",
-      "yaml-language-server",
-      "yamllint",
-    }
-  },
-  dependencies = {
-    {
-      "williamboman/mason.nvim",
-      opts = {
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "→",     -- rightwards arrow
-            package_uninstalled = "✗"  -- ballot
-          }         
-        }
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "asm_lsp",
+        "ansiblels",
+        "bashls",
+        "cmake",
+        "cspell_ls",
+        "cssls",
+        "dockerls",
+        "gh_actions_ls",
+        "gopls",
+        "graphql",
+        "hls",
+        "helm_ls",
+        "html",
+        "jinja_lsp",
+        "jsonls",
+        "lua_ls",
+        "marksman",
+        "nginx_language_server",
+        "postgres_lsp",
+        "pyright",
+        "rust_analyzer",
+        "systemd_lsp",
+        "terraformls",
+        "yamlls",
       }
     },
-    "neovim/nvim-lspconfig"
+    dependencies = {
+      {
+        "mason-org/mason.nvim",
+        opts = {
+          ui = {
+            icons = {
+              package_installed = "✓",
+              package_pending = "→",     -- rightwards arrow
+              package_uninstalled = "✗"  -- ballot
+            }         
+          }
+        }
+      },
+      "neovim/nvim-lspconfig"
+    }
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = {
+       -- "ansible-lint",
+       "black",
+       "cmakelint",
+       "cspell",
+       "isort",
+       "jsonlint",
+       "markdownlint",
+       "pydocstyle",
+       "pylint",
+       "rstcheck",
+       "systemdlint",
+       "terraform",
+       "yamllint"
+      }
+    },
+    dependencies = {
+      {
+        "mason-org/mason.nvim",
+      }
+    }
   }
 }
