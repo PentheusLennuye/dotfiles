@@ -110,7 +110,6 @@ alias td='terraform destroy'
 
 # Golang
 export GOPATH=$HOME/.go
-[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
 # Groovy
 export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
@@ -126,6 +125,10 @@ alias python=python3.12
 
 # Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
+
+# Rust
+[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
+
 
 # ======================================================================
 # TSRs
