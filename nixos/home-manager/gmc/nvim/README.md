@@ -1,51 +1,10 @@
 # NVIM set up
 
-## LSP
+The very first time you run nvim, it will download some LSPs. Some will require compiling so run
+nvim the first time in its own nix shell.
 
-Start Mason with the `:Mason` command. Select with the "i" command:
-
-- ansible-language-server
-- asm-lsp
-- bash-language-server
-- cmake-language-server
-- cspell-lsp
-- css-lsp
-- dockerfile-language-server
-- gh-actions-language-server
-- gopls
-- graphql-language-service-cli
-- haskel-language-server
-- helm-ls
-- html-lsp
-- jinja-lsp
-- json-lsp
-- lua-language-server
-- marksman
-- nginx-language-server
-- postgres-language-server
-- pyright
-- rust-analyzer
-- systemd-lsp
-- terraform-ls
-- yaml-language-server
-
-## Linters
-
-- ansible-lint
-- cmake-lint
-- codespell
-- golangci-lint
-- jsonlint
-- luachek
-- markdownlint
-- pydocstyle
-- pylint
-- rstcheck
-- systemdlint
-- terraform
-- yamllint
-
-## Formatter
-
-- black
+```sh
+nix-shell -p pkg-config openssl
+nvim
+```
 

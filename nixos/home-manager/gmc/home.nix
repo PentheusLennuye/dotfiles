@@ -5,7 +5,7 @@
     # All
     ./localbin.nix
     ./misc.nix
-    # ./neovim.nix
+    ./neovim.nix
     ./vim.nix
 
     # Desktops

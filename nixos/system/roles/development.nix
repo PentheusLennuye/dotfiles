@@ -17,6 +17,7 @@
     gettext
 
     # Editors and IDE ----------------------------------------
+    codebook # spellchecker for code, more advanced than cSpell
     fd       # find binary for neovim telescope
     neovim
     ripgrep  # grep binary for neovim telescope
@@ -31,7 +32,11 @@
     golangci-lint-langserver
 
     # Haskell
+    cabal-install
     ghc
+    haskellPackages.fast-tags
+    haskellPackages.haskell-debug-adapter
+    haskellPackages.haskell-language-server
 
     # JavaScript
     nodejs
@@ -39,6 +44,9 @@
     # Markdown
     marksman
     markdownlint-cli
+
+    # Nix
+    nixd
 
     # Python
     cookiecutter

@@ -25,10 +25,12 @@
       DF = "$HOME/spaces/tech/infra/dotfiles";
       GOPATH = "$HOME/.go";
       KUBECONFIG = "$HOME/.kube/config";
+      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       SAP = "$HOME/spaces/sap/projects/src";
       SSH_ASKPASS = "";
       SRC = "$HOME/spaces/tech/programming/projects";
-      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+      STEAM_EXTRA_COMPAT_TOOLS_PATH =
+        "\\\${HOME}/.steam/root/compatibilitytools.d";
     };
     shellAliases = {
       hbs="home-manager build switch";

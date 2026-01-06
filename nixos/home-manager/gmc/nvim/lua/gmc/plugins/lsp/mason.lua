@@ -5,7 +5,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        "asm_lsp",
+        "asm_lsp", -- in NixOS, see README.md
         "ansiblels",
         "bashls",
         "cmake",
@@ -15,14 +15,14 @@ return {
         "gh_actions_ls",
         "gopls",
         "graphql",
-        "hls",
-        "helm_ls",
+        "helm_ls", -- Haskell is taken care of by its own plugin
         "html",
         "jinja_lsp",
         "jsonls",
         "lua_ls",
         "marksman",
         "nginx_language_server",
+        "nil_ls", -- Nix language server
         "postgres_lsp",
         "pyright",
         "rust_analyzer",
