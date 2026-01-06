@@ -35,8 +35,12 @@
     cabal-install
     ghc
     haskellPackages.fast-tags
+    haskellPackages.ghci-dap
+    haskellPackages.haskell-dap
     haskellPackages.haskell-debug-adapter
     haskellPackages.haskell-language-server
+    haskellPackages.hoogle
+    haskellPackages.hoogle-index
 
     # JavaScript
     nodejs
