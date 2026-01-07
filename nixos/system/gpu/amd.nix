@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -7,7 +7,12 @@
     amdgpu_top
     clinfo
     blender-hip
+    lact
   ];
+
+  environment.variables = {
+    AMD_VULKAN_ICD = "RADV";
+  };
 
   hardware.amdgpu = {
     opencl.enable = true;
@@ -23,18 +28,23 @@
     ];
   };
 
-  systemd.tmpfiles.rules =
-    let
-      rocmEnv = pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          rocblas
-          hipblas
-          clr
-        ];
-      };
-    in
-    [
-      "L+ /opt/rocm/hip - - - - ${rocmEnv}"
-    ];
+  systemd = {
+    packages = with pkgs; [ lact ];
+    services.lactd.wantedBy = [ "multi-user target" ];
+    tmpfiles.rules =
+      let
+        rocmEnv = pkgs.symlinkJoin {
+          name = "rocm-combined";
+          paths = with pkgs.rocmPackages; [
+            rocblas
+            hipblas
+            clr
+          ];
+        };
+      in
+      [
+        "L+ /opt/rocm/hip - - - - ${rocmEnv}"
+      ];
+  };
+
 }
