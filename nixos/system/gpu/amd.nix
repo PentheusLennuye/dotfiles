@@ -30,7 +30,7 @@
 
   systemd = {
     packages = with pkgs; [ lact ];
-    services.lactd.wantedBy = [ "multi-user target" ];
+    services.lactd.wantedBy = [ "multi-user.target" ];
     tmpfiles.rules =
       let
         rocmEnv = pkgs.symlinkJoin {
