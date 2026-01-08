@@ -10,7 +10,7 @@
     docker-compose
     git
     gh
-    pinentry-tty                        # GnuPG password control
+    pinentry-tty # GnuPG password control
 
     # Documentation and Translation
     enchant
@@ -18,9 +18,9 @@
 
     # Editors and IDE ----------------------------------------
     codebook # spellchecker for code, more advanced than cSpell
-    fd       # find binary for neovim telescope
+    fd # find binary for neovim telescope
     neovim
-    ripgrep  # grep binary for neovim telescope
+    ripgrep # grep binary for neovim telescope
     tree-sitter
 
     # Shell control
@@ -39,8 +39,8 @@
     haskellPackages.haskell-dap
     haskellPackages.haskell-debug-adapter
     haskellPackages.haskell-language-server
+    haskellPackages.stack
     haskellPackages.hoogle
-    haskellPackages.hoogle-index
 
     # JavaScript
     nodejs
@@ -51,6 +51,7 @@
 
     # Nix
     nixd
+    nixfmt
 
     # Python
     cookiecutter
