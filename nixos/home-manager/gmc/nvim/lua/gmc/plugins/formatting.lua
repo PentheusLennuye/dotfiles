@@ -23,6 +23,12 @@ return {
         timeout_ms = 3000
       }
     })
+    -- Toggle autoformat for current buffer
+    vim.keymap.set("n", "<leader>mf", function()
+      vim.b.autoformat = not vim.b.autoformat
+      vim.notify("Autoformat for this buffer: " .. (vim.b.autoformat and "ON" or "OFF"))
+    end, { desc = "Toggle format on save" })
+
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,

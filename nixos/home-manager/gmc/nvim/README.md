@@ -24,11 +24,10 @@ Haskell tools.
 #### Hoogle Search
 
 ```sh
-cabal install fast-tags ghci-dap haskell-dap haskell-debug-adapter hoogle hoogle-index
+cabal install fast-tags ghci-dap haskell-dap haskell-debug-adapter hoogle
 # Go for coffee
 echo >> ~/.ghci ':def hoogle \x -> return $ ":!hoogle " ++ x'
 ```
-
 
 ### NixOS
 
