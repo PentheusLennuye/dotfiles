@@ -19,6 +19,7 @@
     # Editors and IDE ----------------------------------------
     codebook # spellchecker for code, more advanced than cSpell
     fd # find binary for neovim telescope
+    lazygit # integrate neovim with git
     neovim
     ripgrep # grep binary for neovim telescope
     tree-sitter

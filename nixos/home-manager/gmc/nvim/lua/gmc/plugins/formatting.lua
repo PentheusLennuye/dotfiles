@@ -9,13 +9,17 @@ return {
     conform.setup({
       formatters_by_ft = {
         css = { "prettier" },
+        go = { "gopls" },
+        graphql = { "prettier" },
+        haskell = { "ormolu" },
         html = { "prettier" },
         json = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        graphql = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black" }
+        markdown = { "markdownlint" },
+        python = { "isort", "black" },
+        rust = { "rust_analyzer" },
+        terraform = { "terraform" },
+        yaml = { "prettier" }
       },
       format_on_save = {
         lsp_fallback = true,

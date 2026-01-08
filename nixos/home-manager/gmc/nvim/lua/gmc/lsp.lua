@@ -1,4 +1,4 @@
--- Install Language Servers
+-- Install and Configure Language Servers
 -- Credit to Josean Martinez "How to Setup Neovim LSP Like a Pro in 2025 (v0.11+)
 local keymap = vim.keymap -- for conciseness
 
