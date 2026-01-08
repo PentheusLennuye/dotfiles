@@ -69,6 +69,7 @@ return {
 				"prettier", -- html, json, yaml
 				-- both linters and formatters
 				"markdownlint",
+				"nixfmt",
 				"terraform",
 			},
 		},

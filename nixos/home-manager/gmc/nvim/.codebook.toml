@@ -66,6 +66,7 @@ words = [
     "netrw",
     "nginx",
     "nixd",
+    "nixfmt",
     "noselect",
     "nvim",
     "oldfiles",
