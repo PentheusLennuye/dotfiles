@@ -1,71 +1,136 @@
-format = """
-[](fg:#a3aed2)\
-$os\
-[](bg:#769ff0 fg:#a3aed2)\
-$directory\
-[](fg:#769ff0 bg:#394260)\
-$nix_shell\
-$git_branch\
-$git_status\
-[](fg:#394260)\
-$package\
-\n$character"""
+{ ... }:
+let
+  dir_bg = "#66b2ff";
+  dir_fg = "#e5e5e5";
+  git_bg = "#004c99";
+  git_fg = "#99ccff";
+  dev_bg = "#212736";
+  dev_fg = "#769ff0";
+  os_bg = "#99ccff";
+  os_fg = "#001193";
+  starshipFormatRaw = [
+    "[](fg:${os_bg})$os"
+    "[](fg:${os_bg} bg:${dir_bg})$directory"
+    "[](fg:${dir_bg} bg:${git_bg})$nix_shell"
+    "$git_branch"
+    "$git_status"
+    "[](fg:${git_bg})[$python$golang$rust$lua$haskell$c$cpp$package](fg:${dev_fg} bg:${dev_bg})"
+    "\n$character"
+  ];
+  starshipFormat = builtins.concatStringsSep "" starshipFormatRaw;
+in
+{
+  programs.starship = {
+    enable = true;
+    settings = {
+      format = starshipFormat;
 
-[directory]
-style = "fg:#e3e5e5 bg:#769ff0"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ OS                                                                                      │
+      # │ Operating system symbol                                                                 │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+      os = {
+        disabled = false;
+        format = "[$symbol](fg:${os_fg} bg:${os_bg})";
+      };
 
-[git_branch]
-symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+      os.symbols = {
+        Alpine = " ";
+        Debian = " ";
+        FreeBSD = " ";
+        Kali = " ";
+        Macos = " ";
+        Mint = " ";
+        NetBSD = " ";
+        NixOS = " ";
+        OpenBSD = "󰈺 ";
+        Pop = " ";
+        Raspbian = " ";
+        Ubuntu = " ";
+        Windows = "󰍲 ";
+      };
 
-[git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ Directory Configuration                                                                 │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-[nix_shell]
-format = "[[ $symbol](bg:#394260)]($style)"
-symbol = "❄️"
-style = "bg:394260"
+      directory = {
+        style = "fg:${dir_fg} bg:${dir_bg}";
+        format = "[ $path ]($style)";
+        truncation_length = 3;
+        truncation_symbol = "…/";
+      };
 
-[nodejs]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+      directory.substitutions = {
+        "Documents" = "󰈙 ";
+        "Downloads" = " ";
+        "Music" = " ";
+        "Pictures" = " ";
+      };
 
-[rust]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ Git Configuration                                                                       │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-[golang]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+      git_branch = {
+        symbol = "";
+        format = "[ $symbol $branch ](fg:${git_fg} bg:${git_bg})";
+      };
 
-[os]
-disabled = false
-format = "[[$symbol](bg:#a3aed2)]($style)"
-style = "bg:#a3aed2"
+      git_status = {
+        format = "[($all_status$ahead_behind )](fg:${git_fg} bg:${git_bg})";
+      };
 
-[package]
-format = "[$symbol$version](208)"
-#[php]
-#symbol = ""
-#style = "bg:#212736"
-#format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ Development Environment Configuration                                                   │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-[time]
-disabled = true
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+      nix_shell = {
+        format = "[ $symbol](bg:${git_fg})";
+        symbol = " ";
+      };
+
+      nodejs = {
+        format = " $symbol";
+      };
+
+      python = {
+        format = " $symbol";
+      };
+
+      rust = {
+        format = " $symbol";
+      };
+
+      golang = {
+        format = " $symbol";
+      };
+
+      package = {
+        format = "[$symbol $version](208)";
+      };
+
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ Disabled Modules                                                                        │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
+
+      time = {
+        disabled = true;
+        time_format = "%R"; # Hour:Minute Format
+        style = "bg:#1d2230";
+        format = "[  $time ](fg:#a0a9cb bg:#1d2230)";
+      };
+    };
+  };
+}
