@@ -1,4 +1,11 @@
 dictionaries = ["en_gb"]
+ignore_patterns = [
+    '^[A-Z]{2,}$',             # All caps
+    'file?:///[^\s]+',         # Begin URLs
+    'https?://[^\s]+',
+    'ldaps?://[^\s]+',
+    'ssh?://[^\s]+',           # End URLs
+]
 words = [
     "analyzer",
     "ansible",
