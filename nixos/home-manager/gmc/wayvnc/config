@@ -1,7 +1,0 @@
-use_relative_paths=true
-address=0.0.0.0
-enable_auth=true
-username=gmc
-password=FlowerPandaCarpetMoneytreePiano
-private_key_file=/home/gmc/.pki/tls/goemon.cummings-online.local.key
-certificate_file=/home/gmc/.pki/tls/goemon.cummings-online.local.crt

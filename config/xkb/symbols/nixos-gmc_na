@@ -1,0 +1,50 @@
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+// GMC Keyboard layouts, NixOS derivative
+// Author: George Cummings, Quebec, Canada
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+// This is for English, French, German, and Romanian texts with programming symbols on the home
+// row. This layout is based on US, CA(Multix), Colemak-DH, and Tarmak.
+//
+// NixOS as of 25.11 does not permit setting variants, so each gmc file and xkb_symbols value must
+// be unique.
+//
+// ZSA Moonlander and Voyager keyboards: set the system to use the GMC(US) layout, and flash the
+// hardware with the GMC layouts.
+//
+// The levels modifiers are, in order: none, shift, altGr, shift+altGr, right-control
+//
+// Credits:
+// - Tarmak: https://forum.colemak.com/topic/1858-learn-colemak-in-steps-with-the-tarmak-layouts/
+//
+// Definitions
+// - Non-applicable keymaps that are required for definition
+//
+// The box art and programming symbols remain bound to the same hardware keys throughout.
+//
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+
+// The following keys do not exist in CA(FR), CA(CSA), or US keyboards
+xkb_symbols "gmc_na" {
+    
+    name[Group1] = "GMC (Not Applicable)";
+
+    key <AE13> {[ NoSymbol, NoSymbol ]};  // Non-US
+    key <AB11> {[ NoSymbol, NoSymbol ]};  // Brazil
+
+    key <JPCM> {[ NoSymbol, NoSymbol ]};  // Japanese Comma
+    key <FK19> {[ NoSymbol, NoSymbol ]};  // Virtual Function 19
+    key <FK24> {[ NoSymbol, NoSymbol ]};  // Virtual Function 24
+    key <I120> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I149> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I154> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I168> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I178> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I183> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I184> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I217> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I219> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I222> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I230> {[ NoSymbol, NoSymbol ]};  // Reserved
+    key <I248> {[ NoSymbol, NoSymbol ]};  // Reserved
+};
+

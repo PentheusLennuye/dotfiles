@@ -1,0 +1,43 @@
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+// GMC Keyboard layouts, NixOS derivative
+// Author: George Cummings, Quebec, Canada
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+// This is for English, French, German, and Romanian texts with programming symbols on the home
+// row. This layout is based on US, CA(Multix), Colemak-DH, and Tarmak.
+//
+// NixOS as of 25.11 does not permit setting variants, so each file and xkb_symbol must be unique.
+//
+// ZSA Moonlander and Voyager keyboards: set the system to use the GMC(US) layout, and flash the
+// hardware with the GMC layouts.
+//
+// The levels modifiers are, in order: none, shift, altGr, shift+altGr, right-control
+//
+// Credits:
+// - Tarmak: https://forum.colemak.com/topic/1858-learn-colemak-in-steps-with-the-tarmak-layouts/
+//
+// Definitions
+// - Tarmak 4, derivation of Tarmak3
+//
+// The box art and programming symbols remain bound to the same hardware keys throughout.
+//
+// ───────────────────────────────────────────────────────────────────────────────────────────────
+
+xkb_symbols "gmc_tarmak4_dh" {
+    
+    name[Group1] = "GMC (Tarmak4 DHm)";
+
+    include "gmc_tarmak3_dh"
+
+    // Row 3 ────────────────────────────────────────────────────────────────────────────────────
+    key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
+    key <AD04>	{[         p,     P,       paragraph,   None,   U2502      ]}; // │
+    key <AD06>	{[         j,     J,            None,   None,   U2713      ]}; // ✓
+
+    key.type[group1]="FOUR_LEVEL";
+    key <AD09>	{[         y,     Y,             yen                       ]};
+    key <AD10>	{[ semicolon, colon                                        ]};
+
+    // Row 2 ────────────────────────────────────────────────────────────────────────────────────
+    key.type[group1]="FOUR_LEVEL";
+    key <AC10>	{[         o,     O,    ograve                             ]};
+};

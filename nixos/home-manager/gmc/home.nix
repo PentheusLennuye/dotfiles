@@ -15,7 +15,6 @@
     ./vlc.nix
     ./vscode.nix
     ./waybar.nix
-    ./wayvnc.nix
     ./wofi.nix
     ./zsh.nix
   ];
@@ -23,8 +22,8 @@
   # Home =====================================================================
   home.homeDirectory = "/home/gmc";
   home.sessionPath = [ "/home/gmc/.local/bin" ];
-  home.sessionVariables.NIXOS_OZONE_WL = "1";  # Wayland on Chromium etc
-  home.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";  # Hyprland cursor
+  home.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland on Chromium etc
+  home.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1"; # Hyprland cursor
   home.stateVersion = "23.11";
   home.username = "gmc";
 
@@ -34,7 +33,6 @@
       allowUnfreePredicate = (_: true);
     };
   };
-
 
   # Programs =================================================================
 
@@ -57,4 +55,3 @@
     pinentry.package = pkgs.pinentry-tty;
   };
 }
-
