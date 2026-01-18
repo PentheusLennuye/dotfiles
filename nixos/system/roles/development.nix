@@ -47,7 +47,6 @@
     nodejs
 
     # Markdown
-    marksman
     markdownlint-cli
 
     # Nix

@@ -1,4 +1,3 @@
 -- [[ init.lua ]]
 
 require("gmc")
-

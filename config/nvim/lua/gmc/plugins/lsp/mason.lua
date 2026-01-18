@@ -20,7 +20,6 @@ return {
 				"jinja_lsp",
 				"jsonls",
 				"lua_ls",
-				"marksman",
 				"nginx_language_server",
 				"nil_ls", -- Nix language server
 				"postgres_lsp",

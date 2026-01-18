@@ -1,11 +1,4 @@
 dictionaries = ["en_gb"]
-ignore_patterns = [
-    '^[A-Z]{2,}$',             # All caps
-    'file?:///[^\s]+',         # Begin URLs
-    'https?://[^\s]+',
-    'ldaps?://[^\s]+',
-    'ssh?://[^\s]+',           # End URLs
-]
 words = [
     "analyzer",
     "ansible",
@@ -33,11 +26,14 @@ words = [
     "dap",
     "decremental",
     "dockerls",
+    "evdev",
     "expandtab",
     "fileencoding",
     "fileformat",
     "folke",
     "fzf",
+    "ghci",
+    "ghcups",
     "gitcommit",
     "gitsigns",
     "glyphs",
@@ -47,6 +43,7 @@ words = [
     "gosum",
     "hls",
     "hlsearch",
+    "hoogle",
     "hrsh",
     "ignorecase",
     "incsearch",
@@ -80,9 +77,11 @@ words = [
     "nginx",
     "nixd",
     "nixfmt",
+    "nixos",
     "noselect",
     "nvim",
     "oldfiles",
+    "openssl",
     "parsers",
     "pydocstyle",
     "pyproject",
@@ -106,11 +105,14 @@ words = [
     "termguicolors",
     "terraformls",
     "timeoutlen",
+    "tlsv",
     "tmux",
     "unnamedplus",
     "venv",
     "vimdoc",
     "vscode",
+    "xdg",
     "yamllint",
     "yamlls",
 ]
+ignore_patterns = ['\b[A-Z]{2,}\b']

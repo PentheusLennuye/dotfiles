@@ -6,6 +6,6 @@
 
 NIXOS_SRC=${HOME}/spaces/tech/infra/dotfiles/nixos
 
-sudo rsync -avrt ${NIXOS_SRC}/system/ /etc/nixos
-rsync -avrt ${NIXOS_SRC}/home-manager/${USER}/ ${HOME}/.config/home-manager
+sudo rsync -avrtL ${NIXOS_SRC}/system/ /etc/nixos
+rsync -avrtL ${NIXOS_SRC}/home-manager/${USER}/ ${HOME}/.config/home-manager
 

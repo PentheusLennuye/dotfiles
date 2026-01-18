@@ -19,6 +19,7 @@ in
     ../modules/oryx.nix
     ../modules/printing.nix
     ../modules/sound.nix
+    ../modules/xkb.nix
   ];
 
   environment.systemPackages = [
