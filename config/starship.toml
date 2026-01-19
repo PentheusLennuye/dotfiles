@@ -1,0 +1,64 @@
+format = "[](fg:#99ccff)$os[](fg:#99ccff bg:#66b2ff)$directory[](fg:#66b2ff bg:#004c99)$nix_shell$git_branch$git_status[](fg:#004c99)[$python$golang$rust$lua$haskell$c$cpp$package](fg:#769ff0 bg:#212736)\n$character"
+
+[directory]
+format = "[ $path ]($style)"
+style = "fg:#e5e5e5 bg:#66b2ff"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+Documents = "󰈙 "
+Downloads = " "
+Music = " "
+Pictures = " "
+
+[git_branch]
+format = "[ $symbol $branch ](fg:#99ccff bg:#004c99)"
+symbol = ""
+
+[git_status]
+format = "[($all_status$ahead_behind )](fg:#99ccff bg:#004c99)"
+
+[golang]
+format = " $symbol"
+
+[nix_shell]
+format = "[ $symbol](bg:#99ccff)"
+symbol = " "
+
+[nodejs]
+format = " $symbol"
+
+[os]
+disabled = false
+format = "[$symbol](fg:#001193 bg:#99ccff)"
+
+[os.symbols]
+Alpine = " "
+Debian = " "
+FreeBSD = " "
+Kali = " "
+Macos = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+Pop = " "
+Raspbian = " "
+Ubuntu = " "
+Windows = "󰍲 "
+
+[package]
+format = "[$symbol $version](208)"
+
+[python]
+format = " $symbol"
+
+[rust]
+format = " $symbol"
+
+[time]
+disabled = true
+format = "[  $time ](fg:#a0a9cb bg:#1d2230)"
+style = "bg:#1d2230"
+time_format = "%R"

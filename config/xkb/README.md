@@ -16,9 +16,10 @@ cp symbols/* $XDG_CONFIG_HOME/xkb/symbols
 
 ### B.2 System Configuration
 
-Replace `/etc/X11/xkb/rules/evdev.xml` with rules/evdev.xml.
+As root,
 
-```sh
-sudo cp rules/evdev.xml /etc/X11/xkb/rules/evdev.xml
-sudo cp symbols/* /etc/X11/xkb/symbols
-```
+1. Copy `rules/evdev_snippet` into the clipboard
+2. Edit `/usr/share/X11/xkb/rules/evdev.xml` and insert the contents of the clipboard to the bottom
+   of the `<layoutList>` element.
+
+The "GMC" layouts are now available to X and Waylay. KDE and Gnome may need additional steps.
