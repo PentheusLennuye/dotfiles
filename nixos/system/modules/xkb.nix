@@ -8,6 +8,7 @@ let
   };
 in
 {
+  console.useXkbConfig = true;
   services.xserver = {
     xkb = {
       extraLayouts.gmc = {
