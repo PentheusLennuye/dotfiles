@@ -26,20 +26,15 @@ in
 
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.hyprlandPlugins.hyprgrass
     pkgs.hypridle
     pkgs.hyprpolkitagent
     pkgs.qt6.qtwayland
-    pkgs.kdePackages.kaddressbook
     pkgs.kdePackages.kcalc
-    pkgs.kdePackages.kde-cli-tools
-    pkgs.kdePackages.kdepim-runtime # Required for kmail
     pkgs.kdePackages.kmahjongg
-    pkgs.kdePackages.kmail
-    pkgs.kdePackages.kmail-account-wizard
-    pkgs.kdePackages.kontact
-    pkgs.kdePackages.kpat
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.wvkbd
     pkgs.xwayland
     pkgs.zoom-us
     # See background-package above
