@@ -13,6 +13,9 @@
         lib.mkDefault pkgs.linuxPackages_latest
       );
     };
+    environment.systemPackages = [
+      pkgs.iio-hyprland
+    ];
     hardware = {
       cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       intelgpu.vaapiDriver = "intel-media-driver";
