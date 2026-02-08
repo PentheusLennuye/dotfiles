@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;  # KDE black screen problem
+    powerManagement.enable = true; # KDE black screen problem
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
@@ -12,7 +12,7 @@
       nvidiaBusId = "PCI:01:00.0";
     };
   };
-  
+
   hardware.graphics = {
     enable = true;
   };

@@ -1,16 +1,16 @@
-{ config, inputs, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 let
-    # Derivation for wallpapers --------------------------------------------
-    background-package = pkgs.stdenvNoCC.mkDerivation {
-        name = "background-image";
-        src = ./sddm/wallpaper.jpg;
-        dontUnpack = true;
-        installPhase = ''
-          cp $src $out
-        '';
-    };
-    # End derivation --------------------------------------------------------
+  # Derivation for wallpapers --------------------------------------------
+  background-package = pkgs.stdenvNoCC.mkDerivation {
+    name = "background-image";
+    src = ./sddm/wallpaper.jpg;
+    dontUnpack = true;
+    installPhase = ''
+      cp $src $out
+    '';
+  };
+  # End derivation --------------------------------------------------------
 
 in
 {
@@ -22,6 +22,8 @@ in
     ../modules/xkb.nix
   ];
 
+  # Workstation Packages ─────────────────────────────────────────────────────────────────────
+
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.hypridle
@@ -30,7 +32,7 @@ in
     pkgs.kdePackages.kaddressbook
     pkgs.kdePackages.kcalc
     pkgs.kdePackages.kde-cli-tools
-    pkgs.kdePackages.kdepim-runtime  # Required for kmail
+    pkgs.kdePackages.kdepim-runtime # Required for kmail
     pkgs.kdePackages.kmahjongg
     pkgs.kdePackages.kmail
     pkgs.kdePackages.kmail-account-wizard
@@ -49,8 +51,8 @@ in
 
   fonts.packages = with pkgs; [
     dina-font
-    ipafont         # jp
-    kochi-substitute  # jp
+    ipafont # jp
+    kochi-substitute # jp
     liberation_ttf
     noto-fonts
     noto-fonts-cjk-sans
@@ -71,26 +73,31 @@ in
 
   security.polkit.enable = true;
 
-
-# ┌───────────────────────────────────────────────────────────────────────────┐
-# │                           Display Manager                                 │
-# └───────────────────────────────────────────────────────────────────────────┘
+  # ┌───────────────────────────────────────────────────────────────────────────┐
+  # │                           Display Manager                                 │
+  # └───────────────────────────────────────────────────────────────────────────┘
 
   services = {
     displayManager.sddm = {
-        enable = true;
-        theme = "breeze";
-        wayland.enable = true;
+      enable = true;
+      theme = "breeze";
+      wayland.enable = true;
     };
     displayManager.defaultSession = "hyprland-uwsm";
-    xserver.enable = true;
+    power-profiles-daemon.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "gmc";
+        variant = "tarmak1";
+        options = "caps:none";
+      };
+    };
   };
-}
 
-
-# ┌───────────────────────────────────────────────────────────────────────────┐
-# │                               Hyprland                                    │
-# └───────────────────────────────────────────────────────────────────────────┘
+  # ┌───────────────────────────────────────────────────────────────────────────┐
+  # │                               Hyprland                                    │
+  # └───────────────────────────────────────────────────────────────────────────┘
 
   programs.hyprland = {
     enable = true;
@@ -100,12 +107,11 @@ in
   programs.hyprlock = {
     enable = true;
   };
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
 
-
-# ┌───────────────────────────────────────────────────────────────────────────┐
-# │                               KDE6                                        │
-# └───────────────────────────────────────────────────────────────────────────┘
+  # ┌───────────────────────────────────────────────────────────────────────────┐
+  # │                               KDE6                                        │
+  # └───────────────────────────────────────────────────────────────────────────┘
 
   services.desktopManager.plasma6.enable = true;
-
+}

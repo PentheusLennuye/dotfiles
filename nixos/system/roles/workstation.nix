@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 
 let
   # Derivation for wallpapers --------------------------------------------
@@ -26,6 +21,8 @@ in
     ../modules/sound.nix
     ../modules/xkb.nix
   ];
+
+  # Workstation Packages ─────────────────────────────────────────────────────────────────────
 
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -90,18 +87,39 @@ in
   security.pam.services.hyprlock = { };
 
   # ┌───────────────────────────────────────────────────────────────────────────┐
-  # │                               KDE6                                        │
+  # │                           KDE6 and SDDM                                   │
   # └───────────────────────────────────────────────────────────────────────────┘
+
+  environment.etc = {
+    "sddm/icons/gmc.face.icon" = {
+      source = ./sddm/cumming_crest.png;
+      mode = "0664";
+    };
+  };
 
   services = {
     desktopManager.plasma6.enable = true;
     displayManager.sddm = {
       enable = true;
+      settings = {
+        Theme = {
+          EnableAvatars = true;
+          FacesDir = "/etc/sddm/icons";
+        };
+      };
       theme = "breeze";
       wayland.enable = true;
     };
     displayManager.defaultSession = "hyprland-uwsm";
-    xserver.enable = true;
+    power-profiles-daemon.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "gmc";
+        variant = "tarmak1";
+        options = "caps:none";
+      };
+    };
   };
 
   services.udev.extraRules = ''
