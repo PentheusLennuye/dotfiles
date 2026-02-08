@@ -73,6 +73,12 @@ in
         enforce_permissions = false;
       };
 
+      exec-once = [
+        "systemctl --user start hyprpolkitagent"
+        "waybar"
+        "hyprpaper"
+      ];
+
       general = {
         allow_tearing = false;
         border_size = 2;
