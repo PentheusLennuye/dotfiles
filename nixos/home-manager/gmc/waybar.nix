@@ -17,7 +17,7 @@ in
     settings = [{
       layer = "top";
       position = "top";
-      modules-left = [ "battery" "temperature" "cpu" "memory" "disk"
+      modules-left = [ "battery" "power-profiles-daemon" "temperature" "cpu" "memory" "disk"
                        "hyprland/workspaces" ];
       modules-center = [ "custom/ireland" "custom/clock" "custom/germany"
                          "custom/china" ];
@@ -69,16 +69,16 @@ in
       };
       "memory" = {
       	interval = 5;
-      	format = "記憶 {used}/{total}GiB";
+      	format = " {used}/{total}GiB";
         tooltip = true;
       };
       "cpu" = {
       	interval = 5;
-      	format = "負荷 {usage:2}%";
+      	format = " {usage:2}%";
         tooltip = true;
       };
       "disk" = {
-        format = " ディスク {percentage_used}%";
+        format = " {percentage_used}%";
         tooltip = true;
       };
       "network" = {
@@ -89,7 +89,7 @@ in
         tooltip = false;
       };
       "temperature" = {
-        format = "温度 {temperatureC}°C";
+        format = "{temperatureC}°C";
       };
       "tray" = {
         spacing = 12;
@@ -151,6 +151,17 @@ in
         on-click = "";
         tooltip = false;
       };
+      "power-profiles-daemon" = {
+        format = "󱐋 {icon}";
+        tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+        tooltip = true;
+        format-icons = {
+          default = "󰾅";
+          performance = "󰓅";
+          balanced = "󰾅";
+          power-saver = "󰾆";
+        };
+      };
     }];
     style = ''
 	* {
@@ -200,6 +211,11 @@ in
     		border-radius: 15px;
     		margin: 5px;
     		padding: 2px 20px;
+	}
+  #power-profiles-daemon {
+    		border-radius: 15px;
+    		margin: 5px;
+    		padding: 2px 10px;
 	}
 	#pulseaudio {
             background-color: #000000;
