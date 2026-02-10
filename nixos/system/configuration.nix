@@ -2,19 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, ... }:
+{ ... }:
 
 {
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [
-        "http://nixoscache.cummings-online.local"
-        "https://cache.nixos.org/"
-      ];
-      trusted-public-keys = [
-        "nixoscache.cummings-online.local-1:HD6ObbUL2CpTGl6xcyFSPcdZrWpLAVA+12TEQCypbAY="
+      experimental-features = [
+        "nix-command"
+        "flakes"
       ];
     };
   };
@@ -26,10 +22,9 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
- 
+
   # I also want my emulation station
   programs.gamemode.enable = true;
-
 
   # Set your time zone.
   time.timeZone = "America/Toronto";

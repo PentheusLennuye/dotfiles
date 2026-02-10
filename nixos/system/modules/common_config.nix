@@ -1,6 +1,6 @@
 # Edit this configuration file to define the system defaults.
 
-{ config, ... }:
+{ ... }:
 
 {
 

@@ -8,13 +8,17 @@
 
   environment.systemPackages = with pkgs; [
     ansible
-    cryptsetup  # for backups to encrypted drives
+    cryptsetup # for backups to encrypted drives
     curl
+    dmidecode
     file
+    fwupd
+    fwupd-efi
     git
     gnupg
-    lsd   # ls +
+    lsd # ls +
     lsof
+    lshw
     mesa
     openssl
     pciutils

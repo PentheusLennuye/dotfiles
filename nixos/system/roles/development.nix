@@ -50,6 +50,7 @@
     markdownlint-cli
 
     # Nix
+    nil
     nixd
     nixfmt
 
