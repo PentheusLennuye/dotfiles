@@ -14,6 +14,7 @@
       pkgs.handbrake
       pkgs.makemkv
       pkgs.playerctl
+      pkgs.spotify
       myVlc
     ];
 }
