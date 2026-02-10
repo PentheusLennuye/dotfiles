@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -6,11 +6,6 @@
     ./workstation.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    acpi
-    brightnessctl
-    rpi-imager
-  ];
   services = {
     desktopManager.plasma6.enable = true;
     displayManager.sddm = {
@@ -30,7 +25,6 @@
       enable = true;
       xkb = {
         layout = "gmc";
-        variant = "tarmak1";
         options = "caps:none";
       };
     };
@@ -39,5 +33,4 @@
       SUBSYSTEMS=="usb",ATTRS{idVendor}=="28bd",MODE:="0666"
     '';
   };
-
 }

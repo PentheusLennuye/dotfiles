@@ -44,7 +44,6 @@
             ./roles/gaming.nix
             ./roles/laptop.nix
             ./roles/publishing.nix
-            ./roles/workstation.nix
           ];
         };
         goemon = nixpkgs.lib.nixosSystem {
@@ -57,6 +56,7 @@
             ./roles/audio-engineering.nix
             ./roles/binarycache.nix
             ./roles/container-host.nix
+            ./roles/desktop.nix
             ./roles/development.nix
             ./roles/engineering.nix
             ./roles/gaming.nix
@@ -67,7 +67,6 @@
             ./roles/publishing.nix
             ./roles/remote-access.nix
             ./roles/virt-host.nix
-            ./roles/workstation.nix
           ];
         };
         jigen = nixpkgs.lib.nixosSystem {
@@ -114,7 +113,6 @@
             ./roles/netadmin.nix
             ./roles/publishing.nix
             ./roles/virt-host.nix
-            ./roles/workstation.nix
           ];
         };
         zenigata = nixpkgs.lib.nixosSystem {
