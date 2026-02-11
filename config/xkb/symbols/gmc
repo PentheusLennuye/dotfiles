@@ -61,7 +61,7 @@ xkb_symbols "us" {
   key <AD04> {[            r,           R,        NoSymbol,     NoSymbol,        U2502 ]}; // │ 
 
   key.type[group1]="FOUR_LEVEL";
-  key <AD05> {[            t,           T,           U021B,        U021A,              ]}; // ț
+  key <AD05> {[            t,           T,           U021B,        U021A               ]}; // ț
 
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
   key <AD06> {[            y,           Y,             yen,     NoSymbol,        U2713 ]}; // ✓
@@ -151,7 +151,7 @@ xkb_symbols "colemak-dh" {
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AC02>	{[         r,           R,         NoSymbol,    NoSymbol,  bracketleft ]};
     key <AC03>	{[         s,           S,            U1E9E,    NoSymbol, bracketright ]}; // ß, 
-    key <AD04>  {[         t,           T,           U021B,        U021A,              ]}; // ț
+    key <AD04>  {[         t,           T,           U021B,        U021A               ]}; // ț
     key <AC06>	{[         m,           M,         NoSymbol,    NoSymbol,    leftarrow ]}; // ←
     key <AC07>	{[         n,           N,           ntilde,      Ntilde,    downarrow ]}; // ↓
     key <AC08>	{[         e,           E,         EuroSign,    NoSymbol,   rightarrow ]}; // →
@@ -228,7 +228,7 @@ xkb_symbols "tarmak2" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC04> {[          t,     T,           U021B,    U021A,              ]}; // ț
+    key <AC04> {[          t,     T,           U021B,    U021A               ]}; // ț
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
@@ -257,7 +257,7 @@ xkb_symbols "tarmak1" {
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
     key <AB06>	{[         k,     K                                          ]};
-    key <AB07>  {[         h,     H,           U0219,    U0218,              ]}; // ș
+    key <AB07>  {[         h,     H,           U0219,    U0218               ]}; // ș
 };
 
 // The following keys do not exist in CA(FR), CA(CSA), or US keyboards
