@@ -19,13 +19,13 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Cycle to previous tab" 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open buffer in new tab" })
 
 -- Remapping cursor navigation for tarmak
-keymap.set("n", "h", "m", { noremap = true })
-keymap.set("n", "j", "n", { noremap = true })
-keymap.set("n", "k", "e", { noremap = true })
-keymap.set("n", "l", "h", { noremap = true })
+keymap.set("n", "m", "h", { noremap = true })
+keymap.set("n", "n", "j", { noremap = true })
+keymap.set("n", "e", "k", { noremap = true })
+-- keymap.set("n", "l", "l", { noremap = true })
 
 -- Remapping window navigation for tarmak
-keymap.set("n", "<C-h>", "<C-m>", { noremap = true, silent = true })
-keymap.set("n", "<C-j>", "<C-n>", { noremap = true, silent = true })
-keymap.set("n", "<C-k>", "<C-e>", { noremap = true, silent = true })
-keymap.set("n", "<C-l>", "<C-l>", { noremap = true, silent = true })
+keymap.set("n", "<C-m>", "<C-w>h", { noremap = true, silent = true })
+keymap.set("n", "<C-n>", "<C-w>j", { noremap = true, silent = true })
+keymap.set("n", "<C-e>", "<C-w>k", { noremap = true, silent = true })
+-- keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })

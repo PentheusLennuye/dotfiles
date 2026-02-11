@@ -79,6 +79,7 @@ words = [
     "nixd",
     "nixfmt",
     "nixos",
+    "noremap",
     "noselect",
     "nvim",
     "oldfiles",
