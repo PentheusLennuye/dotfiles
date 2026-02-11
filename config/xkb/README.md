@@ -26,4 +26,4 @@ The "GMC" layouts are now available to X and Wayland. KDE and Gnome may need add
 
 ## C. ZSA Keyboard Use
 
-Use "gmc(us)" even when using the GMC-Tarmak*or GMC-Colemak* layouts.
+Use "gmc(us)" even when using the GMC-Tarmak* or GMC-Colemak* layouts.

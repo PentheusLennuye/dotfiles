@@ -30,7 +30,7 @@
       enable = true;
       xkb = {
         layout = "gmc";
-        variant = "tarmak1";
+        variant = "tarmak2";
         options = "caps:none";
       };
     };
