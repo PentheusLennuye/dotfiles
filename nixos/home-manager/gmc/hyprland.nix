@@ -10,11 +10,12 @@ let
 in
 {
   home.file = {
+    "${lconfig}/bg.jpg".source = hypr/bg.jpg;
     "${lconfig}/hypridle.conf".source = hypr/hypridle.conf;
-    "${lconfig}/profile.conf".source = hypr/${hostName}.conf;
     "${lconfig}/hyprlock.conf".source = hypr/hyprlock.conf;
     "${lconfig}/hyprpaper.conf".source = hypr/hyprpaper.conf;
-    "${lconfig}/bg.jpg".source = hypr/bg.jpg;
+    "${lconfig}/profile.conf".source = hypr/${hostName}.conf;
+    "${lconfig}/toggle_keyboard.sh".source = hypr/toggle_keyboard.sh;
   };
 
   # ┌──────────────────────────────────────────────────────┐
