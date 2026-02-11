@@ -1,6 +1,6 @@
 -- [[ Keymaps ]]
 
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
@@ -17,3 +17,15 @@ keymap.set("n", "<leader>tz", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Cycle to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Cycle to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open buffer in new tab" })
+
+-- Remapping cursor navigation for tarmak
+keymap.set("n", "h", "m", { noremap = true })
+keymap.set("n", "j", "n", { noremap = true })
+keymap.set("n", "k", "e", { noremap = true })
+keymap.set("n", "l", "h", { noremap = true })
+
+-- Remapping window navigation for tarmak
+keymap.set("n", "<C-h>", "<C-m>", { noremap = true, silent = true })
+keymap.set("n", "<C-j>", "<C-n>", { noremap = true, silent = true })
+keymap.set("n", "<C-k>", "<C-e>", { noremap = true, silent = true })
+keymap.set("n", "<C-l>", "<C-l>", { noremap = true, silent = true })
