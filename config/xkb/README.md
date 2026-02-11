@@ -22,4 +22,4 @@ As root,
 2. Edit `/usr/share/X11/xkb/rules/evdev.xml` and insert the contents of the clipboard to the bottom
    of the `<layoutList>` element.
 
-The "GMC" layouts are now available to X and Waylay. KDE and Gnome may need additional steps.
+The "GMC" layouts are now available to X and Wayland. KDE and Gnome may need additional steps.

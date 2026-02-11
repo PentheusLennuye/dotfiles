@@ -111,6 +111,7 @@ words = [
     "venv",
     "vimdoc",
     "vscode",
+    "wayland",
     "xdg",
     "yamllint",
     "yamlls",
