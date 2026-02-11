@@ -23,3 +23,7 @@ As root,
    of the `<layoutList>` element.
 
 The "GMC" layouts are now available to X and Wayland. KDE and Gnome may need additional steps.
+
+## C. ZSA Keyboard Use
+
+Use "gmc(us)" even when using the GMC-Tarmak*or GMC-Colemak* layouts.
