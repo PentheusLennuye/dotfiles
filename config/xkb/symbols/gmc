@@ -99,8 +99,12 @@ xkb_symbols "us" {
   key <AB03> {[            c,           C,        ccedilla,     Ccedilla               ]};
   key <AB04> {[            v,           V,        NoSymbol,     NoSymbol               ]};
   key <AB05> {[            b,           B                                              ]};
+
+  key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
   key <AB06> {[            n,           N,          ntilde,       Ntilde,        U2713 ]}; // ✓
   key <AB07> {[            m,           M,        NoSymbol,     NoSymbol,        U2717 ]}; // ✗
+
+  key.type[group1]="FOUR_LEVEL";
   key <AB08> {[        comma,        less, dead_belowcomma                             ]};
   key <AB09> {[       period,     greater,          hyphen                             ]};
   key <AB10> {[        slash,    question,          eacute,       Eacute               ]};
