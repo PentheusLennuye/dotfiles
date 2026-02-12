@@ -108,10 +108,10 @@
             ./roles/development.nix
             ./roles/engineering.nix
             ./roles/gaming.nix
-            ./roles/laptop.nix
             ./roles/media.nix
             ./roles/netadmin.nix
             ./roles/publishing.nix
+            ./roles/thinkbook.nix
             ./roles/virt-host.nix
           ];
         };
