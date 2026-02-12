@@ -24,6 +24,9 @@ keymap.set("n", "n", "j", { noremap = true })
 keymap.set("n", "e", "k", { noremap = true })
 -- keymap.set("n", "l", "l", { noremap = true })
 
+-- N for next has been compromised above, so use H, the Cyrillic n.
+keymap.set("n", "h", "n", { noremap = true })
+
 -- Remapping window navigation for tarmak
 keymap.set("n", "<C-m>", "<C-w>h", { noremap = true, silent = true })
 keymap.set("n", "<C-n>", "<C-w>j", { noremap = true, silent = true })

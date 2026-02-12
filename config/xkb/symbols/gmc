@@ -43,7 +43,7 @@ xkb_symbols "us" {
   key <AE06> {[            6, asciicircum, dead_circumflex                             ]};
 
   key.type[group1]="EIGHT_LEVEL";
-  key <AE07> {[            7,   ampersand,        NoSymbol,     NoSymbol,        U2514 ]}; // └
+  key <AE07> {[            7,   ampersand,      dead_acute,     NoSymbol,        U2514 ]}; // └
   key <AE08> {[            8,    asterisk,        NoSymbol,     NoSymbol,        U2500 ]}; // ─
   key <AE09> {[            9,   parenleft,        NoSymbol,     NoSymbol,        U2518 ]}; // ┘
   key <AE10> {[            0,  parenright,      onequarter,     NoSymbol,        U2534 ]}; // ┴
@@ -64,12 +64,12 @@ xkb_symbols "us" {
   key <AD05> {[            t,           T,           U021B,        U021A               ]}; // ț
 
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-  key <AD06> {[            y,           Y,             yen,     NoSymbol,        U2713 ]}; // ✓
-  key <AD07> {[            u,           U,  dead_diaeresis,     NoSymbol,      uparrow ]}; // ↑
-  key <AD08> {[            i,           I, dead_circumflex,     NoSymbol,        U2717 ]}; // ✗
+  key <AD06> {[            y,           Y,             yen,     NoSymbol,    leftarrow ]}; // ←
+  key <AD07> {[            u,           U,  dead_diaeresis,     NoSymbol,    downarrow ]}; // ↓
+  key <AD08> {[            i,           I, dead_circumflex,     NoSymbol,      uparrow ]}; // ↑
+  key <AD09> {[            o,           O,      dead_acute,     NoSymbol,   rightarrow ]}; // →
 
   key.type[group1]="FOUR_LEVEL";
-  key <AD09> {[            o,           O,          ograve                             ]};
   key <AD10> {[            p,           P,       paragraph                             ]};
   key <AD11> {[  bracketleft,   braceleft, dead_circumflex                             ]};
   key <AD12> {[ bracketright,  braceright, dead_belowcomma                             ]};
@@ -82,12 +82,12 @@ xkb_symbols "us" {
   key <AC03> {[            d,           D,        NoSymbol,     NoSymbol, bracketright ]};
   key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        slash ]};
   key <AC05> {[            g,           G,        NoSymbol,     NoSymbol,    backslash ]};
-  key <AC06> {[            h,           H,           U0219,        U0218,    leftarrow ]}; // ș, ←
-  key <AC07> {[            j,           J,        NoSymbol,     NoSymbol,    downarrow ]}; // ↓
-  key <AC08> {[            k,           K,        NoSymbol,     NoSymbol,   rightarrow ]}; // →
+  key <AC06> {[            h,           H,           U0219,        U0218               ]}; // ș
+  key <AC07> {[            j,           J                                              ]};
+  key <AC08> {[            k,           K                                              ]};
 
   key.type[group1]="FOUR_LEVEL";
-  key <AC09> {[            l,           L,        sterling                             ]};
+  key <AC09> {[            l,           L,        sterling                             ]}; // £
   key <AC10> {[    semicolon,       colon                                              ]};
   key <AC11> {[   apostrophe,    quotedbl,          egrave,       Egrave               ]};
 
@@ -99,8 +99,8 @@ xkb_symbols "us" {
   key <AB03> {[            c,           C,        ccedilla,     Ccedilla               ]};
   key <AB04> {[            v,           V,        NoSymbol,     NoSymbol               ]};
   key <AB05> {[            b,           B                                              ]};
-  key <AB06> {[            n,           N,          ntilde,       Ntilde               ]};
-  key <AB07> {[            m,           M                                              ]};
+  key <AB06> {[            n,           N,          ntilde,       Ntilde,        U2713 ]}; // ✓
+  key <AB07> {[            m,           M,        NoSymbol,     NoSymbol,        U2717 ]}; // ✗
   key <AB08> {[        comma,        less, dead_belowcomma                             ]};
   key <AB09> {[       period,     greater,          hyphen                             ]};
   key <AB10> {[        slash,    question,          eacute,       Eacute               ]};
@@ -139,33 +139,35 @@ xkb_symbols "colemak-dh" {
     key <AD05>	{[         b,           B                                              ]};
 
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AD06>	{[         j,           J,         NoSymbol,    NoSymbol,        U2713 ]}; // ✓
-    key <AD07>	{[         l,           L,         NoSymbol,    NoSymbol,      uparrow ]}; // ↑
-    key <AD08>	{[         u,           U,   dead_diaeresis,    NoSymbol,        U2717 ]}; // ✗
+    key <AD06>	{[         j,           J,       dead_acute,    NoSymbol,    leftarrow ]}; // ←
+    key <AD07>	{[         l,           L,         NoSymbol,    NoSymbol,    downarrow ]}; // ↓
+    key <AD08>	{[         u,           U,   dead_diaeresis,    NoSymbol,      uparrow ]}; // ↑
+    key <AD09>	{[         y,           Y,              yen,    NoSymbol,   rightarrow ]}; // →
 
     key.type[group1]="FOUR_LEVEL";
-    key <AD09>	{[         y,           Y,              yen                            ]};
-    key <AD10>	{[ semicolon, colon                                                    ]};
+    key <AD10>	{[ semicolon,       colon                                              ]};
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AC02>	{[         r,           R,         NoSymbol,    NoSymbol,  bracketleft ]};
     key <AC03>	{[         s,           S,            U1E9E,    NoSymbol, bracketright ]}; // ß, 
-    key <AD04>  {[         t,           T,           U021B,        U021A               ]}; // ț
-    key <AC06>	{[         m,           M,         NoSymbol,    NoSymbol,    leftarrow ]}; // ←
-    key <AC07>	{[         n,           N,           ntilde,      Ntilde,    downarrow ]}; // ↓
-    key <AC08>	{[         e,           E,         EuroSign,    NoSymbol,   rightarrow ]}; // →
+    key <AD04>  {[         t,           T,            U021B,       U021A               ]}; // ț
 
     key.type[group1]="FOUR_LEVEL";
+    key <AC06>	{[         m,           M,         NoSymbol                            ]};
+    key <AC07>	{[         n,           N,           ntilde                            ]};
+    key <AC08>	{[         e,           E,         EuroSign                            ]};
     key <AC09>	{[         i,           I,  dead_circumflex                            ]};
-    key <AC10>	{[         o,           O,           ograve                            ]};
+    key <AC10>	{[         o,           O                                              ]};
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
     key <AB04>	{[         d,           D                                              ]};
     key <AB05>	{[         v,           V                                              ]};
-    key <AB06>	{[         k,           K                                              ]};
-    key <AB07>  {[         h,           H,           U0219,        U0218               ]}; // ș
+
+    key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
+    key <AB06>	{[         k,           K,        NoSymbol,     NoSymbol,        U2713 ]}; // ✓
+    key <AB07>  {[         h,           H,           U0219,        U0218,        U2717 ]}; // ș ✗
 };
 
 partial
@@ -178,15 +180,15 @@ xkb_symbols "tarmak4" {
     // Row 3 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AD04>	{[         p,           P,        paragraph,    NoSymbol,        U2502 ]}; // │
-    key <AD06>	{[         j,           J,         NoSymbol,    NoSymbol,        U2713 ]}; // ✓
+    key <AD06>	{[         j,           J,       dead_acute,    NoSymbol,    leftarrow ]}; // ← 
+    key <AD09>	{[         y,           Y,              yen,    NoSymbol,   rightarrow ]}; // →
 
     key.type[group1]="FOUR_LEVEL";
-    key <AD09>	{[         y,           Y,              yen                            ]};
     key <AD10>	{[ semicolon,       colon                                              ]};
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
-    key <AC10>	{[         o,           O,           ograve                            ]};
+    key <AC10>	{[         o,           O                                              ]};
 };
 
 partial
@@ -198,9 +200,7 @@ xkb_symbols "tarmak3" {
 
     // Row 3 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AD04> {[         j,     J,        NoSymbol, NoSymbol,                   U2502 ]}; // │
-
-    key.type[group1]="FOUR_LEVEL";
+    key <AD04> {[         j,     J,        NoSymbol, NoSymbol,        U2502 ]}; // │
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
@@ -228,7 +228,7 @@ xkb_symbols "tarmak2" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC04> {[          t,     T,           U021B,    U021A               ]}; // ț
+    key <AC04> {[          t,     T,           U021B,    U021A,        slash ]}; // ț
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
@@ -248,16 +248,16 @@ xkb_symbols "tarmak1" {
     key <AD03> {[          j,     J,        NoSymbol, NoSymbol,        U2587 ]}; // ▇ 
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
-    key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC06> {[          m,     M,        NoSymbol, NoSymbol,    leftarrow ]}; // ←
-    key <AC07> {[          n,     N,          ntilde,   Ntilde,    downarrow ]}; // ↓
-    key <AC08> {[          e,     E,        EuroSign, NoSymbol,   rightarrow ]}; // →
+    key.type[group1]="FOUR_LEVEL";
+    key <AC06> {[          m,     M,        NoSymbol                         ]};
+    key <AC07> {[          n,     N,          ntilde,   Ntilde               ]};
+    key <AC08> {[          e,     E,        EuroSign, NoSymbol               ]};
 
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
-    key.type[group1]="FOUR_LEVEL";
-    key <AB06>	{[         k,     K                                          ]};
-    key <AB07>  {[         h,     H,           U0219,    U0218               ]}; // ș
+    key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
+    key <AB06>	{[         k,     K,        NoSymbol, NoSymbol,        U2713 ]}; // ✓
+    key <AB07>  {[         h,     H,           U0219,    U0218,        U2717 ]}; // ș ✗
 };
 
 // The following keys do not exist in CA(FR), CA(CSA), or US keyboards
