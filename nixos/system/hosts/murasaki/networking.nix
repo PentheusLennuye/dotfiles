@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   hardware.bluetooth = {
@@ -20,10 +20,10 @@
   services = {
     blueman.enable = true;
     openssh = {
-        enable = true;
-        settings = {
-            PasswordAuthentication = true;
-        };
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+      };
     };
   };
 }

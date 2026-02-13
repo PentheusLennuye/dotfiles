@@ -13,8 +13,9 @@
         lib.mkDefault pkgs.linuxPackages_latest
       );
     };
-    environment.systemPackages = [
-      pkgs.iio-hyprland
+    environment.systemPackages = with pkgs; [
+      iio-hyprland
+      sof-firmware
     ];
     hardware = {
       cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
