@@ -161,11 +161,11 @@ data:
       604800 ; expire
       86400 ; negative cache ttl
     )
-           
+
     ; Required nameserver records ----------------------------------------
     @           IN    NS    ns.cummings-online.local.
     ns          IN    A     10.11.0.31
-           
+
     ; PTR --------------------------------------------------------------
     2.0  IN PTR lupin.cummings-online.local.
     3.0  IN PTR jigen.cummings-online.local.
