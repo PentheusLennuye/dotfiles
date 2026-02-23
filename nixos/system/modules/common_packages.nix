@@ -16,6 +16,7 @@
     fwupd-efi
     git
     gnupg
+    libnfs
     lsd # ls +
     lsof
     lshw
