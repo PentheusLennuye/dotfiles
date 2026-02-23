@@ -12,6 +12,13 @@
         "nix-command"
         "flakes"
       ];
+      substituters = [
+        "http://nixoscache.cummings-online.local"
+        "https://cache.nixos.org/"
+      ];
+      trusted-public-keys = [
+        "nixoscache.cummings-online.local:utGibGEjKTI0UnUTMw09179X3RKdw1/audvqIueaCSI="
+      ];
     };
   };
 
