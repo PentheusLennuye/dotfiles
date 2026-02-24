@@ -13,12 +13,17 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-partlabel/root";
+    device = "/dev/disk/by-label/root";
+    fsType = "ext4";
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-partlabel/EFI";
+    device = "/dev/disk/by-label/EFS";
     fsType = "vfat";
     options = [
       "fmask=0077"

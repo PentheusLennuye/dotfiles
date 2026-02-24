@@ -8,4 +8,10 @@
     ./networking.nix
     ./hibernation.nix
   ];
+
+  nix = {
+    settings = {
+      post-build-hook = "/etc/nix/upload-to-cache.sh";
+    };
+  };
 }
