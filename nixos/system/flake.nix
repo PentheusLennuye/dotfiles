@@ -18,9 +18,6 @@
 
     let
       system = "x86_64-linux";
-      # pkgs = import nixpkgs {
-      #   inherit system;
-      # };
       common_modules = [
         ./configuration.nix
         ./roles/common.nix
