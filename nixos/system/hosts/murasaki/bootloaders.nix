@@ -22,6 +22,13 @@
         "nfs"
         "nfs4"
       ];
+      luks = {
+        devices = {
+          "crypt_root" = {
+            device = "/dev/nvme0n1p2";
+          };
+        };
+      };
       supportedFilesystems = [
         "nfs"
         "nfs4"
