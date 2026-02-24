@@ -35,6 +35,7 @@
     kernelParams = [
       "mem_sleep_default=deep"
       "resume_offset=0"
+      "intel_iommu=on"
     ];
     loader = {
       efi = {
