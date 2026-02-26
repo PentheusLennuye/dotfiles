@@ -3,6 +3,7 @@
 {
   networking.firewall.allowedTCPPorts = [
     config.services.nginx.defaultHTTPListenPort
+    5000
   ];
   services = {
     nginx = {
@@ -19,6 +20,7 @@
       };
     };
     nix-serve = {
+      bindAddress = "0.0.0.0";
       enable = true;
       secretKeyFile = "/var/secrets/cache-priv-key.pem";
     };
