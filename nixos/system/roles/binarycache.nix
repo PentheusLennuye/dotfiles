@@ -10,8 +10,7 @@
       recommendedProxySettings = true;
       virtualHosts = {
         "nixoscache.cummings-online.local" = {
-          locations."/".proxyPass =
-            "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+          locations."/".proxyPass = "http://127.0.0.1:5000/";
         };
       };
     };

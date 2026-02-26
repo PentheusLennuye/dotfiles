@@ -18,8 +18,9 @@
         "https://cache.nixos.org/"
       ];
       trusted-public-keys = [
-        "nixoscache.cummings-online.local:utGibGEjKTI0UnUTMw09179X3RKdw1/audvqIueaCSI="
+        "nixoscache.cummings-online.local:ibqnK1QZAFpnNyhD++QH4pdmMoaHx5YeZCGyr+I/FhY="
       ];
+      trusted-users = [ "gmc" ];
     };
   };
 
