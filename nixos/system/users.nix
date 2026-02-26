@@ -24,7 +24,7 @@
     };
     users.ncu = {
       description = "NixOS Cache Updater";
-      isNormalUser = false;
+      isSystemUser = true;
       useDefaultShell = true;
     };
   };
