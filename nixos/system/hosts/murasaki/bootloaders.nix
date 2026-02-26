@@ -25,6 +25,7 @@
       luks = {
         devices = {
           "crypt_root" = {
+	    crypttabExtraOpts = [ "fido2-device=auto" ];
             device = "/dev/nvme0n1p2";
           };
         };
@@ -33,6 +34,7 @@
         "nfs"
         "nfs4"
       ];
+      systemd.enable = true;
     };
     kernelModules = [
       "kvm-intel"
