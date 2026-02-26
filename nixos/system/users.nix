@@ -5,6 +5,9 @@
     groups.family = {
       gid = 3000;
     };
+    groups.ncu= {
+      gid = 3001;
+    };
     users.gmc = {
       isNormalUser = true;
       description = "George Cummings";
@@ -24,6 +27,7 @@
     };
     users.ncu = {
       description = "NixOS Cache Updater";
+      group = "ncu";
       isSystemUser = true;
       useDefaultShell = true;
     };
