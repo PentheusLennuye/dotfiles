@@ -14,6 +14,7 @@
         "flakes"
       ];
       substituters = [
+        "http://nixoscache.cummings-online.local:5000"
         "https://cache.nixos.org/"
       ];
       trusted-users = [

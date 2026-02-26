@@ -13,7 +13,7 @@
   services = {
     nix-serve = {
       bindAddress = "0.0.0.0";
-      port = 80;
+      port = 5000;
       enable = true;
       secretKeyFile = "/var/secrets/cache-priv-key.pem";
     };
