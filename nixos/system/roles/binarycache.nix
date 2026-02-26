@@ -17,8 +17,6 @@
     };
     nix-serve = {
       enable = true;
-      openFirewall = true;
-      port = 5000;
       secretKeyFile = "/var/secrets/cache-priv-key.pem";
     };
   };
