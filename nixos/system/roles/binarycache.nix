@@ -9,8 +9,12 @@
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "nixoscache.cummings-online.local" = {
-          locations."/".proxyPass = "http://127.0.0.1:5000/";
+        "default-server" = {
+          default = true;
+          serverName = "nixoscache";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:5000";
+          };
         };
       };
     };
