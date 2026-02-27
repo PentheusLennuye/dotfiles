@@ -5,7 +5,7 @@
     groups.family = {
       gid = 3000;
     };
-    groups.ncu= {
+    groups.ncu = {
       gid = 3001;
     };
     users.gmc = {
