@@ -1,7 +1,10 @@
 words = [
+    "filefrag",
+    "logind",
     "markdownlint",
     "nixos",
     "pyproject",
+    "sed",
     "starship",
     "waybar",
 ]
