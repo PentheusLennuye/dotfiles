@@ -100,11 +100,12 @@ but will not be saved in the nixos configuration.
    ln -s . /etc/nixos
    ```
 
-#### A.2.3 Alter host definitions for a laptop
+#### A.2.3 Alter host definitions for a laptop or server
 
 1. Change configurations if you are on a laptop
    - `bootloaders.nix` with `bootloaders_LAPTOP.nix`
-   - `networking.nix` with `networking_LAPTOP.nix`
+   - `networking.nix` with `networking_LAPTOP.nix`, or
+   - `networking.nix` with `networking_SERVER.nix`
      The `laptop.nix` provides entries for lid closing and opening.
 2. Add the lid opening and closing definition
    ```sh
@@ -118,10 +119,11 @@ but will not be saved in the nixos configuration.
    ```sh
    sed "s/HOSTNAME/$(hostname -s)/" networking_LAPTOP.nix > networking.nix
    ```
-3. Alter the hardware configuration
+3. If setting up a server, alter `networking.nix`
+4. Alter the hardware configuration
    1. Remove any `boot.initrd` entries as they are in the bootloader file
    2. Append **options[ "noatime" ]** to `filesystems."/nix"`
-4. Register the host definition in `flake.nix` with just the basics.
+5. Register the host definition in `flake.nix` with just the basics.
    ```txt
    nixosConfigurations = {
      ...
