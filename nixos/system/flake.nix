@@ -27,6 +27,11 @@
     in
     {
       nixosConfigurations = {
+        # ┌ Host Definitions ────────────────────────────────────────────────────────────┐
+        # │                                                                              │
+        # │ Insert your hosts here                                                       │
+        # │                                                                              │
+        # └──────────────────────────────────────────────────────────────────────────────┘
         glaucus = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -43,6 +48,7 @@
             ./roles/publishing.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
         goemon = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -66,6 +72,7 @@
             ./roles/virt-host.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
         jigen = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = common_modules ++ [
@@ -78,6 +85,7 @@
             ./roles/webhost.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
         lupin = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -94,6 +102,7 @@
             ./roles/webhost.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
         murasaki = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -113,6 +122,7 @@
             ./roles/virt-host.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
         zenigata = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -125,6 +135,7 @@
             ./roles/webhost.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
       };
     };
 }

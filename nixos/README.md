@@ -1,12 +1,13 @@
 # George's NixOS configurations
 
+<!-- markdownlint-disable MD030 -->
 <!-- markdownlint-disable MD031 -->
 <!-- markdownlint-disable MD032 -->
 
 NixOS version 24.11
 
 These are the files I use to configure my various bare metal NixOS systems to my
-liking. See [NixOS Buildout](#nixos-buildout) on how to put them to use.
+liking. See [NixOS Buildout](#a-nixos-build-out) on how to put them to use.
 
 ## Caveat Emptor
 
@@ -29,84 +30,140 @@ An exceptionally good resource is Ryan Yin's "NixOS & Flakes Book" at
 not easy, but with this text and programming experience using Python's
 _pyproject.toml_ or Rust's Cargo helped.
 
-## NixOS Build Out
+## A. NixOS Build Out
 
-### Step One: Install from CD/USB
+### A.1 Install NixOS
 
-When installing NixOS, ensure there is a swap partition made for hibernation,
-especially when operating a laptop. After reboot, continue to ...
+The easy way uses a build script to partition a single SSD/HDD or NVME disk as follows:
 
-### Step Two: Connect to the WiFi
-
-Unless your workstation is connected by wire:
-
-```sh
-nmcli dev wifi list
-nmcli dev wifi connect --ask
+```txt
+┌─ partition 1 (EFI), 1GB fat32: /boot
+└─ partition 2 (system), remaining LVM 2
+    ├ swap, memory * 2
+    ├ nix, 100GB: /nix
+    └ root, remaining: /
 ```
 
-### Step Three: Start a nix shell with vim and git
+If you are on a laptop, the system partition will be encrypted.
 
-```sh
-nix-shell -p vim git
-```
+1. Download the NixOS minimal installer and install it to a USB key or CD/DVD.
+2. Boot the new system into the media.
+3. Either plug the system into a physical network or connect to WiFi. For WiFi:
+   ```sh
+   nmcli dev wifi list | awk '{print $3}' | sort -u  # List networks
+   read -r -p "Choose network: " SSID
+   nmcli dev wifi connect $SSID password --ask
+   ```
+4. Download [build_systems.sh](https://github.com/PentheusLennuye/dotfiles/blob/main/nixos/build_system.sh)
+5. Modify the build script and execute: `bash build_system.sh`
+6. Reboot.
 
-### Step Four: Pull dotfiles and edit them
+### A.2 Customize
 
-1. Pull these dotfiles
+#### A.2.1 Pull the dotfiles
+
+1. Log into the system as root
+2. Either plug the system into a physical network or connect to WiFi. For WiFi:
+   ```sh
+   nmcli dev wifi list | awk '{print $3}' | sort -u  # List networks
+   read -r -p "Choose network: " SSID
+   nmcli dev wifi connect $SSID password --ask
+   ```
+3. Install `git`. If you do not want to use `nano`, install `vim` or `neovim`.
+   ```sh
+   nix-shell -p vim git
+   ```
+4. Pull the dotfiles
    ```sh
    git clone https://github.com/PentheusLennuye/dotfiles.git
    cd dotfiles/
-   rm -rf .git  # to be safe
+   # Optional: git checkout develop
    cd nixos/system
+   rm -rf .git
    ```
-2. Create the host directory for your new system
+
+The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
+but will not be saved in the nixos configuration.
+
+#### A.2.2 Create the host definition
+
+1. Create the host directory for your new system
    ```sh
-   cp -a hosts/template hosts/$(hostname -s)
-   mv /etc/nixos/hardware-configuration.nix hosts/$(hostname -s)
+   H=hosts/$(hostname -s)
+   cp -a hosts/template $H
+   mv /etc/nixos/hardware-configuration.nix $H/rescue/
+   cp $H/rescue/hardware-configuration.nix $H
    ```
-3. Alter hardware-configuration
-
+2. Remove the default directory and link to the local configuration
    ```sh
-   sudo vi hosts/$(hostname -s)/hardware-configuration.nix
+   rmdir /etc/nixos
+   ln -s . /etc/nixos
    ```
 
-   1. Comment out dhcp in _/etc/nixos/hardware-configuration.nix_
-   2. Alter boot parameters at need. See the other host directories for guidance
-   3. Add the NFS filesystem as needed. See _hosts/glaucus_ for assistance.
+#### A.2.3 Alter host definitions for a laptop
 
-4. Alter Network. If on a laptop, skip this step. If on a wired workstation or
-   server, see _hosts/goemon/networking.nix_ for reference.
-
-### Step Five: Laptops
-
-See [LAPTOP](LAPTOP.md)
-
-### Step Six: Let the configurations rip
-
-#### System
-
-1. Copy system files to _/etc/nixos_
+1. Change configurations if you are on a laptop
+   - `bootloaders.nix` with `bootloaders_LAPTOP.nix`
+   - `networking.nix` with `networking_LAPTOP.nix`
+     The `laptop.nix` provides entries for lid closing and opening.
+2. Add the lid opening and closing definition
    ```sh
-   sudo rsync -avrt . /etc/nixos
+   sed -i '/\];/\ \ \ \ ./laptop.nix' $H/default.nix
    ```
-2. Exit the nix-shell from step three (you are still in there, right?) with
+
+#### A.2.3 Edit and register the host definition
+
+1. Alter `bootloader.nix` and change any kernel modules that do not belong.
+2. Set your hostname
+   ```sh
+   sed "s/HOSTNAME/$(hostname -s)/" networking_LAPTOP.nix > networking.nix
+   ```
+3. Alter the hardware configuration
+   1. Remove any `boot.initrd` entries as they are in the bootloader file
+   2. Append **options[ "noatime" ]** to `filesystems."/nix"`
+4. Register the host definition in `flake.nix` with just the basics.
+   ```txt
+   nixosConfigurations = {
+     ...
+     <HOSTNAME> = nixpkgs.lib.nixosSystem {
+       inherit system;
+       specialArgs = { inherit inputs; };
+       modules = common_modules ++ [ ./hosts/<HOSTNAME> ];
+     };
+     ...
+   };
+   ```
+
+### A.3 Let 'er rip
+
+#### A.3.1 System
+
+1. Exit the nix-shell from step three (you are still in there, right?) with
    a simple `exit`.
-3. Fire!
+2. Fire!
    ```sh
-   sudo nixos-rebuild switch  # First command installs flakes
-   sudo nixos-rebuild switch  # Second command goes to work. Get coffee.
+   nixos-rebuild switch
    reboot
    ```
 
-#### User
+Enjoy your NixOS workstation.
 
-1. Copy the home-manager files from _dotfiles_
+#### A.3.2 User Setup
+
+Log in as your user, and
+
+1. Pull the dotfiles again to get a clean copy
    ```sh
-   [ -d ~/.config/home-manager ]] && rm -rf ~/.config/home-manager
-   cp -a </path/to/dotfiles>/nixos/home-manager/<user> ~/.config/home-manager
+   mkdir -p ~/spaces/tech/infra/
+   git clone https://github.com/PentheusLennuye/dotfiles.git ~/spaces/tech/infra/
+   cd  ~/spaces/tech/infra/dotfiles
+   git checkout develop
    ```
-2. Install home manager temporarily as USER (not root)
+2. Link the nixos and home-manager configurations to the dotfiles
+   ```sh
+   ln -s ~/spaces/tech/infra/dotfiles/nixos/home-manager/$USER ~/.config/home-manager
+   ```
+3. Install home manager
    ```sh
    HMURL=https://github.com/nix-community/home-manager
    RELEASE=release-$(nixos-version | awk -F. '{print $1"."$2}').tar.gz
@@ -114,10 +171,32 @@ See [LAPTOP](LAPTOP.md)
    nix-channel --update
    nix-shell '<home-manager>' -A install
    ```
-3. Open fire
+4. Set up the user
+
    ```sh
    home-manager build switch
    ```
-4. Start neovim, and after reading all the errors, execute `:PlugInstall`
 
-Enjoy your NixOS workstation.
+### A.4 Set NixOS to use your dotfiles
+
+1. Copy the system `flake.nix`, `flake.lock`, and host definition
+   ```sh
+   cp /etc/nixos/flake.* .
+   cp -r /etc/nixos/hosts/$(hostname -s) system/nixos/hosts
+   ```
+2. Link the nixos configurations to the dotfiles
+   ```sh
+   sudo rm /etc/nixos
+   sudo ln -s ~/spaces/tech/infra/dotfiles/nixos/system /etc/nixos
+   ```
+3. Clean the old configuration
+   ```sh
+   sudo rm -rf /root/dotfiles
+   exit
+   ```
+
+You may now add roles to your host in `flake.nix`.
+
+---
+
+That's it! Enjoy your system

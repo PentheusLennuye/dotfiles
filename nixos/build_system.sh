@@ -65,37 +65,6 @@ check_plugged() {
     ip a | grep -P "inet.*(enp|eth\d)" && PLUGGED=y
 }
 
-set_wifi() {
-    SSID=
-
-    echo "──────────────────────────"
-    echo "Available WiFi Networks"
-    echo "──────────────────────────"
-    nmcli dev wifi list | awk '{print $3}' | sort -u
-
-
-    while [ "${SSID}" == "" ]; do
-      echo -n "Network SSID [$DEFAULT_SSID]: "
-      read SSID
-    
-    while [ "${WIFI_PASS}" == "" ]; do
-        echo -n "WiFi Password: "
-        read -s WIFI_PASS
-        echo
-        echo -n "Confirm WiFi Password: "
-        read -s CONFIRM
-        echo
-        [ "$WIFI_PASS" == "$CONFIRM" ] || WIFI_PASS=
-    done
-    
-    echo "Starting WiFi..."
-    nmcli dev wifi connect $SSID password $WIFI_PASS || (
-        echo "Could not start WiFi."
-        exit 1
-    )
-    echo "...WiFi started."
-}
-
 partition_disk() {
     echo "Partitioning system ..."
     swap_size=$((2*$(free -m | grep Mem | awk '{print $2}')))
@@ -214,7 +183,6 @@ close_up() {
 set_laptop
 set_system_disk
 check_plugged
-([ $PLUGGED ] || set_wifi) && echo "Networking running."
 partition_disk
 [ "$LAPTOP" == "y"] && set_encryption_password
 [ "$LAPTOP" == "y"] && encrypt_system

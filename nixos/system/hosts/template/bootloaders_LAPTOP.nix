@@ -10,6 +10,7 @@
     initrd = {
       availableKernelModules = [
         "xhci_pci"
+        "thunderbolt"
         "nvme"
         "usbhid"
         "usb_storage"
@@ -21,6 +22,14 @@
         "nfs"
         "nfs4"
       ];
+      luks = {
+        devices = {
+          "crypt_root" = {
+            crypttabExtraOpts = [ "fido2-device=auto" ];
+            device = "/dev/nvme0n1p2";
+          };
+        };
+      };
       supportedFilesystems = [
         "nfs"
         "nfs4"
