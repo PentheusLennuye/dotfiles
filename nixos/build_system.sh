@@ -30,7 +30,6 @@ ANSWER=
 ENCR_KEY=
 HOSTNAME=
 LAPTOP=
-PLUGGED=n
 WIFI_PASS=
 WLD=
 SYSTEM_DISK=
@@ -48,11 +47,11 @@ set_laptop() {
 set_system_disk() {
     echo "Setting the installation disk"
     echo "Available disks: "
-    echo
+    echo "──────────────── "
     ls -1 /dev | grep -P 'nvme\dn\d\b|sd[a-z]|vd[a-z]\b'
     echo
     while [ "$ANSWER" == "" ]; do
-        echo -n "Define the system disk: "
+        echo -n "Identify the system disk: "
         read ANSWER
     done
     SYSTEM_DISK=/dev/${ANSWER}
@@ -80,6 +79,7 @@ partition_disk() {
     fi
     echo "...partitioning done with the following configuration:"
     parted $SYSTEM_DISK print
+    echo "─────────────────────────────────────────────────────────────────"
 }
 
 set_encryption_password() {
@@ -111,7 +111,7 @@ encrypt_system_drive() {
 # Set up nix (store), root, and swap
 partition_lv2() {
     echo "Partitioning nix, root and swap drives"
-    if [ "$LAPTOP" == "n" ]; then
+    if [ "$LAPTOP" == "Y" ]; then
       pvcreate /dev/mapper/crypt_system || exit 1
       vgcreate VG_root /dev/mapper/crypt_system -s 4M || exit 1
     else
@@ -180,7 +180,6 @@ close_up() {
 # MAIN -------------------------------------------------------
 set_laptop
 set_system_disk
-check_plugged
 partition_disk
 [ "$LAPTOP" == "y" ] && set_encryption_password
 [ "$LAPTOP" == "y" ] && encrypt_system
