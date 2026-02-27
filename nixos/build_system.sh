@@ -79,7 +79,6 @@ partition_disk() {
     fi
     echo "...partitioning done with the following configuration:"
     parted $SYSTEM_DISK print
-    echo "─────────────────────────────────────────────────────────────────"
 }
 
 set_encryption_password() {
@@ -180,14 +179,18 @@ close_up() {
 # MAIN -------------------------------------------------------
 set_laptop
 set_system_disk
+echo "─────────────────────────────────────────────────────────────────"
 partition_disk
+echo "─────────────────────────────────────────────────────────────────"
 [ "$LAPTOP" == "y" ] && set_encryption_password
 [ "$LAPTOP" == "y" ] && encrypt_system
 partition_lv2
+echo "─────────────────────────────────────────────────────────────────"
 format_system_drive
+echo "─────────────────────────────────────────────────────────────────"
 mount_drives
-clone_dotfiles
 install_nixos
+echo "─────────────────────────────────────────────────────────────────"
 close_up
 
 echo "Please type 'reboot' and remove the USB key."
