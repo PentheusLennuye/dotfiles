@@ -26,6 +26,7 @@ EOM
 
 # -----------------------------------------------------------
 
+ANSWER=
 ENCR_KEY=
 HOSTNAME=
 LAPTOP=
@@ -50,10 +51,11 @@ set_system_disk() {
     echo
     ls -1 /dev | grep -P 'nvme\dn\d\b|sd[a-z]|vd[a-z]\b'
     echo
-    while [ "$SYSTEM_DISK" == "" ]; do
+    while [ "$ANSWER" == "" ]; do
         echo -n "Define the system disk: "
-        read SYSTEM_DISK
+        read ANSWER
     done
+    SYSTEM_DISK=/dev/${ANSWER}
 }
 
 check_plugged() {
