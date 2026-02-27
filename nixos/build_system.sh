@@ -73,7 +73,7 @@ partition_disk() {
         name 1 EFS \
         set 1 boot on \
         mkpart primary 1536MB 100% \
-        set 2 pv on
+        set 2 lvm on
     if [ $? -ne 0 ]; then
         "...partitioning failed. FATAL. Stopping."
         exit 1
