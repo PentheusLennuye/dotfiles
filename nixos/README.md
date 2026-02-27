@@ -11,7 +11,7 @@ liking. See [NixOS Buildout](#nixos-buildout) on how to put them to use.
 ## Caveat Emptor
 
 This is a live repository which is continually being updated as I find I need
-some tools and remove others. __Modify the files to your needs!__. You might not
+some tools and remove others. **Modify the files to your needs!**. You might not
 actually _need_ to use _zsh_...
 
 ## Credit
@@ -20,7 +20,7 @@ Much thanks to Tyler Kelley, "Best NixOS Config"
 <https://gitlab.com/Zaney/zaneyos> for providing a guide. His YouTube video was
 quite instructive; it is an excellent introduction to NixOS.
 
-His waybar and starship configurations I stole without shame and modified (
+His _waybar_ and _starship_ configurations I stole without shame and modified (
 statically; I'm not as interested in dynamic changes). Others took some
 looking into.
 
@@ -29,14 +29,14 @@ An exceptionally good resource is Ryan Yin's "NixOS & Flakes Book" at
 not easy, but with this text and programming experience using Python's
 _pyproject.toml_ or Rust's Cargo helped.
 
-## NixOS Buildout
+## NixOS Build Out
 
 ### Step One: Install from CD/USB
 
 When installing NixOS, ensure there is a swap partition made for hibernation,
 especially when operating a laptop. After reboot, continue to ...
 
-### Step Two: Connect to the Wifi
+### Step Two: Connect to the WiFi
 
 Unless your workstation is connected by wire:
 
@@ -66,12 +66,15 @@ nix-shell -p vim git
    mv /etc/nixos/hardware-configuration.nix hosts/$(hostname -s)
    ```
 3. Alter hardware-configuration
+
    ```sh
    sudo vi hosts/$(hostname -s)/hardware-configuration.nix
    ```
+
    1. Comment out dhcp in _/etc/nixos/hardware-configuration.nix_
    2. Alter boot parameters at need. See the other host directories for guidance
    3. Add the NFS filesystem as needed. See _hosts/glaucus_ for assistance.
+
 4. Alter Network. If on a laptop, skip this step. If on a wired workstation or
    server, see _hosts/goemon/networking.nix_ for reference.
 

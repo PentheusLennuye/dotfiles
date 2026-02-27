@@ -1,0 +1,7 @@
+words = [
+    "markdownlint",
+    "nixos",
+    "pyproject",
+    "starship",
+    "waybar",
+]

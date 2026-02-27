@@ -66,16 +66,17 @@ check_plugged() {
 }
 
 set_wifi() {
-    DEFAULT_WLD=wlp3s0
-    echo -n "WiFi device [$DEFAULT_WLD]: "
-    read WLD
-    [ "$WLD" == "" ] && WLD=$DEFAULT_WLD
-    
     SSID=
-    DEFAULT_SSID=Pentheus
-    echo -n "Network SSID [$DEFAULT_SSID]: "
-    read SSID
-    [ "$SSID" == "" ] && SSID=$DEFAULT_SSID
+
+    echo "──────────────────────────"
+    echo "Available WiFi Networks"
+    echo "──────────────────────────"
+    nmcli dev wifi list | awk '{print $3}' | sort -u
+
+
+    while [ "${SSID}" == "" ]; do
+      echo -n "Network SSID [$DEFAULT_SSID]: "
+      read SSID
     
     while [ "${WIFI_PASS}" == "" ]; do
         echo -n "WiFi Password: "
@@ -88,35 +89,30 @@ set_wifi() {
     done
     
     echo "Starting WiFi..."
-    wpa_passphrase $SSID $WIFI_PASS > /etc/wpa_supplicant.conf
-    wpa_supplicant -V -c /etc/wpa_supplicant.conf -i$WLD || (
-        echo "Could not start WiFi"
+    nmcli dev wifi connect $SSID password $WIFI_PASS || (
+        echo "Could not start WiFi."
         exit 1
     )
     echo "...WiFi started."
 }
 
-partition_system() {
+partition_disk() {
     echo "Partitioning system ..."
     swap_size=$((2*$(free -m | grep Mem | awk '{print $2}')))
     root_offset=$((${swap_size} + 512))
     parted --script --align opt $SYSTEM_DISK \
         mklabel gpt \
-        mkpart primary fat32 0% 512MB \
-        name 1 NIXOS_BOOT \
+        mkpart primary fat32 0% 1024MB \
+        name 1 EFS \
         set 1 boot on \
-        mkpart primary linux-swap 512MB ${root_offset}MB \
-        name 2 NIXOS_SWAP \
-        mkpart primary ext4 ${root_offset}MB 100% \
-        name 3 NIXOS_ROOT
+        mkpart primary 1536MB 100% \
+        set 2 pv on
     if [ $? ne 0 ]; then
         "...partitioning failed. FATAL. Stopping."
         exit 1
     fi
     echo "...partitioning done with the following configuration:"
     parted $SYSTEM_DISK print
-
-
 }
 
 set_encryption_password() {
@@ -134,23 +130,31 @@ set_encryption_password() {
 }
 
 encrypt_system_drive() {
-    echo "Encrypting root and swap partitions..."
+    echo "Encrypting root partition..."
     delimiter=
     echo ${SYSTEM_DISK} | grep nvme && delimeter=p
-    echo $ENCR_KEY | cryptsetup -q -s 512 -h sha512 --use-random \
-        --label=NIXOS_SWAP luksFormat --type luks2 \
-        ${SYSTEM_DISK}${delimiter}2 || exit 1
-    echo $ENCR_KEY | cryptsetup -q -s 512 -h sha512 --use-random \
-        --label=NIXOS_ROOT luksFormat --type luks2 \
-        ${SYSTEM_DISK}${delimiter}3 || exit 1
+    echo $ENCR_KEY | cryptsetup -q --label=system luksFormat ${SYSTEM_DISK}${delimiter}2 || exit 1
     echo "...encrypted"
 
     "Opening the encrypted drives..."
     echo $ENCR_KEY | \
-        cryptsetup open /dev/disk/by-label/NIXOS_SWAP cryptswap || exit 1
-    echo $ENCR_KEY | \
-        cryptsetup open /dev/disk/by-label/NIXOS_SWAP cryptroot || exit 1
-    "...opened"
+        cryptsetup open /dev/disk/by-label/system crypt_system || exit 1
+}
+
+# Set up nix (store), root, and swap
+partition_lv2() {
+    echo "Partitioning nix, root and swap drives"
+    if [ "$LAPTOP" == "n" ]; then
+      pvcreate /dev/mapper/crypt_system || exit 1
+      vgcreate VG_root /dev/mapper/crypt_system -s 4M || exit 1
+    else
+      pvcreate ${SYSTEM_DISK}${delimiter}2 || exit 1
+      vgcreate VG_root ${SYSTEM_DISK}${delimiter}2 -s 4M  || exit 1
+    fi
+
+    lvcreate -L 100G -n LV_nix VG_root || exit 1
+    lvcreate -L 18G -n LV_swap VG_root || exit 1
+    lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
 # Format the installation drive, whether nvme or sda
@@ -159,36 +163,18 @@ format_system_drive() {
     delimiter=
     echo ${SYSTEM_DISK} | grep nvme && delimeter=p
 
-    if [ "$LAPTOP" == "n" ]; then
-
-        echo ${SYSTEM_DISK} | grep nvme && delimeter=p
-        mkfs.vfat -n NIXOS_BOOT ${SYSTEM_DISK}${delimiter}1 || exit 1
-        mkswap -L NIXOS_SWAP ${SYSTEM_DISK}${delimiter}2 || exit 1
-        mkfs.ext4 -L NIXOS_ROOT ${SYSTEM_DISK}${delimiter}3 || exit 1
-    else
-        mkfs.vfat -n NIXOS_BOOT ${SYSTEM_DISK}${delimiter}1 || exit 1
-        mkswap /dev/mapper/cryptswap || exit 1
-        mkfs.ext4 /dev/mapper/cryptroot || exit 1
-    fi
+    mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
+    mkfs.ext4 -L nix /dev/mapper/VG_root_LV_nix || exit 1
+    mkswap -L swap  /dev/mapper/VG_root_LV_swap || exit 1
+    mkfs.ext4 -L root /dev/mapper/VG_root_LV_root || exit 1
     echo "...formatted"
 }
 
 mount_drives() {
-    if [ "$LAPTOP" == "n" ]; then
-        mount /dev/disk/by-label/NIXOS_ROOT /mnt || exit 1
-        mkdir /mnt/boot
-    else
-        mount /dev/mapper/cryptroot /mnt || exit 1
-        mkdir /mnt/boot
-    fi
-    mount -o umask=0077 /dev/disk/by-label/NIXOS_BOOT /mnt/boot || exit 1
-}
-
-clone_dotfiles() {
-    echo "Cloning dotfiles..."
-    cd /mnt
-    git clone ${DOTFILES_URL}
-    echo "...cloned"
+    mount /dev/disk/by-label/root /mnt || exit 1
+    mkdir /mnt/boot
+    mkdir /mnt/nix
+    mount -o umask=0077 /dev/disk/by-label/EFS /mnt/boot || exit 1
 }
 
 install_nixos() {
@@ -200,11 +186,7 @@ install_nixos() {
         read CONFIRM
         [ "$HOSTNAME" == "$CONFIRM" ] || HOSTNAME=
     done
-    if [ "$LAPTOP" == "n" ]; then
-        swapon /dev/disk/by-label/NIXOS_SWAP
-    else
-        swapon /dev/mapper/cryptswap
-    fi
+    swapon /dev/disk/by-label/swap
     nixos-generate-config --root /mnt
     mkdir -p /mnt/etc/nixos/orig
     cp /mnt/etc/nixos/*.nix /mnt/etc/nixos/orig/
@@ -224,8 +206,7 @@ install_nixos() {
 close_up() {
     swapoff -a
     umount -R /mnt
-    [ "$LAPTOP" == "y" ] && cryptsetup close cryptroot
-    [ "$LAPTOP" == "y" ] && cryptsetup close cryptswap
+    [ "$LAPTOP" == "y" ] && cryptsetup close crypt_system
 }
 
 
@@ -234,14 +215,15 @@ set_laptop
 set_system_disk
 check_plugged
 ([ $PLUGGED ] || set_wifi) && echo "Networking running."
-partition_system_drive
+partition_disk
 [ "$LAPTOP" == "y"] && set_encryption_password
 [ "$LAPTOP" == "y"] && encrypt_system
+partition_lv2
 format_system_drive
 mount_drives
 clone_dotfiles
 install_nixos
 close_up
 
-echo "Please type 'reboot', remove the USB key, and reset the BIOS to Safe Boot."
+echo "Please type 'reboot' and remove the USB key."
 
