@@ -182,8 +182,8 @@ set_laptop
 set_system_disk
 check_plugged
 partition_disk
-[ "$LAPTOP" == "y"] && set_encryption_password
-[ "$LAPTOP" == "y"] && encrypt_system
+[ "$LAPTOP" == "y" ] && set_encryption_password
+[ "$LAPTOP" == "y" ] && encrypt_system
 partition_lv2
 format_system_drive
 mount_drives
