@@ -17,14 +17,10 @@ George's NixOS installation automation
 
 This script installs NixOS on a workstation, VM, server or laptop.
 
-It installs just the bare-bones NixOS but it also pulls the dotfiles
-and sets the machine for a full installation with "nixos-rebuild switch" and
-"home-manager build switch" on reboot.
-
-It is meant for single-OS, single-disk stations.
+It installs just the bare-bones NixOS.
+It installs a bare-bones NixOS in an opinionated way.
 
 First, some prompts...
-
 
 EOM
 
@@ -52,7 +48,7 @@ set_system_disk() {
     echo "Setting the installation disk"
     echo "Available disks: "
     echo
-    ls -1 /dev | grep -P 'nvme\dn\d\b|sd[a-z]\b'
+    ls -1 /dev | grep -P 'nvme\dn\d\b|sd[a-z]|vd[a-z]\b'
     echo
     while [ "$SYSTEM_DISK" == "" ]; do
         echo -n "Define the system disk: "

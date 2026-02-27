@@ -55,7 +55,10 @@ If you are on a laptop, the system partition will be encrypted.
    nmcli dev wifi connect $SSID password --ask
    ```
 4. Download [build_systems.sh](https://github.com/PentheusLennuye/dotfiles/blob/main/nixos/build_system.sh)
-5. Modify the build script and execute: `bash build_system.sh`
+   ```sh
+   git clone https://github.com/PentheusLennuye/dotfiles
+   ```
+5. Modify the build script and execute: `bash dotfiles/nixos/build_system.sh`
 6. Reboot.
 
 ### A.2 Customize
