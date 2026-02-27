@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users = {
@@ -26,8 +26,10 @@
       shell = pkgs.zsh;
     };
     users.ncu = {
+      createHome = true;
       description = "NixOS Cache Updater";
       group = "ncu";
+      home = "/home/ncu";
       isSystemUser = true;
       useDefaultShell = true;
     };
