@@ -117,10 +117,10 @@ partition_lv2() {
     if [ "${nix_answer}" != "" ]; then
       nix_size=$nix_answer
     fi
-    echo "Nix store size is ${nix_size}GB"
+    echo "Nix store size is ${nix_size}GiB (i.e., 1kB = 1024B)"
 
     swap_size=$(( $(free -g | grep Mem | awk '{print $2}') + 2 ))
-    echo "Swap size is RAM + 2GB = ${swap_size}GB"
+    echo "Swap size is RAM + 2GiB = ${swap_size}GiB"
 
     echo "Root size is the remainder of the system disk. This is opinionated."
 
