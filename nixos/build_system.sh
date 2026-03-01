@@ -117,15 +117,16 @@ partition_lv2() {
     if [ "${nix_answer}" != "" ]; then
       nix_size=$nix_answer
     fi
+    echo "Nix store size is ${nix_size}GB"
 
-    swap_size=$(( $(free -g | grep Mem | awk '{print $2}') *1.5 ))
-    echo "Swap size is RAM * 1.5 = ${swap_size}GB"
+    swap_size=$(( $(free -g | grep Mem | awk '{print $2}') + 2 ))
+    echo "Swap size is RAM + 2GB = ${swap_size}GB"
 
     echo "Root size is the remainder of the system disk. This is opinionated."
 
     sleep 3
 
-    if [ "$LAPTOP" == "Y" ]; then
+    if [ "$LAPTOP" == "y" ]; then
       pvcreate /dev/mapper/crypt_system || exit 1
       vgcreate VG_root /dev/mapper/crypt_system -s 4M || exit 1
     else
@@ -134,7 +135,7 @@ partition_lv2() {
     fi
 
     lvcreate -L ${nix_size}G -n LV_nix VG_root || exit 1
-    lvcreate -L ${swap_size} -n LV_swap VG_root || exit 1
+    lvcreate -L ${swap_size}G -n LV_swap VG_root || exit 1
     lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
