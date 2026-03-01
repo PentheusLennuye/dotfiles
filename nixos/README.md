@@ -89,20 +89,20 @@ If you are on a laptop, the system partition will be encrypted.
    git checkout develop
    rm -rf .git  # Unless you are me
    ```
-2. Create the host directory for your new system
+2. Remove the default directory and link to the local configuration
    ```sh
-   cd dotfiles/nixos/system/hosts
+   cd nixos/system
+   rm -rf /etc/nixos
+   ln -s $(pwd) /etc/nixos
+   ```
+3. Create the host directory for your new system
+   ```sh
+   cd hosts
    git checkout develop
    H=$(hostname -s)
    cp -a template $H
-   mv /etc/nixos/{hardware-configuration.nix configuration.nix} $H/rescue/
-   mv /etc/nixos/flake.lock $H
+   mv /etc/nixos/*.nix $H/rescue/
    cp $H/rescue/hardware-configuration.nix $H
-   ```
-3. Remove the default directory and link to the local configuration
-   ```sh
-   rm -rf /etc/nixos
-   ln -s $(pwd) /etc/nixos
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
@@ -128,7 +128,14 @@ If you are on a laptop, the system partition will be encrypted.
 4. Alter `hardware-configuration.nix`
    1. Remove any `boot.initrd` that you do not need in the bootloader file
    2. Append **options = [ "noatime" ];** to `filesystems."/nix"`
-5. Register the host definition in `flake.nix` with just the basics.
+5. Register the host definition in `flake.nix` with roles. See the other systems for examples, but
+   _at the very minimum_, set up the common modules and the host definition:
+
+   ```sh
+   cd ..
+   vim flake.nix
+   ```
+
    ```txt
    nixosConfigurations = {
      ...
@@ -149,65 +156,49 @@ If you are me, skip this step.
    forget to change the full name as well!
 2. Rename `home-manager/gmc` to `home-manager/<your username>`
 
-### A.3 Let 'er rip
-
-#### A.3.1 System
+#### A.2.6 Let 'er rip
 
 Fire!
 
 ```sh
-nixos-rebuild boot
-reboot
+nixos-rebuild switch
 ```
 
 Enjoy your NixOS workstation.
 
-#### A.3.2 User Setup
+### A.3 User Setup
 
-Log in as your user, and
+#### A.3.1 Move the nixos to your account
 
-1. Pull the dotfiles again to get a clean copy
-   ```sh
-   mkdir -p ~/spaces/tech/infra/
-   git clone https://github.com/PentheusLennuye/dotfiles.git ~/spaces/tech/infra/
-   cd  ~/spaces/tech/infra/dotfiles
-   git checkout develop
-   ```
-2. Link the nixos and home-manager configurations to the dotfiles
-   ```sh
-   ln -s ~/spaces/tech/infra/dotfiles/nixos/home-manager/$USER ~/.config/home-manager
-   ```
-3. Install home manager
-   ```sh
-   HMURL=https://github.com/nix-community/home-manager
-   RELEASE=release-$(nixos-version | awk -F. '{print $1"."$2}').tar.gz
-   nix-channel --add ${HMURL}/archive/${RELEASE} home-manager
-   nix-channel --update
-   nix-shell '<home-manager>' -A install
-   ```
-4. Set up the user
+```sh
+rm /etc/nixos
+mv /root/dotfiles /home/<username>
+chown -R <username>:users /home/<username>/dotfiles
+ln -s /home/<username>/dotfiles /etc/nixos
+exit
+```
 
-   ```sh
-   home-manager build switch
-   ```
+#### A.3.2 Set up Home Manager
 
-### A.4 Set NixOS to use your dotfiles
+Home Manager is a configuration management system for home directories and local binaries
 
-1. Copy the system `flake.nix`, `flake.lock`, and host definition
-   ```sh
-   cp /etc/nixos/flake.* .
-   cp -r /etc/nixos/hosts/$(hostname -s) system/nixos/hosts
-   ```
-2. Link the nixos configurations to the dotfiles
-   ```sh
-   sudo rm /etc/nixos
-   sudo ln -s ~/spaces/tech/infra/dotfiles/nixos/system /etc/nixos
-   ```
-3. Clean the old configuration
-   ```sh
-   sudo rm -rf /root/dotfiles
-   exit
-   ```
+1.  Log in us your user and link the nixos and home-manager configurations to the dotfiles
+    ```sh
+    ln -s ~/dotfiles/nixos/home-manager/${USER} ~/.config/home-manager
+    ```
+2.  Install home manager
+    ```sh
+    HMURL=https://github.com/nix-community/home-manager
+    RELEASE=release-$(nixos-version | awk -F. '{print $1"."$2}').tar.gz
+    nix-channel --add ${HMURL}/archive/${RELEASE} home-manager
+    nix-channel --update
+    nix-shell '<home-manager>' -A install
+    ```
+3.  Set up the user
+
+    ```sh
+    home-manager build switch
+    ```
 
 You may now add roles to your host in `flake.nix`.
 
