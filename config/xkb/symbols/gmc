@@ -59,7 +59,7 @@ xkb_symbols "us" {
   key <AD02> {[            w,           W,    questiondown,     NoSymbol,        U2502 ]}; // │
   key <AD03> {[            e,           E,        EuroSign,     EuroSign,        U2587 ]}; // ▇ 
   key <AD04> {[            r,           R,        NoSymbol,     NoSymbol,        U2502 ]}; // │ 
-  key <AD05> {[            t,           T,           U021B,        U021A         U2524 ]}; // ț, ┤ 
+  key <AD05> {[            t,           T,           U021B,        U021A,        U2524 ]}; // ț, ┤ 
 
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
   key <AD06> {[            y,           Y,             yen,     NoSymbol,    leftarrow ]}; // ←
