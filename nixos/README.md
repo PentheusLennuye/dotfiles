@@ -46,6 +46,8 @@ The easy way uses a build script to partition a single SSD/HDD or NVME disk as f
 
 If you are on a laptop, the system partition will be encrypted.
 
+**Caveat**: If installing NixOS on a virtual machine, ensure that the firmware is set to _UEFI_.
+
 1. Download the NixOS minimal installer and install it to a USB key or CD/DVD.
 2. Boot the new system into the media.
 3. Either plug the system into a physical network or connect to WiFi. For WiFi:
@@ -60,7 +62,8 @@ If you are on a laptop, the system partition will be encrypted.
    git clone https://github.com/PentheusLennuye/dotfiles.git
    ```
 5. Execute: `bash dotfiles/nixos/build_system.sh`
-6. Reboot.
+6. When prompted, enter and confirm the root password.
+7. Reboot.
 
 ### A.2 Customize
 
@@ -73,6 +76,8 @@ If you are on a laptop, the system partition will be encrypted.
    read -r -p "Choose network: " SSID
    nmcli dev wifi connect $SSID password --ask
    ```
+   The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
+   but it will not be saved in the nixos configuration.
 3. Install `git`. If you do not want to use `nano`, install `vim` or `neovim`.
    ```sh
    nix-shell -p vim git
@@ -85,9 +90,6 @@ If you are on a laptop, the system partition will be encrypted.
    cd nixos/system
    rm -rf .git
    ```
-
-The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
-but will not be saved in the nixos configuration.
 
 #### A.2.2 Create the host definition
 

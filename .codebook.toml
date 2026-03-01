@@ -118,6 +118,7 @@ words = [
     "timeoutlen",
     "tlsv",
     "tmux",
+    "uefi",
     "unnamedplus",
     "venv",
     "vimdoc",
