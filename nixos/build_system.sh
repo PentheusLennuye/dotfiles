@@ -176,9 +176,14 @@ install_nixos() {
     C_HOSTNAME=networking.hostName
     C_NM=networking.networkmanager
     sed -i.bak \
+        -e 's/\(boot.loader.grub.enable.*\)/#\1/' \
         -e "s/^.*${C_HOSTNAME}.*/  ${C_HOSTNAME} = \"${HOSTNAME}\";/" \
         -e "s/^.*${C_NM}.*/  ${C_NM}.enable = true;/" \
+        -e "s/^.*\(boot.loader.efi.efiSysMountPoint\)/  \1 = \"/boot\";/" \
+        -e "/boot.loader.efi.efiSysMountPoint/a  boot.loader.efi.canTouchEfiVariables = true;" \
+        -e "/boot.loader.grub.device/a  boot.loader.systemd-boot.enable = true;" \
         /mnt/etc/nixos/configuration.nix
+
     cd /mnt
     nixos-install || exit 1
     cd /
