@@ -14,11 +14,7 @@
         "flakes"
       ];
       substituters = [
-        "http://nixoscache.cummings-online.local:5000"
         "https://cache.nixos.org/"
-      ];
-      trusted-public-keys = [
-        "nixoscache.cummings-online.local-1:ibqnK1QZAFpnNyhD++QH4pdmMoaHx5YeZCGyr+I/FhY="
       ];
       trusted-users = [
         "ncu"

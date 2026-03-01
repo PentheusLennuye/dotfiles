@@ -67,7 +67,7 @@ If you are on a laptop, the system partition will be encrypted.
 6. When prompted, enter and confirm the root password.
 7. Reboot.
 
-### A.2 Customize
+### A.2 Install Common OS Settings and Packages
 
 #### A.2.1 Pull the dotfiles
 
@@ -87,22 +87,24 @@ If you are on a laptop, the system partition will be encrypted.
    git clone https://github.com/PentheusLennuye/dotfiles.git
    cd dotfiles/
    git checkout develop
-   cd nixos/system
    ```
+
+**Important**: If you are not me, delete the `.git` directory: `rm -rf .git`.
 
 #### A.2.2 Create the host definition
 
 1. Create the host directory for your new system
    ```sh
-   H=hosts/$(hostname -s)
-   cp -a hosts/template $H
-   mv /etc/nixos/hardware-configuration.nix $H/rescue/
+   cd dotfiles/system/hosts
+   H=$(hostname -s)
+   cp -a template $H
+   mv /etc/nixos/* $H/rescue/
    cp $H/rescue/hardware-configuration.nix $H
    ```
 2. Remove the default directory and link to the local configuration
    ```sh
    rm -rf /etc/nixos
-   ln -s . /etc/nixos
+   ln -s $(pwd) /etc/nixos
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
@@ -116,9 +118,9 @@ If you are on a laptop, the system partition will be encrypted.
    sed -i '/\];/i\ \ \ \ ./laptop.nix' $H/default.nix
    ```
 
-#### A.2.3 Edit and register the host definition
+#### A.2.4 Edit and register the host definition
 
-1. Alter `bootloader.nix` and change any kernel modules that do not belong.
+1. Alter `bootloaders.nix` and change any kernel modules that do not belong.
 2. Set your hostname
    ```sh
    sed -i "s/HOSTNAME/$(hostname -s)/" $H/networking.nix
@@ -127,7 +129,7 @@ If you are on a laptop, the system partition will be encrypted.
    servers
 4. Alter `hardware-configuration.nix`
    1. Remove any `boot.initrd` that you do not need in the bootloader file
-   2. Append **options[ "noatime" ]** to `filesystems."/nix"`
+   2. Append **options = [ "noatime" ];** to `filesystems."/nix"`
 5. Register the host definition in `flake.nix` with just the basics.
    ```txt
    nixosConfigurations = {
@@ -141,17 +143,24 @@ If you are on a laptop, the system partition will be encrypted.
    };
    ```
 
+#### A.2.5 Change the first user
+
+If you are me, skip this step.
+
+1. Edit `users.nix` and change _gmc_ (my non-secure username) to your preferred username. Do not
+   forget to change the full name as well!
+2. Rename `home-manager/gmc` to `home-manager/<your username>`
+
 ### A.3 Let 'er rip
 
 #### A.3.1 System
 
-1. Exit the nix-shell from step three (you are still in there, right?) with
-   a simple `exit`.
-2. Fire!
-   ```sh
-   nixos-rebuild switch
-   reboot
-   ```
+Fire!
+
+```sh
+nixos-rebuild boot
+reboot
+```
 
 Enjoy your NixOS workstation.
 
