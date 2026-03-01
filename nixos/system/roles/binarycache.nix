@@ -1,25 +1,21 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   networking.firewall.allowedTCPPorts = [
-    config.services.nginx.defaultHTTPListenPort
+    5000
   ];
+  nix.sshServe = {
+    enable = true;
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXtgtsAG7w5Jkry0wScULHUo/O8SMQtipylA7ap3lDN ncu2026@cummings-online.ca"
+    ];
+  };
   services = {
-    nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      virtualHosts = {
-        "nixoscache.cummings-online.local" = {
-            locations."/".proxyPass =  "http://127.0.0.1:${toString config.services.nix-serve.port}";
-        };
-      };
-    };
     nix-serve = {
-      enable = true;
-      openFirewall = true;
+      bindAddress = "0.0.0.0";
       port = 5000;
+      enable = true;
       secretKeyFile = "/var/secrets/cache-priv-key.pem";
     };
   };
 }
-

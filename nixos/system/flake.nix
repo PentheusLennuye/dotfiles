@@ -18,9 +18,6 @@
 
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
       common_modules = [
         ./configuration.nix
         ./roles/common.nix
@@ -30,7 +27,86 @@
     in
     {
       nixosConfigurations = {
-        glaucus = nixpkgs.lib.nixosSystem {
+        # ┌ Host Definitions ────────────────────────────────────────────────────────────┐
+        # │                                                                              │
+        # │ Insert your hosts here                                                       │
+        # │                                                                              │
+        # └──────────────────────────────────────────────────────────────────────────────┘
+        goemon = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = common_modules ++ [
+            ./gpu/amd.nix
+            ./hosts/goemon
+            ./roles/alarm.nix
+            ./roles/audio-engineering.nix
+            # ./roles/binarycache.nix
+            ./roles/container-host.nix
+            ./roles/desktop.nix
+            ./roles/development.nix
+            ./roles/engineering.nix
+            ./roles/gaming.nix
+            ./roles/knowlton.nix
+            ./roles/media.nix
+            # ./roles/montreal.nix
+            ./roles/netadmin.nix
+            ./roles/publishing.nix
+            ./roles/remote-access.nix
+            ./roles/virt-host.nix
+          ];
+        };
+        # ────────────────────────────────────────────────────────────────────────────────
+        jigen = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = common_modules ++ [
+            ./hosts/jigen
+            ./roles/dbms.nix
+            ./roles/container-host.nix
+            ./roles/k3s-server.nix
+            ./roles/montreal.nix
+            ./roles/nfs-server.nix
+            ./roles/webhost.nix
+          ];
+        };
+        # ────────────────────────────────────────────────────────────────────────────────
+        lupin = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = common_modules ++ [
+            ./hosts/lupin
+            ./roles/dbms.nix
+            ./roles/development.nix
+            ./roles/binarycache.nix
+            ./roles/container-host.nix
+            ./roles/k3s-first-server.nix
+            ./roles/montreal.nix
+            ./roles/nfs-server.nix
+            ./roles/time.nix
+            ./roles/webhost.nix
+          ];
+        };
+        # ────────────────────────────────────────────────────────────────────────────────
+        murasaki = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = common_modules ++ [
+            ./gpu/opengl.nix
+            ./hosts/murasaki
+            ./roles/alarm.nix
+            ./roles/audio-engineering.nix
+            ./roles/container-host.nix
+            ./roles/development.nix
+            ./roles/engineering.nix
+            ./roles/gaming.nix
+            ./roles/media.nix
+            ./roles/netadmin.nix
+            ./roles/publishing.nix
+            ./roles/thinkbook.nix
+            ./roles/virt-host.nix
+          ];
+        };
+        # ────────────────────────────────────────────────────────────────────────────────
+        sei = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = common_modules ++ [
@@ -46,75 +122,7 @@
             ./roles/publishing.nix
           ];
         };
-        goemon = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = common_modules ++ [
-            ./gpu/amd.nix
-            ./hosts/goemon
-            ./roles/alarm.nix
-            ./roles/audio-engineering.nix
-            ./roles/binarycache.nix
-            ./roles/container-host.nix
-            ./roles/desktop.nix
-            ./roles/development.nix
-            ./roles/engineering.nix
-            ./roles/gaming.nix
-            # ./roles/knowlton.nix
-            ./roles/media.nix
-            ./roles/montreal.nix
-            ./roles/netadmin.nix
-            ./roles/publishing.nix
-            ./roles/remote-access.nix
-            ./roles/virt-host.nix
-          ];
-        };
-        jigen = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = common_modules ++ [
-            ./roles/dbms.nix
-            ./hosts/jigen
-            ./roles/container-host.nix
-            ./roles/k3s-server.nix
-            ./roles/montreal.nix
-            ./roles/nfs-server.nix
-            ./roles/webhost.nix
-          ];
-        };
-        lupin = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = common_modules ++ [
-            ./roles/dbms.nix
-            ./roles/development.nix
-            ./hosts/lupin
-            ./roles/container-host.nix
-            ./roles/k3s-first-server.nix
-            ./roles/montreal.nix
-            ./roles/nfs-server.nix
-            ./roles/time.nix
-            ./roles/webhost.nix
-          ];
-        };
-        murasaki = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = common_modules ++ [
-            ./gpu/opengl.nix
-            ./hosts/murasaki
-            ./roles/alarm.nix
-            ./roles/audio-engineering.nix
-            ./roles/container-host.nix
-            ./roles/development.nix
-            ./roles/engineering.nix
-            ./roles/gaming.nix
-            ./roles/laptop.nix
-            ./roles/media.nix
-            ./roles/netadmin.nix
-            ./roles/publishing.nix
-            ./roles/virt-host.nix
-          ];
-        };
+        # ────────────────────────────────────────────────────────────────────────────────
         zenigata = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -127,6 +135,7 @@
             ./roles/webhost.nix
           ];
         };
+        # ────────────────────────────────────────────────────────────────────────────────
       };
     };
 }

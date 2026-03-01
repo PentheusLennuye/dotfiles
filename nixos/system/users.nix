@@ -1,25 +1,38 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  users.groups.family = {
-    gid = 3000;
-  };
-  users.users.gmc = {
-    isNormalUser = true;
-    description = "George Cummings";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "audio"
-      "libvirtd"
-      "docker"
-      "video"
-      "input"
-      "dialout"
-      "cdrom"
-      "gamemode"
-    ];
-    shell = pkgs.zsh;
+  users = {
+    groups.family = {
+      gid = 3000;
+    };
+    groups.ncu = {
+      gid = 3001;
+    };
+    users.gmc = {
+      isNormalUser = true;
+      description = "George Cummings";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "audio"
+        "libvirtd"
+        "docker"
+        "video"
+        "input"
+        "dialout"
+        "cdrom"
+        "gamemode"
+      ];
+      shell = pkgs.zsh;
+    };
+    users.ncu = {
+      createHome = true;
+      description = "NixOS Cache Updater";
+      group = "ncu";
+      home = "/home/ncu";
+      isSystemUser = true;
+      useDefaultShell = true;
+    };
   };
   security.pam.loginLimits = [
     {

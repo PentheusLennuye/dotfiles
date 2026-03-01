@@ -13,12 +13,18 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-partlabel/root";
+    device = "/dev/disk/by-label/root";
     fsType = "ext4";
   };
 
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
+    fsType = "ext4";
+    options = [ "noatime" ];
+  };
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-partlabel/EFI";
+    device = "/dev/disk/by-label/EFS";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -34,5 +40,6 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  boot.resumeDevice = "/dev/disk/by-label/swap";
 
 }

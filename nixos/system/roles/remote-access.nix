@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-    environment.systemPackages = with pkgs; [
-        pkgs.wayvnc
-    ];
-    networking.firewall.allowedTCPPorts = [ 5900 ];
+  environment.systemPackages = with pkgs; [
+    wayvnc
+  ];
+  networking.firewall.allowedTCPPorts = [ 5900 ];
 }
