@@ -4,7 +4,7 @@
 <!-- markdownlint-disable MD031 -->
 <!-- markdownlint-disable MD032 -->
 
-NixOS version 24.11
+NixOS version 25.11
 
 These are the files I use to configure my various bare metal NixOS systems to my
 liking. See [NixOS Buildout](#a-nixos-build-out) on how to put them to use.
@@ -40,7 +40,7 @@ The easy way uses a build script to partition a single SSD/HDD or NVME disk as f
 ┌─ partition 1 (EFI), 1GB fat32: /boot
 └─ partition 2 (system), remaining LVM 2
     ├ swap, memory * 2
-    ├ nix, 100GB: /nix
+    ├ nix, x GB: /nix, where x is 100GB default, but adjustable at installation
     └ root, remaining: /
 ```
 
@@ -59,7 +59,7 @@ If you are on a laptop, the system partition will be encrypted.
    sudo -i
    git clone https://github.com/PentheusLennuye/dotfiles.git
    ```
-5. Modify the build script and execute: `bash dotfiles/nixos/build_system.sh`
+5. Execute: `bash dotfiles/nixos/build_system.sh`
 6. Reboot.
 
 ### A.2 Customize

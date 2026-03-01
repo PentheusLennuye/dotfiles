@@ -112,7 +112,7 @@ partition_lv2() {
     echo "Partitioning nix, root and swap drives"
 
     nix_size=100
-    echo -n "Set your nix store size in GB [${NIX_SIZE}]: "
+    echo -n "Set your nix store size in GB [${nix_size}]: "
     read nix_answer
     if [ "${nix_answer}" != "" ]; then
       nix_size=$nix_answer
