@@ -34,6 +34,7 @@
       STEAM_EXTRA_COMPAT_TOOLS_PATH = "\\\${HOME}/.steam/root/compatibilitytools.d";
     };
     shellAliases = {
+      df = "cd $DF";
       hbs = "home-manager build switch";
       k = "kubectl";
       ke = "kubectl exec";

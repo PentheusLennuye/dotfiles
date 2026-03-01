@@ -86,8 +86,7 @@ If you are on a laptop, the system partition will be encrypted.
    ```sh
    git clone https://github.com/PentheusLennuye/dotfiles.git
    cd dotfiles/
-   # Optional: git checkout develop
-   rm -rf .git
+   git checkout develop
    cd nixos/system
    ```
 
@@ -102,20 +101,20 @@ If you are on a laptop, the system partition will be encrypted.
    ```
 2. Remove the default directory and link to the local configuration
    ```sh
-   rmdir /etc/nixos
+   rm -rf /etc/nixos
    ln -s . /etc/nixos
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
 
 1. Change configurations if you are on a laptop
-   - `bootloaders.nix` with `bootloaders_LAPTOP.nix`
-   - `networking.nix` with `networking_LAPTOP.nix`, or
-   - `networking.nix` with `networking_SERVER.nix`
+   - `$H/bootloaders.nix` with `$H/bootloaders_LAPTOP.nix`
+   - `$H/networking.nix` with `$H/networking_LAPTOP.nix`, or
+   - `$H/networking.nix` with `$H/networking_SERVER.nix`
      The `laptop.nix` provides entries for lid closing and opening.
 2. Add the lid opening and closing definition
    ```sh
-   sed -i '/\];/\ \ \ \ ./laptop.nix' $H/default.nix
+   sed -i '/\];/    ./laptop.nix' $H/default.nix
    ```
 
 #### A.2.3 Edit and register the host definition
