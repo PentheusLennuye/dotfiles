@@ -55,13 +55,11 @@ xkb_symbols "us" {
   //                normal         shift           altGr     altGr+shift  right-control
   // Row 3 ────────────────────────────────────────────────────────────────────────────────────
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-  key <AD01> {[            q,           Q,      exclamdown,     NoSymbol,     NoSymbol ]};
+  key <AD01> {[            q,           Q,      exclamdown,     NoSymbol,        U251C ]}; // ├ 
   key <AD02> {[            w,           W,    questiondown,     NoSymbol,        U2502 ]}; // │
   key <AD03> {[            e,           E,        EuroSign,     EuroSign,        U2587 ]}; // ▇ 
   key <AD04> {[            r,           R,        NoSymbol,     NoSymbol,        U2502 ]}; // │ 
-
-  key.type[group1]="FOUR_LEVEL";
-  key <AD05> {[            t,           T,           U021B,        U021A               ]}; // ț
+  key <AD05> {[            t,           T,           U021B,        U021A         U2524 ]}; // ț, ┤ 
 
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
   key <AD06> {[            y,           Y,             yen,     NoSymbol,    leftarrow ]}; // ←
@@ -138,9 +136,7 @@ xkb_symbols "colemak-dh" {
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AD03>	{[         f,           F,         NoSymbol,    NoSymbol,        U2587 ]}; // ▇
     key <AD04>	{[         p,           P,        paragraph,    NoSymbol,        U2502 ]}; // │
-
-    key.type[group1]="FOUR_LEVEL";
-    key <AD05>	{[         b,           B                                              ]};
+    key <AD05>	{[         b,           B ,        NoSymbol,    NoSymbol,        U2524 ]}; // ┤ 
 
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AD06>	{[         j,           J,       dead_acute,    NoSymbol,    leftarrow ]}; // ←
@@ -227,8 +223,7 @@ xkb_symbols "tarmak2" {
     // Row 3 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AD03> {[          f,     F,        NoSymbol, NoSymbol,        U2587 ]}; // ▇
-    key <AD05> {[          b,     B                                          ]};
-
+    key <AD05> {[          b,     B ,       NoSymbol, NoSymbol,        U2524 ]}; // ┤ 
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
