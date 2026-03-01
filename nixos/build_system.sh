@@ -110,6 +110,21 @@ encrypt_system_drive() {
 # Set up nix (store), root, and swap
 partition_lv2() {
     echo "Partitioning nix, root and swap drives"
+
+    nix_size=100
+    echo -n "Set your nix store size in GB [${NIX_SIZE}]: "
+    read nix_answer
+    if [ "${nix_answer}" != "" ]; then
+      nix_size=$nix_answer
+    fi
+
+    swap_size=$(( $(free -g | grep Mem | awk '{print $2}') *1.5 ))
+    echo "Swap size is RAM * 1.5 = ${swap_size}GB"
+
+    echo "Root size is the remainder of the system disk. This is opinionated."
+
+    sleep 3
+
     if [ "$LAPTOP" == "Y" ]; then
       pvcreate /dev/mapper/crypt_system || exit 1
       vgcreate VG_root /dev/mapper/crypt_system -s 4M || exit 1
@@ -118,8 +133,8 @@ partition_lv2() {
       vgcreate VG_root ${SYSTEM_DISK}${delimiter}2 -s 4M  || exit 1
     fi
 
-    lvcreate -L 100G -n LV_nix VG_root || exit 1
-    lvcreate -L 18G -n LV_swap VG_root || exit 1
+    lvcreate -L ${nix_size}G -n LV_nix VG_root || exit 1
+    lvcreate -L ${swap_size} -n LV_swap VG_root || exit 1
     lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
