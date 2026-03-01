@@ -56,6 +56,8 @@ If you are on a laptop, the system partition will be encrypted.
    read -r -p "Choose network: " SSID
    nmcli dev wifi connect $SSID password --ask
    ```
+   The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
+   but it will not be saved in the nixos configuration.
 4. Download [build_systems.sh](https://github.com/PentheusLennuye/dotfiles/blob/main/nixos/build_system.sh)
    ```sh
    sudo -i
@@ -76,8 +78,6 @@ If you are on a laptop, the system partition will be encrypted.
    read -r -p "Choose network: " SSID
    nmcli dev wifi connect $SSID password --ask
    ```
-   The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
-   but it will not be saved in the nixos configuration.
 3. Install `git`. If you do not want to use `nano`, install `vim` or `neovim`.
    ```sh
    nix-shell -p vim git
