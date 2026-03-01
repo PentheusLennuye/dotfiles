@@ -158,6 +158,7 @@ mount_drives() {
     mkdir /mnt/boot
     mkdir /mnt/nix
     mount -o umask=0077 /dev/disk/by-label/EFS /mnt/boot || exit 1
+    mount -o noatime /dev/disk/by-label/nix /mnt/nix || exit 1
 }
 
 install_nixos() {

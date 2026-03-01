@@ -107,14 +107,13 @@ If you are on a laptop, the system partition will be encrypted.
 
 #### A.2.3 Alter host definitions for a laptop or server
 
-1. Change configurations if you are on a laptop
-   - `$H/bootloaders.nix` with `$H/bootloaders_LAPTOP.nix`
-   - `$H/networking.nix` with `$H/networking_LAPTOP.nix`, or
-   - `$H/networking.nix` with `$H/networking_SERVER.nix`
-     The `laptop.nix` provides entries for lid closing and opening.
-2. Add the lid opening and closing definition
+1. Change configurations
+   - `$H/bootloaders.nix` with `$H/bootloaders_LAPTOP.nix` if using a laptop
+   - `$H/networking.nix` with `$H/networking_BLUETOOTH.nix` if using bluetooth
+   - `$H/networking.nix` with `$H/networking_SERVER.nix` it using static addresses, no bluetooth
+2. If you are installing NixOS on a laptop, add the lid opening and closing definition
    ```sh
-   sed -i '/\];/    ./laptop.nix' $H/default.nix
+   sed -i '/\];/i\ \ \ \ ./laptop.nix' $H/default.nix
    ```
 
 #### A.2.3 Edit and register the host definition
@@ -122,11 +121,12 @@ If you are on a laptop, the system partition will be encrypted.
 1. Alter `bootloader.nix` and change any kernel modules that do not belong.
 2. Set your hostname
    ```sh
-   sed "s/HOSTNAME/$(hostname -s)/" networking_LAPTOP.nix > networking.nix
+   sed -i "s/HOSTNAME/$(hostname -s)/" $H/networking.nix
    ```
-3. If setting up a server, alter `networking.nix`
-4. Alter the hardware configuration
-   1. Remove any `boot.initrd` entries as they are in the bootloader file
+3. If setting up a server, edit `networking.nix` with your static address, default route and dns
+   servers
+4. Alter `hardware-configuration.nix`
+   1. Remove any `boot.initrd` that you do not need in the bootloader file
    2. Append **options[ "noatime" ]** to `filesystems."/nix"`
 5. Register the host definition in `flake.nix` with just the basics.
    ```txt
