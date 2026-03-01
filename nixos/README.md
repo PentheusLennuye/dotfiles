@@ -69,7 +69,7 @@ If you are on a laptop, the system partition will be encrypted.
 
 ### A.2 Install Common OS Settings and Packages
 
-#### A.2.1 Pull the dotfiles
+#### A.2.1 Restart networking
 
 1. Log into the system as root
 2. Either plug the system into a physical network or connect to WiFi. For WiFi:
@@ -78,30 +78,28 @@ If you are on a laptop, the system partition will be encrypted.
    read -r -p "Choose network: " SSID
    nmcli dev wifi connect $SSID password --ask
    ```
-3. Install `git`. If you do not want to use `nano`, install `vim` or `neovim`.
-   ```sh
-   nix-shell -p vim git
-   ```
-4. Pull the dotfiles
-   ```sh
-   git clone https://github.com/PentheusLennuye/dotfiles.git
-   cd dotfiles/
-   git checkout develop
-   ```
 
 **Important**: If you are not me, delete the `.git` directory: `rm -rf .git`.
 
 #### A.2.2 Create the host definition
 
-1. Create the host directory for your new system
+1. Place dotfiles in a develop branch
    ```sh
-   cd dotfiles/system/hosts
+   cd dotfiles
+   git checkout develop
+   rm -rf .git  # Unless you are me
+   ```
+2. Create the host directory for your new system
+   ```sh
+   cd dotfiles/nixos/system/hosts
+   git checkout develop
    H=$(hostname -s)
    cp -a template $H
-   mv /etc/nixos/* $H/rescue/
+   mv /etc/nixos/{hardware-configuration.nix configuration.nix} $H/rescue/
+   mv /etc/nixos/flake.lock $H
    cp $H/rescue/hardware-configuration.nix $H
    ```
-2. Remove the default directory and link to the local configuration
+3. Remove the default directory and link to the local configuration
    ```sh
    rm -rf /etc/nixos
    ln -s $(pwd) /etc/nixos
