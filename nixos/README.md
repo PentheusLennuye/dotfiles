@@ -87,8 +87,8 @@ If you are on a laptop, the system partition will be encrypted.
    git clone https://github.com/PentheusLennuye/dotfiles.git
    cd dotfiles/
    # Optional: git checkout develop
-   cd nixos/system
    rm -rf .git
+   cd nixos/system
    ```
 
 #### A.2.2 Create the host definition
