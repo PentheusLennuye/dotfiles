@@ -168,7 +168,6 @@ install_nixos() {
         read CONFIRM
         [ "$HOSTNAME" == "$CONFIRM" ] || HOSTNAME=
     done
-    swapon /dev/disk/by-label/swap
     nixos-generate-config --root /mnt
     mkdir -p /mnt/etc/nixos/orig
     cp /mnt/etc/nixos/*.nix /mnt/etc/nixos/orig/
