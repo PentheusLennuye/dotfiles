@@ -114,23 +114,29 @@ in
       "$MUSIC" = "~/spaces/entertainment/music";
 
       bind = [
-        "$mainMod SHIFT, E, exit"
+        "$mainMod, E, exit"
         "$mainMod, F, fullscreen"
         "$mainMod, G, exec, appimage-run $VG/appImages/ES-DE_x64.AppImage --home $VG"
         "$mainMod SHIFT, P, exec, grim -g \"$(slurp)\""
-        "$mainMod SHIFT, Q, killactive"
-        "$mainMod, RETURN, exec, kitty"
+        "$mainMod, Q, killactive"
+        #"$mainMod,  RETURN, exec, kitty"
+        "Ctrl, RETURN, exec, kitty"
         "$mainMod, A, exec, anki"
         "$mainMod, D, exec, wofi -c ~/.config/wofi/wofi.conf"
-        "$mainMod, I, exec, firefox"
-        "$mainMod SHIFT, J, exec, qjackctl"
+        "$mainMod, I, exec, brave"
         "$mainMod, K, exec, virt-manager"
         "$mainMod, L, exec, hyprlock"
-        "$mainMod, M, exec, appimage-run $MUSIC/appImages/cider-linux-x64.AppImage"
+        "$mainMod, M, exec, spotify"
         "$mainMod, N, exec, joplin-desktop"
         "$mainMod, O, exec, obsidian"
-        "$mainMod, R, exec, firefox --new-instance --profile ~/.mozilla/firefox/eypklzjy.iCloud --kiosk https://icloud.com"
-        "$mainMod, Z, exec, zotero"
+        "$mainMod, T, exec, thunderbird"
+
+        # ┌────────────────────────────────────────────────────────────────
+        # │ Media keys
+        # └────────────────────────────────────────────────────────────────
+
+        ", XF86Print, exec, grim -g \"$(slurp)\""
+        ", XF86Mail, exec, thunderbird"
 
         # Backscreen light binding
         ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
