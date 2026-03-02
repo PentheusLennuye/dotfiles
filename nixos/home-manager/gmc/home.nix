@@ -46,11 +46,15 @@
     gpg.enable = true;
     kitty = {
       enable = true;
+      keybindings = {
+        "ctrl+c" = "copy_or_interrupt";
+        "ctrl+v" = "paste_from_clipboard";
+      };
       settings = {
-        shell = "zsh";
+        background_opacity = "0.7";
         font_family = "JetBrains mono";
         font_size = "11.5";
-        background_opacity = "0.7";
+        shell = "zsh";
       };
     };
   };
