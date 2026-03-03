@@ -17,6 +17,7 @@
     git
     gnupg
     libnfs
+    libsecret
     lsd # ls +
     lsof
     lshw

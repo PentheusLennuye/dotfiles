@@ -119,11 +119,11 @@ in
         "$mainMod, G, exec, appimage-run $VG/appImages/ES-DE_x64.AppImage --home $VG"
         "$mainMod SHIFT, P, exec, grim -g \"$(slurp)\""
         "$mainMod, Q, killactive"
-        #"$mainMod,  RETURN, exec, kitty"
+        "$mainMod,  RETURN, exec, kitty"
         "Ctrl, RETURN, exec, kitty"
         "$mainMod, A, exec, anki"
         "$mainMod, D, exec, wofi -c ~/.config/wofi/wofi.conf"
-        "$mainMod, I, exec, brave"
+        "$mainMod, I, exec, brave --password-store=libsecret"
         "$mainMod, K, exec, virt-manager"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, M, exec, spotify"
@@ -135,7 +135,7 @@ in
         # │ Media keys
         # └────────────────────────────────────────────────────────────────
 
-        ", XF86Print, exec, grim -g \"$(slurp)\""
+        ", Print, exec, grim -g \"$(slurp)\""
         ", XF86Mail, exec, thunderbird"
 
         # Backscreen light binding
