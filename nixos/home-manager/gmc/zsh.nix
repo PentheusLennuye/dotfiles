@@ -27,6 +27,7 @@
       DF = "$HOME/spaces/tech/infra/dotfiles";
       GOPATH = "$HOME/.go";
       KUBECONFIG = "$HOME/.kube/config";
+      NLTK_DATA = "$HOME/extra/nltk_data";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       SAP = "$HOME/spaces/sap/projects/src";
       SSH_ASKPASS = "";

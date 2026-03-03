@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    _1password-gui # 1Password password manager
     bitwarden-desktop # Password manager
     brave # Browser
     appimage-run # Needed for Cider 2

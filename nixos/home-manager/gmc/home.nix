@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  homeDir = "/home/gmc";
+in
 {
   imports = [
     # All
@@ -20,8 +23,8 @@
 
   # Home =====================================================================
   home = {
-    homeDirectory = "/home/gmc";
-    sessionPath = [ "/home/gmc/.local/bin" ];
+    homeDirectory = homeDir;
+    sessionPath = [ "${homeDir}/.local/bin" ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Wayland on Chromium etc
       WLR_NO_HARDWARE_CURSORS = "1"; # Hyprland cursor
@@ -64,6 +67,26 @@
     enable = true;
     enableSshSupport = true;
     pinentry.package = pkgs.pinentry-tty;
+  };
+
+  # XDG ──────────────────────────────────────────────────────────────────────
+
+  xdg = {
+    cacheHome = "${homeDir}/.cache";
+    configHome = "${homeDir}/.config";
+    dataHome = "${homeDir}/.local/share";
+    stateHome = "${homeDir}/.local/state";
+    userDirs = {
+      createDirectories = true;
+      enable = true;
+      desktop = "$HOME/.desktop";
+      documents = "$HOME/";
+      download = "$HOME/extra/downloads";
+      templates = "$HOME/extra/templates";
+      music = "$HOME/extra/music";
+      pictures = "$HOME/extra/pictures";
+      videos = "$HOME/extra/videos";
+    };
   };
 
 }
