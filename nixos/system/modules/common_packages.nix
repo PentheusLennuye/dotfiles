@@ -21,6 +21,7 @@
     lsd # ls +
     lsof
     lshw
+    lynis
     mesa
     nfs-utils
     openssl

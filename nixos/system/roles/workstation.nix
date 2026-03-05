@@ -1,5 +1,13 @@
 { inputs, pkgs, ... }:
 
+# ┌──────────────────────┐
+# │ Workstation          ├───────────────────────────────────────────────────────────────────────┐
+# ├──────────────────────┘                                                                       │
+# │ A host that serves as a direct interface to a human being. Contrast with server.             │
+# │ A workstation can be a desktop, laptop, or virtual machine. It uses a graphical interface.   │
+# │                                                                                              │
+# └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
 let
   # Derivation for wallpapers --------------------------------------------
   background-package = pkgs.stdenvNoCC.mkDerivation {
@@ -36,6 +44,8 @@ in
     pkgs.texlivePackages.charter
     pkgs.wvkbd
     pkgs.xwayland
+    pkgs.yubikey-agent
+    pkgs.yubikey-manager
     pkgs.zoom-us
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
