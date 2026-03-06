@@ -14,12 +14,17 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8b4dcf33-c3a6-4ff1-9fd4-35e198f7fd6f";
+    device = "/dev/disk/by-label/nixos_root";
     fsType = "ext4";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/475c1878-e787-4925-859c-e3d5e7ff2c88";
+    device = "/dev/disk/by-label/nixos_home";
+    fsType = "ext4";
+  };
+
+  fileSystems."/srv" = {
+    device = "/dev/disk/by-label/nearline";
     fsType = "ext4";
   };
 
