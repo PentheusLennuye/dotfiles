@@ -14,16 +14,26 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos_root";
+    device = "/dev/disk/by-label/root";
     fsType = "ext4";
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-label/nixos_home";
-    fsType = "ext4";
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/EFS";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
-  fileSystems."/srv" = {
+  fileSystems."/nix/store" = {
+    device = "/dev/disk/by-label/nix";
+    fsType = "ext4";
+    options = [ "noatime" ];
+  };
+
+  fileSystems."/srv/nearline" = {
     device = "/dev/disk/by-label/nearline";
     fsType = "ext4";
   };

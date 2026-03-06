@@ -156,9 +156,9 @@ format_system_drive() {
 mount_drives() {
     mount /dev/disk/by-label/root /mnt || exit 1
     mkdir /mnt/boot
-    mkdir /mnt/nix
+    mkdir -p /mnt/nix/store
     mount -o umask=0077 /dev/disk/by-label/EFS /mnt/boot || exit 1
-    mount -o noatime /dev/disk/by-label/nix /mnt/nix || exit 1
+    mount -o noatime /dev/disk/by-label/nix /mnt/nix/store || exit 1
 }
 
 copy_dotfiles() {
