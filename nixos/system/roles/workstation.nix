@@ -33,6 +33,7 @@ in
 
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.clamav
     pkgs.hyprlandPlugins.hyprgrass
     pkgs.hypridle
     pkgs.hyprpolkitagent
@@ -105,6 +106,13 @@ in
     "sddm/icons/gmc.face.icon" = {
       source = ./sddm/cumming_crest.png;
       mode = "0664";
+    };
+  };
+
+  services = {
+    clamav = {
+      daemon.enable = true;
+      updater.enable = true;
     };
   };
 
