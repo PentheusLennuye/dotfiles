@@ -85,6 +85,7 @@ in
       templates = "$HOME/extra/templates";
       music = "$HOME/extra/music";
       pictures = "$HOME/extra/pictures";
+      publicShare = "$HOME/extra/share";
       videos = "$HOME/extra/videos";
     };
   };

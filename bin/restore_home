@@ -13,13 +13,12 @@ sleep 5
 
 rsync -avrt --delete \
   --include=.config \
-    --include=.config/joplin-desktop/plugins \
-    --include=.config/joplin-desktop/settings.json \
     --exclude=".config/joplin-desktop/*" \
     --exclude=./.config/Code/User/settings.json \
     --exclude=.config/Cider \
     --exclude=.config/Joplin \
     --exclude=./.config/environment.d \
+    --exclude=./.config/home-manager \
     --exclude=./.config/hypr \
     --exclude=./.config/kitty \
     --exclude=.config/kactivitymanagerdrc \
