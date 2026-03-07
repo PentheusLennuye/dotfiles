@@ -59,7 +59,7 @@ set_nearline() {
     echo -n "Set the nearline storage size as a percent of the storage [${DEFAULT_NL_PERCENT}]: "
     read NL_PERCENT
     echo
-    [ "$NEARLINE" == "" ] && NEARLINE=$DEFAULT_NL_PERCENT
+    [ "$NL_PERCENT" == "" ] && NL_PERCENT=$DEFAULT_NL_PERCENT
   fi
 }
 
