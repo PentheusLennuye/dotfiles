@@ -145,6 +145,8 @@ partition_lv2() {
     swap_size=$(( $(free -g | grep Mem | awk '{print $2}') + 2 ))
     echo "Swap size is RAM + 2GiB = ${swap_size}GiB"
 
+    [ "$NEARLINE" == "y" ] && echo "Nearline size is ${NL_PERCENT} of the system disk"
+
     echo "Root size is the remainder of the system disk. This is opinionated."
 
     sleep 3
@@ -159,7 +161,7 @@ partition_lv2() {
 
     lvcreate -L ${nix_size}G -n LV_nix_store VG_root || exit 1
     lvcreate -L ${swap_size}G -n LV_swap VG_root || exit 1
-    [ "$NEARLINE" == "y"] && lvcreate -l ${NL_PERCENT}%FREE -n LV_nearline VG_root || exit 1
+    [ "$NEARLINE" == "y" ] && lvcreate -l ${NL_PERCENT}%FREE -n LV_nearline VG_root || exit 1
     lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
