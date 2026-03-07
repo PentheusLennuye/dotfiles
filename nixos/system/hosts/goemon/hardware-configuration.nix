@@ -61,17 +61,6 @@
     options = [ "noatime" ];
   };
 
-  image.repart.partitions = {
-    "store" = {
-      storePaths = [ config.system.build.toplevel ];
-      nixStorePrefix = "/";
-      repartConfig = {
-        Type = "linuix-generic";
-        Label = "nix-store";
-      };
-    };
-  };
-
   # ┌─────────────────────────┐
   # │ Nearline Storage        ├─────────────────────────────────────────────────────────────────┐
   # └┬────────────────────────┘                                                                 │
