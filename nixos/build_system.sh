@@ -117,7 +117,7 @@ set_encryption_password() {
 encrypt_system_drive() {
     echo "Encrypting root partition..."
     delimiter=
-    echo ${SYSTEM_DISK} | grep nvme && delimeter=p
+    echo ${SYSTEM_DISK} | grep nvme && delimiter=p
     echo $ENCR_KEY | cryptsetup -q --label=system luksFormat ${SYSTEM_DISK}${delimiter}2 || exit 1
     echo "...encrypted"
 
@@ -132,7 +132,7 @@ partition_lv2() {
     [ "$NEARLINE" == "y" ] && nl="nearline, "
     echo "Partitioning nix, root, ${nl}and swap drives"
     delimiter=
-    echo ${SYSTEM_DISK} | grep nvme && delimeter=p
+    echo ${SYSTEM_DISK} | grep nvme && delimiter=p
 
     nix_size=100
     echo -n "Set your nix store size in GB [${nix_size}]: "
