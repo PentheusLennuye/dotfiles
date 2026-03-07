@@ -183,6 +183,7 @@ format_system_drive() {
 mount_drives() {
     mount /dev/disk/by-label/root /mnt || exit 1
     mkdir /mnt/boot
+    mkdir /mnt/root
     mkdir -p /mnt/nix/store
     mkdir -p /mnt/nearline
     mkdir -p /mnt/offline
