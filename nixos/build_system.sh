@@ -130,7 +130,7 @@ encrypt_system_drive() {
 partition_lv2() {
     nl=""
     [ "$NEARLINE" == "y" ] && nl="nearline, "
-    echo "Partitioning nix, root, ${nl}and swap drives"
+    echo "Partitioning nix, root, ${nl}and swap logical volumes"
     delimiter=
     echo ${SYSTEM_DISK} | grep nvme && delimiter=p
 
@@ -145,7 +145,7 @@ partition_lv2() {
     swap_size=$(( $(free -g | grep Mem | awk '{print $2}') + 2 ))
     echo "Swap size is RAM + 2GiB = ${swap_size}GiB"
 
-    [ "$NEARLINE" == "y" ] && echo "Nearline size is ${NL_PERCENT} of the system disk"
+    [ "$NEARLINE" == "y" ] && echo "Nearline size is ${NL_PERCENT}% of the system disk"
 
     echo "Root size is the remainder of the system disk. This is opinionated."
 
@@ -174,7 +174,7 @@ format_system_drive() {
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
     mkfs.ext4 -L nix /dev/mapper/VG_root-LV_nix_store || exit 1
     mkswap -L swap  /dev/mapper/VG_root-LV_swap || exit 1
-    [ "$NEARLINE" == "y"] && mkfs.ext4 -L nearline /dev/mapper/VG_nearline-LV_root || exit 1
+    [ "$NEARLINE" == "y" ] && mkfs.ext4 -L nearline /dev/mapper/VG_nearline-LV_root || exit 1
     mkfs.ext4 -L root /dev/mapper/VG_root-LV_root || exit 1
     echo "...formatted. Now waiting 2s for mapper to stabilize."
     sleep 2
