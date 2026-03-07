@@ -172,7 +172,7 @@ format_system_drive() {
     echo ${SYSTEM_DISK} | grep nvme && delimiter=p
 
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
-    mkfs.ext4 -L nix-store /dev/mapper/VG_root-LV_nix_store || exit 1
+    mkfs.ext4 -L nix_store /dev/mapper/VG_root-LV_nix_store || exit 1
     mkswap -L swap  /dev/mapper/VG_root-LV_swap || exit 1
     [ "$NEARLINE" == "y" ] && mkfs.ext4 -L nearline /dev/mapper/VG_root-LV_nearline || exit 1
     mkfs.ext4 -L root /dev/mapper/VG_root-LV_root || exit 1
