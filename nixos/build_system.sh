@@ -131,6 +131,8 @@ partition_lv2() {
     nl=""
     [ "$NEARLINE" == "y" ] && nl="nearline, "
     echo "Partitioning nix, root, ${nl}and swap drives"
+    delimiter=
+    echo ${SYSTEM_DISK} | grep nvme && delimeter=p
 
     nix_size=100
     echo -n "Set your nix store size in GB [${nix_size}]: "
