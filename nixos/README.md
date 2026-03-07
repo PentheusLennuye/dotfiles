@@ -84,26 +84,32 @@ If you are on a laptop, the system partition will be encrypted.
 
 #### A.2.2 Create the host definition
 
-1. Place dotfiles in a develop branch
+1. Enter a shell with git and an editor
+
+   ```sh
+   nix-shell -p git vim
+   ```
+
+2. Place dotfiles in a develop branch
    ```sh
    cd dotfiles
    git checkout develop
    rm -rf .git  # Unless you are me
    ```
-2. Remove the default directory and link to the local configuration
-   ```sh
-   cd nixos/system
-   rm -rf /etc/nixos
-   ln -s $(pwd) /etc/nixos
-   ```
 3. Create the host directory for your new system
    ```sh
-   cd hosts
+   cd nixos/system/hosts
    git checkout develop
    H=$(hostname -s)
    cp -a template $H
    mv /etc/nixos/*.nix $H/rescue/
    cp $H/rescue/hardware-configuration.nix $H
+   ```
+4. Remove the default directory and link to the local configuration
+   ```sh
+   cd ..
+   rm -rf /etc/nixos
+   ln -s $(pwd) /etc/nixos
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
@@ -120,7 +126,7 @@ If you are on a laptop, the system partition will be encrypted.
 #### A.2.4 Edit and register the host definition
 
 1. Alter `bootloaders.nix` and change any kernel modules that do not belong.
-2. Set your hostname
+2. Confirm your hostname in networking
    ```sh
    sed -i "s/HOSTNAME/$(hostname -s)/" $H/networking.nix
    ```
@@ -163,19 +169,24 @@ Fire!
 
 ```sh
 nixos-rebuild switch
+exit
 ```
-
-Enjoy your NixOS workstation.
 
 ### A.3 User Setup
 
-#### A.3.1 Move the nixos to your account
+#### A.3.1 Move the nixos to the main user account
 
 ```sh
 rm /etc/nixos
 mv /root/dotfiles /home/<username>
 chown -R <username>:users /home/<username>/dotfiles
 ln -s /home/<username>/dotfiles /etc/nixos
+```
+
+#### A.3.1 Set the main user password
+
+```sh
+passwd <username>
 exit
 ```
 
@@ -185,6 +196,7 @@ Home Manager is a configuration management system for home directories and local
 
 1.  Log in us your user and link the nixos and home-manager configurations to the dotfiles
     ```sh
+    mkdir ~/.config
     ln -s ~/dotfiles/nixos/home-manager/${USER} ~/.config/home-manager
     ```
 2.  Install home manager
@@ -201,7 +213,7 @@ Home Manager is a configuration management system for home directories and local
     home-manager build switch
     ```
 
-You may now add roles to your host in `flake.nix`.
+You may now add roles to your host in `~/dotfiles/flake.nix`. Enjoy your NixOS host!
 
 ---
 
