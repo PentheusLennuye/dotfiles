@@ -167,7 +167,7 @@ partition_lv2() {
 format_system_drive() {
     echo "Formatting partitions..."
     delimiter=
-    echo ${SYSTEM_DISK} | grep nvme && delimeter=p
+    echo ${SYSTEM_DISK} | grep nvme && delimiter=p
 
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
     mkfs.ext4 -L nix /dev/mapper/VG_root-LV_nix_store || exit 1
