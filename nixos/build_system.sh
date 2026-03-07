@@ -9,6 +9,9 @@
 # =====================================================
 
 DOTFILES_URL=https://github.com/PentheusLennuye/dotfiles.git
+DEFAULT_LAPTOP=n
+DEFAULT_NEARLINE=n
+DEFAULT_NL_PERCENT=25
 
 
 cat << EOM
@@ -30,18 +33,34 @@ ANSWER=
 ENCR_KEY=
 HOSTNAME=
 LAPTOP=
+NEARLINE=
+NL_PERCENT=
 WIFI_PASS=
 WLD=
 SYSTEM_DISK=
 
 set_laptop() {
-    DEFAULT_LAPTOP=n
-    while [ "$LAPTOP" != "n" ] && [ "$LAPTOP" != "y" ]; do
-        echo -n "Is this thing a laptop y/n [n]? "
-        read LAPTOP
-        echo
-        [ "$LAPTOP" == "" ] && LAPTOP=$DEFAULT_LAPTOP
-    done
+  while [ "$LAPTOP" != "n" ] && [ "$LAPTOP" != "y" ]; do
+    echo -n "Is this thing a laptop y/n [n]? "
+    read LAPTOP
+    echo
+    [ "$LAPTOP" == "" ] && LAPTOP=$DEFAULT_LAPTOP
+  done
+}
+
+set_nearline() {
+  while [ "$NEARLINE" != "n" ] && [ "$NEARLINE" != "y" ]; do
+    echo -n "Do you want a nearline (e.g. data backup or source) partition y/n [n]? "
+    read NEARLINE
+    echo
+    [ "$NEARLINE" == "" ] && LAPTOP=$DEFAULT_NEARLINE
+  done
+  if [ "$NEARLINE" == "y"]; then
+    echo -n "Set the nearline storage size as a percent of the storage [${DEFAULT_NL_PERCENT}]: "
+    read NL_PERCENT
+    echo
+    [ "$NEARLINE" == "" ] && NEARLINE=$DEFAULT_NL_PERCENT
+  fi
 }
 
 set_system_disk() {
@@ -109,7 +128,9 @@ encrypt_system_drive() {
 
 # Set up nix (store), root, and swap
 partition_lv2() {
-    echo "Partitioning nix, root and swap drives"
+    nl=""
+    [ "$NEARLINE" == "y" ] && nl="nearline, "
+    echo "Partitioning nix, root, ${nl}and swap drives"
 
     nix_size=100
     echo -n "Set your nix store size in GB [${nix_size}]: "
@@ -134,8 +155,9 @@ partition_lv2() {
       vgcreate VG_root ${SYSTEM_DISK}${delimiter}2 -s 4M  || exit 1
     fi
 
-    lvcreate -L ${nix_size}G -n LV_nix VG_root || exit 1
+    lvcreate -L ${nix_size}G -n LV_nix_store VG_root || exit 1
     lvcreate -L ${swap_size}G -n LV_swap VG_root || exit 1
+    [ "$NEARLINE" == "y"] && lvcreate -l ${NL_PERCENT}%FREE -n LV_nearline VG_root || exit 1
     lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
@@ -146,8 +168,9 @@ format_system_drive() {
     echo ${SYSTEM_DISK} | grep nvme && delimeter=p
 
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
-    mkfs.ext4 -L nix /dev/mapper/VG_root-LV_nix || exit 1
+    mkfs.ext4 -L nix /dev/mapper/VG_root-LV_nix_store || exit 1
     mkswap -L swap  /dev/mapper/VG_root-LV_swap || exit 1
+    [ "$NEARLINE" == "y"] && mkfs.ext4 -L nearline /dev/mapper/VG_nearline-LV_root || exit 1
     mkfs.ext4 -L root /dev/mapper/VG_root-LV_root || exit 1
     echo "...formatted. Now waiting 2s for mapper to stabilize."
     sleep 2
@@ -158,7 +181,8 @@ mount_drives() {
     mkdir /mnt/boot
     mkdir -p /mnt/nix/store
     mount -o umask=0077 /dev/disk/by-label/EFS /mnt/boot || exit 1
-    mount -o noatime /dev/disk/by-label/nix /mnt/nix/store || exit 1
+    mount -o noatime /dev/disk/by-label/nix_store /mnt/nix/store || exit 1
+    mount /dev/disk/by-label/nearline /srv/nearline || exit 1
 }
 
 copy_dotfiles() {
@@ -206,6 +230,7 @@ close_up() {
 
 # MAIN -------------------------------------------------------
 set_laptop
+set_nearline
 set_system_disk
 echo "─────────────────────────────────────────────────────────────────"
 partition_disk
