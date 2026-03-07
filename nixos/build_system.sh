@@ -55,7 +55,7 @@ set_nearline() {
     echo
     [ "$NEARLINE" == "" ] && LAPTOP=$DEFAULT_NEARLINE
   done
-  if [ "$NEARLINE" == "y"]; then
+  if [ "$NEARLINE" == "y" ]; then
     echo -n "Set the nearline storage size as a percent of the storage [${DEFAULT_NL_PERCENT}]: "
     read NL_PERCENT
     echo

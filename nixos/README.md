@@ -59,7 +59,7 @@ If you are on a laptop, the system partition will be encrypted.
    ```
    The WiFi connection will be saved in `/etc/NetworkManager/system-connections/<SSID>.nmconnection`,
    but it will not be saved in the nixos configuration.
-4. Download [build_systems.sh](https://github.com/PentheusLennuye/dotfiles/blob/main/nixos/build_system.sh)
+4. Download my [dotfiles](https://github.com/PentheusLennuye/dotfiles.git)
    ```sh
    sudo -i
    git clone https://github.com/PentheusLennuye/dotfiles.git
