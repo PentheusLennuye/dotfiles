@@ -33,10 +33,17 @@
     options = [ "noatime" ];
   };
 
-  fileSystems."/srv/nearline" = {
-    device = "/dev/disk/by-label/nearline";
-    fsType = "ext4";
-  };
+  # ┌─────────────────────────┐
+  # │ Nearline Storage        ├─────────────────────────────────────────────────────────────────┐
+  # └┬────────────────────────┘                                                                 │
+  #  │ Nearline means it is easily accessible, but not actively mounted. This section serves    │
+  #  │ as documentation in case you forget what the nearline partition is called.               │
+  #  │                                                                                          │
+  #  └──────────────────────────────────────────────────────────────────────────────────────────┘
+  #
+  # sudo mount -t ext4 /dev/disk/by-label/nearline /mnt/nearline
+  #
+  # ─────────────────────────────────────────────────────────────────────────────────────────────
 
   # Temporarily off until Zantetsukuen comes back
   # fileSystems."/srv/zantetsuken" = {

@@ -180,9 +180,14 @@ mount_drives() {
     mount /dev/disk/by-label/root /mnt || exit 1
     mkdir /mnt/boot
     mkdir -p /mnt/nix/store
+    mkdir -p /mnt/nearline
+    mkdir -p /mnt/offline
+    mkdir -p /mnt/iso  # For loopback DVD, CD, BD, and bootable USB
     mount -o umask=0077 /dev/disk/by-label/EFS /mnt/boot || exit 1
     mount -o noatime /dev/disk/by-label/nix_store /mnt/nix/store || exit 1
-    mount /dev/disk/by-label/nearline /srv/nearline || exit 1
+
+    # Notice I am not mounting nearline. That's what nearline is: readily available but not
+    # accessible until required!
 }
 
 copy_dotfiles() {
