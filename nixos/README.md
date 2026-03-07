@@ -40,7 +40,8 @@ The easy way uses a build script to partition a single SSD/HDD or NVME disk as f
 ┌─ partition 1 (EFI), 1GB fat32: /boot
 └─ partition 2 (system), remaining LVM 2
     ├ swap, memory * 2
-    ├ nix, x GB: /nix, where x is 100GB default, but adjustable at installation
+    ├ nix_store, x GB: /nix/store, where x is 100GB default, but adjustable at installation
+    ├ (optional) nearline, y%: where y is 25% default, but adjustable at installation
     └ root, remaining: /
 ```
 
