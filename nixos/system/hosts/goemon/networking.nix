@@ -56,14 +56,7 @@
 
   services = {
     blueman.enable = true;
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = true;
-      };
-    };
-    rpcbind = {
-      enable = true;
-    };
+    openssh.enable = true;
+    rpcbind.enable = true;
   };
 }
