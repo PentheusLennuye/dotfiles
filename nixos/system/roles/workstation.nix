@@ -33,7 +33,6 @@ in
 
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
-    pkgs.clamav
     pkgs.hyprlandPlugins.hyprgrass
     pkgs.hypridle
     pkgs.hyprpolkitagent

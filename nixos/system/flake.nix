@@ -34,7 +34,12 @@
         # └──────────────────────────────────────────────────────────────────────────────┘
         goemon = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            net = {
+              if0 = "enp6s0";
+            };
+          };
           modules = common_modules ++ [
             ./gpu/amd.nix
             ./hosts/goemon

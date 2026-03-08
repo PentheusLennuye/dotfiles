@@ -58,8 +58,7 @@
     cookiecutter
     enchant
     poetry
-    python312
-    python312Packages.jedi-language-server
+    (python312.withPackages (ps: [ ps.jedi-language-server ]))
     virtualenv
 
     # Rust

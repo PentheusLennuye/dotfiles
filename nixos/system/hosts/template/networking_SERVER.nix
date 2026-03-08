@@ -8,6 +8,7 @@
   networking = {
     defaultGateway = "192.168.68.1";
     domain = "cummings-online.local";
+    firewall.enable = true;
     hostName = "HOSTNAME";
     interfaces = {
       IF_NAME.ipv4.addresses = [

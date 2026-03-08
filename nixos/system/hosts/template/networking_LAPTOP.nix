@@ -11,6 +11,7 @@
   };
   networking = {
     domain = "cummings-online.local";
+    firewall.enable = true;
     hostName = "HOSTNAME";
     networkmanager.enable = true;
     useDHCP = lib.mkDefault false;
