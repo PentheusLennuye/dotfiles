@@ -99,7 +99,6 @@ If you are on a laptop, the system partition will be encrypted.
 3. Create the host directory for your new system
    ```sh
    cd nixos/system/hosts
-   git checkout develop
    H=$(hostname -s)
    cp -a template $H
    mv /etc/nixos/*.nix $H/rescue/
