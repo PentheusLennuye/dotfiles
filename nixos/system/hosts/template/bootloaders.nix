@@ -21,7 +21,6 @@
         "nfs"
         "nfs4"
       ];
-      kernelPackages = pkgs.linuxPackages_latest;
       supportedFilesystems = [
         "nfs"
         "nfs4"
