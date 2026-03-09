@@ -109,6 +109,7 @@ If you are on a laptop, the system partition will be encrypted.
    cd ..
    rm -rf /etc/nixos
    ln -s $(pwd) /etc/nixos
+   cd hosts
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
