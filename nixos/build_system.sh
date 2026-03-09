@@ -118,7 +118,8 @@ encrypt_system_drive() {
     echo "Encrypting root partition..."
     delimiter=
     echo ${SYSTEM_DISK} | grep nvme && delimiter=p
-    echo $ENCR_KEY | cryptsetup -q --label=system luksFormat ${SYSTEM_DISK}${delimiter}2 || exit 1
+    echo $ENCR_KEY | \
+      (cryptsetup -q --label=system luksFormat ${SYSTEM_DISK}${delimiter}2 || exit 1)
     echo "...encrypted"
 
     echo "Waiting 2 seconds"
@@ -176,7 +177,7 @@ format_system_drive() {
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
     mkfs.ext4 -L nix_store /dev/mapper/VG_root-LV_nix_store || exit 1
     mkswap -L swap  /dev/mapper/VG_root-LV_swap || exit 1
-    [ "$NEARLINE" == "y" ] && mkfs.ext4 -L nearline /dev/mapper/VG_root-LV_nearline || exit 1
+    [ "$NEARLINE" == "y" ] && mkfs.ext4 -L nearline (/dev/mapper/VG_root-LV_nearline || exit 1)
     mkfs.ext4 -L root /dev/mapper/VG_root-LV_root || exit 1
     echo "...formatted. Now waiting 2s for mapper to stabilize."
     sleep 2
