@@ -131,6 +131,9 @@ encrypt_system_drive() {
 
 # Set up nix (store), root, and swap
 partition_lv2() {
+    echo "Removing any LVM partitions"
+    pvremove -y -ff /dev/${SYSTEM_DISK}*
+
     nl=""
     [ "$NEARLINE" == "y" ] && nl="nearline, "
     echo "Partitioning nix, root, ${nl}and swap logical volumes"
@@ -177,7 +180,7 @@ format_system_drive() {
     mkfs.vfat -n EFS ${SYSTEM_DISK}${delimiter}1 || exit 1
     mkfs.ext4 -L nix_store /dev/mapper/VG_root-LV_nix_store || exit 1
     mkswap -L swap  /dev/mapper/VG_root-LV_swap || exit 1
-    [ "$NEARLINE" == "y" ] && mkfs.ext4 -L nearline (/dev/mapper/VG_root-LV_nearline || exit 1)
+    [ "$NEARLINE" == "y" ] && (mkfs.ext4 -L nearline /dev/mapper/VG_root-LV_nearline || exit 1)
     mkfs.ext4 -L root /dev/mapper/VG_root-LV_root || exit 1
     echo "...formatted. Now waiting 2s for mapper to stabilize."
     sleep 2
