@@ -231,6 +231,11 @@ install_nixos() {
         -e "/boot.loader.grub.device/a  boot.loader.systemd-boot.enable = true;" \
         /mnt/etc/nixos/configuration.nix
 
+    LUKS_DICT="{ devices =  { \"root\" =  { device = \"/dev/${SYSTEM_DISK}${delimiter}2\"};;};};" \
+    [ "$LAPTOP" == "y" ] && sed -i.bak \
+        -e "/boot.initrd.kernelModules/a boot.initrd.luks = ${LUKS_DICT}"
+        /mnt/etc/nixos/hardware-configuration.nix
+
     cd /mnt
     nixos-install || exit 1
     cd /
