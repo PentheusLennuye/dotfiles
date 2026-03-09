@@ -53,7 +53,7 @@ set_nearline() {
     echo -n "Do you want a nearline (e.g. data backup or source) partition y/n [n]? "
     read NEARLINE
     echo
-    [ "$NEARLINE" == "" ] && LAPTOP=$DEFAULT_NEARLINE
+    [ "$NEARLINE" == "" ] && NEARLINE=$DEFAULT_NEARLINE
   done
   if [ "$NEARLINE" == "y" ]; then
     echo -n "Set the nearline storage size as a percent of the storage [${DEFAULT_NL_PERCENT}]: "
