@@ -93,7 +93,7 @@ partition_disk() {
         mkpart primary 1536MB 100% \
         set 2 lvm on
     if [ $? -ne 0 ]; then
-        "...partitioning failed. FATAL. Stopping."
+        echo "...partitioning failed. FATAL. Stopping."
         exit 1
     fi
     echo "...partitioning done with the following configuration:"
