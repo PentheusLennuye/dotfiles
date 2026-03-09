@@ -163,7 +163,7 @@ partition_lv2() {
 
     lvcreate -L ${nix_size}G -n LV_nix_store VG_root || exit 1
     lvcreate -L ${swap_size}G -n LV_swap VG_root || exit 1
-    [ "$NEARLINE" == "y" ] && lvcreate -l ${NL_PERCENT}%FREE -n LV_nearline VG_root || exit 1
+    [ "$NEARLINE" == "y" ] && (lvcreate -l ${NL_PERCENT}%FREE -n LV_nearline VG_root || exit 1)
     lvcreate -l 100%FREE -n LV_root VG_root || exit 1
 }
 
