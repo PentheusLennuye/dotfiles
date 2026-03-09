@@ -11,7 +11,6 @@
   };
   networking = {
     domain = "cummings-online.local";
-    firewall.enable = true;
     hostName = "goemon";
 
     # --- Comment Out or In ------------------------------------------------------------------
