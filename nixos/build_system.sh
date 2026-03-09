@@ -124,7 +124,7 @@ encrypt_system_drive() {
     echo "Waiting 2 seconds"
     sleep 2
 
-    "Opening the encrypted drives..."
+    echo "Opening the encrypted drives..."
     echo $ENCR_KEY | cryptsetup open /dev/disk/by-label/system crypt_system || exit 1
 }
 
