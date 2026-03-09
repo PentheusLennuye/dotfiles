@@ -23,14 +23,6 @@
         "nfs4"
       ];
       kernelPackages = pkgs.linuxPackages_latest;
-      luks = {
-        devices = {
-          "crypt_root" = {
-            crypttabExtraOpts = [ "fido2-device=auto" ];
-            device = "/dev/nvme0n1p2";
-          };
-        };
-      };
       supportedFilesystems = [
         "nfs"
         "nfs4"
