@@ -76,6 +76,17 @@ set_system_disk() {
     SYSTEM_DISK=/dev/${ANSWER}
 }
 
+set_hostname() {
+    while [ "$HOSTNAME" == "" ]; do
+        echo -n "Set short hostname: "
+        read HOSTNAME
+        echo -n "Confirm short hostname: "
+        read CONFIRM
+        [ "$HOSTNAME" == "$CONFIRM" ] || HOSTNAME=
+    done
+
+}
+
 check_plugged() {
     echo "Checking if plugged in to a physical ethernet network..."
     ip a | grep -P "inet.*(enp|eth\d)" && PLUGGED=y
@@ -203,13 +214,6 @@ copy_dotfiles() {
 
 install_nixos() {
     echo "Installing NixOS..."
-    while [ "$HOSTNAME" == "" ]; do
-        echo -n "Set short hostname: "
-        read HOSTNAME
-        echo -n "Confirm short hostname: "
-        read CONFIRM
-        [ "$HOSTNAME" == "$CONFIRM" ] || HOSTNAME=
-    done
     nixos-generate-config --root /mnt
     mkdir -p /mnt/etc/nixos/orig
     cp /mnt/etc/nixos/*.nix /mnt/etc/nixos/orig/
@@ -242,6 +246,7 @@ close_up() {
 set_laptop
 set_nearline
 set_system_disk
+set_hostname
 echo "─────────────────────────────────────────────────────────────────"
 partition_disk
 echo "─────────────────────────────────────────────────────────────────"
