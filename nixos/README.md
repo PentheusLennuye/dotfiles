@@ -180,7 +180,7 @@ exit  # This exits the shell with git and vim
 rm -rf /etc/nixos
 mv /root/dotfiles /home/<username>
 chown -R <username>:users /home/<username>/dotfiles
-ln -s /home/<username>/dotfiles /etc/nixos
+ln -s /home/<username>/dotfiles/nixos/system /etc/nixos
 ```
 
 #### A.3.1 Set the main user password
@@ -204,7 +204,8 @@ Home Manager is a configuration management system for home directories and local
 2.  Create a hypr file for your workstation
 
     It does not matter whether you are using Hypr or not, just set it up in
-    `~/.config/home-manager/hypr`, using the other files as examples. It could even be blank.
+    `~/.config/home-manager/hypr`, using the other files as examples. It could even be linked to
+    a blank file.
 
 3.  Install home manager
     ```sh
@@ -222,12 +223,12 @@ Home Manager is a configuration management system for home directories and local
 
 5. Add additional files
 
-Since you ensured that you didn't have any secrets like GPG and SSH keys in the repo (right?), get
-those keys in! Do not forget to push your changes to the repo.
+   Since you ensured that you didn't have any secrets like GPG and SSH keys in the repo (right?),
+   get those secrets in! Do not forget to push your changes to the repository after.
 
-1. Profit!
+6. Profit!
 
-You may now add roles to your host in `~/dotfiles/flake.nix`. Enjoy your NixOS host!
+    You may now add roles to your host in `~/dotfiles/flake.nix`.
 
 ---
 
