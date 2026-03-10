@@ -111,23 +111,6 @@
           ];
         };
         # ────────────────────────────────────────────────────────────────────────────────
-        sei = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = common_modules ++ [
-            nixos-hardware.nixosModules.lenovo-thinkpad-x250
-            ./gpu/opengl.nix
-            ./hosts/glaucus
-            ./roles/audio-engineering.nix
-            ./roles/container-host.nix
-            ./roles/dbms.nix
-            ./roles/development.nix
-            ./roles/gaming.nix
-            ./roles/laptop.nix
-            ./roles/publishing.nix
-          ];
-        };
-        # ────────────────────────────────────────────────────────────────────────────────
         zenigata = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
