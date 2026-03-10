@@ -239,7 +239,7 @@ install_nixos() {
     [ "$LAPTOP" == "y" ] && sed -i.bak \
         -e "/boot.initrd.kernelModules/a  boot.initrd.luks = ${LUKS_DICT}" \
         -e "/VG_root-LV_nix_store/a     options = [ \"noatime\" ];" \
-        -e "/(swapDevices).*/\1 = [ { device = \"/dev/disk/by-label/swap\"; } ];" \
+        -e "s/\(swapDevices\).*/\1 = \[ \{ device = \"\/dev\/disk\/by-label\/swap\"; \} \];/" \
         /mnt/etc/nixos/hardware-configuration.nix
 
     cd /mnt
