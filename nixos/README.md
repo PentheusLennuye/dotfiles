@@ -127,7 +127,6 @@ If you are on a laptop, the system partition will be encrypted.
    servers
 4. Alter `hardware-configuration.nix`
    1. Remove any `boot.initrd` that you do not need in the bootloader file
-   2. Append **options = [ "noatime" ];** to `filesystems."/nix"`
 5. Register the host definition in `flake.nix` with roles. See the other systems for examples, but
    _at the very minimum_, set up the common modules and the host definition:
 
