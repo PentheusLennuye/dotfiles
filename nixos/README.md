@@ -185,10 +185,12 @@ ln -s /home/<username>/dotfiles /etc/nixos
 
 #### A.3.1 Set the main user password
 
-```sh
-passwd <username>
-exit  # This logs root out
-```
+1. Change the password
+   ```sh
+   passwd <username>
+   ```
+2. Do _not_ log out, but test log in by switching to another terminal, with `Alt-F2`
+3. If successful, you may log out the root user.
 
 #### A.3.2 Set up Home Manager
 
@@ -199,7 +201,12 @@ Home Manager is a configuration management system for home directories and local
     mkdir ~/.config
     ln -s ~/dotfiles/nixos/home-manager/${USER} ~/.config/home-manager
     ```
-2.  Install home manager
+2.  Create a hypr file for your workstation
+
+    It does not matter whether you are using Hypr or not, just set it up in
+    `~/.config/home-manager/hypr`, using the other files as examples. It could even be blank.
+
+3.  Install home manager
     ```sh
     HMURL=https://github.com/nix-community/home-manager
     RELEASE=release-$(nixos-version | awk -F. '{print $1"."$2}').tar.gz
@@ -207,11 +214,18 @@ Home Manager is a configuration management system for home directories and local
     nix-channel --update
     nix-shell '<home-manager>' -A install
     ```
-3.  Set up the user
+4.  Set up the user
 
     ```sh
     home-manager build switch
     ```
+
+5. Add additional files
+
+Since you ensured that you didn't have any secrets like GPG and SSH keys in the repo (right?), get
+those keys in! Do not forget to push your changes to the repo.
+
+1. Profit!
 
 You may now add roles to your host in `~/dotfiles/flake.nix`. Enjoy your NixOS host!
 
