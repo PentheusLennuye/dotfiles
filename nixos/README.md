@@ -104,13 +104,6 @@ If you are on a laptop, the system partition will be encrypted.
    mv /etc/nixos/*.nix $H/rescue/
    cp $H/rescue/hardware-configuration.nix $H
    ```
-4. Remove the default directory and link to the local configuration
-   ```sh
-   cd ..
-   rm -rf /etc/nixos
-   ln -s $(pwd) /etc/nixos
-   cd hosts
-   ```
 
 #### A.2.3 Alter host definitions for a laptop or server
 
@@ -163,13 +156,21 @@ If you are me, skip this step.
    forget to change the full name as well!
 2. Rename `home-manager/gmc` to `home-manager/<your username>`
 
-#### A.2.6 Let 'er rip
+#### A.2.6 Move the configuration to the NixOS configuration directory
+
+Take care with the forward slashes:
+
+```sh
+rsync -avrtl --delete /root/dotfiles/nixos/system/ /etc/nixos
+```
+
+#### A.2.7 Let 'er rip
 
 Fire!
 
 ```sh
 nixos-rebuild switch
-exit
+exit  # This exits the shell with git and vim
 ```
 
 ### A.3 User Setup
@@ -177,7 +178,7 @@ exit
 #### A.3.1 Move the nixos to the main user account
 
 ```sh
-rm /etc/nixos
+rm -rf /etc/nixos
 mv /root/dotfiles /home/<username>
 chown -R <username>:users /home/<username>/dotfiles
 ln -s /home/<username>/dotfiles /etc/nixos
@@ -187,7 +188,7 @@ ln -s /home/<username>/dotfiles /etc/nixos
 
 ```sh
 passwd <username>
-exit
+exit  # This logs root out
 ```
 
 #### A.3.2 Set up Home Manager

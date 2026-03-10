@@ -146,17 +146,21 @@
 
   environment.etc."issue" = {
     text = ''
+
       UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.
       All access and activity on this system are monitored and recorded.
       If you are not an authorized user, disconnect immediately.
+
     '';
     mode = "0644";
   };
   environment.etc."issue.net" = {
     text = ''
+
       UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.
       All access and activity on this system are monitored and recorded.
       If you are not an authorized user, disconnect immediately.
+
     '';
     mode = "0644";
   };
@@ -193,7 +197,6 @@
         UID_MAX = 29999;
         UID_MIN = 1000;
         UMASK = "077";
-        YESCRYPT_COST_FACTOR = 6;
       };
     };
     pam = {
