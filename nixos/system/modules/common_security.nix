@@ -11,7 +11,12 @@
   environment.systemPackages = with pkgs; [
     clamav
     libpwquality
+    pcsc-tools
     suricata
+    yubico-piv-tool
+    yubikey-manager
+    yubikey-personalization
+    yubioath-flutter
   ];
 
   # ┌─────────────────────────┐
@@ -109,6 +114,31 @@
   #     };
   #   };
   # };
+
+  # ┌─────────────────────────┐
+  # │ Yubikey                 ├─────────────────────────────────────────────────────────────────┐
+  # └┬────────────────────────┘                                                                 │
+  #  │ This permits the use of a tap/USB Yubikey security device.                               │
+  #  │                                                                                          │
+  #  └──────────────────────────────────────────────────────────────────────────────────────────┘
+
+  services = {
+    pcscd.enable = true;
+    udev.packages = [ pkgs.yubikey-personalization ];
+  };
+
+  programs.gnupg = {
+    dirmngr.enable = true;
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
 
   # ┌─────────────────────────┐
   # │ Hardening               ├─────────────────────────────────────────────────────────────────┐
