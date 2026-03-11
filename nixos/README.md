@@ -97,12 +97,18 @@ If you are on a laptop, the system partition will be encrypted.
    rm -rf .git  # Unless you are me
    ```
 3. Create the host directory for your new system
+
    ```sh
    cd nixos/system/hosts
    H=$(hostname -s)
    cp -a template $H
    mv /etc/nixos/*.nix $H/rescue/
    cp $H/rescue/hardware-configuration.nix $H
+   ```
+
+4. Move the dotfiles to the nix configuration file
+   ```sh
+   mv /root/dotfiles/nixos/system /etc/nixos
    ```
 
 #### A.2.3 Alter host definitions for a laptop or server
@@ -174,13 +180,13 @@ exit  # This exits the shell with git and vim
 
 ### A.3 User Setup
 
-#### A.3.1 Move the nixos to the main user account
+#### A.3.1 Change ownership of the nixos config
 
 ```sh
-rm -rf /etc/nixos
+chown -R <username>:users /etc/nixos
 mv /root/dotfiles /home/<username>
 chown -R <username>:users /home/<username>/dotfiles
-ln -s /home/<username>/dotfiles/nixos/system /etc/nixos
+ln -s /etc/nixos /home/<username>/dotfiles/nixos/system
 ```
 
 #### A.3.1 Set the main user password
@@ -221,12 +227,12 @@ Home Manager is a configuration management system for home directories and local
     home-manager build switch
     ```
 
-5. Add additional files
+5.  Add additional files
 
-   Since you ensured that you didn't have any secrets like GPG and SSH keys in the repo (right?),
-   get those secrets in! Do not forget to push your changes to the repository after.
+    Since you ensured that you didn't have any secrets like GPG and SSH keys in the repo (right?),
+    get those secrets in! Do not forget to push your changes to the repository after.
 
-6. Profit!
+6.  Profit!
 
     You may now add roles to your host in `~/dotfiles/flake.nix`.
 
