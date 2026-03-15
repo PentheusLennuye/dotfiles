@@ -13,10 +13,6 @@
     libpwquality
     pcsc-tools
     suricata
-    yubico-piv-tool
-    yubikey-manager
-    yubikey-personalization
-    yubioath-flutter
   ];
 
   # ┌─────────────────────────┐
@@ -124,7 +120,6 @@
 
   services = {
     pcscd.enable = true;
-    udev.packages = [ pkgs.yubikey-personalization ];
   };
 
   programs.gnupg = {
