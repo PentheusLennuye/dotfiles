@@ -41,6 +41,7 @@ in
     pkgs.kdePackages.kmahjongg
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.input-remapper # reprograms mice, trackballs etc
     pkgs.texlivePackages.charter
     pkgs.wvkbd
     pkgs.xwayland
