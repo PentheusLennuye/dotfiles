@@ -200,6 +200,8 @@ in
         # Move/resize windows with mainMod + LMB/RMB
         "$mainMod ALT, right, resizeactive, 20 0"
         "$mainMod ALT, left, resizeactive, -20 0"
+        "$mainMod ALT, up, resizeactive, 0 -20"
+        "$mainMod ALT, down, resizeactive, 0 20"
       ];
 
       # Move/resize windows by dragging

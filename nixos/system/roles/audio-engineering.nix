@@ -6,6 +6,7 @@
     fdk-aac-encoder # Convert to AAC
     ffmpeg # Audio conversion
     ladspaPlugins # Audio effect plugins
+    lilypond # music notation
     linuxsampler # Sample-based synthesizer VST
     obs-studio # Screen recorder
     qsampler # GUI for linuxsampler
