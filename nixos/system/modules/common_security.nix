@@ -24,14 +24,14 @@
 
   services.clamav = {
     daemon = {
-      enable = true;
+      enable = false;
       settings = {
         OnAccessPrevention = true;
         OnAccessIncludePath = "/home";
       };
     };
     clamonacc = {
-      enable = true;
+      enable = false;
     };
     updater = {
       enable = true;

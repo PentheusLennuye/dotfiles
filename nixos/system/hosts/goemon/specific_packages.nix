@@ -2,7 +2,7 @@
 { pkgs, ... }:
 
 {
-    environment.systemPackages = with pkgs; [
-        streamdeck-ui
-    ];
+  environment.systemPackages = with pkgs; [
+    streamdeck-ui
+  ];
 }

@@ -108,12 +108,4 @@ in
       mode = "0664";
     };
   };
-
-  services = {
-    clamav = {
-      daemon.enable = true;
-      updater.enable = true;
-    };
-  };
-
 }
