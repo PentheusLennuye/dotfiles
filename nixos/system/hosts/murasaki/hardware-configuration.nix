@@ -17,8 +17,8 @@
     fsType = "ext4";
   };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/nix";
+  fileSystems."/nix/store" = {
+    device = "/dev/disk/by-label/nix_store";
     fsType = "ext4";
     options = [ "noatime" ];
   };
