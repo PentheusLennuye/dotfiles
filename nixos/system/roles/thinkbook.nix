@@ -30,7 +30,7 @@
       enable = true;
       xkb = {
         layout = "gmc_thinkbook_itl";
-        variant = "tarmak2";
+        variant = "tarmak3";
         options = "caps:none";
       };
     };

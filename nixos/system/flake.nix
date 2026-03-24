@@ -45,15 +45,14 @@
             ./hosts/goemon
             ./roles/alarm.nix
             ./roles/audio-engineering.nix
-            # ./roles/binarycache.nix
             ./roles/container-host.nix
             ./roles/desktop.nix
             ./roles/development.nix
             ./roles/engineering.nix
             ./roles/gaming.nix
-            ./roles/knowlton.nix
+            # ./roles/knowlton.nix
             ./roles/media.nix
-            # ./roles/montreal.nix
+            ./roles/montreal.nix
             ./roles/netadmin.nix
             ./roles/publishing.nix
             ./roles/remote-access.nix
