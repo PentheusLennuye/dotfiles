@@ -73,11 +73,13 @@ xkb_symbols "us" {
   //                normal         shift           altGr     altGr+shift  right-control
   // Row 2 ────────────────────────────────────────────────────────────────────────────────────
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-  key <AC01> {[            a,           A,          abreve,       Abreve,        grave ]};
+  key <AC01> {[            a,           A,          abreve,       Abreve,        U2518 ]}; // ┴
   key <AC02> {[            s,           S,           U1E9E,     NoSymbol,        U2514 ]}; // ß, └
   key <AC03> {[            d,           D,        NoSymbol,     NoSymbol,        U2500 ]}; // ─
-  key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        U2518 ]}; // ┴
-  key <AC05> {[            g,           G,        NoSymbol,     NoSymbol,        U2534 ]}; // ┘
+  key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        U2534 ]}; // ┘
+
+  key.type[group1]="FOUR_LEVEL";
+  key <AC05> {[            g,           G,        NoSymbol,     NoSymbol               ]};
   key <AC06> {[            h,           H,           U0219,        U0218               ]}; // ș
   key <AC07> {[            j,           J                                              ]};
   key <AC08> {[            k,           K                                              ]};
@@ -124,6 +126,7 @@ xkb_symbols "us" {
 };
 
 partial
+
 xkb_symbols "colemak-dh" {
     
     name[Group1] = "GMC (Colemak-DH)";
@@ -147,8 +150,8 @@ xkb_symbols "colemak-dh" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC02>	{[         r,           R,         NoSymbol,    NoSymbol,        U2500 ]}; // ─
-    key <AC03>	{[         s,           S,            U1E9E,    NoSymbol,        U2518 ]}; // ß, ┴
+    key <AC02>	{[         r,           R,         NoSymbol,    NoSymbol,        U2514 ]}; // └
+    key <AC03>	{[         s,           S,            U1E9E,    NoSymbol,        U2500 ]}; // ß, ─
     key <AD04>  {[         t,           T,            U021B,       U021A,        U2534 ]}; // ț, ┘
 
     key.type[group1]="FOUR_LEVEL";
@@ -202,7 +205,7 @@ xkb_symbols "tarmak3" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC02> {[         r,     R,        NoSymbol, NoSymbol,        U2514]};
+    key <AC02> {[         r,     R,        NoSymbol, NoSymbol,        U2514]}; // └
     key <AC03> {[         s,     S,           U1E9E, NoSymbol,        U2500]}; // ß, ─
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
@@ -225,7 +228,7 @@ xkb_symbols "tarmak2" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC04> {[          t,     T,           U021B,    U021A,        U2518 ]}; // ț, ┴
+    key <AC04> {[          t,     T,           U021B,    U021A,        U2534 ]}; // ț, ┘
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";
