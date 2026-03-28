@@ -9,8 +9,9 @@ local opt = vim.opt
 -- colorcolumn highlights a column to remind programmers to be readable
 opt.colorcolumn = "100"
 
--- cursorline highlights the cursor y-position for easier location and focus
+-- cursorline highlights the cursor position for easier location and focus
 opt.cursorline = true
+opt.cursorcolumn = true
 
 -- number displays the absolute line number
 opt.number = true
@@ -19,11 +20,9 @@ opt.scrolloff = 4
 -- signcolumn gives a three-character left margin to prevent text-shift on warnings
 opt.signcolumn = "yes"
 
-
 -- [[ Filetypes ]]
 opt.encoding = "utf8"
 opt.fileencoding = "utf8"
-
 
 -- [[ Theme ]]
 -- background is a toggle to colour schemes with dark/light modes
@@ -31,13 +30,11 @@ opt.background = "dark"
 -- opt.syntax = "ON"
 -- opt.termguicolors = true
 
-
 -- [[ Search ]]
 opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
-
 
 -- [[ Whitespace ]]
 -- autoindent copies the indent from the current line
@@ -54,12 +51,10 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
 
-
 -- [[ Splits ]]
 -- split* indicates where new windows are placed on the canvas
 opt.splitright = true
 opt.splitbelow = true
-
 
 -- [[ System Integration ]]
 -- clipboard permits the use of the system clipboard for cutting and pasting

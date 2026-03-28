@@ -23,15 +23,15 @@
       }
     ];
     sessionVariables = {
-      CA = "$HOME/spaces/tech/infra/ca";
-      DF = "$HOME/spaces/tech/infra/dotfiles";
+      CA = "$HOME/Documents/spaces/tech/infra/ca";
+      DF = "$HOME/Documents/spaces/tech/infra/dotfiles";
       GOPATH = "$HOME/.go";
       KUBECONFIG = "$HOME/.kube/config";
-      NLTK_DATA = "$HOME/extra/nltk_data";
+      NLTK_DATA = "$HOME/Documents/extra/nltk_data";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-      SAP = "$HOME/spaces/sap/projects/src";
+      SAP = "$HOME/Documents/spaces/sap/projects/src";
       SSH_ASKPASS = "";
-      SRC = "$HOME/spaces/tech/programming/projects";
+      SRC = "$HOME/Documents/spaces/tech/programming/projects";
       STEAM_EXTRA_COMPAT_TOOLS_PATH = "\\\${HOME}/.steam/root/compatibilitytools.d";
     };
     shellAliases = {
@@ -47,6 +47,7 @@
       vsh = "TERM=xterm-256color vagrant ssh";
       sns = "sudo nixos-rebuild switch";
       snt = "sudo nixos-rebuild test";
+      src = "cd $SRC";
     };
   };
 }

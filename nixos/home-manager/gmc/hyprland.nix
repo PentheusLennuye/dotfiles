@@ -99,9 +99,6 @@ in
       };
 
       windowrulev2 = [
-        "workspace 2,class:^(@joplin/app-desktop)$"
-        "workspace 3,class:^(code-url-handler)$"
-        "workspace 4,class:^(cider)$"
         "workspace 5,class:^(virt-manager)$"
       ];
 
@@ -110,8 +107,8 @@ in
       # └─────────────────────────────────────────────────────────────────────────────────────────────┘
 
       "$mainMod" = "SUPER";
-      "$VG" = "~/spaces/entertainment/videogames";
-      "$MUSIC" = "~/spaces/entertainment/music";
+      "$VG" = "~/Games";
+      "$MUSIC" = "~/Music";
 
       bind = [
         "$mainMod, E, exit"
