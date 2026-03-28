@@ -1,0 +1,12 @@
+---
+# ┌────────────────────────────┐
+# │Family Namespace            ├──────────────────────────────────────────────────────────────────┐
+# └┬───────────────────────────┘                                                                  │
+#  │ This is where services that are humanly visible to the family are installed.                 │
+#  │                                                                                              │
+#  └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: family

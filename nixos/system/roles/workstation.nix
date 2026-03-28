@@ -41,6 +41,7 @@ in
     pkgs.kdePackages.kmahjongg
     pkgs.kdePackages.qtmultimedia
     pkgs.elegant-sddm
+    pkgs.font-manager
     pkgs.input-remapper # reprograms mice, trackballs etc
     pkgs.texlivePackages.charter
     pkgs.wvkbd
@@ -55,11 +56,15 @@ in
     '')
   ];
 
+  # Fonts ─────────────────────────────────────────────────────────────────────────────────────
+
   fonts.packages = with pkgs; [
     dina-font
+    font-bitstream-type1
     ipafont # jp
     kochi-substitute # jp
     liberation_ttf
+    libre-baskerville
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: intranet
+  name: intranet
+  namespace: family
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: intranet
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: intranet
+    spec:
+      containers:
+        - image: nginx:1.29.7-alpine
+          name: nginx
+          resources: {}

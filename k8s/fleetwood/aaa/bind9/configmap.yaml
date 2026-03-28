@@ -55,7 +55,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2026022201   ; serial
+      2026032801   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -94,6 +94,7 @@ data:
     ingress1    IN  A   10.11.0.10
     ldap        IN  A   10.11.0.11
     krb5        IN  A   10.11.0.12
+    intranet    IN  A   10.11.0.14
 
     nixoscache  IN CNAME lupin.cummings-online.local.
     nfs         IN CNAME jigen.cummings-online.local.
@@ -155,7 +156,7 @@ data:
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-      2025092701 ; serial
+      2026032801 ; serial
       86400 ; refresh
       28800 ; retry
       604800 ; expire
@@ -173,4 +174,5 @@ data:
     10.0 IN PTR ingress1.cummings-online.local.
     11.0 IN PTR ldap.cummings-online.local.
     12.0 IN PTR krb5.cummings-online.local.
+    14.0 IN PTR intranet.cummings-online.local.
     31.0 IN PTR ns.cummings-online.local.
