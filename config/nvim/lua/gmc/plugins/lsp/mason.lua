@@ -64,6 +64,8 @@ return {
 				"asmfmt",
 				"black", -- python
 				"isort", -- python
+				"markdownlint-cli2", -- markdown
+				"markdown-toc", -- markdown
 				"ormolu", -- haskell
 				"prettier", -- html, json, yaml
 				-- both linters and formatters

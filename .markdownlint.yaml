@@ -1,3 +1,26 @@
 ---
-line-length:
-  line_length: 99
+# .markdownlint.yaml
+
+# md007 unordered list indentation
+MD007:
+  indent: 2
+# MD013 line length
+MD013:
+  line_length: 79
+  code_block_line_length: 99
+  tables: false
+# MD014 dollar signs before comments are hidden
+MD014: false
+# MD029 ordered list item prefix
+MD029:
+  style: ordered
+# MD031 fenced code blocks are surrounded by blank lines
+MD031: false
+# MD033 lists are surrounded by blank lines
+MD033: false
+# MD041 first line is a top-level header
+MD041:
+  allow_preamble: false
+# MD046 code block style
+MD046:
+  style: fenced

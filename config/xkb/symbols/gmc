@@ -73,10 +73,10 @@ xkb_symbols "us" {
   //                normal         shift           altGr     altGr+shift  right-control
   // Row 2 ────────────────────────────────────────────────────────────────────────────────────
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-  key <AC01> {[            a,           A,          abreve,       Abreve,        U2518 ]}; // ┴
+  key <AC01> {[            a,           A,          abreve,       Abreve,        U2534 ]}; // ┴
   key <AC02> {[            s,           S,           U1E9E,     NoSymbol,        U2514 ]}; // ß, └
   key <AC03> {[            d,           D,        NoSymbol,     NoSymbol,        U2500 ]}; // ─
-  key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        U2534 ]}; // ┘
+  key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        U2518 ]}; // ┘
 
   key.type[group1]="FOUR_LEVEL";
   key <AC05> {[            g,           G,        NoSymbol,     NoSymbol               ]};
@@ -152,7 +152,7 @@ xkb_symbols "colemak-dh" {
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
     key <AC02>	{[         r,           R,         NoSymbol,    NoSymbol,        U2514 ]}; // └
     key <AC03>	{[         s,           S,            U1E9E,    NoSymbol,        U2500 ]}; // ß, ─
-    key <AD04>  {[         t,           T,            U021B,       U021A,        U2534 ]}; // ț, ┘
+    key <AD04>  {[         t,           T,            U021B,       U021A,        U2518 ]}; // ț, ┘
 
     key.type[group1]="FOUR_LEVEL";
     key <AC06>	{[         m,           M,         NoSymbol                            ]};
@@ -228,7 +228,7 @@ xkb_symbols "tarmak2" {
 
     // Row 2 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
-    key <AC04> {[          t,     T,           U021B,    U021A,        U2534 ]}; // ț, ┘
+    key <AC04> {[          t,     T,           U021B,    U021A,        U2518 ]}; // ț, ┘
 
     // Row 1 ────────────────────────────────────────────────────────────────────────────────────
     key.type[group1]="FOUR_LEVEL";

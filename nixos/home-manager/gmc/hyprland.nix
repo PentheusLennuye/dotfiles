@@ -128,7 +128,6 @@ in
         "Ctrl, I, exec, brave --password-store=libsecret"
         "$mainMod, K, exec, virt-manager"
         "$mainMod, L, exec, hyprlock"
-        "Ctrl, L, exec, hyprlock"
         "$mainMod, M, exec, spotify"
         "$mainMod, N, exec, joplin-desktop"
         "$mainMod, O, exec, obsidian"

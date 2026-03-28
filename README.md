@@ -1,4 +1,6 @@
-# George's dotfiles
+---
+title: Georges' Dotfiles
+---
 
 - [Audio](audio/) operating system hacks
 - [Config](config/) flat config files available to Ansible, Nix, and good old copy-and-paste

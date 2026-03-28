@@ -13,6 +13,7 @@ in
     # Desktops
     ./hyprland.nix
     ./kde.nix
+    ./kitty.nix
     ./starship.nix
     ./vlc.nix
     ./vscode.nix
@@ -47,19 +48,6 @@ in
   programs = {
     home-manager.enable = true;
     gpg.enable = true;
-    kitty = {
-      enable = true;
-      keybindings = {
-        "ctrl+c" = "copy_or_interrupt";
-        "ctrl+v" = "paste_from_clipboard";
-      };
-      settings = {
-        background_opacity = "0.7";
-        font_family = "JetBrains mono";
-        font_size = "11.5";
-        shell = "zsh";
-      };
-    };
   };
 
   # Services =================================================================
@@ -80,13 +68,13 @@ in
       createDirectories = true;
       enable = true;
       desktop = "$HOME/.desktop";
-      documents = "$HOME/";
-      download = "$HOME/extra/downloads";
-      templates = "$HOME/extra/templates";
-      music = "$HOME/extra/music";
-      pictures = "$HOME/extra/pictures";
-      publicShare = "$HOME/extra/share";
-      videos = "$HOME/extra/videos";
+      documents = "$HOME/Documents";
+      download = "$HOME/Downloads";
+      templates = "$HOME/Templates";
+      music = "$HOME/Music";
+      pictures = "$HOME/Pictures";
+      publicShare = "$HOME/Share";
+      videos = "$HOME/Videos";
     };
   };
 
