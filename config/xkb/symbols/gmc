@@ -260,7 +260,7 @@ xkb_symbols "zsa" {
 //  │ right control. ANSI non-extended keyboards will need to use the grave dead-key for ù.     │
 //  └───────────────────────────────────────────────────────────────────────────────────────────┘
 
-xkb_symbols "2.0" {
+xkb_symbols "gmc" {
   name[Group1] = "GMC (US) 2.0";
   key.type[group1]="EIGHT_LEVEL";
 
@@ -342,7 +342,7 @@ partial
 xkb_symbols "colemak-dh" {
   name[Group1] = "GMC (Colemak-DH 2.0)";
 
-  include "gmc(2.0)"
+  include "gmc(gmc)"
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
 
   //                normal  shift            altGr altGr+shift     rCtrl rCtrl+shift
@@ -379,7 +379,7 @@ partial
 xkb_symbols "tarmak1" {
   name[Group1] = "GMC (Tarmak1)";
 
-  include "gmc(2.0)"
+  include "gmc(gmc)"
   key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC";
 
   //                normal  shift            altGr altGr+shift     rCtrl rCtrl+shift
