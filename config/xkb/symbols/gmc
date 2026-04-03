@@ -76,7 +76,7 @@ xkb_symbols "us" {
   key <AC01> {[            a,           A,          abreve,       Abreve,        U2534 ]}; // ┴
   key <AC02> {[            s,           S,           U1E9E,     NoSymbol,        U2514 ]}; // ß, └
   key <AC03> {[            d,           D,        NoSymbol,     NoSymbol,        U2500 ]}; // ─
-  key <AC04> {[            f,           F,        NoSymbol,     NoSymbol,        U2518 ]}; // ┘
+  key <AC04> {[            f,           F,          degree,     NoSymbol,        U2518 ]}; // ┘
 
   key.type[group1]="FOUR_LEVEL";
   key <AC05> {[            g,           G,        NoSymbol,     NoSymbol               ]};
@@ -259,6 +259,126 @@ xkb_symbols "tarmak1" {
     key <AB06>	{[         k,     K,        NoSymbol, NoSymbol,        U2713 ]}; // ✓
     key <AB07>  {[         h,     H,           U0219,    U0218,        U2717 ]}; // ș ✗
 };
+
+xkb_symbols "zsa" {
+
+  // This layout is for those using the GMC-*-2.0 Moonlander and Voyager keyboard layouts.
+  // Do not use on laptop or standard ISO/ANSI keyboards.
+
+  name[Group1] = "GMC (ZSA)";
+  key.type[group1]="FOUR_LEVEL";
+
+  //                normal         shift           altGr   altGr+shift
+  // Row 4 ─────────────────────────────────────────────────────────────
+  key <AE01> {[            1,      exclam,       leftarrow           ]}; // ←
+  key <AE02> {[            2,          at,       downarrow           ]}; // ↓
+  key <AE03> {[            3,  numbersign,         uparrow           ]}; // ↑
+  key <AE04> {[            4,      dollar,      rightarrow           ]}; // →
+  key <AE05> {[            5,     percent,           U2713           ]}; // ✓
+  key <AE06> {[            6, asciicircum,           U2717,    U00AC ]}; // ✗, ¬
+  key <AE07> {[            7,   ampersand,        NoSymbol,    U2227 ]}; // ∧
+  key <AE08> {[            8,    asterisk,        NoSymbol,    U2228 ]}; // ∨
+  key <AE09> {[            9,   parenleft,        NoSymbol,    U2295 ]}; // ⊕
+  key <AE10> {[            0,  parenright,           U2234,    U2235 ]}; // ∴, ∵
+  key <AE11> {[        minus,  underscore                            ]};
+  key <AE12> {[        equal,        plus,        NoSymbol,    U2261 ]}; // ≡
+
+  //                normal         shift           altGr   altGr+shift
+  // Row 3 ─────────────────────────────────────────────────────────────
+  key <AD01> {[            q,           Q,      exclamdown           ]};
+  key <AD02> {[            w,           W,    questiondown           ]};
+  key <AD03> {[            e,           E,        EuroSign           ]};
+  key <AD04> {[            r,           R                            ]};
+  key <AD05> {[            t,           T,           U021B,    U021A ]}; // ț, Ț
+  key <AD06> {[            y,           Y,             yen,    U2200 ]}; // ∀
+  key <AD07> {[            u,           U,  dead_diaeresis,    U2203 ]}; // ∃
+  key <AD08> {[            i,           I, dead_circumflex,    U21D4 ]}; // ⇔
+  key <AD09> {[            o,           O,      dead_acute,    U22A4 ]}; // ⊤
+  key <AD10> {[            p,           P,       paragraph,    U22A5 ]}; // ⊥
+  key <AD11> {[  bracketleft,   braceleft, dead_circumflex           ]};
+  key <AD12> {[ bracketright,  braceright, dead_belowcomma           ]};
+
+  //                normal         shift           altGr   altGr+shift
+  // Row 2 ─────────────────────────────────────────────────────────────
+  key <AC01> {[            a,           A,          abreve,   Abreve ]};
+  key <AC02> {[            s,           S,           U1E9E           ]}; // ß
+  key <AC03> {[            d,           D,          degree           ]};
+  key <AC04> {[            f,           F                            ]};
+  key <AC05> {[            g,           G                            ]};
+  key <AC06> {[            h,           H,           U0219,    U0218 ]}; // ș
+  key <AC07> {[            j,           J                            ]};
+  key <AC08> {[            k,           K                            ]};
+  key <AC09> {[            l,           L,        sterling           ]}; // £
+  key <AC10> {[    semicolon,       colon,        NoSymbol,    U21D2 ]}; // ⇒
+  key <AC11> {[   apostrophe,    quotedbl,          egrave,   Egrave ]};
+
+  //                normal         shift           altGr   altGr+shift
+  // Row 1 ─────────────────────────────────────────────────────────────
+  key <AB01> {[            z,           Z,   guillemotleft,   U1F3B5 ]}; // 🎵
+  key <AB02> {[            x,           X,  guillemotright           ]};
+  key <AB03> {[            c,           C,        ccedilla, Ccedilla ]};
+  key <AB04> {[            v,           V                            ]};
+  key <AB05> {[            b,           B                            ]};
+  key <AB06> {[            n,           N,          ntilde,   Ntilde ]};
+  key <AB07> {[            m,           M                            ]};
+
+  key <AB08> {[        comma,        less,          U2610,     U25A1 ]}; // ☐, □
+  key <AB09> {[       period,     greater,          U2611,     U25C7 ]}; // ☑, ◇
+  key <AB10> {[        slash,    question,          eacute,   Eacute ]};
+
+
+  //                normal         shift           altGr   altGr+shift
+  // Symbols and Whitespace ────────────────────────────────────────────
+  key <TLDE>	{[       grave,  asciitilde                            ]};
+  key <CAPS>  {[    NoSymbol,    NoSymbol                            ]};
+  key <BKSL>	{[   backslash,         bar,           agrave,  Agrave ]};
+  key <LSGT>  {[      ugrave,      Ugrave,           degree          ]}; // LSGT <> EU, ù CA
+  key <SPCE>	{[       space,        pace,     nobreakspace          ]};
+
+  // Keypad ────────────────────────────────────────────────────────────────────────────────────
+  // The ZSA keyboards are not extended, i.e. no numeric keypad or dedicated cursor or media keys.
+  // However, the keys can be programmed to send KP signals. Such is the case with box art in
+  // the GMC-*-2.0 layouts which are limited by the Apple keyboard constraints.
+
+  // lock   /    *    -
+  //   7    8    9    +
+  //   4    5    6    
+  //   1    2    3    enter
+  //      0      . 
+
+  // key <KPDV> is not customized
+  // key <KPMU> is not customized
+  key <KPSU> {[  KP_Subtract,    NoSymbol,            U256E          ]}; // ╮
+
+  key <KP7>  {[         KP_7,    NoSymbol,            U250C          ]}; // ┌
+  key <KP8>  {[         KP_8,    NoSymbol,            U2500,   U252C ]}; // ─, ┬
+  key <KP9>  {[         KP_9,    NoSymbol,            U2510          ]}; // ┐ 
+
+  key <KPAD> {[       KP_Add,    NoSymbol,            U256F          ]}; // ╯
+
+  key <KP4>  {[         KP_4,    NoSymbol,            U2502,   U251C ]}; // │, ├
+  key <KP5>  {[         KP_5,    NoSymbol,            U253C,   U25EF ]}; // ┼, ◯ 
+  key <KP6>  {[         KP_6,    NoSymbol,            U2502,   U2524 ]}; // │, ┤
+
+  key <KP1>  {[         KP_1,    NoSymbol,            U2514          ]}; // └,
+  key <KP2>  {[         KP_2,    NoSymbol,            U2500,   U2534 ]}; // ─, ┴
+  key <KP3>  {[         KP_3,    NoSymbol,            U2518          ]}; // ┘
+
+  // key <KPEQ> is not customized
+  // key <KP59 (KPEQ)> is not customized
+
+  key <KP0>	 {[         KP_0,    NoSymbol,            U256D          ]}; // ╭
+  key <KPDL> {[   KP_Decimal,   KP_Delete,            U2570          ]}; // ╰
+
+  // Includes ──────────────────────────────────────────────────────────────────────────────────
+
+  include "gmc(na)" // Required keys that do not exist on US or CA keyboards, defined at bottom
+  include "level3(ralt_switch)"
+  include "us(basic)"
+};
+
+partial
+
 
 // The following keys do not exist in CA(FR), CA(CSA), or US keyboards
 xkb_symbols "na" {
