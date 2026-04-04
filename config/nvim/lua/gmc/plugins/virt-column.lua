@@ -6,7 +6,7 @@ return {
 	config = function()
 		local vc = require("virt-column")
 		vc.setup({
-			char = "|",
+			char = "│",
 			hl_group = "ColorColumn",
 			enabled = true,
 		})

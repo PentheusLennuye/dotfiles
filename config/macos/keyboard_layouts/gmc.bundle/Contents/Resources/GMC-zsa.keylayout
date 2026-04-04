@@ -1080,88 +1080,58 @@
         </keyMap>
     </keyMapSet>
     <actions>
-        <action id="Dead Key State 0">
+        <action id="¨">
             <when state="none" next="Dead Key State 0"/>
+        </action>
+        <action id="ˆ">
+            <when state="none" next="Dead Key State 1"/>
+        </action>
+        <action id="´">
+            <when state="none" next="Dead Key State 2"/>
+        </action>
+        <action id="`">
+            <when state="none" next="Dead Key State 3"/>
         </action>
         <action id="a">
             <when state="none" output="a"/>
             <when state="Dead Key State 0" output="ä"/>
             <when state="Dead Key State 1" output="â"/>
             <when state="Dead Key State 2" output="á"/>
-        </action>
-        <action id="a 1">
-            <when state="none" output="x"/>
-            <when state="Dead Key State 0" output="ä"/>
-            <when state="Dead Key State 1" output="â"/>
-            <when state="Dead Key State 2" output="á"/>
-        </action>
-        <action id="a 2">
-            <when state="none" output="z"/>
-            <when state="Dead Key State 0" output="ä"/>
-            <when state="Dead Key State 1" output="â"/>
-            <when state="Dead Key State 2" output="á"/>
-        </action>
-        <action id="a 3">
-            <when state="none" output="x"/>
-            <when state="Dead Key State 0" output="ä"/>
-            <when state="Dead Key State 1" output="â"/>
-            <when state="Dead Key State 2" output="á"/>
-        </action>
-        <action id="a 4">
-            <when state="none" output="z"/>
-            <when state="Dead Key State 0" output="ä"/>
-            <when state="Dead Key State 1" output="â"/>
-            <when state="Dead Key State 2" output="á"/>
+            <when state="Dead Key State 3" output="à"/>
         </action>
         <action id="e">
             <when state="none" output="e"/>
             <when state="Dead Key State 0" output="ë"/>
             <when state="Dead Key State 1" output="ê"/>
             <when state="Dead Key State 2" output="é"/>
+            <when state="Dead Key State 3" output="è"/>
         </action>
         <action id="i">
             <when state="none" output="i"/>
             <when state="Dead Key State 0" output="ï"/>
             <when state="Dead Key State 1" output="î"/>
             <when state="Dead Key State 2" output="í"/>
+            <when state="Dead Key State 3" output="ì"/>
         </action>
         <action id="o">
             <when state="none" output="o"/>
             <when state="Dead Key State 0" output="ö"/>
             <when state="Dead Key State 1" output="ô"/>
             <when state="Dead Key State 2" output="ó"/>
+            <when state="Dead Key State 3" output="ò"/>
         </action>
         <action id="u">
             <when state="none" output="u"/>
             <when state="Dead Key State 0" output="ü"/>
             <when state="Dead Key State 1" output="û"/>
             <when state="Dead Key State 2" output="ú"/>
-        </action>
-        <action id="u 1">
-            <when state="none" output="u"/>
-            <when state="Dead Key State 0" output="ü"/>
-            <when state="Dead Key State 1" output="û"/>
-            <when state="Dead Key State 2" output="ú"/>
-        </action>
-        <action id="u 2">
-            <when state="none" output="u"/>
-            <when state="Dead Key State 0" output="ü"/>
-            <when state="Dead Key State 1" output="û"/>
-            <when state="Dead Key State 2" output="ú"/>
-        </action>
-        <action id="¨">
-            <when state="none" next="Dead Key State 0"/>
-        </action>
-        <action id="´">
-            <when state="none" next="Dead Key State 2"/>
-        </action>
-        <action id="ˆ">
-            <when state="none" next="Dead Key State 1"/>
+            <when state="Dead Key State 3" output="ù"/>
         </action>
     </actions>
     <terminators>
         <when state="Dead Key State 0" output="¨"/>
         <when state="Dead Key State 1" output="ˆ"/>
         <when state="Dead Key State 2" output="´"/>
+        <when state="Dead Key State 3" output="`"/>
     </terminators>
 </keyboard>

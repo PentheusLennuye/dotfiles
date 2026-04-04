@@ -266,8 +266,8 @@ xkb_symbols "gmc" {
 
   //                  normal        shift            altGr altGr+shift     rCtrl
   // Row 4 ────────────────────────────────────────────────────────────────────────────────
-  key <AE01> {[            1,      exclam,        NoSymbol, NoSymbol,      U256D        ]}; // ╭
-  key <AE02> {[            2,          at,        NoSymbol, NoSymbol,      U250C        ]}; // ┌
+  key <AE01> {[            1,      exclam,      exclamdown, NoSymbol,      U256D        ]}; // ╭
+  key <AE02> {[            2,          at,    questiondown, NoSymbol,      U250C        ]}; // ┌
   key <AE03> {[            3,  numbersign,        NoSymbol, NoSymbol,      U2500        ]}; // ─
   key <AE04> {[            4,      dollar,        NoSymbol, NoSymbol,      U2510        ]}; // ┐
   key <AE05> {[            5,     percent,        NoSymbol, NoSymbol,      U256E        ]}; // ╮
@@ -323,7 +323,7 @@ xkb_symbols "gmc" {
 
   //                  normal        shift            altGr altGr+shift     rCtrl
   // Symbols and Whitespace ───────────────────────────────────────────────────────────────
-  key <TLDE>	{[       grave,  asciitilde                                                ]};
+  key <TLDE>	{[       grave,  asciitilde,       dead_grave                              ]};
   key <CAPS>  {[    NoSymbol,    NoSymbol                                                ]};
   key <BKSL>	{[   backslash,         bar,           agrave,  Agrave                     ]};
   // LSGT (less-than/greater-than is the ISO key not available in ANSI)

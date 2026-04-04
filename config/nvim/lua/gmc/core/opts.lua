@@ -7,7 +7,7 @@ local opt = vim.opt
 
 -- [[ Context ]]
 -- colorcolumn highlights a column to remind programmers to be readable
-opt.colorcolumn = "100"
+opt.colorcolumn = "80,100"
 
 -- cursorline highlights the cursor position for easier location and focus
 opt.cursorline = true
