@@ -8,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     ansible
+    calc
     cryptsetup # for backups to encrypted drives
     curl
     dmidecode
