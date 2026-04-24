@@ -35,6 +35,9 @@
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
+  #time.timeZone = "Europe/Berlin";
+  #time.timeZone = "Europe/London";
+  #time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";

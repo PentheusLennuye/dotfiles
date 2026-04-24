@@ -48,7 +48,6 @@ in
     pkgs.xwayland
     pkgs.yubikey-agent
     pkgs.yubikey-manager
-    pkgs.zoom-us
     # See background-package above
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
@@ -77,7 +76,7 @@ in
   # └───────────────────────────────────────────────────────────────────────────┘
 
   i18n.inputMethod = {
-    enable = true;
+    enable = false;
     type = "fcitx5";
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
