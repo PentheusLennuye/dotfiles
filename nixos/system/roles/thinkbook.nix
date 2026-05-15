@@ -29,8 +29,8 @@
     xserver = {
       enable = true;
       xkb = {
-        layout = "gmc_thinkbook_itl";
-        variant = "tarmak3";
+        layout = "gmc";
+        variant = "tarmak4";
         options = "caps:none";
       };
     };
