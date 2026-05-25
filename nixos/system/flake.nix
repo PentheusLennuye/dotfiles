@@ -20,7 +20,7 @@
       system = "x86_64-linux";
       common_modules = [
         ./configuration.nix
-        /roles/common.nix
+        ./roles/common.nix
         ./roles/kubernetes-ctl.nix
         ./users.nix
       ];
