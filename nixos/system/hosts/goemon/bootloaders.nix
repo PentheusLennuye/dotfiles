@@ -17,6 +17,7 @@
         "sd_mod"
       ];
       kernelModules = [
+        "rpcsec_gss_krb5"
         "nfs"
         "nfs4"
       ];

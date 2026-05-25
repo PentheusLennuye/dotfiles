@@ -24,6 +24,8 @@ spec:
           env:
             - name: KRB5_REALM
               value: "CUMMINGS-ONLINE.CA"
+            - name: KRB5_ADMINSERVER
+              value: "krb5.cummings-online.local"
             - name: KRB5_KDC
               value: "krb5.cummings-online.local"
             - name: KRB5_PASS
@@ -35,4 +37,3 @@ spec:
             - containerPort: 88
             - containerPort: 464
             - containerPort: 749
-
