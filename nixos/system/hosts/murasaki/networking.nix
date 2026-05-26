@@ -23,4 +23,16 @@
       enable = false;
     };
   };
+  # ─── NFS Mounts ──────────────────────────────────────
+  fileSystems."/mnt/lupin" = {
+    device = "lupin:/home";
+    fsType = "nfs";
+    options = [
+      "nfsvers=4"
+      "sec=krb5i"
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 }
