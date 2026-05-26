@@ -13,12 +13,12 @@
     domain = "cummings-online.local";
     hostName = "goemon";
 
-    # --- Comment Out or In ------------------------------------------------------------------
     bridges = {
       br0 = {
         interfaces = [ "enp6s0" ];
       };
     };
+    # ─── Comment Out or In ────────────────────────────────────────────────────────────────────
     defaultGateway = "192.168.68.1";
     interfaces = {
       br0.ipv4 = {
@@ -45,7 +45,7 @@
     # --- Comment Out or In ------------------------------------------------------------------
     #    defaultGateway = "192.168.73.1";
     #    interfaces = {
-    #      enp6s0.ipv4 = {
+    #      br0.ipv4 = {
     #        addresses = [
     #          {
     #            address = "192.168.73.73";
@@ -67,6 +67,19 @@
     #      };
     #    };
     useDHCP = lib.mkDefault false;
+  };
+
+  # ─── NFS Mounts ──────────────────────────────────────
+  fileSystems."/mnt/lupin" = {
+    device = "lupin:/private";
+    fsType = "nfs";
+    options = [
+      "nfsvers=4"
+      "sec=krb5i"
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
   };
 
   services = {

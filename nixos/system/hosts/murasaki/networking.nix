@@ -25,7 +25,7 @@
   };
   # ─── NFS Mounts ──────────────────────────────────────
   fileSystems."/mnt/lupin" = {
-    device = "lupin:/home";
+    device = "lupin:/private";
     fsType = "nfs";
     options = [
       "nfsvers=4"
