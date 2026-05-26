@@ -14,9 +14,14 @@
     hostName = "goemon";
 
     # --- Comment Out or In ------------------------------------------------------------------
+    bridges = {
+      br0 = {
+        interfaces = [ "enp6s0" ];
+      };
+    };
     defaultGateway = "192.168.68.1";
     interfaces = {
-      enp6s0.ipv4 = {
+      br0.ipv4 = {
         addresses = [
           {
             address = "192.168.68.73";
