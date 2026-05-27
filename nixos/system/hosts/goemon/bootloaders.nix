@@ -19,7 +19,7 @@
       kernelModules = [
         "rpcsec_gss_krb5"
         "nfs"
-        "nfs4"
+        "nfsv4"
       ];
       supportedFilesystems = [
         "nfs"

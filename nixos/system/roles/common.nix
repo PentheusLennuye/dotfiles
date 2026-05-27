@@ -6,6 +6,7 @@
     ../modules/common_config.nix
     ../modules/common_networking.nix
     ../modules/common_packages.nix
+    ../modules/common_printers.nix
     ../modules/common_security.nix
     ../modules/common_tls.nix
   ];
