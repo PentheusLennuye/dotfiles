@@ -7,7 +7,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    cnijfilter2 # canon
     cups-brother-hll2375dw # brother hl-l2375dw
   ];
 

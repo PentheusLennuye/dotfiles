@@ -55,7 +55,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.local. gmc.cummings-online.local. (
-      2026052601   ; serial
+      2026052701   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -89,6 +89,7 @@ data:
     ns3          IN	A	192.168.73.31
     sanda        IN A 192.168.68.231
     spectre      IN	A	192.168.68.254
+    uaaa         IN A 192.168.68.163
     userver      IN A 192.168.68.241
     zenigata     IN A 10.11.0.4
     zenigata-int IN A 172.16.73.4
@@ -122,7 +123,7 @@ data:
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.local hostmaster.cummings-online.local. (
-     2026020401 ; serial
+     2026052701 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -144,6 +145,7 @@ data:
     68.34   IN PTR rpi4.cummings-online.local.
     68.34   IN PTR rpi4.cummings-online.local.
     68.73   IN PTR goemon.cummings-online.local.
+    68.163  IN PTR uaaa.cummings-online.local.
     68.231  IN PTR sanda.cummings-online.local.
     68.241  IN PTR userver.cummings-online.local.
     68.232  IN PTR bambu.cummings-online.local.
