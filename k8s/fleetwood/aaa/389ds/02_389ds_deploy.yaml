@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ldap
+  name: ldap
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ldap
+    spec:
+      volumes:
+        - name: tls-volume
+          secret:
+            secretName: ldap-tls
+      containers:
+        - name: dirsrv
+          image: 389ds/dirsrv:3.1
+          volumeMounts:
+            - name: tls-volume
+              readOnly: true
+              mountPath: /data/tls
+          env:
+            - name: DS_DM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-dm-password
+                  key: password
