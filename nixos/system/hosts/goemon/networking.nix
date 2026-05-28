@@ -91,6 +91,7 @@
       "x-systemd.idle-timeout=600"
     ];
   };
+  # ─── End NFS Mounts ──────────────────────────────────
 
   services = {
     blueman.enable = true;
