@@ -10,9 +10,7 @@
     powerOnBoot = true;
   };
   networking = {
-    extraHosts = ''
-      192.168.173.216 fafo.vm.cummings-online.local fafo
-    '';
+    domain = "cummings-online.local";
     hostName = "murasaki";
     networkmanager.enable = true;
     useDHCP = lib.mkDefault false;
@@ -24,7 +22,13 @@
     };
   };
 
-  # ─── NFS Mounts ──────────────────────────────────────
+  # ┌─────────────────────────┐
+  # │ Network  Storage        ├─────────────────────────────────────────────────────────────────┐
+  # └┬────────────────────────┘                                                                 │
+  #  │ NFS, CIFS, SSH-based mounts.                                                             │
+  #  │                                                                                          │
+  #  └──────────────────────────────────────────────────────────────────────────────────────────┘
+
   fileSystems."/mnt/nfs/lupin/home" = {
     device = "lupin:/private";
     fsType = "nfs";
@@ -46,5 +50,4 @@
       "x-systemd.idle-timeout=600"
     ];
   };
-  # ─── End NFS Mounts ──────────────────────────────────
 }

@@ -69,7 +69,13 @@
     useDHCP = lib.mkDefault false;
   };
 
-  # ─── NFS Mounts ──────────────────────────────────────
+  # ┌─────────────────────────┐
+  # │ Network  Storage        ├─────────────────────────────────────────────────────────────────┐
+  # └┬────────────────────────┘                                                                 │
+  #  │ NFS, CIFS, SSH-based mounts.                                                             │
+  #  │                                                                                          │
+  #  └──────────────────────────────────────────────────────────────────────────────────────────┘
+
   fileSystems."/mnt/nfs/lupin/home" = {
     device = "lupin:/private";
     fsType = "nfs";
@@ -91,7 +97,6 @@
       "x-systemd.idle-timeout=600"
     ];
   };
-  # ─── End NFS Mounts ──────────────────────────────────
 
   services = {
     blueman.enable = true;
