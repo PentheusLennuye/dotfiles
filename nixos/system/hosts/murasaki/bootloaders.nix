@@ -18,6 +18,7 @@
         "sdhci_pci"
       ];
       kernelModules = [
+        "rpcsec_gss_krb5"
         "kvm-intel"
         "nfs"
         "nfs4"
@@ -25,7 +26,7 @@
       luks = {
         devices = {
           "crypt_root" = {
-	    crypttabExtraOpts = [ "fido2-device=auto" ];
+            crypttabExtraOpts = [ "fido2-device=auto" ];
             device = "/dev/nvme0n1p2";
           };
         };

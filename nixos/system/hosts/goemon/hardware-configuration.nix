@@ -77,17 +77,4 @@
   # sudo mount -t ext4 /dev/disk/by-label/nearline /mnt/nearline
   #
 
-  # ┌─────────────────────────┐
-  # │ Network  Storage        ├─────────────────────────────────────────────────────────────────┐
-  # └┬────────────────────────┘                                                                 │
-  #  │ NFS, CIFS, SSH-based mounts.                                                             │
-  #  │                                                                                          │
-  #  └──────────────────────────────────────────────────────────────────────────────────────────┘
-
-  # fileSystems."/srv/<servername>" = {
-  #   device = "<servername>.<domain>:/<path>";
-  #   fsType = "nfs";
-  #   options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" ];
-  # };
-
 }

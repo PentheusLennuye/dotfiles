@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   networking = {
@@ -10,12 +15,22 @@
     interfaces = {
       enp2s0 = {
         ipv4 = {
-          addresses = [{ address = "172.16.73.3"; prefixLength = 24; }];
+          addresses = [
+            {
+              address = "172.16.73.3";
+              prefixLength = 24;
+            }
+          ];
         };
       };
       enp0s20f0u2 = {
         ipv4 = {
-          addresses = [{ address = "10.11.0.3"; prefixLength = 16; }];
+          addresses = [
+            {
+              address = "10.11.0.3";
+              prefixLength = 16;
+            }
+          ];
         };
       };
     };
@@ -24,9 +39,6 @@
   services = {
     openssh = {
       enable = true;
-      settings = {
-        PasswordAuthentication = true;
-      };
     };
   };
 }

@@ -2,25 +2,38 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
 {
   boot = {
     extraModulePackages = [ ];
     initrd = {
-        availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ "kvm-intel" "nfs" "nfs4" ];
-        supportedFilesystems = [ "nfs" "nfs4" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [
+        "rpcsec_gss_krb5"
+        "kvm-intel"
+        "nfs"
+        "nfs4"
+      ];
+      supportedFilesystems = [
+        "nfs"
+        "nfs4"
+      ];
     };
     kernelModules = [ "kvm-intel" ];
-    kernelParams = ["i915.enable_dc=0"];
+    kernelParams = [ "i915.enable_dc=0" ];
     loader = {
-        systemd-boot = {
-            enable = true;
-        };
-        efi = {
-            canTouchEfiVariables = true;
-        };
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
     };
   };
 }
