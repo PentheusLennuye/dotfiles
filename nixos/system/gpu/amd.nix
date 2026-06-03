@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     amdgpu_top
     clinfo
-    blender-hip
     lact
   ];
 

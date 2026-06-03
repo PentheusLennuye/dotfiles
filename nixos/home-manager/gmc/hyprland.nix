@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -22,16 +21,20 @@ in
   # │ Hyprland.conf                                        │
   # └──────────────────────────────────────────────────────┘
 
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session.vars.sh";
+  xdg = {
+    configFile."uwsm/env".source =
+      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session.vars.sh";
+    userDirs.setSessionVariables = true;
+  };
 
   wayland.windowManager.hyprland = {
+    configType = "hyprlang";
     enable = true;
     package = null; # use the system package
     portalPackage = null; # "
-    plugins = [
-      pkgs.hyprlandPlugins.hyprgrass
-    ];
+    # plugins = [
+    #   pkgs.hyprlandPlugins.hyprgrass
+    # ];
     settings = {
       source = "~/.config/hypr/profile.conf";
 
@@ -64,7 +67,6 @@ in
       };
 
       dwindle = {
-        pseudotile = true;
         preserve_split = true; # you probably want this
       };
 
@@ -98,9 +100,9 @@ in
         key_press_enables_dpms = true;
       };
 
-      windowrulev2 = [
-        "workspace 5,class:^(virt-manager)$"
-      ];
+      # windowrulev2 = [
+      #   "workspace 5,class:^(virt-manager)$"
+      # ];
 
       # ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
       # │ Keybindings                                                                                 │
@@ -155,8 +157,8 @@ in
         # Standard binds
 
         "$mainMod, V, togglefloating"
-        "$mainMod, P, pseudo" # dwindle
-        "$mainMod, J, togglesplit" # dwindle
+        # "$mainMod, P, pseudo" # dwindle
+        # "$mainMod, J, togglesplit" # dwindle
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
