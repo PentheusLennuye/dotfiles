@@ -33,7 +33,7 @@ in
 
   environment.systemPackages = [
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
-    pkgs.hyprlandPlugins.hyprgrass
+    # pkgs.hyprlandPlugins.hyprgrass
     pkgs.hypridle
     pkgs.hyprpolkitagent
     pkgs.qt6.qtwayland

@@ -33,7 +33,7 @@
     screenfetch # Show off!
     slurp # Hyprland screen selector
     starship # CLI ricer
-    surge # synthesizer
+    # surge # synthesizer
     swaynotificationcenter # Waybar modules require this
     thunderbird # Email
     vista-fonts # Better fonts for Firefox etc

@@ -36,7 +36,7 @@
     };
     shellAliases = {
       dotfiles = "cd $DF";
-      hbs = "home-manager build switch";
+      hbs = "home-manager build switch -b backup";
       k = "kubectl";
       ke = "kubectl exec";
       ls = "lsd";

@@ -14,7 +14,6 @@
     qpwgraph # Pipewire graph interface
     reaper # DAW
     roomeqwizard # Room Acoustics Software
-    surge # Additive synthesizer
     vmpk # Virtual MIDI keyboard
   ];
 }

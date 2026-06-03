@@ -28,6 +28,8 @@
   # I need my firmware
   nixpkgs.config = {
     allowUnfree = true;
+    rocmSupport = true;
+    permittedInsecurePackages = [ "electron-39.8.10" ];
   };
 
   # I also want my emulation station
