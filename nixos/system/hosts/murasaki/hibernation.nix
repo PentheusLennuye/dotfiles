@@ -1,5 +1,5 @@
 # Suspend-then-hibernate everywhere
-{ config, ... }:
+{ ... }:
 {
   services.logind = {
     settings.Login = {
@@ -9,5 +9,4 @@
       IdleActionSec = "2m";
     };
   };
-  systemd.sleep.extraConfig = "HibernateDelaySec=1h";
 }
