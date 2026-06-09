@@ -2,10 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-      asunder
-      handbrake
-      libbluray-full
-      playerctl
-      spotify
+    asunder
+    handbrake
+    libbluray-full
+    playerctl
+    spotify
+    vlc
   ];
 }

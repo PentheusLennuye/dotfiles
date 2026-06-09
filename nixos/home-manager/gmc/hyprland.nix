@@ -66,10 +66,6 @@ in
         };
       };
 
-      dwindle = {
-        preserve_split = true; # you probably want this
-      };
-
       ecosystem = {
         no_update_news = true;
         no_donation_nag = true;
