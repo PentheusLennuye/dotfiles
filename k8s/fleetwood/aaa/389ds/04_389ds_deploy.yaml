@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ldap
+  name: ldap
+  namespace: it
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ldap
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ldap
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: ldap
+                topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: 389ds-config
+          configMap:
+            name: 389ds-config
+            items:
+              - key: "container.inf"
+                path: "container.inf"
+        - name: 389ds-data
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-pvc
+      containers:
+        - name: dirsrv
+          image: 389ds/dirsrv:3.1
+          volumeMounts:
+            - name: 389ds-data
+              readOnly: false
+              mountPath: /data
+            - name: 389ds-config
+              readOnly: false
+              mountPath: /data/config/
+          env:
+            - name: DS_DM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-dm-password
+                  key: password
