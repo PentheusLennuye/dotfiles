@@ -40,13 +40,14 @@ spec:
       containers:
         - name: dirsrv
           image: 389ds/dirsrv:3.1
-          volumeMounts:
-            - name: 389ds-data
-              readOnly: false
-              mountPath: /data
-            - name: 389ds-config
-              readOnly: false
-              mountPath: /data/config/
+          # volumeMounts:
+          # - name: 389ds-data
+          #   readOnly: false
+          #   mountPath: /data
+          #- name: 389ds-config
+          #  readOnly: false
+          #  mountPath: /data/config/container.inf
+          #  subPath: container.inf
           env:
             - name: DS_DM_PASSWORD
               valueFrom:
