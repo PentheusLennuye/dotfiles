@@ -54,10 +54,6 @@ spec:
             - name: 389ds-data
               readOnly: false
               mountPath: /data
-            - name: 389ds-config
-              readOnly: true
-              mountPath: /data/config/container.inf
-              subPath: container.inf
             - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
@@ -67,3 +63,7 @@ spec:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
+            - name: DS_SUFFIX_NAME
+              value: "dc=cummings-online,dc=local"
+            - name: DS_REINDEX
+              value: "true"

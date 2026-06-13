@@ -8,4 +8,4 @@ data:
     [localhost]
     uri = ldapi://%%2fdata%%2frun%%2fslapd-localhost.socket
     binddn = cn=Directory Manager
-    basedn = dc=cummings-online,dc=ca
+    basedn = dc=cummings-online,dc=local
