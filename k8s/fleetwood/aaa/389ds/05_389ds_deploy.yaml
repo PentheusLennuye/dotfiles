@@ -37,6 +37,16 @@ spec:
         - name: 389ds-data
           persistentVolumeClaim:
             claimName: 389ds-nfs-pvc
+        - name: 389ds-tls
+          secret:
+            secretName: 389ds-tls
+            items:
+              - key: "server.key"
+                path: "server.key"
+              - key: "server.crt"
+                path: "server.crt"
+              - key: "ca.crt"
+                path: "ca/ca.crt"
       containers:
         - name: dirsrv
           image: 389ds/dirsrv:3.1
@@ -48,6 +58,9 @@ spec:
               readOnly: true
               mountPath: /data/config/container.inf
               subPath: container.inf
+            - name: 389ds-tls
+              readOnly: true
+              mountPath: /data/tls
           env:
             - name: DS_DM_PASSWORD
               valueFrom:
