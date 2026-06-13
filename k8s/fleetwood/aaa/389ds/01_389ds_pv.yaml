@@ -15,4 +15,4 @@ spec:
     - nconnect=8
   nfs:
     server: jigen
-    path: /fleetwood/389ds
+    path: /protected/fleetwood/389ds
