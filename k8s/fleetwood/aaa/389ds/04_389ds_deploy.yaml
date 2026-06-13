@@ -8,7 +8,7 @@ metadata:
   name: ldap
   namespace: it
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ldap
@@ -45,7 +45,7 @@ spec:
               readOnly: false
               mountPath: /data
             - name: 389ds-config
-              readOnly: false
+              readOnly: true
               mountPath: /data/config/container.inf
               subPath: container.inf
           env:

@@ -5,10 +5,6 @@ metadata:
   name: 389ds-config
 data:
   container.inf: |
-    instance_name = fleetwood
-    ; log_dir = /var/log/dirsrv/slapd-{instance_name}
-    port = 389
-
     [localhost]
     uri = ldapi://%%2fdata%%2frun%%2fslapd-localhost.socket
     binddn = cn=Directory Manager
