@@ -1,0 +1,49 @@
+version: 1
+dn: dc=cummings-online,dc=local
+dc: cummings-online
+description: The Cummings/Sterescu family networks
+objectClass: domain
+o: Cummings Online
+
+dn: ou=People,dc=cummings-online,dc=local
+description: Our family members. Used for system authentication as well as pers
+ onal information lookups
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=cummings-online,dc=local
+description: Authorization and distributed email groups composed of people and
+ other groups. Distinguished from roles, which are collections of permissions h
+ eld on downstream IT assets
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Systems,dc=cummings-online,dc=local
+description: Computing and network equipment, including tablets, switches, rou
+ ters, and so on
+objectClass: organizationalUnit
+ou: system
+
+dn: ou=ServiceAccounts,dc=cummings-online,dc=local
+description: Entries for machine accounts, aka technical users
+objectClass: organizationalUnit
+ou: ServiceAccounts
+
+dn: cn=Admins,ou=Groups,dc=cummings-online,dc=local
+cn: Admins
+description: All users with "admin" or "root" access to all domain systems
+gidNumber: 10000
+objectClass: posixGroup
+
+dn: cn=Users,ou=Groups,dc=cummings-online,dc=local
+cn: Users
+description: All users permitted to log into general computing
+gidNumber: 10001
+objectClass: posixGroup
+
+dn: cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=local
+cn: ServiceAccounts
+description: Accounts for hosts and machine-to-machine communication
+gidNumber: 10003
+objectClass: posixGroup
+
