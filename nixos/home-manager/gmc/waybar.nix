@@ -221,7 +221,7 @@ in
       	#window {
             background-color: rgba(200,200,200,50);
           	border-radius: 0px 15px 15px 0px;
-          	margin: 5px 5px 5px 0px;
+          	margin: 2px 2px 2px 0px;
           	padding: 2px 20px;
       	}
 
@@ -294,7 +294,7 @@ in
             background-color: #000000;
             border-radius: 0px;
             color: ${colour_a};
-            font-size: 16px;
+            font-size: 14px;
             margin: 2px;
             padding: 2px 10px;
       	}
