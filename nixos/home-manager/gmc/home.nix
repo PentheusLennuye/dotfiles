@@ -36,6 +36,10 @@ in
     username = "gmc";
   };
 
+  news = {
+    display = "silent";
+  };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
