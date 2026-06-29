@@ -35,6 +35,7 @@
     vim
     wget
     tmux
+    tzdata
     zip
   ];
 

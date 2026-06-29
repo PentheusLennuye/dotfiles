@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-  # colour_a = "#2b58d4";
   colour_a = "#3b68e4";
   colour_c = "#d4a42b";
   white = "#ffffff";
@@ -206,6 +205,13 @@ in
             font-weight: bold;
       	}
 
+      	#window {
+            background-color: rgba(200,200,200,50);
+          	border-radius: 0px 15px 15px 0px;
+          	margin: 2px 2px 2px 0px;
+          	padding: 2px 10px;
+      	}
+
       	window#waybar {
             background-color: rgba(26,27,38,0);
             border-bottom: 1px solid rgba(26,27,38,0);
@@ -218,14 +224,6 @@ in
 
       	tooltip label { }
 
-      	#window {
-            background-color: rgba(200,200,200,50);
-          	border-radius: 0px 15px 15px 0px;
-          	margin: 2px 2px 2px 0px;
-          	padding: 2px 20px;
-      	}
-
-
         /*
          * ╭─────────────────────────────────────────────────────────────────╮
          * │                           Power                                 │
@@ -234,11 +232,13 @@ in
 
       	#battery {
             border-radius: 15px;
+            color: ${white};
             margin: 2px;
             padding: 2px 10px;
       	}
         #power-profiles-daemon {
             border-radius: 15px;
+            color: ${white};
           	margin: 2px;
           	padding: 2px 10px;
       	}

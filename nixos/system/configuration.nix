@@ -29,7 +29,10 @@
   nixpkgs.config = {
     allowUnfree = true;
     rocmSupport = true;
-    permittedInsecurePackages = [ "electron-39.8.10" ];
+    permittedInsecurePackages = [
+      "electron-39.8.10"
+      "pnpm-10.29.2"
+    ];
   };
 
   # I also want my emulation station

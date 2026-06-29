@@ -10,6 +10,7 @@ in
 {
   home.file = {
     "${lconfig}/bg.jpg".source = hypr/bg.jpg;
+    "${lconfig}/tron_legacy.jpg".source = hypr/tron_legacy.jpg;
     "${lconfig}/hypridle.conf".source = hypr/hypridle.conf;
     "${lconfig}/hyprlock.conf".source = hypr/hyprlock.conf;
     "${lconfig}/hyprpaper.conf".source = hypr/hyprpaper.conf;
@@ -81,9 +82,10 @@ in
       general = {
         allow_tearing = false;
         border_size = 2;
-        "col.active_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(3b68e4aa)";
+        "col.inactive_border" = "rgba(595959aa)";
         gaps_in = 5;
-        gaps_out = 10;
+        gaps_out = 5;
         layout = "dwindle";
       };
 
@@ -100,9 +102,9 @@ in
       #   "workspace 5,class:^(virt-manager)$"
       # ];
 
-      # ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-      # │ Keybindings                                                                                 │
-      # └─────────────────────────────────────────────────────────────────────────────────────────────┘
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │ Keybindings                                                                             │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
 
       "$mainMod" = "SUPER";
       "$VG" = "~/Games";
