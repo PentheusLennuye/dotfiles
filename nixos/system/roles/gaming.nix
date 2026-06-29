@@ -7,6 +7,8 @@
     libretro.fbneo
     libretro.mame
     lutris
+    kdePackages.ktouch
+    kdePackages.kitemmodels
     mangohud
     retroarch
     protonup-ng
