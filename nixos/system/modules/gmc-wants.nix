@@ -29,6 +29,7 @@
     obsidian
     onlyoffice-desktopeditors
     pavucontrol # PulseAudio control requires GTK
+    protonmail-desktop
     protonmail-bridge
     reaper # DAW
     screenfetch # Show off!

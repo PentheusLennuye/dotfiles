@@ -105,6 +105,7 @@
             ./roles/media.nix
             ./roles/netadmin.nix
             ./roles/publishing.nix
+            ./roles/sssd.nix
             ./roles/thinkbook.nix
             ./roles/virt-host.nix
           ];
