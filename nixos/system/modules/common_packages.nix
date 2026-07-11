@@ -17,6 +17,7 @@
     fwupd-efi
     git
     gnupg
+    killall
     libnfs
     libsecret
     lsd # ls +

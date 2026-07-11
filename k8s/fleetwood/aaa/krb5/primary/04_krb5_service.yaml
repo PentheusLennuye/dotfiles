@@ -6,7 +6,7 @@ metadata:
   namespace: it
 spec:
   selector:
-    app: krb5
+    app: krb5-admin
   ports:
     - name: kerberos
       protocol: TCP
