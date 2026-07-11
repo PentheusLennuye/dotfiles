@@ -27,6 +27,7 @@
     mesa
     nfs-utils
     openssl
+    pass
     pciutils
     pstree
     rsync

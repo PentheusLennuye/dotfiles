@@ -77,6 +77,7 @@ in
         "systemctl --user start hyprpolkitagent"
         "waybar"
         "hyprpaper"
+        "protonmail-bridge -n"
       ];
 
       general = {
