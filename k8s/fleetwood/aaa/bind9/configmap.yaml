@@ -66,7 +66,6 @@ data:
     ns          IN    A     10.11.0.31
 
     ; MX records
-    @            IN 
     @            IN MX  1 aspmx.l.google.com.
     @            IN MX 10 alt4.aspmx.l.google.com.
     @            IN MX 10 alt3.aspmx.l.google.com.
@@ -145,27 +144,27 @@ data:
     ns          IN    A     10.11.0.31
 
     ; PTR --------------------------------------------------------------
-    1.68    IN PTR gw-mtl.cummings-online.ca.
-    61.68   IN PTR brother.cummings-online.ca.
-    62.68   IN PTR colour.cummings-online.ca.
-    31.68   IN PTR rpi1.cummings-online.ca.
-    32.68   IN PTR rpi2.cummings-online.ca.
-    33.68   IN PTR rpi3.cummings-online.ca.
-    34.68   IN PTR rpi4.cummings-online.ca.
-    73.68   IN PTR goemon.cummings-online.ca.
-    163.68  IN PTR uaaa.cummings-online.ca.
-    231.68  IN PTR sanda.cummings-online.ca.
-    241.68  IN PTR userver.cummings-online.ca.
-    232.68  IN PTR bambu.cummings-online.ca.
-    254.68  IN PTR spectre.cummings-online.ca.
-    1.73    IN PTR gw-knw.cummings-online.ca.
-    12.73   IN PTR fujiko.cummings-online.ca.
-    13.73   IN PTR goliath.cummings-online.ca.
-    31.7    IN PTR ns3.cummings-online.ca.
-    41.73   IN PTR knw-ha.cummings-online.ca.
-    42.73   IN PTR knw-jump.cummings-online.ca.
-    43.73   IN PTR knw-access.cummings-online.ca.
-    61.73   IN PTR canon.cummings-online.ca.
+    68.1    IN PTR gw-mtl.cummings-online.ca.
+    68.61   IN PTR brother.cummings-online.ca.
+    68.62   IN PTR colour.cummings-online.ca.
+    68.31   IN PTR rpi1.cummings-online.ca.
+    68.32   IN PTR rpi2.cummings-online.ca.
+    68.33   IN PTR rpi3.cummings-online.ca.
+    68.34   IN PTR rpi4.cummings-online.ca.
+    68.73   IN PTR goemon.cummings-online.ca.
+    68.163  IN PTR uaaa.cummings-online.ca.
+    68.231  IN PTR sanda.cummings-online.ca.
+    68.241  IN PTR userver.cummings-online.ca.
+    68.232  IN PTR bambu.cummings-online.ca.
+    68.254  IN PTR spectre.cummings-online.ca.
+    73.1    IN PTR gw-knw.cummings-online.ca.
+    73.12   IN PTR fujiko.cummings-online.ca.
+    73.13   IN PTR goliath.cummings-online.ca.
+    73.31   IN PTR ns3.cummings-online.ca.
+    73.41   IN PTR knw-ha.cummings-online.ca.
+    73.42   IN PTR knw-jump.cummings-online.ca.
+    73.43   IN PTR knw-access.cummings-online.ca.
+    73.61   IN PTR canon.cummings-online.ca.
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
