@@ -65,8 +65,17 @@ data:
     @           IN    NS    ns.cummings-online.ca.
     ns          IN    A     10.11.0.31
 
+    ; MX records
+    @            IN 
+    @            IN MX  1 aspmx.l.google.com.
+    @            IN MX 10 alt4.aspmx.l.google.com.
+    @            IN MX 10 alt3.aspmx.l.google.com.
+    @            IN MX  5 alt1.aspmx.l.google.com.
+    @            IN MX  5 alt2.aspmx.l.google.com.
+
     ; Hosts --------------------------------------------------------------
-    gw-mtl       IN	A	192.168.68.1
+    @            IN A 172.66.0.96
+    @            IN A 162.159.140.98
     bambu        IN	A	192.168.68.232
     brother      IN	A	192.168.68.61
     canon	       IN	A	192.168.73.61
