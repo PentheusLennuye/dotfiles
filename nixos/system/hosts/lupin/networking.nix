@@ -6,7 +6,7 @@
 {
   networking = {
     defaultGateway = "10.11.0.1";
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     hostName = "lupin";
     useDHCP = lib.mkDefault false;
 
