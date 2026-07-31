@@ -28,12 +28,6 @@ spec:
                     app: ldap
                 topologyKey: "kubernetes.io/hostname"
       volumes:
-        - name: 389ds-config
-          configMap:
-            name: 389ds-config
-            items:
-              - key: "container.inf"
-                path: "container.inf"
         - name: 389ds-data
           persistentVolumeClaim:
             claimName: 389ds-nfs-pvc
@@ -56,7 +50,7 @@ spec:
                   name: ds-dm-password
                   key: password
             - name: DS_SUFFIX_NAME
-              value: "dc=cummings-online,dc=local"
+              value: "dc=cummings-online,dc=ca"
             - name: DS_REINDEX
               value: "true"
           image: 389ds/dirsrv:3.1
