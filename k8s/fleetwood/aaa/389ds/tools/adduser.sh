@@ -1,24 +1,29 @@
 #!/usr/bin/env bash
 
+givenName=$1
+sn=$2
+
 source ./z_get_env.sh
 source ./z_get_creds.sh
+source ./z_get_next_uid.sh
 
+ADMINS=10000
+USERS=10001
 OU="ou=People,${DC}"
 
 # Capture User Info ─────────────────────────────────────────────────────────
-
-GIDNUMBER=10001  # 10001 is cn=Users,ou=Groups,...
-
 
 ldif=
 
 echo
 echo "User essentials"
 echo
-read -r -p "Given name: " given_name
-read -r -p "Family name: " sn
+read -r -p "Given name [${givenName}]: " prompt
+if [ "${prompt}" != "" ]; then givenName=$prompt; fi
+read -r -p "Family name [${sn}]: " prompt
+if [ "${prompt}" != "" ]; then sn=$prompt; fi
 read -r -p "Optional middle name or initials: " initials
-cn="${given_name} ${sn}"
+cn="${givenName} ${sn}"
 read -r -p "Preferred Name [${cn}]: " hn
 [ -n "$hn" ] && cn="$hn"
 
@@ -33,21 +38,23 @@ done
 ldif=$(printf "${ldif}\nuid: $uid")
 
 ldif=$(cat <<EOF
-dn: uid=${uid},${OU}
+dn: cn=${cn},${OU}
 uid: ${uid}
-gidNumber: ${GIDNUMBER}
+gidNumber: ${USERS}
 objectClass: inetOrgPerson
 objectClass: posixAccount
 cn: $cn
 displayName: $cn
-givenName: $given_name
+givenName: $givenName
 sn: $sn
 EOF
 )
 
 # UIDNumber
 # This should be automagic. Maybe set a uidMax on LDAP itself.
-read -r -p "UID Value: " uid_number
+uid_number=$NEW_UIDNUMBER
+read -r -p "UID Value [${uid_number}]: " prompt
+if [ "${prompt}" != "" ]; then uid_number=$prompt; fi
 ldif=$(printf "${ldif}\nuidNumber: $uid_number")
 
 # Home Directory
@@ -63,7 +70,7 @@ if [ "${prompt}" != "" ]; then login_shell=$prompt; fi
 ldif=$(printf "${ldif}\nloginShell: $login_shell")
 
 # Mail
-mail="${uid}@${DOMAIN}"
+mail="${uid}@${EXT_DOMAIN}"
 read -r -p "Email Address [${mail}]: " prompt
 if [ "${prompt}" != "" ]; then mail=$prompt; fi
 ldif=$(printf "${ldif}\nmail: $mail")
@@ -91,7 +98,7 @@ echo "${ldif}" | ldapmodify -x -ZZ \
 
 # Cummings Online Domain Admin
 admin=n
-read -r -p "Is ${uid} a domain admin? [y/N]: " prompt
+read -r -p "Is ${cn} a domain admin? [y/N]: " prompt
 if [ "${prompt}" == "y" ]; then
     ldif=$(cat <<EOLD
 dn: cn=Admins,$GROUP_OU
@@ -153,7 +160,7 @@ done
 ldappasswd -s "${u_password}" -x -ZZ \
     -H ldap://${HOST} \
     -D "${ID}" -w "${PASSWORD}" \
-    "uid=${uid},${OU}"
+    "cn=${cn},${OU}"
 
 if [ $? -ne 0 ]; then
     echo "User $uid password not set."

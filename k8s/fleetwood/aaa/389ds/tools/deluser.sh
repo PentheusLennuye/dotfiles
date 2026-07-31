@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+givenName=$1
+sn=$2
+
 # Delete User
 
 source ./z_get_env.sh
@@ -9,15 +12,18 @@ OU="ou=People,${DC}"
 
 delete="ldapdelete -x -ZZ -H ldap://${HOST}"
 modify="ldapmodify -x -ZZ -H ldap://${HOST}"
+search="ldapsearch -x -ZZ -H ldap://${HOST}"
 
-uid=
+cn="${givenName} ${sn}"
 echo
-while [ -z "$uid" ]; do
-    read  -r -p "Uid to delete: " uid
-done
-dn="uid=${uid},${OU}"
+read  -r -p "Full name to delete [$cn]: " prompt
+if [ "${prompt}" != "" ]; then cn=$prompt; fi
+dn="cn=${cn},${OU}"
 
-echo "Deleting user ${uid}"
+uid=$( $search -D "${ID}" -w "${PASSWORD}" "${dn}" | awk '/uid: / {print $2}')
+
+echo "Deleting user ${cn} (${uid})"
+
 $delete -D "${ID}" -w "${PASSWORD}" "${dn}"
 
 # Delete membership from default groups --------------------------------------
