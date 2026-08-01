@@ -43,8 +43,8 @@ echo "Populating group membership"
 ldif=$(cat <<EOF
 dn: $PRIMARY_GROUP
 changetype: modify
-add: memberUid
-memberUid: ${U}
+add: uniqueMember
+uniqueMember: cn=${cn},${OU}
 EOF
 )
 

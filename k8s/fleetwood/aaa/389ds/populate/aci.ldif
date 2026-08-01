@@ -20,10 +20,8 @@
 
 version: 1
 
-dn: ou=People,dc=cummings-online,dc=ca
+dn: dc=cummings-online,dc=ca
 changetype: modify
-delete: aci
--
 add: aci
 aci: (targetattr != "carLicense || employeeNumber || mobile || homePostalAd
  dress")
@@ -35,15 +33,8 @@ aci: (targetattr != "carLicense || employeeNumber || mobile || homePostalAd
 add: aci
 aci: (targetattr != "userPassword")
   (version 3.0;
-   acl "Users can read their own full entry";
+   acl "Users and Service Accounts can read their own full entry";
    allow (search, read)
-   (userdn="ldap:///self");)
--
-add: aci
-aci: (targetattr = "userPassword")
-  (version 3.0;
-   acl "Users can update their own password";
-   allow (write)
    (userdn="ldap:///self");)
 -
 add: aci
@@ -54,45 +45,41 @@ aci: (targetattr = "displayName || mail || co || uid || manager || telephon
   acl "Users can search unrestricted info";
   allow (search, read, compare)
   (groupdn="ldap:///cn=Users,ou=Groups,dc=cummings-online,dc=ca");)
-# Build the shadow, expiry, and personal info -------------------------------------
-#read -r -d '' ldif <<-EOF
-#    carLicense: $car_licence
-#    co: $country
-#    departmentNumber: $departmentNumber
-#    description: $description
-#    employeeNumber: $employee_number
-#    employeeType: $employee_type
-#    homePostalAddress: $home_postal_address
-#    labeledUrI: $home_page_uri $home_page_name
-#    l: $l
-#    jpegPhoto: $jpeg_photo_base64
-#    manager: $manager
-#    mobile: $cell_phone
-#    ou: $ou
-#    o: $o
-#    postalCode
-#    preferredLanguage: $preferred_language_utf
-#    roomNumber: $room_number
-#    sn: $sn
-#    st: $st
-#    street: $street
-#    telephoneNumber: $telephone_number
-#    title: $title
-#    userSMIMECertificate: $user_smime_certificate_pkcs7_base64
-#    userPKCS12: $user_pkcs12_identity_base64
-#EOF
+-
+add: aci
+aci: (targetattr = "displayName || mail || uid || manager || telephon
+ eNumber || description || l || employeeType || title || roomNumber || obje
+ ctClass || sn || givenName")
+  (version 3.0;
+  acl "Service Accounts can search unrestricted info";
+  allow (search, read, compare)
+  (groupdn="ldap:///cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca")
+ ;)
 
-#dn: ou=ServiceAccounts,dc=cummings-online,dc=ca
-#changetype: modify
-#add: aci
-#aci: (targetattr != "userPassword") (version 3.0;
-# acl "Service Accounts can read their own full entry"); allow (read)
-# (groupdn="ldap:///self");)
 
-#dn: ou=ServiceAccounts,dc=cummings-online,dc=ca
-#changetype: modify
-#add: aci
-#aci: (targetattr != "userPassword") (version 3.0;
-# acl "Service Accounts can read their own full entry"); allow (read)
-# (groupdn="ldap:///self");)
+# Target is People --------------------------------------------------------
+dn: ou=People,dc=cummings-online,dc=ca
+changetype: modify
+add: aci
+aci: (targetattr = "userPassword")
+  (version 3.0;
+   acl "Users can update their own password but Service Accounts cannot";
+   allow (write)
+   (userdn="ldap:///self");)
+-
+add: aci
+aci: (targetattr != "userPassword || gidNumber || uidNumber || homeDirecto
+ ry || loginShell")
+  (version 3.0;
+   acl "HR can read full entry minus passwords";
+   allow (search, read, compare)
+   groupdn="ldap:///cn=Personnel,ou=Groups,dc=cummings-online,dc=ca";)
+-
+add: aci
+aci: (targetattr != "userPassword || gidNumber || uidNumber || homeDirecto
+ ry || loginShell")
+  (version 3.0;
+   acl "HR can modify non-security attributes, including nsAccountLock";
+   allow (search, read)
+   groupdn="ldap:///cn=Personnel,ou=Groups,dc=cummings-online,dc=ca";)
 

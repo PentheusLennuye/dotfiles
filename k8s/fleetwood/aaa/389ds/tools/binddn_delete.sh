@@ -25,7 +25,7 @@ ldif=$(cat <<EOF
 dn: $PRIMARY_GROUP
 changetype: modify
 delete: uniqueMember
-uniqueMember: ${U}
+uniqueMember: ${DN}
 EOF
 )
 
