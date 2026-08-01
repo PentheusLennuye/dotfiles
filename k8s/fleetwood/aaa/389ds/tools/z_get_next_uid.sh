@@ -1,4 +1,4 @@
-START_NUMBER=10000
+START_NUMBER=9999
 
 set_new_uid() {
   if [ "$1" == "" ]; then

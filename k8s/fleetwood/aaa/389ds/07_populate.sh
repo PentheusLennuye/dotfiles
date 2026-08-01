@@ -11,3 +11,11 @@ ldapadd -x -ZZ \
     -D cn="Directory Manager" \
     -w "${password}" \
     -f populate/populate.ldif
+
+echo "Setting ACI's"
+
+ldapmodify -x -ZZ \
+    -H ldap://ldap.cummings-online.ca \
+    -D cn="Directory Manager" \
+    -w "${password}" \
+    -f populate/aci.ldif

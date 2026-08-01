@@ -20,8 +20,6 @@ read  -r -p "Full name to delete [$cn]: " prompt
 if [ "${prompt}" != "" ]; then cn=$prompt; fi
 dn="cn=${cn},${OU}"
 
-uid=$( $search -D "${ID}" -w "${PASSWORD}" "${dn}" | awk '/uid: / {print $2}')
-
 echo "Deleting user ${cn} (${uid})"
 
 $delete -D "${ID}" -w "${PASSWORD}" "${dn}"
@@ -30,13 +28,13 @@ $delete -D "${ID}" -w "${PASSWORD}" "${dn}"
 ldif=$(cat <<EOF
 dn: cn=Users,$GROUP_OU
 changetype: modify
-delete: memberUid
-memberUid: ${uid}
+delete: uniqueMember
+uniqueMember: ${dn}
 
 dn: cn=Admins,$GROUP_OU
 changetype: modify
-delete: memberUid
-memberUid: ${uid}
+delete: uniqueMember
+uniqueMember: ${dn}
 EOF
 )
 

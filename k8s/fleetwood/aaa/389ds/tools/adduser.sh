@@ -88,8 +88,8 @@ echo "Populating group membership"
 ldif=$(cat <<EOF
 dn: cn=Users,$GROUP_OU
 changetype: modify
-add: memberUid
-memberUid: $uid
+add: uniqueMember
+uniqueMember: cn=${cn},${OU}
 EOF
 )
 
@@ -103,8 +103,8 @@ if [ "${prompt}" == "y" ]; then
     ldif=$(cat <<EOLD
 dn: cn=Admins,$GROUP_OU
 changetype: modify
-add: memberUid
-memberUid: $uid
+add: uniqueMember
+uniqueMember: cn=${cn},${OU}
 EOLD
 )
     echo "adding ${uid} to the admin group"
