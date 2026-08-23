@@ -3,39 +3,25 @@ let
   homeDir = "/home/gmc";
 in
 {
-  lib.mkIf (builtins.elem config.networking.hostName [ "goemon" "murasaki" ]) {
-    imports = [
-      # All
-      ./localbin.nix
-      ./misc.nix
-      ./neovim.nix
-      ./vim.nix
-      ./kitty.nix
-      ./starship.nix
-      ./zsh.nix
-   
-      # Desktops
-  
-      ./hyprland.nix
-      ./kde.nix
-      ./vlc.nix
-      ./vscode.nix
-      ./waybar.nix
-      ./wofi.nix
-    ];
-  } else {
-    imports = [
-      # All
-      ./localbin.nix
-      ./misc.nix
-      ./neovim.nix
-      ./vim.nix
-      ./kitty.nix
-      ./starship.nix
-      ./zsh.nix
-    ];
-  }
-
+  imports = [
+    # All
+    ./localbin.nix
+    ./misc.nix
+    ./neovim.nix
+    ./vim.nix
+    ./kitty.nix
+    ./starship.nix
+    ./zsh.nix
+ 
+    # Desktops
+    ./hyprland.nix
+    ./kde.nix
+    ./vlc.nix
+    ./vscode.nix
+    ./waybar.nix
+    ./wofi.nix
+  ];
+}
   # Home =====================================================================
   home = {
     homeDirectory = homeDir;
