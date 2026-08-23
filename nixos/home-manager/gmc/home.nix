@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   homeDir = "/home/gmc";
 in
@@ -9,17 +9,20 @@ in
     ./misc.nix
     ./neovim.nix
     ./vim.nix
-
-    # Desktops
-    ./hyprland.nix
-    ./kde.nix
     ./kitty.nix
     ./starship.nix
+    ./zsh.nix
+ 
+    # Desktops
+    lib.mkIf (builtins.elem config.networking.hostName [ "goemon" "murasaki" ]) {
+
+    ./hyprland.nix
+    ./kde.nix
     ./vlc.nix
     ./vscode.nix
     ./waybar.nix
     ./wofi.nix
-    ./zsh.nix
+}
   ];
 
   # Home =====================================================================

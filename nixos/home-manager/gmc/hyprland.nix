@@ -29,7 +29,7 @@ in
   };
 
   wayland.windowManager.hyprland = {
-    configType = "lua";
+    configType = "hyprlang";
     enable = true;
     package = null; # use the system package
     portalPackage = null; # "
