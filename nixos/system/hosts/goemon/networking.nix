@@ -10,7 +10,7 @@
     powerOnBoot = true;
   };
   networking = {
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     hostName = "goemon";
 
     bridges = {

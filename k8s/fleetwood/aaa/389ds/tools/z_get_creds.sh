@@ -1,11 +1,11 @@
 # Get credentials ────────────────────────────────────────────────────────────
 CALLER="Directory Manager"
 ID=
-read -r -p "Administrator username [${CALLER}]: " U
+read -r -p "Administrator name [${CALLER}]: " U
 if [ "${U}" == "" ]; then
   ID="cn=${CALLER}"
 else
-  ID="uid=${U}"
+  ID="cn${U},ou=People,${DC}"
 fi
 
 PASSWORD=

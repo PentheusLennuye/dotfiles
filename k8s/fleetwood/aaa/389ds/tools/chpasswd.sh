@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
+givenName=$1
+sn=$2
 
 source ./z_get_env.sh
 source ./z_get_creds.sh
+
 OU="ou=People,${DC}"
 
 # Start --------------------------------------------------
-uid=
-while [ -z "$uid" ]; do
-    read  -r -p "Username: " uid
-done
-ldif=$(printf "${ldif}\nuid: $uid")
+cn="${givenName} ${sn}"
+read  -r -p "Full name [${cn}]: " prompt
+if [ "${prompt}" != "" ]; then cn=$prompt; fi
+ldif=$(printf "${ldif}\ncn: ${cn}")
 
 u_password=
 while [ -z "$u_password" ]; do
@@ -29,7 +31,7 @@ done
 ldappasswd -s "${u_password}" -x -ZZ \
     -H ldap://${HOST} \
     -D "${ID}" -w "${PASSWORD}" \
-    "uid=${uid},${OU}"
+    "cn=${cn},${OU}"
 
 if [ $? -ne 0 ]; then
     echo "User $uid password not set."

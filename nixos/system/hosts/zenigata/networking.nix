@@ -1,21 +1,36 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   networking = {
     defaultGateway = "10.11.0.1";
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     hostName = "zenigata";
     useDHCP = lib.mkDefault false;
 
     interfaces = {
       enp2s0 = {
         ipv4 = {
-          addresses = [{address = "172.16.73.4"; prefixLength = 24;}];
+          addresses = [
+            {
+              address = "172.16.73.4";
+              prefixLength = 24;
+            }
+          ];
         };
       };
       enp0s20f0u2 = {
         ipv4 = {
-          addresses = [{address = "10.11.0.4"; prefixLength = 16;}];
+          addresses = [
+            {
+              address = "10.11.0.4";
+              prefixLength = 16;
+            }
+          ];
         };
       };
     };

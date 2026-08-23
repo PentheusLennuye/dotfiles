@@ -31,7 +31,7 @@ spec:
               - key: config
                 path: named.conf
               - key: db-cummings-online
-                path: db.cummings-online.local
+                path: db.cummings-online
               - key: db-10-11
                 path: db.10.11
               - key: db-172-16-73

@@ -4,10 +4,10 @@
 
 source ./z_get_creds.sh
 
-HOST="ldap.cummings-online.local"
+HOST="ldap.cummings-online.ca"
 
 U=binddn
-DC="dc=cummings-online,dc=local"
+DC="dc=cummings-online,dc=ca"
 OU="ou=ServiceAccounts,${DC}"
 DN="cn=Bind DN,${OU}"
 
@@ -24,8 +24,8 @@ PRIMARY_GROUP="cn=ServiceAccounts,${GOU}"
 ldif=$(cat <<EOF
 dn: $PRIMARY_GROUP
 changetype: modify
-delete: memberUid
-memberUid: ${U}
+delete: uniqueMember
+uniqueMember: ${DN}
 EOF
 )
 

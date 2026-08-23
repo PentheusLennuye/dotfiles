@@ -1,0 +1,85 @@
+# ┌───────┐
+# │ ACI's ├─────────────────────────────────────────────────────────────────┐
+# └─┬─────┘                                                                 │
+#   │ Access Control Instructions                                           │
+#   │                                                                       │
+#   └───────────────────────────────────────────────────────────────────────┘
+
+# Domain Admins can do anything but read HR stuff. They are horribly powerful.
+
+# Every User and Service Account can read their own full entry
+
+# Every User and Service Account can read People, Groups, Service Accounts, and
+# Systems with restrictions
+
+# Every User can change their password
+
+# Every HR can read People full entries minus the password
+
+# Every HR can disable or re-enable a Person and alter their HR entries.
+
+version: 1
+
+dn: dc=cummings-online,dc=ca
+changetype: modify
+add: aci
+aci: (targetattr != "carLicense || employeeNumber || mobile || homePostalAd
+ dress")
+  (version 3.0;
+   acl "Domain Admins have full rights but exclude personal information";
+   allow (all)
+   groupdn="ldap:///cn=Admins,ou=Groups,dc=cummings-online,dc=ca";)
+-
+add: aci
+aci: (targetattr != "userPassword")
+  (version 3.0;
+   acl "Users and Service Accounts can read their own full entry";
+   allow (search, read)
+   (userdn="ldap:///self");)
+-
+add: aci
+aci: (targetattr = "displayName || mail || co || uid || manager || telephon
+ eNumber || description || l || employeeType || title || roomNumber || obje
+ ctClass")
+  (version 3.0;
+  acl "Users can search unrestricted info";
+  allow (search, read, compare)
+  (groupdn="ldap:///cn=Users,ou=Groups,dc=cummings-online,dc=ca");)
+-
+add: aci
+aci: (targetattr = "displayName || mail || uid || manager || telephon
+ eNumber || description || l || employeeType || title || roomNumber || obje
+ ctClass || sn || givenName")
+  (version 3.0;
+  acl "Service Accounts can search unrestricted info";
+  allow (search, read, compare)
+  (groupdn="ldap:///cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca")
+ ;)
+
+
+# Target is People --------------------------------------------------------
+dn: ou=People,dc=cummings-online,dc=ca
+changetype: modify
+add: aci
+aci: (targetattr = "userPassword")
+  (version 3.0;
+   acl "Users can update their own password but Service Accounts cannot";
+   allow (write)
+   (userdn="ldap:///self");)
+-
+add: aci
+aci: (targetattr != "userPassword || gidNumber || uidNumber || homeDirecto
+ ry || loginShell")
+  (version 3.0;
+   acl "HR can read full entry minus passwords";
+   allow (search, read, compare)
+   groupdn="ldap:///cn=Personnel,ou=Groups,dc=cummings-online,dc=ca";)
+-
+add: aci
+aci: (targetattr != "userPassword || gidNumber || uidNumber || homeDirecto
+ ry || loginShell")
+  (version 3.0;
+   acl "HR can modify non-security attributes, including nsAccountLock";
+   allow (search, read)
+   groupdn="ldap:///cn=Personnel,ou=Groups,dc=cummings-online,dc=ca";)
+
