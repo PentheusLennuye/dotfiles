@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configure 389 Directory Rervice my way
+# Configure 389 Directory Service my way
 
 echo "Populating"
 

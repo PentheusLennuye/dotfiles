@@ -10,7 +10,7 @@ let
   os_fg = "#001193";
   starshipFormatRaw = [
     "[](fg:${os_bg})$os"
-    "[](fg:${os_bg} bg:${dir_bg})$hostname:$directory"
+    "[](fg:${os_bg} bg:${dir_bg})$hostname$directory"
     "[](fg:${dir_bg} bg:${git_bg})$nix_shell"
     "$git_branch"
     "$git_status"
