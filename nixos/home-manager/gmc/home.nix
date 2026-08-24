@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    # All
     ./localbin.nix
     ./misc.nix
     ./neovim.nix
@@ -12,26 +11,12 @@ in
     ./kitty.nix
     ./starship.nix
     ./zsh.nix
- 
-    # Desktops
-    ./hyprland.nix
-    ./kde.nix
-    ./vlc.nix
-    ./vscode.nix
-    ./waybar.nix
-    ./wofi.nix
   ];
 }
   # Home =====================================================================
   home = {
     homeDirectory = homeDir;
     sessionPath = [ "${homeDir}/.local/bin" ];
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1"; # Wayland on Chromium etc
-      WLR_NO_HARDWARE_CURSORS = "1"; # Hyprland cursor
-      HYPRCURSOR_SIZE = "24";
-      HYPRCURSOR_THEME = "rose-pine-hyprcursor";
-    };
     stateVersion = "23.11";
     username = "gmc";
   };
