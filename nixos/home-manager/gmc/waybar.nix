@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  colour_a = "#2b58d4";
+  colour_a = "#3b68e4";
   colour_c = "#d4a42b";
   white = "#ffffff";
 in
@@ -14,13 +14,12 @@ in
         layer = "top";
         position = "top";
         modules-left = [
-          "battery"
           "power-profiles-daemon"
+          "battery"
           "temperature"
           "cpu"
           "memory"
           "disk"
-          "hyprland/workspaces"
         ];
         modules-center = [
           "custom/ireland"
@@ -29,6 +28,7 @@ in
           "custom/china"
         ];
         modules-right = [
+          "hyprland/workspaces"
           "pulseaudio"
           "idle_inhibitor"
           "custom/notification"
@@ -200,147 +200,190 @@ in
     ];
     style = ''
       	* {
-      		font-size: 12px;
-      		font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
-          		font-weight: bold;
+            font-size: 12px;
+      		  font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
+            font-weight: bold;
       	}
+
+      	#window {
+            background-color: rgba(200,200,200,50);
+          	border-radius: 0px 15px 15px 0px;
+          	margin: 2px 2px 2px 0px;
+          	padding: 2px 10px;
+      	}
+
       	window#waybar {
-                background-color: rgba(26,27,38,0);
-                border-bottom: 1px solid rgba(26,27,38,0);
-                border-radius: 0px;
+            background-color: rgba(26,27,38,0);
+            border-bottom: 1px solid rgba(26,27,38,0);
+            border-radius: 0px;
       	}
-      	#workspaces {
-          		background: rgba(0,0,0,0);
-          		margin: 5px;
-          		padding: 2px 1px;
-          		border-radius: 0px 5px 5px 0px;
-          		border: 0px;
-          		font-style: normal;
-      	}
-      	#workspaces button {
-                  color: ${colour_a};
-          		padding: 0px 5px;
-          		border-radius: 15px;
-          		border: 0px;
-          		opacity: 1.0;
-      	}
-      	#workspaces button:hover{
-                  color: ${colour_a};
-          		padding: 0px 5px;
-          		border-radius: 15px;
-          		border: 0px;
-          		opacity: 1.0;
-      	}
+
       	tooltip {
         		border-radius: 10px;
       	}
-      	tooltip label {
-      	}
-      	#window {
-                  background-color: rgba(200,200,200,50);
-          		border-radius: 0px 15px 15px 0px;
-          		margin: 5px 5px 5px 0px;
-          		padding: 2px 20px;
-      	}
+
+      	tooltip label { }
+
+        /*
+         * ╭─────────────────────────────────────────────────────────────────╮
+         * │                           Power                                 │
+         * ╰─────────────────────────────────────────────────────────────────╯
+         */
+
       	#battery {
-          		border-radius: 15px;
-          		margin: 5px;
-          		padding: 2px 20px;
+            border-radius: 15px;
+            color: ${white};
+            margin: 2px;
+            padding: 2px 10px;
       	}
         #power-profiles-daemon {
-          		border-radius: 15px;
-          		margin: 5px;
-          		padding: 2px 10px;
+            border-radius: 15px;
+            color: ${white};
+          	margin: 2px;
+          	padding: 2px 10px;
       	}
-      	#pulseaudio {
-                  background-color: #000000;
-                  color: ${white};
-          		border-radius: 15px 15px 15px 15px;
-          		margin: 5px;
-          		padding: 2px 20px;
-      	}
+
+        /*
+         * ╭─────────────────────────────────────────────────────────────────╮
+         * │                      Hardware Monitoring                        │
+         * ╰─────────────────────────────────────────────────────────────────╯
+         */
+
       	#temperature {
-                  color: ${colour_a};
-          		border-radius: 15px 0px 0px 50px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 10px;
+            color: ${colour_a};
+          	border-radius: 15px 0px 0px 50px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
       	#cpu {
-          		background-color: rgba(0,0,0,0);
-                  color: ${colour_a};
-          		border-radius: 0px 0px 0px 0px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 10px;
+          	background-color: rgba(0,0,0,0);
+            color: ${colour_a};
+          	border-radius: 0px 0px 0px 0px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
       	#memory {
-          		background-color: rgba(0,0,0,0);
-                  color: ${colour_a};
-          		border-radius: 0px 0px 0px 0px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 10px;
+          	background-color: rgba(0,0,0,0);
+            color: ${colour_a};
+            border-radius: 0px 0px 0px 0px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
       	#disk {
-          		background-color: rgba(0,0,0,0);
-                  color: ${colour_a};
-          		border-radius: 0px 0px 0px 0px;
-          		margin: 5px;
-          		padding: 2px 10px;
+          	background-color: rgba(0,0,0,0);
+            color: ${colour_a};
+          	border-radius: 0px 0px 0px 0px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
+
+        /*
+         * ╭─────────────────────────────────────────────────────────────────╮
+         * │                      International Time                         │
+         * ╰─────────────────────────────────────────────────────────────────╯
+         */
+
       	#custom-ireland {
-                  color: ${colour_c};
-                  background-color: #000000;
-          		border-radius: 15px 0px 0px 50px;
-          		margin: 5px;
-          		padding: 2px 20px;
+            color: ${colour_c};
+            background-color: #000000;
+          	border-radius: 15px 0px 0px 50px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
       	#custom-clock {
-                  color: ${colour_c};
-                  background-color: #000000;
-          		border-radius: 0px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 20px;
+            background-color: #000000;
+            border-radius: 0px;
+            color: ${colour_a};
+            font-size: 14px;
+            margin: 2px;
+            padding: 2px 10px;
       	}
       	#custom-germany {
-                  color: ${colour_c};
-                  background-color: #000000;
-          		border-radius: 0px;
-          		margin: 5px;
-          		padding: 2px 20px;
+            color: ${colour_c};
+            background-color: #000000;
+            border-radius: 0px;
+            margin: 2px;
+          	padding: 2px 10px;
       	}
       	#custom-china {
-                  color: ${colour_c};
-                  background-color: #000000;
-          		border-radius: 0px 50px 15px 0px;
-          		margin: 5px;
-          		padding: 2px 20px;
+            color: ${colour_c};
+            background-color: #000000;
+          	border-radius: 0px 50px 15px 0px;
+          	margin: 2px;
+          	padding: 2px 10px;
+      	}
+
+        /*
+         * ╭─────────────────────────────────────────────────────────────────╮
+         * │                       Window Paging                             │
+         * ╰─────────────────────────────────────────────────────────────────╯
+         */
+
+      	#workspaces {
+          	background: rgba(0,0,0,0);
+          	border-radius: 0px 5px 5px 0px;
+          	border: 0px;
+          	font-style: normal;
+          	margin: 2px;
+          	padding: 2px 10px;
+      	}
+      	#workspaces button {
+            color: ${colour_a};
+          	padding: 0px 5px;
+          	border-radius: 15px;
+          	border: 0px;
+          	opacity: 1.0;
+          	margin: 2px;
+          	padding: 2px 10px;
+      	}
+      	#workspaces button:hover{
+            color: ${colour_a};
+          	padding: 0px 5px;
+          	border-radius: 15px;
+          	border: 0px;
+          	opacity: 1.0;
+      	}
+
+        /*
+         * ╭─────────────────────────────────────────────────────────────────╮
+         * │                        Input / Output                           │
+         * ╰─────────────────────────────────────────────────────────────────╯
+         */
+
+      	#pulseaudio {
+            background-color: #000000;
+            color: ${white};
+          	border-radius: 15px 0px 0px 50px;
+          	margin: 2px;
+          	padding: 2px 10px;
       	}
       	#idle_inhibitor {
-                  background-color: #000000;
-                  color: ${white};
-          		border-radius: 15px 0px 0px 50px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 20px;
+            background-color: #000000;
+            color: ${white};
+          	border-radius: 0px 0px 0px 0px;
+          	margin: 2px;
+          	padding: 2px 10px;
       	}
       	#custom-notification {
-                  background-color: #000000;
-                  color: ${white};
-          		border-radius: 0px 0px 0px 0px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 20px;
-      	}
-      	#network {
-                  background-color: #000000;
-                  color: ${white};
-          		border-radius: 0px 50px 15px 0px;
-          		margin: 5px;
-          		padding: 2px 20px;
+            background-color: #000000;
+            color: ${white};
+          	border-radius: 0px 0px 0px 0px;
+          	margin: 2px;
+          	padding: 2px 10px;
       	}
       	#tray {
-                  background-color: #000000;
-                  color: ${white};
-          		border-radius: 0px 0px 0px 0px;
-          		margin: 5px 0px 5px 5px;
-          		padding: 2px 20px;
+            background-color: #000000;
+            color: ${white};
+          	border-radius: 0px 0px 0px 0px;
+          	margin: 2px;
+          	padding: 2px 10px;
+      	}
+      	#network {
+            background-color: #000000;
+            color: ${white};
+          	border-radius: 0px 50px 15px 0px;
+          	margin: 2px;
+          	padding: 2px 10px;
       	}
     '';
   };

@@ -10,7 +10,7 @@ let
   os_fg = "#001193";
   starshipFormatRaw = [
     "[](fg:${os_bg})$os"
-    "[](fg:${os_bg} bg:${dir_bg})$directory"
+    "[](fg:${os_bg} bg:${dir_bg})$hostname:$directory"
     "[](fg:${dir_bg} bg:${git_bg})$nix_shell"
     "$git_branch"
     "$git_status"
@@ -51,6 +51,18 @@ in
         Raspbian = " ";
         Ubuntu = " ";
         Windows = "󰍲 ";
+      };
+
+      # ┌─────────────────────────────────────────────────────────────────────────────────────────┐
+      # │                                                                                         │
+      # │ Hostname Configuration                                                                  │
+      # │                                                                                         │
+      # └─────────────────────────────────────────────────────────────────────────────────────────┘
+
+      hostname = {
+        ssh_only = true;
+        format = "[ $hostname]($style)[:]($style)";
+        style = "fg:#e3e5e5 bg:#769ff0";
       };
 
       # ┌─────────────────────────────────────────────────────────────────────────────────────────┐

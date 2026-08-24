@@ -43,6 +43,7 @@ in
     pkgs.elegant-sddm
     pkgs.font-manager
     pkgs.input-remapper # reprograms mice, trackballs etc
+    pkgs.teams-for-linux
     pkgs.texlivePackages.charter
     pkgs.wvkbd
     pkgs.xwayland

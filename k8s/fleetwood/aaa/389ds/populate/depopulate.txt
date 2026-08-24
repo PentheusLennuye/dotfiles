@@ -1,0 +1,10 @@
+cn=Personnel,ou=Groups,dc=cummings-online,dc=ca
+cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca
+cn=Users,ou=Groups,dc=cummings-online,dc=ca
+cn=Admins,ou=Groups,dc=cummings-online,dc=ca
+ou=ServiceAccounts,dc=cummings-online,dc=ca
+ou=Groups,dc=cummings-online,dc=ca
+ou=People,dc=cummings-online,dc=ca
+ou=Systems,dc=cummings-online,dc=ca
+dc=cummings-online,dc=ca
+

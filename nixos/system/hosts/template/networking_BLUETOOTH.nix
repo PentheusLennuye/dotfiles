@@ -10,7 +10,7 @@
     powerOnBoot = true;
   };
   networking = {
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     firewall.enable = true;
     hostName = "HOSTNAME";
     networkmanager.enable = true;

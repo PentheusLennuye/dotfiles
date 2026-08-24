@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: krb5-admin
+  name: krb5-admin
+  namespace: it
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: krb5-admin
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: krb5-admin
+    spec:
+      volumes:
+        - name: krb5-data
+          persistentVolumeClaim:
+            claimName: krb5-nfs-pvc
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: krb5-admin
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: krb5-admin
+          image: gcavalcante8808/krb5-server:latest
+          env:
+            - name: KRB5_REALM
+              value: "CUMMINGS-ONLINE.LOCAL"
+            - name: KRB5_ADMINSERVER
+              value: "krb5.cummings-online.local"
+            - name: KRB5_KDC
+              value: "krb5.cummings-online.local"
+            - name: KRB5_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: krb5-admin
+                  key: password
+          ports:
+            - containerPort: 88
+            - containerPort: 464
+            - containerPort: 749
+          volumeMounts:
+            - name: krb5-data
+              readOnly: false
+              mountPath: /var/lib/krb5kdc

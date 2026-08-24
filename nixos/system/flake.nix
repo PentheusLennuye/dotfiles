@@ -32,34 +32,6 @@
         # │ Insert your hosts here                                                       │
         # │                                                                              │
         # └──────────────────────────────────────────────────────────────────────────────┘
-        goemon = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            net = {
-              if0 = "enp6s0";
-            };
-          };
-          modules = common_modules ++ [
-            ./gpu/amd.nix
-            ./hosts/goemon
-            ./roles/alarm.nix
-            ./roles/audio-engineering.nix
-            ./roles/container-host.nix
-            ./roles/desktop.nix
-            ./roles/development.nix
-            ./roles/engineering.nix
-            ./roles/gaming.nix
-            # ./roles/knowlton.nix
-            ./roles/media.nix
-            ./roles/montreal.nix
-            ./roles/netadmin.nix
-            ./roles/publishing.nix
-            ./roles/remote-access.nix
-            ./roles/virt-host.nix
-          ];
-        };
-        # ────────────────────────────────────────────────────────────────────────────────
         jigen = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = common_modules ++ [
@@ -87,26 +59,6 @@
             ./roles/nfs-server.nix
             ./roles/time.nix
             ./roles/webhost.nix
-          ];
-        };
-        # ────────────────────────────────────────────────────────────────────────────────
-        murasaki = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = common_modules ++ [
-            ./gpu/opengl.nix
-            ./hosts/murasaki
-            ./roles/alarm.nix
-            ./roles/audio-engineering.nix
-            ./roles/container-host.nix
-            ./roles/development.nix
-            ./roles/engineering.nix
-            ./roles/gaming.nix
-            ./roles/media.nix
-            ./roles/netadmin.nix
-            ./roles/publishing.nix
-            ./roles/thinkbook.nix
-            ./roles/virt-host.nix
           ];
         };
         # ────────────────────────────────────────────────────────────────────────────────
