@@ -52,7 +52,7 @@ good to go.
 
 There is no cedilla dead-key unless I receive requests.
 
-### 1.3 Punctuation and Currency
+### 1.3 Punctuation, Symbols, and Currency
 
 | Symbol              | Combination            |
 | ------------------- | ---------------------- |
@@ -60,6 +60,7 @@ There is no cedilla dead-key unless I receive requests.
 | ¿                   | AltGr + 2 or AltGr + w |
 | « (left guillemet)  | AltGr + z              |
 | » (right guillemet) | AltGr + x              |
+| ° (Degree)          | AltGr + ISO (\\\|«»)   |
 | € (Euro)            | AltGr + e              |
 | £ (Pound Sterling)  | AltGr + l              |
 | ¥ (Yen)             | AltGr + y              |
@@ -125,6 +126,7 @@ cp symbols/* $XDG_CONFIG_HOME/xkb/symbols
 1. Copy `rules/evdev_snippet` into the clipboard
 2. As root, edit `/usr/share/X11/xkb/rules/evdev.xml` and insert the contents of
    the clipboard into the bottom of the `<layoutList>` element.
+3. `cp symbols/* /usr/share/X11/xkb/symbols`
 
 ## 4. Use
 
