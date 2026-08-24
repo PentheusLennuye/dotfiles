@@ -62,9 +62,8 @@ in
       music = "$HOME/Music";
       pictures = "$HOME/Pictures";
       publicShare = "$HOME/Share";
+      setSessionVariables = true;
       videos = "$HOME/Videos";
     };
   };
-
-
 }
