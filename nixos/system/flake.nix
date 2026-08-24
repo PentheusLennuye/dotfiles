@@ -51,8 +51,6 @@
           modules = common_modules ++ [
             ./hosts/lupin
             ./roles/dbms.nix
-            ./roles/development.nix
-            ./roles/binarycache.nix
             ./roles/container-host.nix
             ./roles/k3s-first-server.nix
             ./roles/montreal.nix
