@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   homeDir = "/home/gmc";
 in
@@ -12,7 +12,6 @@ in
     ./starship.nix
     ./zsh.nix
   ];
-}
   # Home =====================================================================
   home = {
     homeDirectory = homeDir;
