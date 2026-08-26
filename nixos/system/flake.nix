@@ -68,7 +68,6 @@
             ./roles/container-host.nix
             ./roles/k3s-server.nix
             ./roles/montreal.nix
-            ./roles/vpn-mtl-endpoint.nix
             ./roles/webhost.nix
           ];
         };
