@@ -1,0 +1,5 @@
+HOSTNAME=$1
+DOMAIN=$2
+STORE=$3
+SECRET_NAME=389ds-secondary-tls
+

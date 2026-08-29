@@ -169,6 +169,7 @@ words = [
     "wayland",
     "writeback",
     "xdg",
+    "xkb",
     "yamlfmt",
     "yamllint",
     "yamlls",
