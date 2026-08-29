@@ -17,6 +17,7 @@
     fwupd-efi
     git
     gnupg
+    killall
     libnfs
     libsecret
     lsd # ls +
@@ -26,6 +27,7 @@
     mesa
     nfs-utils
     openssl
+    pass
     pciutils
     pstree
     rsync
@@ -35,6 +37,7 @@
     vim
     wget
     tmux
+    tzdata
     zip
   ];
 

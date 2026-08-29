@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xkbConfigRegistry SYSTEM "xkb.dtd">
+<xkbConfigRegistry version="1.1">
+  <layoutList>
+    <layout>
+      <configItem>
+        <name>gmc</name>
+        <shortDescription>en</shortDescription>
+        <description>English (Canada)</description>
+        <countryList>
+          <iso3166Id>CA</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>eng</iso639Id>
+          <iso639Id>deu</iso639Id>
+          <iso639Id>fra</iso639Id>
+          <iso639Id>ron</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>colemak-dh</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, Colemak-DHm)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>tarmak1</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, Tarmak-DHm 1st level)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>tarmak2</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, Tarmak-DHm 2nd level)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>tarmak3</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, Tarmak-DHm 3rd level)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>tarmak4</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, Tarmak-DHm 4th level)</description>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+  </layoutList>
+</xkbConfigRegistry>

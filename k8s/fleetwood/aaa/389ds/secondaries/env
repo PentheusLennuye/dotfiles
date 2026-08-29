@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+while [[ -z "$STORE" ]]; do
+    read -p "Service hostname: " HOSTNAME
+    read -p "Domain name: " DOMAIN
+    read -p "Certificate store path: " STORE
+done
+

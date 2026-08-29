@@ -8,7 +8,7 @@
 {
   networking = {
     defaultGateway = "10.11.0.1";
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     hostName = "jigen";
     useDHCP = lib.mkDefault false;
 

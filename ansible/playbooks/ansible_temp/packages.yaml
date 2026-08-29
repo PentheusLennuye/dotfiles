@@ -1,0 +1,149 @@
+---
+- name: Install packages
+  hosts: goemon.cummings-online.ca
+  become: true
+  tasks:
+    - name: Install Arch package utilities
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - paru
+        - uv
+        - yay
+
+    - name: Install additional system services
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - services
+      loop:
+        - cups
+        - sddm
+
+    - name: Install system configuration utilities
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - openldap
+
+    - name: Install CLI applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - neovim
+        - starship
+        - lsd
+        - calc
+        - lsof
+        - texlive
+        - tree
+        - tmux
+        - pandoc
+        - pass
+
+    - name: Install sddm and wayland helpers
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - breeze
+        - plasma-desktop
+
+    - name: Install desktop applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - desktop
+      loop:
+        - bitwarden
+        - calibre
+        - brave
+        - digikam
+        - font-manager
+        - freecad
+        - gimp
+        - inkscape
+        - krita
+        - obsidian
+        - protonmail-bridge
+        - libreoffice-fresh
+        - libreoffice-fresh-en-gb
+        - libreoffice-fresh-fr
+        - texstudio
+        - thunderbird
+        - thunderbird-i18n-en-gb
+        - thunderbird-i18n-fr
+        - teams-for-linux
+        - ttf-jetbrains-mono-nerd
+        - yubikey-manager
+        - zathura
+        - zathura-pdf-mupdf
+
+    - name: Install media applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - freetube
+        - handbrake
+        - playerctl
+        - reaper
+        - spotify-launcher
+        - vlc
+
+    - name: Install programming languages and tools
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - dev
+      loop:
+        - npm
+        - cmake
+        - codebook-lsp
+        - lazygit
+        - go
+        - golangci-lint
+        - cabal-install
+        - ghc
+        - haskell-language-server
+        - markdownlint-cli
+        - markdownlint-cli2
+        - python-cookiecutter
+        - python-poetry
+        - cargo
+        - rust
+        - rust-analyzer
+        - yq
+        - yamllint
+
+    - name: Install gaming applications and plugins
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - cachyos-gaming-meta
+        - cachyos-gaming-applications
+
+    - name: Install virtualization and containerization hosting packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - virt
+      loop:
+        - helm
+        - kubectl
+        - kube-linter
+        - qemu-full
+        - swtpm
+        - virt-manager

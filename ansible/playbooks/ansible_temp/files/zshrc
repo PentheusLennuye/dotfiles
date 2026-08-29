@@ -1,0 +1,105 @@
+# File: .zshrc
+# ZSHRC for Linux
+
+export ZSH_CUSTOM=$HOME/.config/zsh
+typeset -U path
+
+# ╭────────────────────╮
+# │ Paths              ├──────────────────────────────────────────────╮
+# ╰┬───────────────────╯                                              │
+#  ╰──────────────────────────────────────────────────────────────────╯
+export PATH=$HOME/.local/bin:/snap/bin:$HOME/.cargo/bin:/usr/local/go/bin:$PATH
+
+# ╭────────────────────╮
+# │ Plugins            ├──────────────────────────────────────────────╮
+# ╰┬───────────────────╯                                              │
+#  ╰──────────────────────────────────────────────────────────────────╯
+plugin_dirs=(
+    zsh-history-substring-search
+    zsh-syntax-highlighting
+)
+for plugin_dir in ${plugin_dirs[@]}; do
+    path+="$HOME/.config/zsh/plugins/$plugin_dir"
+done
+unset plugin_dir plugin_dirs
+
+plugins=(
+    zsh-history-substring-search/zsh-history-substring-search.zsh
+    zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+)
+for plugin in ${plugins[@]}; do
+    source "$HOME/.config/zsh/plugins/$plugin"
+done
+unset plugin plugins
+
+# ╭────────────────────╮
+# │ Session Variables  ├──────────────────────────────────────────────╮
+# ╰┬───────────────────╯                                              │
+#  ╰──────────────────────────────────────────────────────────────────╯
+export CA=/home/gmc/Documents/spaces/tech/infra/ca
+export DF=$HOME/Documents/spaces/tech/infra/dotfiles
+export GOPATH=$HOME/.go
+export KUBECONFIG=$HOME/.kube/config
+export NLTK_DATA=$HOME/Documents/extra/nltk_data
+export SSH_ASKPASS=
+export SRC=$HOME/Documents/spaces/tech/programming/projects
+export STEAM_EXTRA_COMPAT_TOOLS_PATH=${HOME}/.steam/root/compatibilitytools.d
+
+# ╭────────────────────╮
+# │ Aliases            ├──────────────────────────────────────────────╮
+# ╰┬───────────────────╯                                              │
+#  ╰──────────────────────────────────────────────────────────────────╯
+alias dotfiles="cd $DF"
+alias k="kubectl"
+alias ke="kubectl exec"
+alias ls=lsd
+alias ll="ls -l"
+alias la="ls -la"
+alias ssh="TERM=xterm-256color ssh"
+alias src="cd $SRC"
+
+# ╭────────────────────╮
+# │ History            ├──────────────────────────────────────────────╮
+# ╰┬───────────────────╯                                              │
+#  ╰──────────────────────────────────────────────────────────────────╯
+autoload -U compinit && compinit
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=$HOME/.zsh_history
+
+set_opts=(
+    HIST_FCNTL_LOCK HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+    NO_APPEND_HISTORY EXTENDED_HISTORY NO_HIST_EXPIRE_DUPS_FIRST
+    NO_HIST_FIND_NO_DUPS NO_HIST_IGNORE_ALL_DUPS NO_HIST_SAVE_NO_DUPS
+    INC_APPEND_HISTORY
+)
+for opt in ${set_opts[@]}; do
+    setopt "$opt"
+done
+unset opt set_opts
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+#
+# ╭─────────────────────╮
+# │ VM's and containers ├─────────────────────────────────────────────╮
+# ╰┬────────────────────╯                                             │
+#  │ Local KVM (Libvirt), Kubernetes                                  │
+#  │                                                                  │
+#  ╰──────────────────────────────────────────────────────────────────╯
+export LIBVIRT_DEFAULT_URI="qemu:///system";
+source <(kubectl completion zsh)
+
+# ╭───────────╮
+# │ Languages ├───────────────────────────────────────────────────────╮
+# ╰┬──────────╯                                                       │
+#  ╰──────────────────────────────────────────────────────────────────╯
+# Golang
+. $HOME/.cargo/env
+
+# ╭─────────╮
+# │ Prompts ├─────────────────────────────────────────────────────────╮
+# ╰┬────────╯                                                         │
+#  ╰──────────────────────────────────────────────────────────────────╯
+eval "$(starship init zsh)"
+

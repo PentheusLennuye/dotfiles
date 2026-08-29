@@ -1,0 +1,73 @@
+# Home -----------------------------------------------------
+Host 192.168.73.73
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+  Port 2222
+
+Host goemon*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+  Port 2222
+
+Host sanda
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host rpi*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host sisyphus
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+  
+Host zantetsuken*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host goliath*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host knw*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+# Github ────────────────────────────────────────────────────────────────────
+Host github.com
+  Hostname github.com
+  IdentityFile ~/.ssh/gmcgithub
+  # IdentityFile ~/.ssh/pentheusbot_rsa
+
+# Fleetwood ────────────────────────────────────────────────────────────────────
+Host *.it.cummings-online.local
+   User ubuntu
+   IdentityFile ~/.ssh/jumpkey
+
+Host lupin*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+  Port 2222
+
+Host jigen
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+  Port 2222
+
+Host zenigata
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host 172.16.73*
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+# End Fleetwood ────────────────────────────────────────────────────────────────
+
+# VM ────────────────────────────────────────────────────────────────────
+Host uaaa
+  User gmc
+  IdentityFile ~/.ssh/id_gmc
+
+Host userver
+  User gmc
+  IdentityFile ~/.ssh/id_gmc

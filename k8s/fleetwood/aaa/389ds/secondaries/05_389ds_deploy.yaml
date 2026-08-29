@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ldap
+  name: ldap
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ldap
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: ldap
+                topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: 389ds-data
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-pvc
+        - name: 389ds-tls
+          secret:
+            secretName: 389ds-tls
+            items:
+              - key: "server.key"
+                path: "server.key"
+              - key: "server.crt"
+                path: "server.crt"
+              - key: "ca.crt"
+                path: "ca/ca.crt"
+      containers:
+        - name: dirsrv
+          env:
+            - name: DS_DM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-dm-password
+                  key: password
+            - name: DS_SUFFIX_NAME
+              value: "dc=cummings-online,dc=ca"
+            - name: DS_REINDEX
+              value: "true"
+          image: 389ds/dirsrv:3.1
+          ports:
+            - containerPort: 3389
+            - containerPort: 3636
+          volumeMounts:
+            - name: 389ds-data
+              readOnly: false
+              mountPath: /data
+            - name: 389ds-tls
+              readOnly: true
+              mountPath: /data/tls

@@ -12,6 +12,7 @@
         font_family = "JetBrains mono";
         font_size = "11.5";
         shell = "zsh";
+        window_padding_width = "3";
       };
     };
   };

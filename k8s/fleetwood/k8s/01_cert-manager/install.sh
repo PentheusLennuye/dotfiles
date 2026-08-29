@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 NS=it
-CERTPATHBASE=$1   # e.g. $HOME/tmp/cummings-online.local
+CERTPATHBASE=$1   # e.g. $HOME/tmp/cummings-online.ca
 VERSION=v1.15.3
 REPO=https://github.com/cert-manager/cert-manager
 

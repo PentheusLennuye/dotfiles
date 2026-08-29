@@ -29,7 +29,9 @@
   nixpkgs.config = {
     allowUnfree = true;
     rocmSupport = true;
-    permittedInsecurePackages = [ "electron-39.8.10" ];
+    permittedInsecurePackages = [
+      "pnpm-10.29.2"
+    ];
   };
 
   # I also want my emulation station
@@ -37,9 +39,6 @@
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
-  #time.timeZone = "Europe/Berlin";
-  #time.timeZone = "Europe/London";
-  #time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";

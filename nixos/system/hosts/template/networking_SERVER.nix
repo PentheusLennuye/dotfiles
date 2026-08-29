@@ -7,7 +7,7 @@
 {
   networking = {
     defaultGateway = "192.168.68.1";
-    domain = "cummings-online.local";
+    domain = "cummings-online.ca";
     firewall.enable = true;
     hostName = "HOSTNAME";
     interfaces = {

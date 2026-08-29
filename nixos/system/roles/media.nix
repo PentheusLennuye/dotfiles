@@ -7,6 +7,7 @@
     libbluray-full
     playerctl
     spotify
+    teams-for-linux
     vlc
   ];
 }

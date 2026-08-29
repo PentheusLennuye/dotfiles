@@ -29,13 +29,15 @@
     obsidian
     onlyoffice-desktopeditors
     pavucontrol # PulseAudio control requires GTK
+    protonmail-desktop
+    protonmail-bridge
     reaper # DAW
     screenfetch # Show off!
     slurp # Hyprland screen selector
     starship # CLI ricer
     # surge # synthesizer
     swaynotificationcenter # Waybar modules require this
-    thunderbird # Email
+    thunderbird-140 # Email
     vista-fonts # Better fonts for Firefox etc
     waybar # task/toolbar for Hyprland
     wofi # program selector for Hyprland
