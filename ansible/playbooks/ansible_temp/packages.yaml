@@ -83,6 +83,7 @@
       loop:
         - bitwarden
         - yubikey-manager
+        - kwallet
 
     - name: Install personal knowledge management packages
       ansible.builtin.package:
