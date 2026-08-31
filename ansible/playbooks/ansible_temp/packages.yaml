@@ -1,6 +1,6 @@
 ---
 - name: Install packages
-  hosts: goemon.cummings-online.ca
+  hosts: all
   become: true
   tasks:
     - name: Install Arch package utilities

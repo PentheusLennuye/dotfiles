@@ -1,0 +1,50 @@
+-- Hyprland default apps
+
+TERMINAL = "kitty"
+FILE_MANAGER = "dolphin"
+BROWSER = "brave"
+EDITOR = "gnome-text-editor --new-window"
+CALCULATOR = "gnome-calculator"
+
+-- ╭──────────╮
+-- │ Monitors ├───────────────────────────────────────────────────────────────
+-- ╰──────────╯
+{% if ansible_hostname in role.laptop %}
+MONITOR1 = "eDP-1"
+MONITOR1_MODE = "1920x1080@60"
+MONITOR2 = "HDMI-1"
+MONITOR2_MODE = "1920x1080@60"
+PRIMARY_MONITOR = MONITOR1
+PRIMARY_MONITOR_MODE = MONITOR1_MODE
+{% elif ansible_hostname in resolution['4k'] %}
+MONITOR1 = "DP-1"
+MONITOR1_MODE = "1920x1080@60"
+MONITOR2 = "DP-2"
+MONITOR2_MODE = "3840x2160@120"
+MONITOR3 = "DP-3"
+MONITOR3_MODE = "1920x1080@60"
+PRIMARY_MONITOR = MONITOR2
+PRIMARY_MONITOR_MODE = MONITOR2_MODE
+{% else %}
+MONITOR1 = "DP-1"
+MONITOR1_MODE = "1920x1080@60"
+MONITOR2 = "DP-2"
+MONITOR2_MODE = "1920x1080@60"
+MONITOR3 = "DP-3"
+MONITOR3_MODE = "1920x1080@60"
+PRIMARY_MONITOR = MONITOR2
+PRIMARY_MONITOR_MODE = MONITOR2_MODE
+{% endif %}
+
+PRIMARY_MONITOR = MONITOR1
+PRIMARY_MONITOR_MODE = MONITOR1_MODE
+
+-- Workspaces
+NUM_WPM = 3 -- Number of workspaces per monitor (Max 10)
+mediaWorkspace = 3
+
+-- ╭──────────────╮
+-- │ Applications ├───────────────────────────────────────────────────────────────────────────────
+-- ╰──────────────╯
+MINIPLAYER_W = 320
+MINIPLAYER_H = 240

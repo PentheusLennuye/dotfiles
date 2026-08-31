@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  hosts: murasaki.cummings-online.ca
+  become: true
+  tasks:
+    - name: Install tablet requirements
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - wf-osk-bin

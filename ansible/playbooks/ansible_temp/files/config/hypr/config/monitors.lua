@@ -3,8 +3,8 @@
 
 -- MONITOR2 is a Dell U3225QE
 hl.monitor({
-	output = MONITOR2,
-	mode = "3840x2160@120",
+	output = PRIMARY_MONITOR,
+	mode = PRIMARY_MONITOR_MODE,
 	position = "0x0",
 	scale = "1.25",
 	transform = 0,
