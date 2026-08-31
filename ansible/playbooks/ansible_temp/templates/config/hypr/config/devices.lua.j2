@@ -1,5 +1,6 @@
 -- Devices such as touchscreens
 
+{% if ansible_hostname == "murasaki" %}
 hl.device({
 	name = "wacom-hid-526b-pen",
 	output = "eDP-1",
@@ -9,3 +10,4 @@ hl.device({
 	name = "wacom-hid-526b-finger",
 	output = "eDP-1",
 })
+{% endif %}

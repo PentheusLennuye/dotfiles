@@ -152,8 +152,7 @@
         - python-cookiecutter
         - python-poetry
         - cargo
-        - rust
-        - rust-analyzer
+        - rustup
         - yq
         - yamllint
 
