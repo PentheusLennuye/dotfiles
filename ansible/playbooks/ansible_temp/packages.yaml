@@ -62,8 +62,6 @@
         - packages
         - desktop
       loop:
-        - bitwarden
-        - calibre
         - brave
         - digikam
         - font-manager
@@ -71,26 +69,59 @@
         - gimp
         - inkscape
         - krita
+        - ttf-jetbrains-mono-nerd
+        - zathura
+        - zathura-pdf-mupdf
+
+    - name: Install data security packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - data-security
+      loop:
+        - bitwarden
+        - yubikey-manager
+
+    - name: Install personal knowledge management packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - pkm
+      loop:
+        - tesseract
         - obsidian
+
+    - name: Install productivity packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - productivity
+      loop:
         - protonmail-bridge
         - libreoffice-fresh
         - libreoffice-fresh-en-gb
         - libreoffice-fresh-fr
+        - teams-for-linux
         - texstudio
         - thunderbird
         - thunderbird-i18n-en-gb
         - thunderbird-i18n-fr
-        - teams-for-linux
-        - ttf-jetbrains-mono-nerd
-        - yubikey-manager
-        - zathura
-        - zathura-pdf-mupdf
 
     - name: Install media applications
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
+      tags:
+        - packages
+        - media
       loop:
+        - calibre
         - freetube
         - handbrake
         - playerctl
