@@ -147,6 +147,7 @@
         - cabal-install
         - ghc
         - haskell-language-server
+        - hugo
         - markdownlint-cli
         - markdownlint-cli2
         - python-cookiecutter
