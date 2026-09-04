@@ -2,6 +2,7 @@
 
 hl.config({
 	general = {
+		layout = "master", -- Goemon
 		gaps_in = 3,
 		gaps_out = 8,
 		border_size = 2,

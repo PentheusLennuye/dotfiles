@@ -170,3 +170,13 @@ hl.window_rule({
 	},
 	no_focus = true,
 })
+
+-- ╭──────────────╮
+-- │   Workflow   ├────────────────────────────────────────────────────────────────────────────────
+-- ╰──────────────╯
+-- Obsidian will always be up on the left
+hl.window_rule({
+	match = { class = "^[Oo]bsidian$" },
+	new_status = "master",
+	size = { "monitor_w*.0.66", "window_w*1.618" },
+})

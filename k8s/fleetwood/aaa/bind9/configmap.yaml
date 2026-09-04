@@ -17,6 +17,8 @@ data:
       192.168.42.0/24;
       192.168.68.0/24;
       192.168.73.0/24;
+      192.168.96.0/24;
+      192.168.173.0/24;
     };
     options {
       allow-transfer { cluster; secondaries; };
@@ -58,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026072701   ; serial
+      2026090304   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -79,24 +81,25 @@ data:
     @            IN A 172.66.0.96
     @            IN A 162.159.140.98
     bambu        IN	A	192.168.68.232
-    brother      IN	A	192.168.68.61
+    brother      IN	A	192.168.96.61
     canon	       IN	A	192.168.73.61
     colour       IN A 192.168.68.62
-    goemon       IN	A	192.168.68.73
+    goemon       IN	A	192.168.96.73
     goliath      IN	A	192.168.73.13
     rpi1	       IN A	192.168.68.31
     rpi2 	       IN A	192.168.68.32
     rpi3         IN A	192.168.68.33
     rpi4         IN	A	192.168.68.34
     fujiko       IN	A	192.168.73.12
-    gw-knw       IN	A	192.168.73.1
     jigen        IN A 10.11.0.3
     jigen-int    IN A 172.16.73.3
     knw-access   IN	A	192.168.73.43
     knw-ha       IN	A	192.168.73.41
+    knw-gw       IN	A	192.168.73.1
     knw-jump     IN	A	192.168.73.42
     lupin        IN A 10.11.0.2
     lupin-int    IN A 172.16.73.2
+    mtl-gw       IN A 192.168.42.1
     ns3          IN	A	192.168.73.31
     sanda        IN A 192.168.68.231
     spectre      IN	A	192.168.68.254
@@ -135,7 +138,7 @@ data:
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
-     2026072701 ; serial
+     2026090304 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -147,20 +150,18 @@ data:
     ns          IN    A     10.11.0.31
 
     ; PTR --------------------------------------------------------------
-    68.1    IN PTR gw-mtl.cummings-online.ca.
-    68.61   IN PTR brother.cummings-online.ca.
+    42.1    IN PTR mtl-gw.cummings-online.ca.
     68.62   IN PTR colour.cummings-online.ca.
     68.31   IN PTR rpi1.cummings-online.ca.
     68.32   IN PTR rpi2.cummings-online.ca.
     68.33   IN PTR rpi3.cummings-online.ca.
     68.34   IN PTR rpi4.cummings-online.ca.
-    68.73   IN PTR goemon.cummings-online.ca.
     68.163  IN PTR uaaa.cummings-online.ca.
     68.231  IN PTR sanda.cummings-online.ca.
     68.241  IN PTR userver.cummings-online.ca.
     68.232  IN PTR bambu.cummings-online.ca.
     68.254  IN PTR spectre.cummings-online.ca.
-    73.1    IN PTR gw-knw.cummings-online.ca.
+    73.1    IN PTR knw-gw.cummings-online.ca.
     73.12   IN PTR fujiko.cummings-online.ca.
     73.13   IN PTR goliath.cummings-online.ca.
     73.31   IN PTR ns3.cummings-online.ca.
@@ -168,6 +169,8 @@ data:
     73.42   IN PTR knw-jump.cummings-online.ca.
     73.43   IN PTR knw-access.cummings-online.ca.
     73.61   IN PTR canon.cummings-online.ca.
+    96.61   IN PTR brother.cummings-online.ca.
+    96.73   IN PTR goemon.cummings-online.ca.
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
