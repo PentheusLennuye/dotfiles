@@ -60,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026090304   ; serial
+      2026090401   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -83,7 +83,7 @@ data:
     bambu        IN	A	192.168.68.232
     brother      IN	A	192.168.96.61
     canon	       IN	A	192.168.73.61
-    colour       IN A 192.168.68.62
+    colour       IN A 192.168.42.61
     goemon       IN	A	192.168.96.73
     goliath      IN	A	192.168.73.13
     rpi1	       IN A	192.168.68.31
@@ -138,7 +138,7 @@ data:
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
-     2026090304 ; serial
+     2026090401 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -151,7 +151,7 @@ data:
 
     ; PTR --------------------------------------------------------------
     42.1    IN PTR mtl-gw.cummings-online.ca.
-    68.62   IN PTR colour.cummings-online.ca.
+    42.61   IN PTR colour.cummings-online.ca.
     68.31   IN PTR rpi1.cummings-online.ca.
     68.32   IN PTR rpi2.cummings-online.ca.
     68.33   IN PTR rpi3.cummings-online.ca.
