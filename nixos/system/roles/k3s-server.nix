@@ -5,7 +5,7 @@
         enable = true;
         role = "server";
         token = "qnCsvCk93DcsNDWzpAw9Nfs7RGFNpXm9";
-        extraFlags = toString [ "--disable=traefik" ];
+        extraFlags = toString [ "--disable=traefik --default-local-storage-path /srv/k8s" ];
         serverAddr = "https://lupin:6443";
     };
 
