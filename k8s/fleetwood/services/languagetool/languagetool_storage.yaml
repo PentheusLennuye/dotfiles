@@ -18,7 +18,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: ./languagetool
+    path: /srv/k8s/languagetool
   nodeAffinity:
     required:
       nodeSelectorTerms:
