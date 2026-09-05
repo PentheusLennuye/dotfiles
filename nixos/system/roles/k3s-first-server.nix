@@ -3,6 +3,7 @@
 {
     services.k3s = {
         clusterInit = true;
+        defaultLocalStoragePath = "/srv/k8s";
         enable = true;
         role = "server";
         token = "qnCsvCk93DcsNDWzpAw9Nfs7RGFNpXm9";

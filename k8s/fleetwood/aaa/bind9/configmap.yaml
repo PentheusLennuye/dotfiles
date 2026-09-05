@@ -60,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026090401   ; serial
+      2026090403   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -113,10 +113,10 @@ data:
     krb5r        IN A 10.11.0.13
     intranet     IN A 10.11.0.14
 
-    nixoscache  IN CNAME lupin.cummings-online.ca.
-    nfs         IN CNAME jigen.cummings-online.ca.
-    time        IN CNAME lupin.cummings-online.ca.
-    test        IN CNAME ingress1.cummings-online.ca.
+    nixoscache   IN CNAME lupin.cummings-online.ca.
+    nfs          IN CNAME jigen.cummings-online.ca.
+    time         IN CNAME lupin.cummings-online.ca.
+    languagetool IN CNAME ingress1.cummings-online.ca.
   db-172-16-73: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
@@ -174,7 +174,7 @@ data:
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
-      2026072701 ; serial
+      2026090402 ; serial
       86400 ; refresh
       28800 ; retry
       604800 ; expire

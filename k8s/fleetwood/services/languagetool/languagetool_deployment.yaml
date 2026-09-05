@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: languagetool
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: languagetool
+  template:
+    metadata:
+      labels:
+        app: languagetool
+    spec:
+      affinity:
+        # Ensure that only the nodes with the local provisioner are targeted.
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - lupin
+        # Ensure that the pods are not bunched into the same node.
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: languagetool
+                topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: languagetool-data
+          persistentVolumeClaim:
+            claimName: languagetool-local-pvc
+      containers:
+        - name: languagetool
+          env:
+            - name: langtool_languageModel
+              value: /languagetool/ngram-data
+            - name: langtool_wordRule
+              value: "false"
+          image: erikvl87/languagetool:latest
+          ports:
+            - containerPort: 8010
+          volumeMounts:
+            - name: languagetool-data
+              readOnly: false
+              mountPath: /languagetool
