@@ -3,11 +3,10 @@
 {
     services.k3s = {
         clusterInit = true;
-        defaultLocalStoragePath = "/srv/k8s";
         enable = true;
         role = "server";
         token = "qnCsvCk93DcsNDWzpAw9Nfs7RGFNpXm9";
-        extraFlags = toString [ "--disable=traefik" ];
+        extraFlags = toString [ "--disable=traefik --default-local-storage-path /srv/k8s" ];
     };
 
     networking.extraHosts = ''
