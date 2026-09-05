@@ -5,7 +5,7 @@ metadata:
   name: languagetool
   namespace: it
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: languagetool
@@ -24,6 +24,7 @@ spec:
                     operator: In
                     values:
                       - lupin
+                      - jigen
         # Ensure that the pods are not bunched into the same node.
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

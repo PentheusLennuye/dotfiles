@@ -27,6 +27,7 @@ spec:
               operator: In
               values:
                 - lupin
+                - jigen
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
