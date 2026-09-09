@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ldap-replica
+  name: ldap-replica
+  namespace: it
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ldap-replica
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ldap-replica
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: ldap-replica
+                topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: 389ds-consumer-data
+          persistentVolumeClaim:
+            claimName: 389ds-nfs2-pvc
+        - name: 389ds-consumer-tls
+          secret:
+            secretName: 389ds-consumer-tls
+            items:
+              - key: "server.key"
+                path: "server.key"
+              - key: "server.crt"
+                path: "server.crt"
+              - key: "ca.crt"
+                path: "ca/ca.crt"
+      containers:
+        - name: dirsrv
+          env:
+            - name: DS_DM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-dm-password
+                  key: password
+            - name: DS_SUFFIX_NAME
+              value: "dc=cummings-online,dc=ca"
+            - name: DS_REINDEX
+              value: "true"
+          image: 389ds/dirsrv:3.1
+          ports:
+            - containerPort: 3389
+            - containerPort: 3636
+          volumeMounts:
+            - name: 389ds-consumer-data
+              readOnly: false
+              mountPath: /data
+            - name: 389ds-consumer-tls
+              readOnly: true
+              mountPath: /data/tls

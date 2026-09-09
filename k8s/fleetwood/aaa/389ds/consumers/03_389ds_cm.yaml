@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 389ds-config
+data:
+  container.inf: |
+    [localhost]
+    uri = ldapi://%%2fdata%%2frun%%2fslapd-localhost.socket
+    binddn = cn=Directory Manager
+    basedn = dc=cummings-online,dc=ca
