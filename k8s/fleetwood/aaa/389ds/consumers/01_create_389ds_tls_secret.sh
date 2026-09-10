@@ -18,8 +18,8 @@ while [[ -z "$STORE" ]]; do
 done
 
 KEYFILE=${STORE}/${HOSTNAME}.${DOMAIN}.key
-CERTFILE=${STORE}/${HOSTNAME}.${DOMAIN}.crt
-CACERTFILE=${STORE}/${DOMAIN}-chain.crt
+CERTFILE=${STORE}/${HOSTNAME}.${DOMAIN}-bundle.crt
+CACERTFILE=../cummings-online.ca.crt
 
 for f in $KEYFILE $CERTFILE $CACERTFILE; do
     if [ ! -f $f ]; then

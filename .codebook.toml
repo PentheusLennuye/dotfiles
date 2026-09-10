@@ -1,5 +1,6 @@
 dictionaries = ["en_gb"]
 words = [
+    "KUBE",
     "acpi",
     "analyzer",
     "ansible",
@@ -38,6 +39,7 @@ words = [
     "decremental",
     "desai",
     "dockerls",
+    "ds's",
     "efi",
     "emptor",
     "esszed",
@@ -80,6 +82,7 @@ words = [
     "keybinds",
     "keymap",
     "keymaps",
+    "kubectl",
     "kvm",
     "linters",
     "liststyle",
@@ -125,6 +128,7 @@ words = [
     "pyright",
     "qwerty's",
     "reineke",
+    "rollout",
     "rstcheck",
     "rtc",
     "scrolloff",

@@ -28,6 +28,11 @@ spec:
                     app: ldap
                 topologyKey: "kubernetes.io/hostname"
       volumes:
+        - name: ca-anchors
+          configMap:
+            name: 389ds-ca-cert
+        - name: merged-certs
+          emptyDir: {}
         - name: 389ds-data
           persistentVolumeClaim:
             claimName: 389ds-nfs-pvc
@@ -41,6 +46,27 @@ spec:
                 path: "server.crt"
               - key: "ca.crt"
                 path: "ca/ca.crt"
+      initContainers:
+        - name: init-ca
+          image: 389ds/dirsrv:3.1
+          command: ["sh", "-c"]
+          args:
+            - |
+              cp /anchors/cummings-online.ca.crt /etc/pki/trust/anchors
+              update-ca-certificates
+              cp /var/lib/ca-certificates/ca-bundle.pem /merged-certs/ca-bundle.pem
+          volumeMounts:
+            - name: ca-anchors
+              mountPath: /anchors
+              readOnly: true
+            - name: merged-certs
+              mountPath: /merged-certs
+            - name: 389ds-data
+              readOnly: false
+              mountPath: /data
+            - name: 389ds-tls
+              readOnly: true
+              mountPath: /data/tls
       containers:
         - name: dirsrv
           env:
@@ -64,3 +90,7 @@ spec:
             - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
+            - name: merged-certs
+              mountPath: /var/lib/ca-certificates/ca-bundle.pem
+              subPath: ca-bundle.pem
+              readOnly: true
