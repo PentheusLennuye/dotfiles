@@ -173,9 +173,6 @@ exit
 cd ../supplier
 k exec -it deployments/ldap -c dirsrv -- bash
 
-echo -n "Set replication password"
-read -s rpwd
-
 dsconf -D "cn=Directory Manager" \
   ldap://ldap.cummings-online.ca \
   replication enable \
@@ -183,6 +180,8 @@ dsconf -D "cn=Directory Manager" \
   --role="supplier" \
   --replica-id=1
 
+echo -n "Set replication password"
+read -s rpwd
 dsconf -D "cn=Directory Manager" \
   ldap://ldap.cummings-online.ca \
   repl-agmt create \
@@ -216,4 +215,81 @@ export cn="cn=Directory Manager"
 read -s pass
 export pass
 ./07_populate.sh
+```
+
+## E. Ubuntu 24.04LTS Consumer
+
+Assuming that the certificates are:
+
+- cummings-online.ca.crt for the CA
+- /tmp/server.key
+- /tmp/server.crt
+
+```sh
+sudo -i
+apt-get update && apt-get upgrade
+apt-get install 389-ds-base 389-ds-base-libs
+read -s -p "Enter the Directory Manager password: " dmpass
+read -s -p "Enter the replication manager password: " rmpass
+fqdn=$(hostname -f)
+cat <<EOF >>/root/instance.inf
+# /root/instance.inf
+[general]
+config_version = 2
+full_machine_name = ${fqdn}
+start = yes
+
+[slapd]
+instance_name = localhost
+db_lib = mdb
+mdb_max_size = 5G
+root_password = ${dmpass}
+port = 389
+secure_port = 636
+self_sign_cert = no
+
+[backend-userroot]
+create_suffix_entry = yes
+sample_entries = no
+suffix = dc=cummings-online,dc=ca
+; replication ---------------------------------------------------
+enable_replication = yes
+replica_binddn = cn=replication manager,cn=config
+replica_bindpw = ${rmpass}
+replica_role = consumer
+EOF
+
+dscreate from-file /root/instance.inf
+certutil -A -d /etc/dirsrv/slapd-localhost -n "ca_cert" -t "C,," \
+  -i /etc/ssl/certs/cummings-online.ca.pem
+openssl pkcs12 -export -inkey /tmp/server.key -in /tmp/server.crt \
+  -name "Server-Cert" -out /tmp/server.p12
+pk12util -d /etc/dirsrv/slapd-localhost -i /tmp/server.p12
+dsconf localhost config replace nsslapd-securePort=636 nsslapd-security=on
+dsconf localhost security rsa set --tls-allow-rsa-certificates on \
+  --nss-token "internal (software)" --nss-cert-name "Server-Cert"
+dsconf localhost security set --tls-protocol-min="TLS1.2"
+dsctl localhost restart
+exit
+exit
+```
+
+### E.1 On the supplier
+
+Assuming the Ubuntu system is "ldap2.cummings-online.ca"...
+
+```sh
+dsconf -D "cn=Directory Manager" \
+  ldap://ldap2.cummings-online.ca \
+  repl-agmt init \
+  --suffix="dc=cummings-online,dc=ca" fleetwood-agreement-ldap2
+```
+
+Verify:
+
+```sh
+dsconf -D "cn=Directory Manager" \
+  ldap://ldap2.cummings-online.ca \
+  repl-agmt init-status \
+  --suffix="dc=cummings-online,dc=ca" fleetwood-agreement-ldap2
 ```
