@@ -63,6 +63,7 @@
         - widgets
       loop:
         - plasma-nm
+        - bluedevil
 
     - name: Install desktop applications
       ansible.builtin.package:
