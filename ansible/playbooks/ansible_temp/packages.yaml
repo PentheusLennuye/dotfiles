@@ -54,6 +54,16 @@
         - breeze
         - plasma-desktop
 
+    - name: Install desktop panels and widgets
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - widgets
+      loop:
+        - plasma-nm
+
     - name: Install desktop applications
       ansible.builtin.package:
         name: "{{ item }}"
