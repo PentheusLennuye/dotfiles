@@ -60,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026090901   ; serial
+      2026091201   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -110,9 +110,9 @@ data:
     ldap         IN A 10.11.0.11
     ldap1        IN A 10.11.0.15
     ldap2        IN A 192.168.73.15
-    krb5         IN A 10.11.0.12
-    krb5r1       IN A 10.11.0.13
-    krb5r2       IN A 192.168.73.13
+    krb          IN A 10.11.0.12
+    krb1         IN A 10.11.0.16
+    krb2         IN A 192.168.73.16
     intranet     IN A 10.11.0.14
 
     nixoscache   IN CNAME lupin.cummings-online.ca.
@@ -140,7 +140,7 @@ data:
   db-192-168: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
-     2026090903 ; serial
+     2026091204 ; serial
           86400 ; refresh
           28800 ; retry
          604800 ; expire
@@ -165,8 +165,8 @@ data:
     254.68  IN PTR spectre.cummings-online.ca.
     1.73    IN PTR knw-gw.cummings-online.ca.
     12.73   IN PTR fujiko.cummings-online.ca.
-    13.73   IN PTR krbr2.cummings-online.ca.
     15.73   IN PTR ldap2.cummings-online.ca.
+    16.73   IN PTR krb2.cummings-online.ca.
     31.73   IN PTR ns3.cummings-online.ca.
     41.73   IN PTR knw-ha.cummings-online.ca.
     42.73   IN PTR knw-jump.cummings-online.ca.
@@ -177,7 +177,7 @@ data:
   db-10-11: |
     $TTL 86400
     @ IN SOA ns.cummings-online.ca hostmaster.cummings-online.ca. (
-      2026090901 ; serial
+      2026091201 ; serial
       86400 ; refresh
       28800 ; retry
       604800 ; expire
@@ -194,7 +194,8 @@ data:
     4.0  IN PTR zenigata.cummings-online.ca.
     10.0 IN PTR ingress1.cummings-online.ca.
     11.0 IN PTR ldap.cummings-online.ca.
-    12.0 IN PTR krb5.cummings-online.ca.
-    13.0 IN PTR krb5r.cummings-online.ca.
+    12.0 IN PTR krb.cummings-online.ca.
     14.0 IN PTR intranet.cummings-online.ca.
+    15.0 IN PTR ldap1.cummings-online.ca.
+    16.0 IN PTR krb1.cummings-online.ca.
     31.0 IN PTR ns.cummings-online.ca.

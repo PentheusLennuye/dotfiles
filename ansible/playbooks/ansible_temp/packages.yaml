@@ -29,6 +29,7 @@
         state: present
       loop:
         - openldap
+        - krb5
 
     - name: Install CLI applications
       ansible.builtin.package:

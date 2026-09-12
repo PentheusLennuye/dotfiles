@@ -40,7 +40,7 @@ quit
 
 See [client_config](client_config/start.sh).
 
-### Test
+### Client Test
 
 Log in to a KRB-enabled client and check if the principal is around
 
