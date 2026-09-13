@@ -24,7 +24,7 @@ dn: dc=cummings-online,dc=ca
 changetype: modify
 add: aci
 aci: (targetattr != "carLicense || employeeNumber || mobile || homePostalAd
- dress")
+ dress || userPassword")
   (version 3.0;
    acl "Domain Admins have full rights but exclude personal information";
    allow (all)
@@ -55,7 +55,7 @@ aci: (targetattr = "displayName || mail || uid || manager || telephon
   allow (search, read, compare)
   (groupdn="ldap:///cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca")
  ;)
-
+-
 
 # Target is People --------------------------------------------------------
 dn: ou=People,dc=cummings-online,dc=ca
