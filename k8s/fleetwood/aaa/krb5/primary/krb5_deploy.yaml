@@ -75,3 +75,14 @@ spec:
               readOnly: false
               mountPath: /etc/crontabs/root
               subPath: root
+          lifecycle:
+            postStart:
+              exec:
+                # We cannot use "sed -i"
+                command:
+                  - /bin/sh
+                  - "-c"
+                  - |
+                    /bin/sed 's/\(10.*\)krb/\1krb.cummings-online.ca krb/' /etc/hosts > /tmp/hosts
+                    /bin/cat /tmp/hosts > /etc/hosts
+                    /usr/sbin/kpropd

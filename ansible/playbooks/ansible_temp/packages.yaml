@@ -31,7 +31,10 @@
         - openldap
         - krb5
         - nfs-utils
+        # for nfs4
         - gssproxy
+        # for ldap mechanism
+        - cyrus-sasl-gssapi
 
     - name: Install CLI applications
       ansible.builtin.package:
