@@ -16,9 +16,13 @@ spec:
       protocol: TCP
       port: 464
       targetPort: 464
-    - name: kerberos-admin
+    - name: kerberos-adm
       protocol: TCP
       port: 749
       targetPort: 749
+    - name: krb5-prop
+      protocol: TCP
+      port: 754
+      targetPort: 754
   type: LoadBalancer
   loadBalancerIP: 10.11.0.16

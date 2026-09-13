@@ -49,10 +49,22 @@ spec:
                 secretKeyRef:
                   name: krb5-admin
                   key: password
+          lifecycle:
+            postStart:
+              exec:
+                # We cannot use "sed -i"
+                command:
+                  - /bin/sh
+                  - "-c"
+                  - |
+                    /bin/sed 's/\(10.*\)krb/\1krb1.cummings-online.ca krb1/' /etc/hosts > /tmp/hosts
+                    /bin/cat /tmp/hosts > /etc/hosts
+                    /usr/sbin/kpropd
           ports:
             - containerPort: 88
             - containerPort: 464
             - containerPort: 749
+            - containerPort: 754
           volumeMounts:
             - name: krb5-replica-data
               readOnly: false
@@ -62,7 +74,7 @@ spec:
               mountPath: /var/lib/krb5kdc/kpropd.acl
               subPath: kpropd.acl
             - name: krb5-replica-data
-              readOnly: true
+              readOnly: false
               mountPath: /etc/krb5.keytab
               subPath: krb5.keytab
       hostname: "krb1"
