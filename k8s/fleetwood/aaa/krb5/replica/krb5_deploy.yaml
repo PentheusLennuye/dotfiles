@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: krb5-replica
+  name: krb5-replica
+  namespace: it
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krb5-replica
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: krb5-replica
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: krb5-replica
+                topologyKey: "kubernetes.io/hostname"
+      volumes:
+        - name: krb5-replica-data
+          persistentVolumeClaim:
+            claimName: krb5-nfs-replica-pvc
+        - name: krb5-replica-config
+          configMap:
+            name: krb5-replica-config
+      containers:
+        - name: krb5-replica
+          image: gcavalcante8808/krb5-server:latest
+          env:
+            - name: KRB5_REALM
+              value: "CUMMINGS-ONLINE.CA"
+            - name: KRB5_ADMINSERVER
+              value: "krb1.cummings-online.ca"
+            - name: KRB5_KDC
+              value: "krb1.cummings-online.ca"
+            - name: KRB5_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: krb5-admin
+                  key: password
+          ports:
+            - containerPort: 88
+            - containerPort: 464
+            - containerPort: 749
+          volumeMounts:
+            - name: krb5-replica-data
+              readOnly: false
+              mountPath: /var/lib/krb5kdc
+            - name: krb5-replica-config
+              readOnly: true
+              mountPath: /var/lib/krb5kdc/kpropd.acl
+              subPath: kpropd.acl
+            - name: krb5-replica-data
+              readOnly: true
+              mountPath: /etc/krb5.keytab
+              subPath: krb5.keytab
+      hostname: "krb1"
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "krb1.cummings-online.ca"
+            - "krb1"

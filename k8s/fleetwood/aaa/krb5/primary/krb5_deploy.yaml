@@ -25,6 +25,9 @@ spec:
             - "krb.cummings-online.ca"
             - "krb"
       volumes:
+        - name: krb5-config
+          configMap:
+            name: krb5-config
         - name: krb5-data
           persistentVolumeClaim:
             claimName: krb5-nfs-pvc
@@ -60,3 +63,15 @@ spec:
             - name: krb5-data
               readOnly: false
               mountPath: /var/lib/krb5kdc
+            - name: krb5-data
+              readOnly: true
+              mountPath: /etc/krb5.keytab
+              subPath: krb5.keytab
+            - name: krb5-config
+              readOnly: false
+              mountPath: /var/lib/krb5kdc/kpropd.acl
+              subPath: kpropd.acl
+            - name: krb5-config
+              readOnly: false
+              mountPath: /etc/crontabs/root
+              subPath: root

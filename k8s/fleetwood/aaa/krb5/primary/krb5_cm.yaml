@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: krb5-config
+data:
+  kpropd.acl: |
+    host/krb.cummings-online.ca@CUMMINGS-ONLINE.CA
+    host/krb1.cummings-online.ca@CUMMINGS-ONLINE.CA
+    host/krb2.cummings-online.ca@CUMMINGS-ONLINE.CA
+  root: |
+    */15	*	*	*	*	run-parts /etc/periodic/15min
+    0	*	*	*	*	run-parts /etc/periodic/hourly
+    0	2	*	*	*	run-parts /etc/periodic/daily
+    0	3	*	*	6	run-parts /etc/periodic/weekly
+    0	5	1	*	*	run-parts /etc/periodic/monthly
+    */15 /usr/sbin/kdb5_util dump /var/lib/krb5kdc/dump
+    5,20,35,50 * * * * /usr/sbin/kprop -r CUMMINGS-ONLINE.CA -f /var/lib/krb5kdc/dump krb1.cummings-online.ca
+    6,21,36,51 * * * * /usr/sbin/kprop -r CUMMINGS-ONLINE.CA -f /var/lib/krb5kdc/dump krb2.cummings-online.ca

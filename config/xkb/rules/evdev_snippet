@@ -16,6 +16,12 @@
       <variantList>
         <variant>
           <configItem>
+            <name>zsa</name>
+            <shortDescription>en</shortDescription>
+            <description>English (Canada, ZSA keyboards)</description>
+          </configItem>
+        </variant>
+          <configItem>
             <name>colemak-dh</name>
             <shortDescription>en</shortDescription>
             <description>English (Canada, Colemak-DHm)</description>

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: krb5-nfs-pvc
+  name: krb5-nfs-replica-pvc
 spec:
   accessModes:
     - ReadWriteOnce

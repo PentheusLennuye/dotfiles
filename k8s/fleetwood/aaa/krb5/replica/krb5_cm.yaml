@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: krb5-replica-config
+data:
+  kpropd.acl: |
+    host/krb.cummings-online.ca@CUMMINGS-ONLINE.CA
+    host/krb1.cummings-online.ca@CUMMINGS-ONLINE.CA
+    host/krb2.cummings-online.ca@CUMMINGS-ONLINE.CA
