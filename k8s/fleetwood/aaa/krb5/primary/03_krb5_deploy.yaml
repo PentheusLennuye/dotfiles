@@ -8,7 +8,7 @@ metadata:
   name: krb5-admin
   namespace: it
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: krb5-admin
@@ -38,9 +38,9 @@ spec:
             - name: KRB5_REALM
               value: "CUMMINGS-ONLINE.CA"
             - name: KRB5_ADMINSERVER
-              value: "krb5.cummings-online.ca"
+              value: "krb.cummings-online.ca"
             - name: KRB5_KDC
-              value: "krb5.cummings-online.ca"
+              value: "krb.cummings-online.ca"
             - name: KRB5_PASS
               valueFrom:
                 secretKeyRef:
