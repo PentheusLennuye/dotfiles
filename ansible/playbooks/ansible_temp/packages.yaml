@@ -30,6 +30,8 @@
       loop:
         - openldap
         - krb5
+        - nfs-utils
+        - gssproxy
 
     - name: Install CLI applications
       ansible.builtin.package:
