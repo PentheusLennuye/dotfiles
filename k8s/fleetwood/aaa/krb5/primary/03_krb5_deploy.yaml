@@ -36,11 +36,11 @@ spec:
           image: gcavalcante8808/krb5-server:latest
           env:
             - name: KRB5_REALM
-              value: "CUMMINGS-ONLINE.LOCAL"
+              value: "CUMMINGS-ONLINE.CA"
             - name: KRB5_ADMINSERVER
-              value: "krb5.cummings-online.local"
+              value: "krb5.cummings-online.ca"
             - name: KRB5_KDC
-              value: "krb5.cummings-online.local"
+              value: "krb5.cummings-online.ca"
             - name: KRB5_PASS
               valueFrom:
                 secretKeyRef:

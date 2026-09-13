@@ -8,6 +8,6 @@
 #    users.ldap = {
 #        base = "O=Cummings Online";
 #        enable = true;
-#        server = "ldap://ldap.cummings-online.local";
+#        server = "ldap://ldap.cummings-online.ca";
 #    };
 }

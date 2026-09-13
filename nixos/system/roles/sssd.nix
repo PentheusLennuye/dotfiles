@@ -6,7 +6,7 @@
     settings = {
       sssd = {
         services = "nss, pam";
-        domains = "local,cummings-online.local";
+        domains = "local,cummings-online.ca";
       };
       nss = { };
       pam = { };
@@ -17,7 +17,7 @@
         access_provider = "permit";
         enumerate = true;
       };
-      "domain/cummings-online.local" = {
+      "domain/cummings-online.ca" = {
         auth_provider = "krb5";
         cache_credentials = true;
         fallback_homedir = "/home/%u";
@@ -26,9 +26,9 @@
 
         krb5_store_password_if_offline = true;
         krb5_auth_timeout = "15";
-        krb5_kpasswd = "krb5.cummings-online.local";
-        krb5_realm = "CUMMINGS-ONLINE.LOCAL";
-        krb5_server = "krb5.cummings-online.local";
+        krb5_kpasswd = "krb.cummings-online.ca";
+        krb5_realm = "CUMMINGS-ONLINE.CA";
+        krb5_server = "krb.cummings-online.ca";
 
         proxy_fast_alias = true;
         proxy_lib_name = "files";

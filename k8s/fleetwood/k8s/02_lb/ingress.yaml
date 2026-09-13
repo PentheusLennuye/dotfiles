@@ -22,4 +22,4 @@ spec:
   tls:
     - secretName: languagetool-tls
       hosts:
-        - languagetool.cummings-online.local
+        - languagetool.cummings-online.ca

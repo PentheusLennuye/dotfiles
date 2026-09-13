@@ -3,11 +3,11 @@
     enable = true;
     settings = {
       domain_realm = {
-        ".cummings-online.local" = "CUMMINGS-ONLINE.LOCAL";
-        "cummings-online.local" = "CUMMINGS-ONLINE.LOCAL";
+        ".cummings-online.ca" = "CUMMINGS-ONLINE.CA";
+        "cummings-online.ca" = "CUMMINGS-ONLINE.CA";
       };
       libdefaults = {
-        default_realm = "CUMMINGS-ONLINE.LOCAL";
+        default_realm = "CUMMINGS-ONLINE.CA";
         dns_lookup_kdc = false;
         dns_lookup_realm = false;
         forwardabie = true;
@@ -16,9 +16,9 @@
         rdns = false;
       };
       realms = {
-        "CUMMINGS-ONLINE.LOCAL" = {
-          admin_server = "krb5.cummings-online.local";
-          kdc = [ "krb5.cummings-online.local" ];
+        "CUMMINGS-ONLINE.CA" = {
+          admin_server = "krb.cummings-online.ca";
+          kdc = [ "krb.cummings-online.ca" ];
         };
       };
     };
