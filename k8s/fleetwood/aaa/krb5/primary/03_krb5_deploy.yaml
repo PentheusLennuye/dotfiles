@@ -18,6 +18,12 @@ spec:
       labels:
         app: krb5-admin
     spec:
+      hostname: "krb"
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "krb.cummings-online.ca"
+            - "krb"
       volumes:
         - name: krb5-data
           persistentVolumeClaim:
