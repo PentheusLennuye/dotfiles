@@ -1,9 +1,23 @@
 ---
 all:
-  hosts:
-    goemon.cummings-online.ca:
-      ansible_connection: local
-      ansible_python_interpreter: /usr/bin/python3
-    murasaki.cummings-online.ca:
-      ansible_connection: local
-      ansible_python_interpreter: /usr/bin/python3
+  children:
+    desktops:
+      hosts:
+        goemon.cummings-online.ca:
+          ansible_connection: local
+        children:
+          thinkbooks:
+            hosts:
+              murasaki.cummings-online.ca:
+              ansible_connection: local
+    development:
+      hosts:
+        goemon.cummings-online.ca:
+          ansible_connection: local
+        murasaki.cummings-online.ca:
+        ansible_connection: local
+    montreal:
+      hosts:
+        goemon.cummings-online.ca:
+          ansible_connection: local
+        murasaki.cummings-online.ca:

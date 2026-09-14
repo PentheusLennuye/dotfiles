@@ -1,0 +1,15 @@
+---
+- hosts: all
+  roles:
+    - role: common
+    - role: user_gmc
+- hosts: desktops
+  roles:
+    - role: desktop
+    - role: domain-client
+- hosts: thinkbooks
+  roles:
+    - role: thinkbook
+- hosts: development
+  roles:
+    - role: development

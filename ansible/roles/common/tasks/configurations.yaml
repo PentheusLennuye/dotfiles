@@ -1,0 +1,22 @@
+---
+- name: Copy CA Arch
+  ansible.builtin.copy:
+    src: files/etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
+    dest: /etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
+    mode: 0644
+    owner: root
+    group: root
+  notify: Install CA
+  tags:
+    - sysconfig
+
+- name: Copy CA Debian
+  ansible.builtin.copy:
+    src: files/etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
+    dest: /usr/local/share/ca-certificates
+    mode: 0644
+    owner: root
+    group: root
+  notify: Install CA Debian
+  tags:
+    - sysconfig

@@ -1,0 +1,28 @@
+---
+- name: Install Arch package utilities
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - packages
+    - package-utils
+  loop:
+    - paru
+    - uv
+    - yay
+
+- name: Install CLI applications
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - neovim
+    - starship
+    - lsd
+    - calc
+    - lsof
+    - texlive
+    - tree
+    - tmux
+    - pandoc
+    - pass
