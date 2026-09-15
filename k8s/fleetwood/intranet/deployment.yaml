@@ -17,7 +17,15 @@ spec:
       labels:
         app: intranet
     spec:
+      volumes:
+        - name: intranet-html
+          persistentVolumeClaim:
+            claimName: intranet-nfs-pvc
       containers:
         - image: nginx:1.29.7-alpine
           name: nginx
           resources: {}
+          volumeMounts:
+            - name: intranet-html
+              mountPath: /usr/share/nginx/html
+              readOnly: true

@@ -34,6 +34,13 @@ spec:
                   matchLabels:
                     app: languagetool
                 topologyKey: "kubernetes.io/hostname"
+      resources:
+        requests:
+          cpu: "2"
+          memory: "1536Mi"
+        limits:
+          cpu: "3"
+          memory: "2048Mi"
       volumes:
         - name: languagetool-data
           persistentVolumeClaim:
