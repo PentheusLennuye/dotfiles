@@ -60,14 +60,6 @@
         owner: root
         group: root
 
-    - name: DNS Resolver configuration
-      ansible.builtin.template:
-        src: templates/resolv.conf.j2
-        dest: /etc/resolv.conf
-        mode: 0644
-        owner: root
-        group: root
-
     - name: Systemd-resolved configuration
       ansible.builtin.template:
         src: templates/resolved.conf.j2

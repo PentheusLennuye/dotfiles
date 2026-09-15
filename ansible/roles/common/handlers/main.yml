@@ -1,10 +1,27 @@
 ---
 - name: Install CA Arch
-  become: true
   ansible.builtin.shell:
     cmd: update-ca-trust
 
 - name: Install CA Debian
-  become: true
   ansible.builtin.shell:
     cmd: update-ca-certificates
+
+- name: Restart SSH Service
+  block:
+    - name: Restart SSH ArchLinux
+      when: ansible_os_family == "Archlinux"
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+
+    - name: Restart SSH Debian
+      when: ansible_os_family == "Debian"
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+
+    - name: Restart Resolved Service
+      ansible.builtin.service:
+        name: systemd-resolved
+        state: restarted
