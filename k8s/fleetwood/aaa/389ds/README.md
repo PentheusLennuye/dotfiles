@@ -293,3 +293,14 @@ dsconf -D "cn=Directory Manager" \
   repl-agmt init-status \
   --suffix="dc=cummings-online,dc=ca" fleetwood-agreement-ldap2
 ```
+
+## F. GSSAPI/Kerberos
+
+### F.1 Docker Containers
+
+```sh
+dsconf -D "cn=Directory Manager" ldap://ldap.cummings-online.ca config \
+  replace nsslapd-allowed-sasl-mechanisms=PLAIN,EXTERNAL,LOGIN,GSSAPI,GSS-SPNEGO
+```
+
+### F.2 Ubuntu

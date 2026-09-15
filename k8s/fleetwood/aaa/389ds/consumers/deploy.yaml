@@ -4,19 +4,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: ldap
-  name: ldap
+    app: ldap-replica
+  name: ldap-replica
   namespace: it
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ldap
+      app: ldap-replica
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: ldap
+        app: ldap-replica
     spec:
       affinity:
         podAntiAffinity:
@@ -25,7 +25,7 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app: ldap
+                    app: ldap-replica
                 topologyKey: "kubernetes.io/hostname"
       volumes:
         - name: ca-anchors
@@ -33,12 +33,12 @@ spec:
             name: 389ds-ca-cert
         - name: merged-certs
           emptyDir: {}
-        - name: 389ds-data
+        - name: 389ds-consumer-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs-pvc
-        - name: 389ds-tls
+            claimName: 389ds-nfs2-pvc
+        - name: 389ds-consumer-tls
           secret:
-            secretName: 389ds-tls
+            secretName: 389ds-consumer-tls
             items:
               - key: "server.key"
                 path: "server.key"
@@ -61,12 +61,6 @@ spec:
               readOnly: true
             - name: merged-certs
               mountPath: /merged-certs
-            - name: 389ds-data
-              readOnly: false
-              mountPath: /data
-            - name: 389ds-tls
-              readOnly: true
-              mountPath: /data/tls
       containers:
         - name: dirsrv
           env:
@@ -84,10 +78,18 @@ spec:
             - containerPort: 3389
             - containerPort: 3636
           volumeMounts:
-            - name: 389ds-data
+            - name: 389ds-consumer-data
+              readOnly: true
+              mountPath: /etc/krb5.conf
+              subPath: krb5.conf
+            - name: 389ds-consumer-data
+              readOnly: false
+              mountPath: /etc/dirsrv/ds.keytab
+              subPath: ds.keytab
+            - name: 389ds-consumer-data
               readOnly: false
               mountPath: /data
-            - name: 389ds-tls
+            - name: 389ds-consumer-tls
               readOnly: true
               mountPath: /data/tls
             - name: merged-certs

@@ -4,19 +4,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: ldap-replica
-  name: ldap-replica
+    app: ldap
+  name: ldap
   namespace: it
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ldap-replica
+      app: ldap
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: ldap-replica
+        app: ldap
     spec:
       affinity:
         podAntiAffinity:
@@ -25,20 +25,22 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app: ldap-replica
+                    app: ldap
                 topologyKey: "kubernetes.io/hostname"
       volumes:
         - name: ca-anchors
           configMap:
             name: 389ds-ca-cert
+        - name: dirsrv-startup
+          emptyDir: {}
         - name: merged-certs
           emptyDir: {}
-        - name: 389ds-consumer-data
+        - name: 389ds-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs2-pvc
-        - name: 389ds-consumer-tls
+            claimName: 389ds-nfs-pvc
+        - name: 389ds-tls
           secret:
-            secretName: 389ds-consumer-tls
+            secretName: 389ds-tls
             items:
               - key: "server.key"
                 path: "server.key"
@@ -55,12 +57,21 @@ spec:
               cp /anchors/cummings-online.ca.crt /etc/pki/trust/anchors
               update-ca-certificates
               cp /var/lib/ca-certificates/ca-bundle.pem /merged-certs/ca-bundle.pem
+              echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab; export KRB5_KTNAME" > /dirsrv_startup/dirsrv
           volumeMounts:
             - name: ca-anchors
               mountPath: /anchors
               readOnly: true
             - name: merged-certs
               mountPath: /merged-certs
+            - name: dirsrv-startup
+              mountPath: /dirsrv_startup
+            - name: 389ds-data
+              readOnly: false
+              mountPath: /data
+            - name: 389ds-tls
+              readOnly: true
+              mountPath: /data/tls
       containers:
         - name: dirsrv
           env:
@@ -78,12 +89,24 @@ spec:
             - containerPort: 3389
             - containerPort: 3636
           volumeMounts:
-            - name: 389ds-consumer-data
+            - name: 389ds-data
+              readOnly: true
+              mountPath: /etc/krb5.conf
+              subPath: krb5.conf
+            - name: 389ds-data
+              readOnly: false
+              mountPath: /etc/dirsrv/ds.keytab
+              subPath: ds.keytab
+            - name: 389ds-data
               readOnly: false
               mountPath: /data
-            - name: 389ds-consumer-tls
+            - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
+            - name: dirsrv-startup
+              mountPath: /etc/sysconfig/dirsrv
+              subPath: dirsrv
+              readOnly: true
             - name: merged-certs
               mountPath: /var/lib/ca-certificates/ca-bundle.pem
               subPath: ca-bundle.pem
