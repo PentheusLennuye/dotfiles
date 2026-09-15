@@ -1,0 +1,199 @@
+---
+- name: Install packages
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Arch package utilities
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - paru
+        - uv
+        - yay
+
+    - name: Install additional system services
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - services
+      loop:
+        - cups
+        - sddm
+
+    - name: Install system configuration utilities
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - openldap
+        - krb5
+        - nfs-utils
+        # for nfs4
+        - gssproxy
+        # for ldap mechanism
+        - cyrus-sasl-gssapi
+
+    - name: Install CLI applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - neovim
+        - starship
+        - lsd
+        - calc
+        - lsof
+        - texlive
+        - tree
+        - tmux
+        - pandoc
+        - pass
+
+    - name: Install sddm and wayland helpers
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - breeze
+        - plasma-desktop
+
+    - name: Install desktop panels and widgets
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - widgets
+      loop:
+        - plasma-nm
+        - bluedevil
+
+    - name: Install desktop applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - desktop
+      loop:
+        - brave
+        - digikam
+        - font-manager
+        - freecad
+        - gimp
+        - inkscape
+        - klavaro
+        - krita
+        - ttf-jetbrains-mono-nerd
+        - zathura
+        - zathura-pdf-mupdf
+
+    - name: Install data security packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - data-security
+      loop:
+        - bitwarden
+        - yubikey-manager
+        - kwallet
+
+    - name: Install personal knowledge management packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - pkm
+      loop:
+        - tesseract
+        - obsidian
+
+    - name: Install productivity packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - productivity
+      loop:
+        - protonmail-bridge
+        - libreoffice-fresh
+        - libreoffice-fresh-en-gb
+        - libreoffice-fresh-fr
+        - teams-for-linux
+        - texstudio
+        - thunderbird
+        - thunderbird-i18n-en-gb
+        - thunderbird-i18n-fr
+
+    - name: Install media applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - media
+      loop:
+        - calibre
+        - freetube
+        - handbrake
+        - playerctl
+        - reaper
+        - spotify-launcher
+        - vlc
+
+    - name: Install programming languages and tools
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - dev
+      loop:
+        - npm
+        - cmake
+        - codebook-lsp
+        - lazygit
+        - go
+        - golangci-lint
+        - cabal-install
+        - ghc
+        - haskell-language-server
+        - hugo
+        - markdownlint-cli
+        - markdownlint-cli2
+        - python-cookiecutter
+        - python-poetry
+        - cargo
+        - rustup
+        - yq
+        - yamllint
+
+    - name: Install gaming applications and plugins
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - cachyos-gaming-meta
+        - cachyos-gaming-applications
+
+    - name: Install virtualization and containerization hosting packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      tags:
+        - packages
+        - virt
+      loop:
+        - helm
+        - kubectl
+        - kube-linter
+        - qemu-full
+        - swtpm
+        - virt-manager

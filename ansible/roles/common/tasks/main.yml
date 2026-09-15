@@ -1,0 +1,6 @@
+---
+- name: linux setup
+  become: true
+  block:
+    - import_tasks: packages.yml
+    - import_tasks: configurations.yml

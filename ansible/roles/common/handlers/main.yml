@@ -1,0 +1,10 @@
+---
+- name: Install CA Arch
+  become: true
+  ansible.builtin.shell:
+    cmd: update-ca-trust
+
+- name: Install CA Debian
+  become: true
+  ansible.builtin.shell:
+    cmd: update-ca-certificates

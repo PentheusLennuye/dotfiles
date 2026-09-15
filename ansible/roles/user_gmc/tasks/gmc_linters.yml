@@ -1,0 +1,10 @@
+---
+- name: install pipx packages
+  community.general.pipx:
+    name: "{{ item }}"
+  with_items:
+    - poetry
+    - black
+    - yamllint
+    - yq
+    - jedi-language-server
