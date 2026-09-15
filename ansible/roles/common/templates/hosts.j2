@@ -2,6 +2,6 @@
 ::1		localhost ip6-localhost ip6-loopback
 ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
-127.0.1.1 {{ ansible_fqdn }} {{ ansible_hostname }}
+127.0.1.1 {{ ansible_facts["fqdn"] }} {{ ansible_facts["hostname"] }}
 
-{{ ansible_default_ipv4["address"]}} {{ ansible_fqdn }} {{ ansible_hostname }}
+{{ ansible_facts["default_ipv4['address']"]}} {{ ansible_facts["fqdn"] }} {{ ansible_facts["hostname"] }}

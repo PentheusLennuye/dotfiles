@@ -1,7 +1,7 @@
 [Resolve]
 DNS=
 FallbackDNS=9.9.9.9#dns.quad9.net
-Domains={{ ansible_domain }}
+Domains={{ ansible_facts["domain"] }}
 DNSSEC=no
 DNSOverTLS=no
 Cache=yes

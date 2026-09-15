@@ -10,13 +10,13 @@
 - name: Restart SSH Service
   block:
     - name: Restart SSH ArchLinux
-      when: ansible_os_family == "Archlinux"
+      when: ansible_facts["os_family"] == "Archlinux"
       ansible.builtin.service:
         name: sshd
         state: restarted
 
     - name: Restart SSH Debian
-      when: ansible_os_family == "Debian"
+      when: ansible_facts["os_family"] == "Debian"
       ansible.builtin.service:
         name: ssh
         state: restarted

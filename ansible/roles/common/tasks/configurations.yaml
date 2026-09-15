@@ -1,6 +1,6 @@
 ---
 - name: Arch Common Configuration
-  when: ansible_os_family == "ArchLinux"
+  when: ansible_facts["os_family"] == "ArchLinux"
   block:
     - name: Copy CA Arch
       ansible.builtin.copy:
@@ -14,7 +14,7 @@
     - sysconfig
 
 - name: Debian Common Configuration
-  when: ansible_os_family == "Debian"
+  when: ansible_facts["os_family"] == "Debian"
   block:
     - name: Copy CA Debian
       ansible.builtin.copy:
@@ -28,7 +28,7 @@
     - sysconfig
 
 - name: Common Configuration
-  when: ansible_os_family == "Debian" or ansible_os_family == "ArchLinux"
+  when: ansible_facts["os_family"] == "Debian" or ansible_facts["os_family"] == "ArchLinux"
   block:
     - name: Firewall Configuration
       block:
