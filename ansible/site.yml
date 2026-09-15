@@ -2,8 +2,7 @@
 - hosts: all
   roles:
     - role: common
-    - role: user_gmc
+    - role: domain-client
 - hosts: desktops
   roles:
     - role: desktop
-    - role: domain-client

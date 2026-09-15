@@ -8,8 +8,8 @@
 
 [realms]
 	{{ realm }} = {
-		admin_server = {{ krb5["admin"]}}
-    {%- for item in krb5["kdc"]  %}
-		kdc = {{ item }}
-    {% endfor -%}
-	}
+      admin_server = {{ krb5["admin"]}}
+    {% for item in krb5["kdc"]  %}
+      kdc = {{ item }}
+    {% endfor %}
+    }

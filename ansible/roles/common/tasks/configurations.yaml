@@ -34,17 +34,17 @@
       block:
         - name: Firewall on
           community.general.ufw:
-            state: enable
+            state: enabled
 
         - name: Firewall default deny all in
           community.general.ufw:
             policy: deny
-            direction: in
+            direction: incoming
 
         - name: Firewall default allow all out
           community.general.ufw:
             policy: allow
-            direction: out
+            direction: outgoing
 
         - name: Firewall allow ssh
           community.general.ufw:

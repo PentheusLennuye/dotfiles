@@ -11,3 +11,29 @@
         group: root
   tags:
     - domain-client
+
+- name: OpenLDAP Configuration Arch
+  when: ansible_facts["os_family"] == "ArchLinux"
+  block:
+    - name: Kerberos configuration
+      ansible.builtin.template:
+        src: templates/ldap.conf.j2
+        dest: /etc/openldap/krb5.conf
+        mode: "0644"
+        owner: root
+        group: root
+  tags:
+    - domain-client
+
+- name: OpenLDAP Configuration Debian
+  when: ansible_facts["os_family"] == "Debian"
+  block:
+    - name: Kerberos configuration
+      ansible.builtin.template:
+        src: templates/ldap.conf.j2
+        dest: /etc/ldap/ldap.conf
+        mode: "0644"
+        owner: root
+        group: root
+  tags:
+    - domain-client

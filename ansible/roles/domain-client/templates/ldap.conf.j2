@@ -3,6 +3,7 @@
 # ╰──────────────╯
 
 BASE	      {{ ldap_base }}
-URI	        {%- for item in ldap["servers"] %}{{ item }} {% endfor %}
+URI	      {% for item in ldap["servers"] %}{{ item }} {% endfor %}
+
 SASL_MECH   GSSAPI
 TLS_REQCERT hard
