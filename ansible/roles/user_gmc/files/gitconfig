@@ -1,0 +1,17 @@
+[includeIf "gitdir:~/Documents/spaces/tech/"]
+	path = ~/.gitconfig-personal
+
+[core]
+	editor = vim
+
+[commit]
+	gpgsign = true
+
+[pull]
+	rebase = false
+
+[init]
+	defaultBranch = main
+
+[credential]
+	helper = store

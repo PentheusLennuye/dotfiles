@@ -1,14 +1,55 @@
 ---
 - name: Copy George's Dotfiles
   block:
-    - name: Kerberos configuration
+    - name: George's root-level files
       ansible.builtin.copy:
-        src: "files/{{ item[0] }}"
-        dest: "/home/gmc/{{ item[1] }}"
+        src: "files/{{ item }}"
+        dest: "/home/gmc/.{{ item }}"
         mode: "0600"
         owner: gmc
         group: users
       loop:
-        - ["zshrc", "etc/.zshrc"]
+        - zshrc
+        - gitconfig
+        - gitconfig-personal
+        - gitconfig-sap
+    - name: George's config directories
+      ansible.builtin.copy:
+        src: "files/{{ item }}/"
+        dest: "/home/gmc/.{{ item }}/"
+        directory_mode: "0700"
+        mode: "0600"
+        owner: gmc
+        group: users
+      loop:
+        - config
+        - ssh
+    - name: George's directories
+      ansible.builtin.file:
+        path: "/home/gmc/{{ item }}"
+        state: directory
+        mode: "0700"
+        owner: gmc
+        group: users
+      loop:
+        - ".local/bin"
+        - ".cargo"
+    - name: George's local binaries
+      ansible.builtin.copy:
+        src: "files/local_bin/"
+        dest: "/home/gmc/.local/bin/"
+        directory_mode: "0700"
+        mode: "0700"
+        owner: gmc
+        group: users
+    - name: George's expected files
+      ansible.builtin.file:
+        path: "/home/gmc/{{ item }}"
+        state: touch
+        mode: "0600"
+        owner: gmc
+        group: users
+      loop:
+        - ".cargo/env"
   tags:
     - gmc
