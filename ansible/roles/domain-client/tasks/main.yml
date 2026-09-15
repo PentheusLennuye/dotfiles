@@ -2,8 +2,8 @@
 - name: linux setup
   become: true
   block:
-    - import_tasks: packages.yml
-    - import_tasks: configurations.yml
+    - import_tasks: packages.yaml
+    - import_tasks: configurations.yaml
     - name: Start gssproxy
       ansible.builtin.service:
         name: gssproxy
