@@ -2,7 +2,7 @@
 # │LDAP Defaults ├─────────────────────────────────────────────────────────
 # ╰──────────────╯
 
-BASE	    dc=cummings-online,dc=ca
-URI	    ldap://ldap2.cummings-online.ca ldap://ldap1.cummings-online.ca
+BASE	      {{ ldap_base }}
+URI	        {%- for item in ldap["servers"] %}{{ item }} {% endfor %}
 SASL_MECH   GSSAPI
 TLS_REQCERT hard

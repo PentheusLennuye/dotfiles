@@ -1,0 +1,10 @@
+---
+- name: NFS Mount Points
+  ansible.builtin.file:
+    path: "/mnt/nfs/{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+  tags:
+    - domain-client

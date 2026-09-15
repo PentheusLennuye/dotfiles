@@ -4,3 +4,8 @@
   block:
     - import_tasks: packages.yml
     - import_tasks: configurations.yml
+    - name: Start gssproxy
+      ansible.builtin.service:
+        name: gssproxy
+        enabled: true
+        state: started

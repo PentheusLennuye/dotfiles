@@ -1,0 +1,14 @@
+---
+- name: Copy George's Dotfiles
+  block:
+    - name: Kerberos configuration
+      ansible.builtin.copy:
+        src: "files/{{ item[0] }}"
+        dest: "/home/gmc/{{ item[1] }}"
+        mode: "0600"
+        owner: gmc
+        group: users
+      loop:
+        - ["zshrc", "etc/.zshrc"]
+  tags:
+    - gmc

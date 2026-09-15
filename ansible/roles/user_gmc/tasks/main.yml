@@ -1,35 +1,6 @@
 ---
-- name: linux setup for user gmc
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" or ansible_distribution == "Linux Mint"
+- name: Linux setup for user gmc
+  when: ansible_os_family == "Debian" or ansible_os_family == "Archlinux"
   become: true
   block:
-    - import_tasks: gmc_shell.yml
-    - name: user files for gmc
-      become_user: gmc
-      block:
-      - import_tasks: gmc_linters.yml
-      - import_tasks: gmc_neovim.yml
-      - import_tasks: gmc_starship.yml
-      - name: local languages for gmc
-        when: "'development' in group_names"
-        import_tasks: gmc_local_languages.yml
-      - name: cargo env hack for zshrc
-        when: "'development' not in group_names"
-        block:
-          - name: ensure .cargo/ exists
-            ansible.builtin.file:
-              state: directory
-              path: /home/gmc/.cargo
-              mode: "0700"
-          - name: ensure .cargo/env exists
-            ansible.builtin.file:
-              state: touch
-              path: /home/gmc/.cargo/env
-              mode: "0600"
-
-- name: macos setup for user gmc
-  when: ansible_distribution == "MacOSX"
-  become: true
-  become_user: gmc
-  import_tasks: gmc_macos.yml
-
+    - import_tasks: configuration.yaml

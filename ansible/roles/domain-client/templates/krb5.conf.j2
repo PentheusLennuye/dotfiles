@@ -1,5 +1,5 @@
 [libdefaults]
-	default_realm = CUMMINGS-ONLINE.CA
+	default_realm = {{ realm }}
 	dns_lookup_realm = false
 	forwardable = true
 	renew_lifetime = 7d
@@ -7,7 +7,9 @@
         rdns = false
 
 [realms]
-	CUMMINGS-ONLINE.CA = {
-		kdc = krb.cummings-online.ca
-		admin_server = krb.cummings-online.ca
+	{{ realm }} = {
+		admin_server = {{ krb5["admin"]}}
+    {%- for item in krb5["kdc"]  %}
+		kdc = {{ item }}
+    {% endfor -%}
 	}

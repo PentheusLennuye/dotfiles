@@ -15,9 +15,10 @@ all:
         goemon.cummings-online.ca:
           ansible_connection: local
         murasaki.cummings-online.ca:
-        ansible_connection: local
+          ansible_connection: local
     montreal:
       hosts:
         goemon.cummings-online.ca:
           ansible_connection: local
         murasaki.cummings-online.ca:
+          ansible_connection: local

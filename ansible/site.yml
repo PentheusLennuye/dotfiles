@@ -7,9 +7,3 @@
   roles:
     - role: desktop
     - role: domain-client
-- hosts: thinkbooks
-  roles:
-    - role: thinkbook
-- hosts: development
-  roles:
-    - role: development

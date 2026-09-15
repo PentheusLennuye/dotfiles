@@ -7,7 +7,10 @@
     - openldap
     - krb5
     - nfs-utils
-    # for nfs4
+    # service for nfs4
     - gssproxy
-    # for ldap mechanism
+    # library for ldap mechanism
     - cyrus-sasl-gssapi
+  tags:
+    - packages
+    - domain-client

@@ -6,7 +6,7 @@
       ansible.builtin.copy:
         src: files/etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
         dest: /etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
       notify: Install CA Arch
@@ -20,7 +20,7 @@
       ansible.builtin.copy:
         src: files/etc/ca-certificates/trust-source/anchors/ca.cummings-online.pem
         dest: /usr/local/share/ca-certificates
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
       notify: Install CA Debian
@@ -56,7 +56,7 @@
       ansible.builtin.template:
         src: templates/hosts.j2
         dest: /etc/hosts
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
 
@@ -64,7 +64,7 @@
       ansible.builtin.template:
         src: templates/resolv.conf.j2
         dest: /etc/resolv.conf
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
 
@@ -72,7 +72,7 @@
       ansible.builtin.template:
         src: templates/resolved.conf.j2
         dest: /etc/systemd/resolved.conf
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
       notify: Restart Resolved Service
@@ -81,7 +81,7 @@
       ansible.builtin.copy:
         src: files/etc/ssh/sshd_config
         dest: /etc/ssh/sshd_config
-        mode: 0644
+        mode: "0644"
         owner: root
         group: root
       notify: Restart SSH Service

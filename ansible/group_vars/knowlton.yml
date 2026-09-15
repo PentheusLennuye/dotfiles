@@ -6,6 +6,7 @@ krb5:
     - kdc.cummings-online.ca
   admin: kdc.cummings-online.ca
 ldap:
-  hosts:
+  servers:
     - ldap2.cummings-online.ca
     - ldap1.cummings-online.ca
+    - ldap.cummings-online.ca

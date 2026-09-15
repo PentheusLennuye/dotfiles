@@ -4,3 +4,15 @@
   block:
     - import_tasks: packages.yml
     - import_tasks: configurations.yml
+    - name: Debian SSH service started
+      when: ansible_os_family == "Archlinux"
+      ansible.builtin.service:
+        name: sshd
+        enabled: true
+        state: started
+    - name: Debian SSH service started
+      when: ansible_os_family == "Debian"
+      ansible.builtin.service:
+        name: ssh
+        enabled: true
+        state: started
