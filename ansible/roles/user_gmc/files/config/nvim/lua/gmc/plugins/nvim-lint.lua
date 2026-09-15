@@ -12,7 +12,6 @@ return {
 			haskell = { "ormolu" },
 			markdown = { "markdownlint" },
 			python = { "pylint" },
-			rust = { "rust_analyzer" },
 			systemd = { "systemdlint" },
 			yaml = { "yamllint" },
 		}

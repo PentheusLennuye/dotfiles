@@ -37,7 +37,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				python = { "isort", "black" },
-				rust = { "rust_analyzer" },
+				rust = { "rustfmt" },
 				terraform = { "terraform" },
 				yaml = { "yamlfmt" },
 			},

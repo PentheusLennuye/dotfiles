@@ -17,5 +17,10 @@ return {
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
+		vim.lsp.config("rust_analyzer", {
+			check = {
+				command = "clippy",
+			},
+		})
 	end,
 }
