@@ -60,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026091201   ; serial
+      2026091701   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -118,6 +118,7 @@ data:
     nixoscache   IN CNAME lupin.cummings-online.ca.
     nfs          IN CNAME jigen.cummings-online.ca.
     time         IN CNAME lupin.cummings-online.ca.
+    docker       IN CNAME ingress1.cummings-online.ca.
     languagetool IN CNAME ingress1.cummings-online.ca.
   db-172-16-73: |
     $TTL 86400

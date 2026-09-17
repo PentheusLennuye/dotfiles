@@ -9,6 +9,16 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    - host: docker.cummings-online.ca
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: docker-registry
+                port:
+                  number: 5000
     - host: languagetool.cummings-online.ca
       http:
         paths:
@@ -23,3 +33,6 @@ spec:
     - secretName: languagetool-tls
       hosts:
         - languagetool.cummings-online.ca
+    - secretName: docker-registry-tls
+      hosts:
+        - docker.cummings-online.ca

@@ -298,6 +298,14 @@ dsconf -D "cn=Directory Manager" \
 
 ### F.1 Docker Containers
 
+Confirm GSSAPI and GSS-SPNEGO are available:
+
+```sh
+dsconf -D "cn=Directory Manager" ldap://ldap1.cummings-online.ca config get nsslapd-allowed-sasl-mechanisms
+```
+
+If they are not, punch in the following command:
+
 ```sh
 dsconf -D "cn=Directory Manager" ldap://ldap.cummings-online.ca config \
   replace nsslapd-allowed-sasl-mechanisms=PLAIN,EXTERNAL,LOGIN,GSSAPI,GSS-SPNEGO
