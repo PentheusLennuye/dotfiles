@@ -1,37 +1,41 @@
 ---
-- name: Install CLI applications
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - calc
-    - gnupg
-    - jq
-    - lsd
-    - lsof
-    - neovim
-    - pandoc
-    - pass
-    - starship
-    - texlive
-    - tmux
-    - tree
-    - jq
+- name: Install common packages
+  tags:
+    - packages
+  block:
+    - name: Install CLI applications
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - calc
+        - gnupg
+        - jq
+        - lsd
+        - lsof
+        - neovim
+        - pandoc
+        - pass
+        - starship
+        - texlive
+        - tmux
+        - tree
+        - jq
 
-- name: Install Arch package management tools and CLI
-  when: ansible_facts["os_family"] == "ArchLinux"
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - paru
-    - yay
-    - pinentry
+    - name: Install Arch package management tools and CLI
+      when: ansible_facts["os_family"] == "Archlinux"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - paru
+        - yay
+        - pinentry
 
-- name: Install Debian package management tools and CLI
-  when: ansible_facts["os_family"] == "Debian"
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - pinentry-tty
+    - name: Install Debian package management tools and CLI
+      when: ansible_facts["os_family"] == "Debian"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - pinentry-tty

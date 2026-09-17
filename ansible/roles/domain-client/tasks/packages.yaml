@@ -1,38 +1,36 @@
 ---
-- name: Install system configuration utilities
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    # service for nfs4
-    - gssproxy
-    # library for ldap mechanism
+- name: Installing domain client packages
   tags:
     - packages
-    - domain-client
+  block:
+    - name: Install system configuration utilities
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        # service for nfs4
+        - gssproxy
+        # library for ldap mechanism
 
-- name: Install Arch domain packages
-  when: ansible_facts["os_family"] == "ArchLinux"
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - cyrus-sasl-gssapi
-    - krb5
-    - nfs-utils
-    - openldap
+    - name: Install Arch domain packages
+      when: ansible_facts["os_family"] == "Archlinux"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - cyrus-sasl-gssapi
+        - krb5
+        - nfs-utils
+        - openldap
 
-- name: Install Debian domain packages
-  when: ansible_facts["os_family"] == "Debian"
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - krb5-user
-    - libpam-krb5
-    - libsasl2-modules-gssapi-mit
-    - nfs-common
-    - ldap-client
-  tags:
-    - packages
-    - domain-client
+    - name: Install Debian domain packages
+      when: ansible_facts["os_family"] == "Debian"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - krb5-user
+        - libpam-krb5
+        - libsasl2-modules-gssapi-mit
+        - nfs-common
+        - ldap-client

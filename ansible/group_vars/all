@@ -1,3 +1,6 @@
 ---
 realm: CUMMINGS-ONLINE.CA
 ldap_base: dc=cummings-online,dc=ca
+nfs_servers:
+  - lupin
+  - jigen

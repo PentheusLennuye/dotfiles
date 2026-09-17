@@ -1,11 +1,13 @@
 ---
 - name: linux setup
   become: true
+  tags:
+    - common
   block:
     - import_tasks: packages.yaml
     - import_tasks: configurations.yaml
     - name: Debian SSH service started
-      when: ansible_facts["os_family"] == "Archlinux"
+      when: ansible_facts["os_family"] == "Archlinux" and "laptops" not in group_names
       ansible.builtin.service:
         name: sshd
         enabled: true

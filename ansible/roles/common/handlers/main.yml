@@ -10,7 +10,7 @@
 - name: Restart SSH Service
   block:
     - name: Restart SSH ArchLinux
-      when: ansible_facts["os_family"] == "Archlinux"
+      when: ansible_facts["os_family"] == "Archlinux" and "laptops" not in group_names
       ansible.builtin.service:
         name: sshd
         state: restarted

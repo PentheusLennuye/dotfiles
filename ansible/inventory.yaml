@@ -5,13 +5,22 @@ all:
       hosts:
         goemon.cummings-online.ca:
           ansible_connection: local
+      children:
+        laptops:
+          hosts:
+            murasaki.cummings-online.ca:
+              ansible_connection: local
     development:
       hosts:
         goemon.cummings-online.ca:
           ansible_connection: local
+        murasaki.cummings-online.ca:
+          ansible_connection: local
     montreal:
       hosts:
         goemon.cummings-online.ca:
+          ansible_connection: local
+        murasaki.cummings-online.ca:
           ansible_connection: local
         template-ubuntu-server-26.04:
           ansible_connection: local

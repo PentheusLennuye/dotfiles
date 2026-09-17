@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
+-dNOPAUSE -dBATCH -dColorImageResolution=150 \
+-sOutputFile=$2 $1
+

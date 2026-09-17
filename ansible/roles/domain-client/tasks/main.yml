@@ -4,8 +4,11 @@
   block:
     - import_tasks: packages.yaml
     - import_tasks: configurations.yaml
+    - import_tasks: filesystem.yaml
     - name: Start gssproxy
       ansible.builtin.service:
         name: gssproxy
         enabled: true
         state: started
+  tags:
+    - domain-client
