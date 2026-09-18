@@ -60,7 +60,7 @@ data:
   db-cummings-online: |
     $TTL 86400
     @  IN    SOA   ns.cummings-online.ca. gmc.cummings-online.ca. (
-      2026091701   ; serial
+      2026091801   ; serial
            86400   ; refresh
            28800   ; retry
           604800   ; expire
@@ -80,7 +80,7 @@ data:
     ; Hosts --------------------------------------------------------------
     @            IN A 172.66.0.96
     @            IN A 162.159.140.98
-    bambu        IN	A	192.168.68.232
+    bambu        IN	A	192.168.42.147
     brother      IN	A	192.168.96.61
     canon	       IN	A	192.168.73.61
     colour       IN A 192.168.42.61

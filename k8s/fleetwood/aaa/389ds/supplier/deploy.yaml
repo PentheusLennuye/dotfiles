@@ -61,13 +61,13 @@ spec:
             - name: REPLICATION_ROLE
               value: supplier
             - name: REPLICATION_PEERS
-              value: "(ldap1.cummings-online.ca:fleetwood-agreement-ldap1,ldap2.cummings-online.ca:fleetwood-agreement-ldap2)"
+              value: "ldap1.cummings-online.ca:fleetwood-agreement-ldap1,ldap2.cummings-online.ca:fleetwood-agreement-ldap2"
             - name: REPLICATION_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.2.36
+          image: docker.cummings-online.ca/389ds:0.2.48
           imagePullPolicy: Always
           ports:
             - containerPort: 389

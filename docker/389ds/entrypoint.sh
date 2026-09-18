@@ -4,6 +4,7 @@ REPLICATION=0
 TLS=0
 
 sanity_check() {
+  echo "Sanity check"
   if [ -z "${DS_SUFFIX_NAME}" ]; then
     echo "No DS_SUFFIX_NAME defined"
     return 1
@@ -19,20 +20,20 @@ sanity_check() {
 }
 
 set_tls() {
-  [ -d /data/tls/ca/crt ] || return
+  echo "Testing for TLS"
+  [ -f /data/tls/ca/ca.crt ] || return
   [ -f /data/tls/server.crt ] || return
   [ -f /data/tls/server.key ] || return
   TLS=1
 }
 
 set_replication() {
-  [[ "${TLS}" != "1" ]] && return
-  [[ -z "${REPLICATION_ROLE}" ]] && return
-  [[ -z "${REPLICATION_PASSWORD}" ]] && return
+  echo "Testing for Replication"
+  if [ "${TLS}" != "1" ]; then echo "TLS off"; return; fi
+  if [ -z "${REPLICATION_ROLE}" ]; then echo "No REPLICATION_ROLE"; return; fi
+  if [ -z "${REPLICATION_PASSWORD}" ]; then echo "No Repl password"; return; fi
   REPLICATION=1
 }
-
-
 
 ds_instantiation_1() {
   cat > /root/instance.inf << EOF1
@@ -93,13 +94,27 @@ create_ds_instantiation_file() {
 }
 
 create_ds_database() {
-  sed 's/root_password.*/root_password=MASKED/' /root/instance.inf
+  if [ -f /var/lib/dirsrv/slapd-service/db/data.mdb ]; then
+    echo "DB already exists. Skipping creation."
+    return
+  fi
 
+  echo "Creating new DB"
+  sed 's/root_password.*/root_password=MASKED/' /root/instance.inf
   dscreate from-file /root/instance.inf  || exit 7
   rm /root/instance.inf
 }
 
 configure_tls() {
+  [[ "${TLS}" != "1" ]] && return
+  certutil -L -d /etc/dirsrv/slapd-service | grep "ca_crt" 
+  if [ $? -eq 0 ]; then
+    echo "Server Cert in place. Skipping cert installation." 
+    return
+  fi
+
+  echo "Installing Server Cert to DS Store"
+
   cat /etc/dirsrv/slapd-service/pin.txt | cut -d: -f2 > /tmp/pinpw
 
   certutil -A \
@@ -107,26 +122,45 @@ configure_tls() {
     -n "ca_cert" \
     -t "C,," \
     -f /tmp/pinpw \
-    -i /data/tls/ca/ca.crt || return 1
+    -i /data/tls/ca/ca.crt
+
+  if [ $? -ne 0 ]; then
+    echo "Failed to update CA"
+    sleep 5
+    exit 1
+  fi
 
   openssl pkcs12 -export \
     -inkey /data/tls/server.key \
     -in /data/tls/server.crt \
     -passout pass: \
     -name "Server-Cert" -out \
-    /tmp/server.p12 || return 2
+    /tmp/server.p12
 
   pk12util -d /etc/dirsrv/slapd-service -i /tmp/server.p12 -W "" -k /tmp/pinpw || return 3
+  if [ $? -ne 0 ]; then
+    echo "Failed to install server certs"
+    sleep 5
+    exit 2
+  fi
   
   rm /tmp/server.p12 /tmp/pinpw
 }
 
 create_replication_agreements() {
-  [[ "${REPLICATION}" != "1" ]] && return
-  [[ -z "${REPLICATION_PEERS}" ]] && return
+  if [ "${REPLICATION}" != "1" ]; then
+    echo "Replication environment variables not set. Skipping replication"
+    return
+  fi
+  if [ -z "${REPLICATION_PEERS}" ]; then
+    echo "No replication peers set"
+    return
+  fi
 
-  for consumer in ${REPLICATION_PEERS[@]}; do
-    IFS=";" read -r hostname agreement_name <<< $consumer
+  IFS="," read -r -a peers <<< $REPLICATION_PEERS
+
+  for consumer in ${peers[@]}; do
+    IFS=":" read -r hostname agreement_name <<< $consumer
     dsconf service \
       repl-agmt init \
       --suffix="${DS_SUFFIX_NAME}" ${agreement_name}
@@ -139,38 +173,16 @@ echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab" > /etc/default/dirsrv
 
 
 # START HERE
-echo "Sanity check"
-sanity_check || exit 1
-echo "Testing for TLS"
+sanity_check
 set_tls
-echo "Testing for Replication"
 set_replication
 
 create_ds_instantiation_file
-
-# Create the database only if it does not exist
-if [ -f /var/lib/dirsrv/slapd-service ]; then
-  echo "DB already exists. Skipping."
-else
-  echo "Creating new DB"
-  create_ds_database && true
-fi
-
-# Push the certs only if they do not exist
-certutil -L -d /etc/dirsrv/slapd-service | grep "Server-Cert" 
-if [ $? -eq 0 ]; then
-  echo "Server Cert in place" 
-else
-  echo "Installing Server Cert to DS Store"
-  configure_tls || exit 3
-fi
-
-# Set up replication
+create_ds_database
+configure_tls 
 create_replication_agreements
 
-echo "Entrypoint complete"
+echo "Entrypoint complete. Passing pid 1 to 389ds service"
 
-/usr/sbin/dsctl service start
-
-exec "$@"
+exec /usr/sbin/dsctl service start
 
