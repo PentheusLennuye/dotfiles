@@ -28,16 +28,12 @@ spec:
                     app: ldap
                 topologyKey: "kubernetes.io/hostname"
       volumes:
-        - name: ca-anchors
-          configMap:
-            name: 389ds-ca-cert
-        - name: dirsrv-startup
-          emptyDir: {}
-        - name: merged-certs
-          emptyDir: {}
+        - name: 389ds-config
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-config-pvc
         - name: 389ds-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs-pvc
+            claimName: 389ds-nfs-data-pvc
         - name: 389ds-tls
           secret:
             secretName: 389ds-tls
@@ -48,30 +44,8 @@ spec:
                 path: "server.crt"
               - key: "ca.crt"
                 path: "ca/ca.crt"
-      initContainers:
-        - name: init-ca
-          image: 389ds/dirsrv:3.1
-          command: ["sh", "-c"]
-          args:
-            - |
-              cp /anchors/cummings-online.ca.crt /etc/pki/trust/anchors
-              update-ca-certificates
-              cp /var/lib/ca-certificates/ca-bundle.pem /merged-certs/ca-bundle.pem
-              echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab; export KRB5_KTNAME" > /dirsrv_startup/dirsrv
-          volumeMounts:
-            - name: ca-anchors
-              mountPath: /anchors
-              readOnly: true
-            - name: merged-certs
-              mountPath: /merged-certs
-            - name: dirsrv-startup
-              mountPath: /dirsrv_startup
-            - name: 389ds-data
-              readOnly: false
-              mountPath: /data
-            - name: 389ds-tls
-              readOnly: true
-              mountPath: /data/tls
+      imagePullSecrets:
+        - name: regcred
       containers:
         - name: dirsrv
           env:
@@ -82,32 +56,37 @@ spec:
                   key: password
             - name: DS_SUFFIX_NAME
               value: "dc=cummings-online,dc=ca"
-            - name: DS_REINDEX
-              value: "true"
-          image: 389ds/dirsrv:3.1
+            - name: HOST_FQDN
+              value: "ldap.cummings-online.ca"
+            - name: REPLICATION_ROLE
+              value: supplier
+            - name: REPLICATION_PEERS
+              value: "ldap1.cummings-online.ca:fleetwood-agreement-ldap1,ldap2.cummings-online.ca:fleetwood-agreement-ldap2"
+            - name: REPLICATION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-dm-password
+                  key: password
+          image: docker.cummings-online.ca/389ds:0.2.48
+          imagePullPolicy: Always
           ports:
-            - containerPort: 3389
-            - containerPort: 3636
+            - containerPort: 389
+            - containerPort: 636
           volumeMounts:
             - name: 389ds-data
+              readOnly: false
+              mountPath: /var/lib/dirsrv
+            - name: 389ds-config
               readOnly: true
               mountPath: /etc/krb5.conf
               subPath: krb5.conf
-            - name: 389ds-data
+            - name: 389ds-config
               readOnly: false
               mountPath: /etc/dirsrv/ds.keytab
               subPath: ds.keytab
-            - name: 389ds-data
+            - name: 389ds-config
               readOnly: false
-              mountPath: /data
+              mountPath: /etc/dirsrv/slapd-service
             - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
-            - name: dirsrv-startup
-              mountPath: /etc/sysconfig/dirsrv
-              subPath: dirsrv
-              readOnly: true
-            - name: merged-certs
-              mountPath: /var/lib/ca-certificates/ca-bundle.pem
-              subPath: ca-bundle.pem
-              readOnly: true

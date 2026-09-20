@@ -2,9 +2,42 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: 389ds-nfs-pv
+  name: 389ds-nfs-config-pv
   labels:
-    type: nfs-model-storage
+    type: nfs-389ds-config-storage
+spec:
+  capacity:
+    storage: 10Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nconnect=8
+  nfs:
+    server: jigen
+    path: /protected/fleetwood/389ds/config
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: 389ds-nfs-config-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Mi
+  selector:
+    matchLabels:
+      type: nfs-389ds-config-storage
+  storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: 389ds-nfs-data-pv
+  labels:
+    type: nfs-389ds-data-storage
 spec:
   capacity:
     storage: 50Mi
@@ -15,12 +48,12 @@ spec:
     - nconnect=8
   nfs:
     server: jigen
-    path: /protected/fleetwood/389ds
+    path: /protected/fleetwood/389ds/data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: 389ds-nfs-pvc
+  name: 389ds-nfs-data-pvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -29,5 +62,5 @@ spec:
       storage: 50Mi
   selector:
     matchLabels:
-      type: nfs-model-storage
+      type: nfs-389ds-data-storage
   storageClassName: ""
