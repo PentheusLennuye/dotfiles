@@ -70,7 +70,7 @@ spec:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.2.76
+          image: docker.cummings-online.ca/389ds:0.2.78
           imagePullPolicy: Always
           ports:
             - containerPort: 3389

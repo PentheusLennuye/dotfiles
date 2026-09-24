@@ -46,19 +46,13 @@ directory structure:
 └─ logs (owned by 100:101)
 ```
 
-## B. Supplier
-
-"Supplier" is 389ds's way of saying master database and system.
+### A.4 Create the directory manager secret
 
 ```sh
-cd supplier
 ./00_create_ds_dm_password.sh
-./01_create_389ds_tls_secret.sh
-k apply -f .
-./07_populate.sh
 ```
 
-## B. Replication
+## B. Consumer
 
 Replication is enabled, but not initialized.
 
@@ -66,36 +60,24 @@ Replication is enabled, but not initialized.
 
 #### B.1.1 Create the consumer
 
-The "consumer" is the downrange replica servers, generally read-only.
+The "consumer" is the downrange replica servers, generally read-only. They
+should be created first.
 
 ```sh
-cd ../consumer
+cd consumer
 ./01_create_389ds_tls_consumer_secret.sh
 k apply -f .
 ```
 
-#### B.1.2 Initiate replication on the consumer
+## C. Supplier
 
-Using my domain, cummings-online.ca, as an example:
-
-```sh
-k exec deploy/ldap-consumer -- dsconf localhost repl-agmt init \
-  --suffix=dc=cummings-online,dc=ca fleetwood-1
-```
-
-#### B.1.3 Initiate replication on the supplier
+"Supplier" is 389ds's way of saying master database and system.
 
 ```sh
-k exec deploy/ldap -- dsconf localhost repl-agmt init --suffix=dc=cummings-online,dc=ca fleetwood-1
-```
-
-Verify:
-
-```sh
-dsconf -D "cn=Directory Manager" \
-  ldap://ldap2.cummings-online.ca \
-  repl-agmt init-status \
-  --suffix="dc=cummings-online,dc=ca" fleetwood-agreement-ldap2
+cd ../supplier
+./01_create_389ds_tls_secret.sh
+k apply -f .
+./07_populate.sh
 ```
 
 ## F. GSSAPI/Kerberos

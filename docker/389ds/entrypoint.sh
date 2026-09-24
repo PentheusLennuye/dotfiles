@@ -77,27 +77,10 @@ EOF3
 
 }
 
-ds_instantiation_4() {
-  if [ "${REPLICATION}" != "1" ]; then
-    echo "Replication not configured; not enabling replication"
-    return
-  fi
-
-  cat >> /root/instance.inf << EOF4
-enable_replication = yes
-replica_binddn = cn=replication manager,cn=config
-replica_bindpw = "${REPLICATION_PASSWORD}"
-replica_role = ${REPLICATION_ROLE}
-
-EOF4
-
-}
-
 create_ds_instantiation_file() {
   ds_instantiation_1
   ds_instantiation_2
   ds_instantiation_3
-  ds_instantiation_4
   echo "Created instance.inf"
 }
 
@@ -165,14 +148,29 @@ configure_tls() {
   rm /tmp/server.p12 /tmp/pinpw
 }
 
+enable_replication() {
+  replica_id=
+  if [ "${REPLICATION_ROLE}" == "supplier" ]; then
+    dsconf localhost replication enable \
+    --suffix="${DS_SUFFIX_NAME}" --role="supplier" --replica-id=1
+  else
+    dsconf localhost replication enable \
+    --suffix="${DS_SUFFIX_NAME}" --role="consumer" \
+    --bind-dn="cn=replication manager,cn=config" --bind-passwd="${REPLICATION_PASSWORD}"
+  fi;
+}
+
 create_replication_agreement() {
   hostname=$1
   agreement_name=$2
-  dsconf localhost repl-agmt create \
-  --suffix="${DS_SUFFIX_NAME}" --host="${hostname}" --port=636 --conn-protocol=LDAPS \
-  --bind-method=SIMPLE --bind-dn="cn=replication manager,cn=config" \
-  --bind-passwd="${DS_DM_PASSWORD}" ${agreement_name}
+  if [ "${REPLICATION_ROLE}" != "supplier" ]; then
+    return
+  fi;
 
+  dsconf localhost repl-agmt create \
+    --suffix="${DS_SUFFIX_NAME}" --host="${hostname}" --port=636 --conn-protocol=LDAPS \
+    --bind-method=SIMPLE --bind-dn="cn=replication manager,cn=config" \
+    --bind-passwd="${REPLICATION_PASSWORD}" ${init} --init ${agreement_name}
 }
 
 create_replication_agreements() {
@@ -185,6 +183,8 @@ create_replication_agreements() {
     return
   fi
 
+  enable_replication
+
   IFS="," read -r -a peers <<< $REPLICATION_PEERS
   for consumer in ${peers[@]}; do
     IFS=":" read -r hostname agreement_name <<< $consumer
@@ -195,7 +195,6 @@ create_replication_agreements() {
 
 # Kerberos ────────────────────────────────────────────────────────────────────
 echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab" > /etc/default/dirsrv
-
 
 # START HERE
 sanity_check
