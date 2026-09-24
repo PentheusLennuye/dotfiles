@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#set -euo pddipefail  Not using pipefail as grep needed
+
 REPLICATION=0
 TLS=0
 
@@ -43,21 +45,24 @@ full_machine_name = ${HOST_FQDN}
 start = no
 
 [slapd]
-instance_name = service
+instance_name = localhost
 db_lib = mdb
 mdb_max_size = 5G
 root_password = ${DS_DM_PASSWORD}
-port = 389
+port = 3389
 EOF1
 
 }
 
 ds_instantiation_2() {
-  [[ "${TLS}" != "1" ]] && return
+  if [ "${TLS}" != "1" ]; then
+    echo "TLS not configured; not enabling TLS"
+    return
+  fi
 
   cat >> /root/instance.inf << EOF2
-secure_port = 636
-self_sign_cert = no
+secure_port = 6636
+self_sign_cert = yes
 EOF2
 }
 
@@ -65,7 +70,7 @@ ds_instantiation_3() {
   cat >> /root/instance.inf << EOF3
 
 [backend-userroot]
-create_suffix_entry = yes
+create_suffix_entry = no
 sample_entries = no
 suffix = ${DS_SUFFIX_NAME}
 EOF3
@@ -73,7 +78,10 @@ EOF3
 }
 
 ds_instantiation_4() {
-  [[ "${REPLICATION}" != "1" ]] && return
+  if [ "${REPLICATION}" != "1" ]; then
+    echo "Replication not configured; not enabling replication"
+    return
+  fi
 
   cat >> /root/instance.inf << EOF4
 enable_replication = yes
@@ -94,20 +102,26 @@ create_ds_instantiation_file() {
 }
 
 create_ds_database() {
-  if [ -f /var/lib/dirsrv/slapd-service/db/data.mdb ]; then
+  if [ -f /var/lib/dirsrv/slapd-localhost/db/data.mdb ]; then
     echo "DB already exists. Skipping creation."
     return
   fi
 
   echo "Creating new DB"
-  sed 's/root_password.*/root_password=MASKED/' /root/instance.inf
+  sed -e 's/root_password.*/root_password=MASKED/' \
+      -e 's/replica_bindpw.*/reploca_bindpw=MASKED/' \
+      /root/instance.inf
   dscreate from-file /root/instance.inf  || exit 7
   rm /root/instance.inf
 }
 
 configure_tls() {
-  [[ "${TLS}" != "1" ]] && return
-  certutil -L -d /etc/dirsrv/slapd-service | grep "ca_crt" 
+  if [ "${TLS}" != "1" ]; then
+    "Skipping TLS"
+    return
+  fi
+  echo "Inserting certs to 389ds cert store."
+  certutil -L -d /etc/dirsrv/slapd-localhost | grep "ca_cert" 
   if [ $? -eq 0 ]; then
     echo "Server Cert in place. Skipping cert installation." 
     return
@@ -115,10 +129,14 @@ configure_tls() {
 
   echo "Installing Server Cert to DS Store"
 
-  cat /etc/dirsrv/slapd-service/pin.txt | cut -d: -f2 > /tmp/pinpw
+  cat /etc/dirsrv/slapd-localhost/pin.txt | cut -d: -f2 > /tmp/pinpw
+
+  echo "Removing self-signed cert as they have fulfilled their objective."
+  certutil -D -n Self-Signed-CA -d /etc/dirsrv/slapd-localhost
+  certutil -D -n Server-Cert -d /etc/dirsrv/slapd-localhost
 
   certutil -A \
-    -d /etc/dirsrv/slapd-service \
+    -d /etc/dirsrv/slapd-localhost \
     -n "ca_cert" \
     -t "C,," \
     -f /tmp/pinpw \
@@ -137,7 +155,7 @@ configure_tls() {
     -name "Server-Cert" -out \
     /tmp/server.p12
 
-  pk12util -d /etc/dirsrv/slapd-service -i /tmp/server.p12 -W "" -k /tmp/pinpw || return 3
+  pk12util -d /etc/dirsrv/slapd-localhost -i /tmp/server.p12 -W "" -k /tmp/pinpw || return 3
   if [ $? -ne 0 ]; then
     echo "Failed to install server certs"
     sleep 5
@@ -145,6 +163,16 @@ configure_tls() {
   fi
   
   rm /tmp/server.p12 /tmp/pinpw
+}
+
+create_replication_agreement() {
+  hostname=$1
+  agreement_name=$2
+  dsconf localhost repl-agmt create \
+  --suffix="${DS_SUFFIX_NAME}" --host="${hostname}" --port=636 --conn-protocol=LDAPS \
+  --bind-method=SIMPLE --bind-dn="cn=replication manager,cn=config" \
+  --bind-passwd="${DS_DM_PASSWORD}" ${agreement_name}
+
 }
 
 create_replication_agreements() {
@@ -158,15 +186,12 @@ create_replication_agreements() {
   fi
 
   IFS="," read -r -a peers <<< $REPLICATION_PEERS
-
   for consumer in ${peers[@]}; do
     IFS=":" read -r hostname agreement_name <<< $consumer
-    dsconf service \
-      repl-agmt init \
-      --suffix="${DS_SUFFIX_NAME}" ${agreement_name}
-    echo "Created an agreement for ${hostname} with name ${agreement_name}"
+    create_replication_agreement $hostname $agreement_name
   done
 }
+
 
 # Kerberos ────────────────────────────────────────────────────────────────────
 echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab" > /etc/default/dirsrv
@@ -179,10 +204,10 @@ set_replication
 
 create_ds_instantiation_file
 create_ds_database
+dsctl localhost start
 configure_tls 
 create_replication_agreements
-
-echo "Entrypoint complete. Passing pid 1 to 389ds service"
-
-exec /usr/sbin/dsctl service start
+dsctl localhost stop
+echo "Entrypoint complete. Passing pid 1 to a389ds localhost"
+exec "$@"
 

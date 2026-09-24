@@ -15,6 +15,6 @@ spec:
     - name: ldaps
       protocol: TCP
       port: 636
-      targetPort: 3636
+      targetPort: 6636
   type: LoadBalancer
   loadBalancerIP: 10.11.0.11

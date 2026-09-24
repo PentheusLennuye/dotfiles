@@ -64,3 +64,36 @@ spec:
     matchLabels:
       type: nfs-389ds-data-storage
   storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: 389ds-nfs-logs-pv
+  labels:
+    type: nfs-389ds-logs-storage
+spec:
+  capacity:
+    storage: 1048Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nconnect=8
+  nfs:
+    server: jigen
+    path: /protected/fleetwood/389ds/logs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: 389ds-nfs-logs-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1024Mi
+  selector:
+    matchLabels:
+      type: nfs-389ds-logs-storage
+  storageClassName: ""

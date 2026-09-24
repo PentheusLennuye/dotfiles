@@ -19,6 +19,9 @@
 # Every HR can disable or re-enable a Person and alter their HR entries.
 
 version: 1
+dn: dc=cummings-online,dc=ca
+changetype: modify
+delete: aci
 
 dn: dc=cummings-online,dc=ca
 changetype: modify

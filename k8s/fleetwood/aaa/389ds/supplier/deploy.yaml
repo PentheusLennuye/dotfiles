@@ -34,6 +34,9 @@ spec:
         - name: 389ds-data
           persistentVolumeClaim:
             claimName: 389ds-nfs-data-pvc
+        - name: 389ds-logs
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-logs-pvc
         - name: 389ds-tls
           secret:
             secretName: 389ds-tls
@@ -61,17 +64,17 @@ spec:
             - name: REPLICATION_ROLE
               value: supplier
             - name: REPLICATION_PEERS
-              value: "ldap1.cummings-online.ca:fleetwood-agreement-ldap1,ldap2.cummings-online.ca:fleetwood-agreement-ldap2"
+              value: "ldap1.cummings-online.ca:fleetwood-1,ldap2.cummings-online.ca:fleetwood-2"
             - name: REPLICATION_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.2.48
+          image: docker.cummings-online.ca/389ds:0.2.76
           imagePullPolicy: Always
           ports:
-            - containerPort: 389
-            - containerPort: 636
+            - containerPort: 3389
+            - containerPort: 6636
           volumeMounts:
             - name: 389ds-data
               readOnly: false
@@ -86,7 +89,10 @@ spec:
               subPath: ds.keytab
             - name: 389ds-config
               readOnly: false
-              mountPath: /etc/dirsrv/slapd-service
+              mountPath: /etc/dirsrv/slapd-localhost
             - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
+            - name: 389ds-logs
+              readOnly: false
+              mountPath: /var/log/dirsrv/slapd-localhost

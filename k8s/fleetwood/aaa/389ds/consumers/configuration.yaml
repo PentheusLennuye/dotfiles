@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: 389ds-config
+  name: 389ds-consumer-config
 data:
   container.inf: |
     [localhost]

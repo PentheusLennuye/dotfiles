@@ -1,10 +1,11 @@
-version: 1
-dn: dc=cummings-online,dc=ca
-dc: cummings-online
-description: The Cummings/Sterescu family networks
-objectClass: domain
-o: Cummings Online
+#version: 1
+#dn: dc=cummings-online,dc=ca
+#dc: cummings-online
+#description: The Cummings/Sterescu family networks
+#objectClass: domain
+#o: Cummings Online
 
+version: 1
 dn: ou=People,dc=cummings-online,dc=ca
 description: Our family members. Used for system authentication as well as pers
  onal information lookups

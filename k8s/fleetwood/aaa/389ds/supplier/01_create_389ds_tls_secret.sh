@@ -10,17 +10,16 @@
 
 HOSTNAME=$1
 DOMAIN=$2
-STORE=$3
 
-while [[ -z "$STORE" ]]; do
+while [[ -z "$DOMAIN" ]]; do
     read -p "Service hostname: " HOSTNAME
     read -p "Domain name: " DOMAIN
-    read -p "Certificate store path: " STORE
 done
 
+STORE=$HOME/Documents/spaces/tech/infra/ca/${DOMAIN}/store
 KEYFILE=${STORE}/${HOSTNAME}.${DOMAIN}.key
 CERTFILE=${STORE}/${HOSTNAME}.${DOMAIN}-bundle.crt
-CACERTFILE=../cummings-online.ca.crt
+CACERTFILE=${STORE}/../../certs/ca.cummings-online.crt
 
 for f in $KEYFILE $CERTFILE $CACERTFILE; do
     if [ ! -f $f ]; then
@@ -36,4 +35,4 @@ kubectl create secret generic 389ds-tls \
     --from-file="ca.crt"=${CACERTFILE}
 
 kubectl create cm 389ds-ca-cert \
-    --from-file=cummings-online.ca.crt=../cummings-online.ca.crt
+    --from-file=ca.cummings-online.crt=${CACERTFILE}

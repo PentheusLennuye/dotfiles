@@ -4,33 +4,47 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: ldap-replica
-  name: ldap-replica
+    app: ldap-consumer
+  name: ldap-consumer
   namespace: it
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ldap-replica
+      app: ldap-consumer
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: ldap-replica
+        app: ldap-consumer
     spec:
       affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - jigen
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app: ldap-replica
+                    app: ldap-consumer
                 topologyKey: "kubernetes.io/hostname"
       volumes:
+        - name: 389ds-consumer-config
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-consumer-config-pvc
         - name: 389ds-consumer-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs2-pvc
+            claimName: 389ds-nfs-consumer-data-pvc
+        - name: 389ds-consumer-logs
+          persistentVolumeClaim:
+            claimName: 389ds-nfs-consumer-logs-pvc
         - name: 389ds-consumer-tls
           secret:
             secretName: 389ds-consumer-tls
@@ -54,33 +68,39 @@ spec:
             - name: DS_SUFFIX_NAME
               value: "dc=cummings-online,dc=ca"
             - name: HOST_FQDN
-              value: "ldap1.cummings-online.ca"
+              value: "ldap.cummings-online.ca"
             - name: REPLICATION_ROLE
               value: consumer
+            - name: REPLICATION_PEERS
+              value: "ldap1.cummings-online.ca:fleetwood-1,ldap2.cummings-online.ca:fleetwood-2"
             - name: REPLICATION_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-            - name: REPLICATION_PEERS
-              value: "(ldap.cummings-online.ca:fleetwood-agreement-ldap1)"
-          image: docker.cummings-online.ca/389ds:0.2.12
+          image: docker.cummings-online.ca/389ds:0.2.76
           imagePullPolicy: Always
           ports:
-            - containerPort: 389
-            - containerPort: 636
+            - containerPort: 3389
+            - containerPort: 6636
           volumeMounts:
             - name: 389ds-consumer-data
+              readOnly: false
+              mountPath: /var/lib/dirsrv
+            - name: 389ds-consumer-config
               readOnly: true
               mountPath: /etc/krb5.conf
               subPath: krb5.conf
-            - name: 389ds-consumer-data
+            - name: 389ds-consumer-config
               readOnly: false
               mountPath: /etc/dirsrv/ds.keytab
               subPath: ds.keytab
-            - name: 389ds-consumer-data
+            - name: 389ds-consumer-config
               readOnly: false
-              mountPath: /data
+              mountPath: /etc/dirsrv/slapd-localhost
             - name: 389ds-consumer-tls
               readOnly: true
               mountPath: /data/tls
+            - name: 389ds-consumer-logs
+              readOnly: false
+              mountPath: /var/log/dirsrv/slapd-localhost

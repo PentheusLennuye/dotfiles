@@ -122,6 +122,7 @@
         - packages
         - productivity
       loop:
+        - jre-openjdk # for Libreoffice
         - protonmail-bridge
         - libreoffice-fresh
         - libreoffice-fresh-en-gb
