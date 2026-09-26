@@ -1,99 +1,45 @@
 ---
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
-  name: 389ds-nfs-consumer-config-pv
-  labels:
-    type: nfs-389ds-consumer-config-storage
-spec:
-  capacity:
-    storage: 10Mi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - nconnect=8
-  nfs:
-    server: lupin
-    path: /protected/fleetwood/389ds/config
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: 389ds-nfs-consumer-config-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Mi
-  selector:
-    matchLabels:
-      type: nfs-389ds-consumer-config-storage
-  storageClassName: ""
+  name: 389ds-local-consumer-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+
+# ───── Data ─────────────────────────────────────────
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: 389ds-nfs-consumer-data-pv
-  labels:
-    type: nfs-389ds-consumer-data-storage
+  name: 389ds-local-consumer-data-pv
 spec:
   capacity:
-    storage: 50Mi
+    storage: 3072Mi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOncePod
   persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - nconnect=8
-  nfs:
-    server: lupin
-    path: /protected/fleetwood/389ds/data
+  storageClassName: 389ds-local-consumer-storage
+  local:
+    path: /srv/k8s/389ds/data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - lupin
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: 389ds-nfs-consumer-data-pvc
+  name: 389ds-consumer-data-pvc
+  namespace: it
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOncePod
+  storageClassName: 389ds-local-consumer-storage
   resources:
     requests:
-      storage: 50Mi
-  selector:
-    matchLabels:
-      type: nfs-389ds-consumer-data-storage
-  storageClassName: ""
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: 389ds-nfs-consumer-logs-pv
-  labels:
-    type: nfs-389ds-consumer-logs-storage
-spec:
-  capacity:
-    storage: 1048Mi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - nconnect=8
-  nfs:
-    server: lupin
-    path: /protected/fleetwood/389ds/logs
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: 389ds-nfs-consumer-logs-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1024Mi
-  selector:
-    matchLabels:
-      type: nfs-389ds-consumer-logs-storage
-  storageClassName: ""
+      storage: 3072Mi

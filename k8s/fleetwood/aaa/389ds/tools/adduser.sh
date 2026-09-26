@@ -144,27 +144,27 @@ fi
 ##echo "${ldif}" | $add -D "${admin_dn}" -w "${PASSWORD}" 
 
 # Set password ---------------------------------------------------------
-u_password=
-while [ -z "$u_password" ]; do
-    read -r -s -p "Password: " firstpass
-    echo
-    read -r -s -p "Confirm password: " secondpass
-    echo
-    if [ "$firstpass" == "$secondpass" ]; then
-        u_password=$firstpass
-    else
-        echo "Passwords do not match"
-    fi
-done
-
-ldappasswd -s "${u_password}" -x -ZZ \
-    -H ldap://${HOST} \
-    -D "${ID}" -w "${PASSWORD}" \
-    "cn=${cn},${OU}"
-
-if [ $? -ne 0 ]; then
-    echo "User $uid password not set."
-else
-    echo "User $uid password set."
-fi
-
+#u_password=
+#while [ -z "$u_password" ]; do
+#    read -r -s -p "Password: " firstpass
+#    echo
+#    read -r -s -p "Confirm password: " secondpass
+#    echo
+#    if [ "$firstpass" == "$secondpass" ]; then
+#        u_password=$firstpass
+#    else
+#        echo "Passwords do not match"
+#    fi
+#done
+#
+#ldappasswd -s "${u_password}" -x -ZZ \
+#    -H ldap://${HOST} \
+#    -D "${ID}" -w "${PASSWORD}" \
+#    "cn=${cn},${OU}"
+#
+#if [ $? -ne 0 ]; then
+#    echo "User $uid password not set."
+#else
+#    echo "User $uid password set."
+#fi
+#

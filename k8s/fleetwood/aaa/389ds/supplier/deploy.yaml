@@ -28,15 +28,9 @@ spec:
                     app: ldap
                 topologyKey: "kubernetes.io/hostname"
       volumes:
-        - name: 389ds-config
-          persistentVolumeClaim:
-            claimName: 389ds-nfs-config-pvc
         - name: 389ds-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs-data-pvc
-        - name: 389ds-logs
-          persistentVolumeClaim:
-            claimName: 389ds-nfs-logs-pvc
+            claimName: 389ds-data-pvc
         - name: 389ds-tls
           secret:
             secretName: 389ds-tls
@@ -70,7 +64,7 @@ spec:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.2.78
+          image: docker.cummings-online.ca/389ds:0.5.11
           imagePullPolicy: Always
           ports:
             - containerPort: 3389
@@ -78,21 +72,7 @@ spec:
           volumeMounts:
             - name: 389ds-data
               readOnly: false
-              mountPath: /var/lib/dirsrv
-            - name: 389ds-config
-              readOnly: true
-              mountPath: /etc/krb5.conf
-              subPath: krb5.conf
-            - name: 389ds-config
-              readOnly: false
-              mountPath: /etc/dirsrv/ds.keytab
-              subPath: ds.keytab
-            - name: 389ds-config
-              readOnly: false
-              mountPath: /etc/dirsrv/slapd-localhost
+              mountPath: /data
             - name: 389ds-tls
               readOnly: true
               mountPath: /data/tls
-            - name: 389ds-logs
-              readOnly: false
-              mountPath: /var/log/dirsrv/slapd-localhost

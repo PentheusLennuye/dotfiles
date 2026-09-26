@@ -4,6 +4,7 @@
 
 REPLICATION=0
 TLS=0
+DB_EXISTS=0
 
 sanity_check() {
   echo "Sanity check"
@@ -35,6 +36,30 @@ set_replication() {
   if [ -z "${REPLICATION_ROLE}" ]; then echo "No REPLICATION_ROLE"; return; fi
   if [ -z "${REPLICATION_PASSWORD}" ]; then echo "No Repl password"; return; fi
   REPLICATION=1
+}
+
+# create_softlinks ensures that etc, lock, run and logs are all under one
+# mount point.
+create_softlinks() {
+  echo -n "creating softlinks ..."
+
+  for i in lib log run run/lock/dirsrv; do
+    if [ ! -d /data/$i ]; then
+      mkdir -p /data/$i
+    fi
+  done
+  if [ ! -d /data/etc ]; then
+    mv /etc/dirsrv /data/etc   
+  fi
+
+  ln -s /data/etc /etc/dirsrv
+  ln -s /data/lib /var/lib/dirsrv
+
+  ln -s /data/run /run/dirsrv
+  ln -s /data/run/lock/dirsrv /run/lock/dirsrv
+  ln -s /data/log /var/log/dirsrv
+
+  echo "created."
 }
 
 ds_instantiation_1() {
@@ -87,6 +112,7 @@ create_ds_instantiation_file() {
 create_ds_database() {
   if [ -f /var/lib/dirsrv/slapd-localhost/db/data.mdb ]; then
     echo "DB already exists. Skipping creation."
+    DB_EXISTS=1
     return
   fi
 
@@ -128,6 +154,7 @@ configure_tls() {
   if [ $? -ne 0 ]; then
     echo "Failed to update CA"
     sleep 5
+    dsctl localhost stop
     exit 1
   fi
 
@@ -142,6 +169,7 @@ configure_tls() {
   if [ $? -ne 0 ]; then
     echo "Failed to install server certs"
     sleep 5
+    dsctl localhost stop
     exit 2
   fi
   
@@ -170,7 +198,7 @@ create_replication_agreement() {
   dsconf localhost repl-agmt create \
     --suffix="${DS_SUFFIX_NAME}" --host="${hostname}" --port=636 --conn-protocol=LDAPS \
     --bind-method=SIMPLE --bind-dn="cn=replication manager,cn=config" \
-    --bind-passwd="${REPLICATION_PASSWORD}" ${init} --init ${agreement_name}
+    --bind-passwd="${REPLICATION_PASSWORD}" ${agreement_name}
 }
 
 create_replication_agreements() {
@@ -192,14 +220,11 @@ create_replication_agreements() {
   done
 }
 
-
-# Kerberos ────────────────────────────────────────────────────────────────────
-echo "KRB5_KTNAME=/etc/dirsrv/ds.keytab" > /etc/default/dirsrv
-
 # START HERE
 sanity_check
 set_tls
 set_replication
+create_softlinks
 
 create_ds_instantiation_file
 create_ds_database
@@ -207,6 +232,7 @@ dsctl localhost start
 configure_tls 
 create_replication_agreements
 dsctl localhost stop
+
 echo "Entrypoint complete. Passing pid 1 to a389ds localhost"
 exec "$@"
 

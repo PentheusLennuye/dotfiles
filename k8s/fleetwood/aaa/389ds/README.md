@@ -24,15 +24,7 @@ KUBE_EDITOR=vim kubectl -n kube-system edit cm coredns  # add entries to ldap, l
 kubectl -n kube-system rollout restart deploy/coredns
 ```
 
-### A.2 Kerberos
-
-If using Kerberos for password-less queries, create a _krb5.conf_ and one
-_ds.keytab_ (the equivalent of _krb5.keytab_) per host. They need to be made
-available on a persistent volume, configuration map, or secret.
-
-The keytab principles must have the prefix _ldap/_.
-
-### A.3 Persistent Volumes
+### A.2 Persistent Volumes
 
 You will want your precious data to be persistent. Ensure each host has this
 directory structure:
@@ -41,8 +33,6 @@ directory structure:
 /
 ├─ data (owned by root)
 ├─ config (owned by 100:101)
-│    ├─ krb5.conf
-│    └─ ds.keytab
 └─ logs (owned by 100:101)
 ```
 
@@ -80,21 +70,26 @@ k apply -f .
 ./07_populate.sh
 ```
 
-## F. GSSAPI/Kerberos
+### C.1 Initial agreement
 
-### F.1 Docker Containers
-
-Confirm GSSAPI and GSS-SPNEGO are available:
-
-```sh
-dsconf -D "cn=Directory Manager" ldap://ldap1.cummings-online.ca config get nsslapd-allowed-sasl-mechanisms
-```
-
-If they are not, punch in the following command:
+On occasion, the agreement will stay in state unknown. Initiate with the
+following command for each agreement:
 
 ```sh
-dsconf -D "cn=Directory Manager" ldap://ldap.cummings-online.ca config \
-  replace nsslapd-allowed-sasl-mechanisms=PLAIN,EXTERNAL,LOGIN,GSSAPI,GSS-SPNEGO
+kubectl exec deploy/ldap -- dsconf localhost repl-agmt init \
+--suffix="dc=cummings-online,dc=ca" <agreement name>
 ```
 
-### F.2 Ubuntu
+## D. Troubleshooting
+
+If the replication manager password on a host not controlled by container
+images is incorrect, fix it with:
+
+```sh
+ldapmodify -x -D "cn=Directory Manager" -W -H ldap://localhost:389 << EOF
+dn: cn=replication manager,cn=config
+changetype: modify
+replace: userPassword
+userPassword: <new_replication_manager_password>
+EOF
+```

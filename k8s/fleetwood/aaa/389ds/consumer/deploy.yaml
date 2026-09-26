@@ -26,25 +26,11 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - jigen
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: ldap-consumer
-                topologyKey: "kubernetes.io/hostname"
+                      - lupin
       volumes:
-        - name: 389ds-consumer-config
-          persistentVolumeClaim:
-            claimName: 389ds-nfs-consumer-config-pvc
         - name: 389ds-consumer-data
           persistentVolumeClaim:
-            claimName: 389ds-nfs-consumer-data-pvc
-        - name: 389ds-consumer-logs
-          persistentVolumeClaim:
-            claimName: 389ds-nfs-consumer-logs-pvc
+            claimName: 389ds-consumer-data-pvc
         - name: 389ds-consumer-tls
           secret:
             secretName: 389ds-consumer-tls
@@ -68,7 +54,7 @@ spec:
             - name: DS_SUFFIX_NAME
               value: "dc=cummings-online,dc=ca"
             - name: HOST_FQDN
-              value: "ldap.cummings-online.ca"
+              value: "ldap1.cummings-online.ca"
             - name: REPLICATION_ROLE
               value: consumer
             - name: REPLICATION_PEERS
@@ -78,7 +64,7 @@ spec:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.2.78
+          image: docker.cummings-online.ca/389ds:0.5.11
           imagePullPolicy: Always
           ports:
             - containerPort: 3389
@@ -86,21 +72,7 @@ spec:
           volumeMounts:
             - name: 389ds-consumer-data
               readOnly: false
-              mountPath: /var/lib/dirsrv
-            - name: 389ds-consumer-config
-              readOnly: true
-              mountPath: /etc/krb5.conf
-              subPath: krb5.conf
-            - name: 389ds-consumer-config
-              readOnly: false
-              mountPath: /etc/dirsrv/ds.keytab
-              subPath: ds.keytab
-            - name: 389ds-consumer-config
-              readOnly: false
-              mountPath: /etc/dirsrv/slapd-localhost
+              mountPath: /data
             - name: 389ds-consumer-tls
               readOnly: true
               mountPath: /data/tls
-            - name: 389ds-consumer-logs
-              readOnly: false
-              mountPath: /var/log/dirsrv/slapd-localhost
