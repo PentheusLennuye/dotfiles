@@ -36,7 +36,7 @@ unset plugin plugins
 # │ Session Variables  ├──────────────────────────────────────────────╮
 # ╰┬───────────────────╯                                              │
 #  ╰──────────────────────────────────────────────────────────────────╯
-export CA=/home/gmc/Documents/spaces/tech/infra/ca
+export PKI=/home/gmc/Documents/spaces/tech/infra/pki
 export DF=$HOME/Documents/spaces/tech/infra/dotfiles
 export GOPATH=$HOME/.go
 export KUBECONFIG=$HOME/.kube/config
@@ -55,6 +55,7 @@ alias ke="kubectl exec"
 alias ls=lsd
 alias ll="ls -l"
 alias la="ls -la"
+alias pki="cd $PKI"
 alias ssh="TERM=xterm-256color ssh"
 alias src="cd $SRC"
 
