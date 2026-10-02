@@ -16,12 +16,13 @@ while [[ -z "$DOMAIN" ]]; do
     read -p "Domain name: " DOMAIN
 done
 
-STORE=$HOME/Documents/spaces/tech/infra/ca/${DOMAIN}/store
-KEYFILE=${STORE}/${HOSTNAME}.${DOMAIN}.key
-CERTFILE=${STORE}/${HOSTNAME}.${DOMAIN}-bundle.crt
-CACERTFILE=${STORE}/../../certs/ca.cummings-online.crt
+STORE=$HOME/Documents/spaces/tech/infra/pki/ca/${DOMAIN}/component-ca
+KEYFILE=${STORE}/private/${HOSTNAME}.${DOMAIN}-server.key
+CERTFILE=${STORE}/certs/${HOSTNAME}.${DOMAIN}-server.full-chain.pem
+IDCERTFILE=${STORE}/../identity-ca/certs/identity-ca.crt
+CACERTFILE=${STORE}/../../root_ca/certs/cummings-online.crt
 
-for f in $KEYFILE $CERTFILE $CACERTFILE; do
+for f in $KEYFILE $CERTFILE $IDCERTFILE $CACERTFILE; do
     if [ ! -f $f ]; then
         echo
         echo "$f missing. Exiting."
@@ -32,5 +33,5 @@ done
 
 kubectl create secret generic 389ds-consumer-tls \
     --from-file=server.key=${KEYFILE} --from-file=server.crt=${CERTFILE} \
-    --from-file="ca.crt"=${CACERTFILE}
+    --from-file="ca.crt"=${CACERTFILE} --from-file=identity-ca.crt=${IDCERTFILE}
 

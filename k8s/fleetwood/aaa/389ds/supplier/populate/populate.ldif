@@ -46,6 +46,13 @@ gidNumber: 10001
 objectClass: posixGroup
 objectClass: groupOfUniqueNames
 
+dn: cn=DomainSystems,ou=Groups,dc=cummings-online,dc=ca
+cn: DomainSystems
+description: Systems that are permitted to query this directory
+gidNumber: 10002
+objectClass: posixGroup
+objectClass: groupOfUniqueNames
+
 dn: cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca
 cn: ServiceAccounts
 description: Accounts for hosts and machine-to-machine communication

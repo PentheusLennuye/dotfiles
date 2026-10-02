@@ -74,6 +74,13 @@ mail="${uid}@${EXT_DOMAIN}"
 read -r -p "Email Address [${mail}]: " prompt
 if [ "${prompt}" != "" ]; then mail=$prompt; fi
 ldif=$(printf "${ldif}\nmail: $mail")
+
+# userCertificate
+user_certificate="${PKI}/ca/${EXT_DOMAIN}/identity-ca/certs/${uid}-id.der"
+read -r -p "Path to user cert [${user_certificate}]: " prompt
+if [ "${prompt}" != "" ]; then user_certificate=$prompt; fi
+ldif=$(printf "${ldif}\nuserCertificate;binary:< file://${user_certificate}")
+
  
 # Create User ────────────────────────────────────────────────────────────────
 add="ldapadd -x -ZZ -H ldap://${HOST}"
@@ -95,6 +102,8 @@ EOF
 
 echo "${ldif}" | ldapmodify -x -ZZ \
   -H ldap://${HOST} -D "${ID}" -w "${PASSWORD}"
+
+
 
 # Cummings Online Domain Admin
 admin=n

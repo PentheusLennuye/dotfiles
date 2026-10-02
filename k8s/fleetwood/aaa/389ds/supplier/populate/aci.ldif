@@ -27,7 +27,7 @@ dn: dc=cummings-online,dc=ca
 changetype: modify
 add: aci
 aci: (targetattr != "carLicense || employeeNumber || mobile || homePostalAd
- dress || userPassword")
+ dress")
   (version 3.0;
    acl "Domain Admins have full rights but exclude personal information";
    allow (all)
@@ -59,8 +59,19 @@ aci: (targetattr = "displayName || mail || uid || manager || telephon
   (groupdn="ldap:///cn=ServiceAccounts,ou=Groups,dc=cummings-online,dc=ca")
  ;)
 -
+add: aci
+aci: (targetattr = "cn || uniqueMember || gidNumber")
+  (version 3.0;
+  acl "Systems can search aaa group info";
+  allow (search, read, compare)
+  (groupdn="ldap:///cn=DomainSystems,ou=Groups,dc=cummings-online,dc=ca")
+ ;)
 
 # Target is People --------------------------------------------------------
+#dn: ou=People,dc=cummings-online,dc=ca
+#changetype: modify
+#delete: aci
+
 dn: ou=People,dc=cummings-online,dc=ca
 changetype: modify
 add: aci
@@ -85,4 +96,12 @@ aci: (targetattr != "userPassword || gidNumber || uidNumber || homeDirecto
    acl "HR can modify non-security attributes, including nsAccountLock";
    allow (search, read)
    groupdn="ldap:///cn=Personnel,ou=Groups,dc=cummings-online,dc=ca";)
-
+-
+add: aci
+aci: (targetattr = "cn || uid || gidNumber || homeDirectory || loginShell || mail ")
+  (targetfilter="(objectClass=posixAccount)")
+  (version 3.0;
+  acl "Systems can search user aaa info";
+  allow (search, read, compare)
+  (groupdn="ldap:///cn=DomainSystems,ou=Groups,dc=cummings-online,dc=ca")
+ ;)

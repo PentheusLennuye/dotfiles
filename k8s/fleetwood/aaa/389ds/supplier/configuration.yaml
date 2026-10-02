@@ -9,3 +9,15 @@ data:
     uri = ldapi://%%2fdata%%2frun%%2fslapd-localhost.socket
     binddn = cn=Directory Manager
     basedn = dc=cummings-online,dc=ca
+  certmap.conf: |
+    certmap default		default
+
+    certmap CummingsPeople	OU=Cummings Online Identity CA,O=Cummings Online,C=CA,CN=Cummings Online Identity CA
+    CummingsPeople:DNComps
+    CummingsPeople:FilterComps    cn
+    CummingsPeople:VerifyCert     on
+
+    certmap CummingsSystems	OU=Cummings Online Component CA,O=Cummings Online,C=CA,CN=Cummings Online Component CA
+    CummingsSystems:DNComps
+    CummingsSystems:FilterComps    cn
+    CummingsSystems:VerifyCert     off

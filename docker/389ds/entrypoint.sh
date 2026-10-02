@@ -26,6 +26,7 @@ set_tls() {
   echo "Testing for TLS"
   [ -f /data/tls/ca/ca.crt ] || return
   [ -f /data/tls/server.crt ] || return
+  [ -f /data/tls/identity-ca.crt ] || return
   [ -f /data/tls/server.key ] || return
   TLS=1
 }
@@ -60,6 +61,12 @@ create_softlinks() {
   ln -s /data/log /var/log/dirsrv
 
   echo "created."
+}
+
+copy_files() {
+  if [ -f "/data/certmap.conf" ]; then
+    cat /data/certmap.conf > /etc/dirsrv/slapd-localhost/certmap.conf
+  fi
 }
 
 ds_instantiation_1() {
@@ -126,7 +133,7 @@ create_ds_database() {
 
 configure_tls() {
   if [ "${TLS}" != "1" ]; then
-    "Skipping TLS"
+    echo "Skipping TLS"
     return
   fi
   echo "Inserting certs to 389ds cert store."
@@ -147,12 +154,26 @@ configure_tls() {
   certutil -A \
     -d /etc/dirsrv/slapd-localhost \
     -n "ca_cert" \
-    -t "C,," \
+    -t "CT,," \
     -f /tmp/pinpw \
     -i /data/tls/ca/ca.crt
 
   if [ $? -ne 0 ]; then
     echo "Failed to update CA"
+    sleep 5
+    dsctl localhost stop
+    exit 1
+  fi
+
+  certutil -A \
+    -d /etc/dirsrv/slapd-localhost \
+    -n "Identity CA" \
+    -t ",," \
+    -f /tmp/pinpw \
+    -i /data/tls/identity-ca.crt
+
+  if [ $? -ne 0 ]; then
+    echo "Failed to update identity CA"
     sleep 5
     dsctl localhost stop
     exit 1
@@ -228,6 +249,7 @@ create_softlinks
 
 create_ds_instantiation_file
 create_ds_database
+copy_files
 dsctl localhost start
 configure_tls 
 create_replication_agreements

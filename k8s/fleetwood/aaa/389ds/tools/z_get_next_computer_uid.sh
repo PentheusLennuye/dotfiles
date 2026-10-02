@@ -1,4 +1,4 @@
-START_NUMBER=9999
+START_NUMBER=199999
 
 set_new_uid() {
   if [ "$1" == "" ]; then
@@ -10,7 +10,7 @@ set_new_uid() {
 
 LAST_UID=$(
   ldapsearch -x -Z -H ldap://${HOST} -D "${ID}" \
-  -w "${PASSWORD}" -b "ou=People,${DC}" objectClass=posixAccount uidNumber \
+  -w "${PASSWORD}" -b "ou=Systems,${DC}" objectClass=posixAccount uidNumber \
   | awk '/uidNumber: / {print $2}' | sort | tail -n 1
 )
 

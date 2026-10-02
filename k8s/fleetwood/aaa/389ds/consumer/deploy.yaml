@@ -28,6 +28,12 @@ spec:
                     values:
                       - lupin
       volumes:
+        - name: 389ds-consumer-config
+          configMap:
+            name: 389ds-consumer-config
+            items:
+              - key: "certmap.conf"
+                path: "certmap.conf"
         - name: 389ds-consumer-data
           persistentVolumeClaim:
             claimName: 389ds-consumer-data-pvc
@@ -41,6 +47,8 @@ spec:
                 path: "server.crt"
               - key: "ca.crt"
                 path: "ca/ca.crt"
+              - key: "identity-ca.crt"
+                path: "identity-ca.crt"
       imagePullSecrets:
         - name: regcred
       containers:
@@ -64,12 +72,16 @@ spec:
                 secretKeyRef:
                   name: ds-dm-password
                   key: password
-          image: docker.cummings-online.ca/389ds:0.5.11
+          image: docker.cummings-online.ca/389ds:0.5.15
           imagePullPolicy: Always
           ports:
             - containerPort: 3389
             - containerPort: 6636
           volumeMounts:
+            - name: 389ds-consumer-config
+              readOnly: true
+              mountPath: /data/certmap.conf
+              subPath: certmap.conf
             - name: 389ds-consumer-data
               readOnly: false
               mountPath: /data
